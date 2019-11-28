@@ -1,0 +1,44 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/rank.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <a href="/rank/soft.html"> 排行榜</a>
+      &gt; <span>插件</span>
+    </div>
+    <h1>排行榜单</h1>
+    <div class="rank-nav">
+      <a href="/rank/soft.html">软件</a>
+      <a href="/rank/game.html">游戏</a>
+      <a href="/rank/cj.html" class="active">插件</a>
+      <a href="/rank/mb.html">模板</a>
+    </div>
+    <section class="rank-plugin">
+      <ul class="toggle active clearfix">
+        {{ component.template(rank_info | slice(0, 20)) }}
+      </ul>
+      <ul class="toggle clearfix">
+        {{ component.template(rank_info | slice(20, 40)) }}
+      </ul>
+      {% if rank_info | length > 20 %}
+      <div class="rank-pagi">
+        <span class="active">&lt;</span>
+        <span>&gt;</span>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+</main>
+
+{% endblock %}
+
+{% block script %}
+<script src="js/rank.min.js"></script>
+{% endblock %}

@@ -1,0 +1,72 @@
+.wallpaper-list () {
+  width: 372px;
+  height: 260px;
+  float: left;
+  margin-right: 42px;
+  margin-top: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+  &:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .imgs {
+    width: 100%;
+    height: 198px;
+    overflow: hidden;
+    position: relative;
+
+    .img-cover {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        position: absolute;
+        height: 100%;
+        left: 50%;
+        top: 0px;
+        transform: translateX(-50%);
+      }
+    }
+
+    .img-array {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: none;
+
+      img {
+        position: absolute;
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0px;
+        opacity: 0;
+        transition: opacity 0s ease;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .con {
+    line-height: 52px;
+    height: 52px;
+
+    .title {
+      .text-ovh;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+}

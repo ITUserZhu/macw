@@ -1,0 +1,56 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+{% import "components/pagination.twig" as pagi %}
+
+{% block css %}
+<base target="_blank">
+<link rel="stylesheet" href="css/list.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <a href="/dlist/">壁纸</a>
+      {% for item in cate_info if item.id == cat_id %}
+      &gt; <span>{{ item.cate_name }}</span>
+      {% endfor %}
+    </div>
+    <section class="list-nav">
+      <div class="list-nav_cate">
+        <span>分类：</span>
+        <div class="list-nav_links">
+          <a href="/dlist/0_{{ order }}_1.html" {% if category_data.parent_id == 0 %} class="active" {% endif %}>
+            全部
+          </a>
+          {% for item in cate_info %}
+          <a href="{{ item.url }}" {% if category_data.parent_id == item.id or item.id == id %} class="active"
+            {% endif %}>
+            {{ item.cate_name }}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="list-nav_cate">
+        <span>类别：</span>
+        <div class="list-nav_links">
+          <a href="/dlist/{{ cat_id }}_1_1.html" {% if order == 1 %}class="active" {% endif %}>最新</a>
+          <a href="/dlist/{{ cat_id }}_2_1.html" {% if order == 2 %}class="active" {% endif %}>最热</a>
+          <a href="/dlist/{{ cat_id }}_3_1.html" {% if order == 3 %}class="active" {% endif %}>最佳</a>
+        </div>
+      </div>
+    </section>
+    <section class="list-wrap">
+      <ul class="wallpaper clearfix">
+        {{ component.wallpaper(wallpaper_list) }}
+      </ul>
+    </section>
+    {{ pagi.pagi(wallpaper_total, page, 12, '/dlist/' ~ cat_id ~'_' ~ order ) }}
+  </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/wallpaper-list.min.js"></script>
+{% endblock %}

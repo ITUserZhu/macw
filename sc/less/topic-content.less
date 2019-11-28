@@ -1,0 +1,61 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-26 16:46:26 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-26 16:55:24
+ */
+
+@import './modules/atlas-topic-content';
+
+section {
+  &.topic-info {
+    position: relative;
+    height: 300px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 40px;
+
+    .info-con {
+      padding-right: 600px;
+      padding-top: 20px;
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .num {
+        color: #999;
+        margin: 15px 0 20px;
+      }
+
+      .desc {
+        color: #666;
+        font-size: 16px;
+      }
+    }
+
+    .info-img {
+      width: 400px;
+      height: 260px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: #fff;
+      padding: 10px;
+      .shadow;
+
+      .img {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        img {
+          height: 100%;
+          min-width: 100%;
+          margin-left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+}

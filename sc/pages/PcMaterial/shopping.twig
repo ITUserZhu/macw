@@ -1,0 +1,48 @@
+{% extends 'inc/base.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="css/shopping.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <span>购物车</span>
+    </div>
+    <div class="shopping-car">
+      <div class="foot">
+        <span class="del-all">删除所选项目</span><span class="destroy-all">清空购物车</span>
+        <span class="fr">总计：<em id="point-num">0</em>积分</span>
+        <button id="down">立即下载</button>
+      </div>
+      <div class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <i class="select icon-right" id="toggle-all"></i>
+                <span>全选</span>
+              </th>
+              <th>名称</th>
+              <th>类型</th>
+              <th>积分</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="shop-top" title="返回顶部"><i class="icon-arrow"></i></div>
+      <p class="shop-tips">温馨提示： 套餐会员用户优先抵扣下载次数，如当月次数为零则消耗积分。</p>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/shopping.min.js"></script>
+{% endblock %}

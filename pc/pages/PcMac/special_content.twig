@@ -1,0 +1,41 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/topic-content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <a href="/z/">专题</a>
+      &gt; <a href="{{ category_data.parent_cate_url }}">{{ category_data.parent_cate_name }}</a>
+      &gt; <a href="{{ category_data.url }}">{{ category_data.cate_name }}</a>
+      &gt; <span>{{ info.title }}</span>
+    </div>
+    <section class="info">
+      <h1>{{ info.title }}</h1>
+      <p class="num">共{{ special_count }}款软件</p>
+      <div class="btns">
+        <a href="{{ category_data.parent_cate_url }}">专题列表</a>
+        <a href="/z/">专题首页</a>
+      </div>
+    </section>
+    <section class="content-list">
+      <ul class="soft clearfix">
+        {{ component.soft(content_info) }}
+      </ul>
+    </section>
+    {% if article_info %}
+    <section class="article-list">
+      <h2>相关文章</h2>
+      <ul class="clearfix">
+        {{ component.article(article_info) }}
+      </ul>
+    </section>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}

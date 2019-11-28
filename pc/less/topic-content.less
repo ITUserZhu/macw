@@ -1,0 +1,77 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-19 14:10:30 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-19 14:26:22
+ */
+
+@import 'components/common';
+@import 'modules/soft-list';
+@import 'modules/template-list';
+@import 'modules/article-list';
+
+section {
+  margin-bottom: 20px;
+
+  &.info {
+    margin-top: 20px;
+
+    h1 {
+      font-size: 22px;
+      line-height: 50px;
+    }
+
+    .num {
+      color: #999;
+    }
+
+    .btns {
+      margin-top: 30px;
+
+      a {
+        display: inline-block;
+        font-size: 16px;
+        width: 120px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid @theme-color;
+        color: @theme-color;
+        margin-right: 20px;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  &.content-list {
+    ul {
+      &.soft {
+        li {
+          .soft-list;
+        }
+      }
+
+      &.plugin {
+        margin-top: 40px;
+
+        li {
+          .template-list;
+        }
+      }
+    }
+  }
+
+  &.article-list {
+    margin-top: 50px;
+
+    h2 {
+      line-height: 70px;
+      font-size: 22px;
+      text-align: center;
+    }
+
+    ul li {
+      .article-list;
+    }
+  }
+}

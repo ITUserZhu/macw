@@ -1,0 +1,117 @@
+{% extends 'inc/base.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="css/vip.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <span>vip</span>
+    </div>
+    <h1>会员中心</h1>
+    <div class="vip-type">
+      <span class="active">会员充值</span>
+      <span>积分充值</span>
+    </div>
+    <div class="vip-wraps">
+      <ul class="combo active clearfix">
+        {% for item in data if item.point_type == 2 %}
+        <li class="item" data-id="{{ item.id }}" data-price="{{ item.discount_money | round(0) }}"
+          data-us="{{ item.usd_price | round(0) }}">
+          <p class="title">{{ item.point_name }}</p>
+          <div class="price">
+            ￥<span>{{ item.discount_money | round(0) }}</span>
+            (${{ item.usd_price | round(0) }})
+          </div>
+          <ol>
+            {% for v in item.remark %}
+            <li>{{ v | split('：') | first }}：<span>{{ v | split('：') | last }}</span></li>
+            {% endfor %}
+          </ol>
+          <button>立即订购</button>
+        </li>
+        {% endfor %}
+      </ul>
+      <ul class="point clearfix">
+        {% for item in data if item.point_type == 1 %}
+        <li class="item" data-id="{{ item.id }}" data-price="{{ item.discount_money | round(0) }}"
+          data-us="{{ item.usd_price | round(0) }}">
+          <p class="title">{{ item.point_name }}</p>
+          <div class="price">
+            ￥<span>{{ item.discount_money | round(0) }}</span>
+            (${{ item.usd_price | round(0) }})
+          </div>
+          <ol>
+            {% for v in item.remark %}
+            <li>{{ v | split('：') | first }}：<span>{{ v | split('：') | last }}</span></li>
+            {% endfor %}
+          </ol>
+          <button>立即订购</button>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="pay-box clearfix">
+      <section class="coupon">
+        <p class="title">优惠券：<em>优惠券仅限支付宝、微信支付使用</em></p>
+        <ul class="clearfix" id="coupon-wrap">
+          <p>暂无优惠券</p>
+        </ul>
+      </section>
+      <section class="pay">
+        <p class="should-pay">支付金额： <span><em>158</em>元</span></p>
+        <div class="ewm-box">
+          {% if login == 1 %}
+          <div class="ewm" id="ali-pay">
+            <img src="/assets/images/vip/loadcode.gif" class="loadimg">
+          </div>
+          {% else %}
+          <div class="to-login">
+            <img src="/assets/images/vip/ali-ewm.png">
+            <p>点击登录</p>
+          </div>
+          {% endif %}
+          <p><i class="icon-alipay"></i>支付宝支付</p>
+        </div>
+        <div class="ewm-box">
+          <div class="paypal" id="paypal">
+            <img src="/assets/images/vip/paypal.png" width="150">
+            <span>($<em>19</em>)</span>
+          </div>
+          <p><i class="icon-paypal"><em class="path1"></em><em class="path2"></em><em class="path3"></em></i>paypal支付
+          </p>
+        </div>
+        <div class="ewm-box">
+          {% if login == 1 %}
+          <div class="ewm" id="wx-pay">
+            <img src="/assets/images/vip/loadcode.gif" class="loadimg" alt="">
+          </div>
+          {% else %}
+          <div class="to-login">
+            <img src="/assets/images/vip/wx-ewm.png">
+            <p>点击登录</p>
+          </div>
+          {% endif %}
+          <p><i class="icon-wxpay"></i>微信支付</p>
+        </div>
+      </section>
+    </div>
+    <div class="recharge-tips">
+      <h3>温馨提示：</h3>
+      <ul>
+        {% for item in reminder %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <input type="hidden" id="vip-login" data-login="{{ login }}">
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/vip.min.js"></script>
+{% endblock %}

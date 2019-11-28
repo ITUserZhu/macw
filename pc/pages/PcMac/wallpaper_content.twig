@@ -1,0 +1,59 @@
+{% extends 'inc/base.twig' %}
+
+{% block css %}
+<base target="_blank">
+<link rel="stylesheet" href="css/wallpaper-content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <a href="/dlist/">壁纸</a>
+      &gt; <a href="{{ wallpaper_content.category_url }}">{{ wallpaper_content.cate_name }}</a>
+      &gt; <span>{{ wallpaper_content.title }}</span>
+    </div>
+    <div class="wallpaper-img">
+      <div class="img-cover">
+        <img src="{{ wallpaper_content.multi_map[0] }}" alt="{{ wallpaper_content.title }}">
+      </div>
+      <div class="img-array">
+        {% for i,v in wallpaper_content.multi_map %}
+        <img src="{{ v }}">
+        {% endfor %}
+      </div>
+    </div>
+    <div class="wallpaper-title">
+      <h1>{{ wallpaper_content.title }}</h1>
+      <div class="wallpaper-operate">
+        <div class="share btn" id="share"><i class="icon-share"></i>分享</div>
+        <div class="support btn" id="support"><i class="icon-support"></i>点赞<em>+1</em></div>
+        <div class="collect btn" id="collect"><i class="icon-collect"></i><span>点击收藏</span></div>
+        <div class="download btn" id="download"><i class="icon-download"></i>立即下载</div>
+      </div>
+    </div>
+    <div class="wallpaper-info">
+      <a href="/news/2552.html" target="_blank" class="tips-url">【动态壁纸设置教程】</a>
+      <ol class="clearfix">
+        <li>发布时间： {{ wallpaper_content.update_time | date('Y-m-d') }}</li>
+        <li>格式： {{ wallpaper_content.format_type }}</li>
+        <li>大小： {{ wallpaper_content.file_size }}</li>
+        <li>所需积分： {{ wallpaper_content.point }}</li>
+        <li>所需系统： {{ wallpaper_content.systems }}</li>
+        <li>尺寸： {{ wallpaper_content.resolution }}</li>
+      </ol>
+      <div class="desc fr-view">
+        {{ wallpaper_content.content | raw }}
+      </div>
+    </div>
+  </div>
+  <input type="hidden" id="content-info" data-src="{{ wallpaper_content.thumb }}" data-id="{{ wallpaper_content.id }}"
+    data-model="{{ wallpaper_content.model_id }}" data-url="{{ url }}" data-point="{{ wallpaper_content.point }}"
+    data-title="{{ wallpaper_content.title }}">
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/wallpaper-content.min.js"></script>
+{% endblock %}

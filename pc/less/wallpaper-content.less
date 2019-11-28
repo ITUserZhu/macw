@@ -1,0 +1,190 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-21 10:19:21 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-22 11:28:16
+ */
+
+@import 'components/common';
+@import 'modules/fr-view';
+@import 'modules/share';
+@import 'modules/downloda-recharge';
+
+.wallpaper-img {
+  height: 675px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+
+  .img-cover {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      position: absolute;
+      height: 100%;
+      left: 50%;
+      top: 0px;
+      transform: translateX(-50%);
+    }
+  }
+
+  .img-array {
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    display: none;
+
+    img {
+      position: absolute;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0px;
+      opacity: 0;
+      transition: opacity 0s ease 1s;
+
+      &.active {
+        opacity: 1;
+        transition: opacity 1s ease 0s;
+      }
+    }
+  }
+}
+
+.wallpaper-title {
+  height: 40px;
+  line-height: 40px;
+  margin: 30px 40px;
+
+  h1 {
+    display: inline-block;
+    font-size: 20px;
+    width: 670px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+    line-height: 40px;
+  }
+
+  .wallpaper-operate {
+    float: right;
+
+    .btn {
+      display: inline-block;
+      cursor: pointer;
+      box-sizing: border-box;
+      width: 90px;
+      height: 40px;
+      line-height: 40px;
+      border: 1px solid #ccc;
+      text-align: center;
+      border-radius: 5px;
+      margin-left: 20px;
+
+      i {
+        margin-right: 5px;
+        color: #666;
+      }
+
+      &.download {
+        width: 100px;
+        background-color: @theme-color;
+        color: #fff;
+        border-color: @theme-color;
+
+        i {
+          color: #fff;
+        }
+      }
+
+      &.support {
+        position: relative;
+
+        em {
+          position: absolute;
+          right: -5px;
+          top: 0px;
+          opacity: 0;
+          color: @theme-color;
+          transform: translate3d(0, -10px, 0);
+          font-size: 16px;
+        }
+
+        &.active {
+          em {
+            animation: showfloat 1.2s linear;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes showfloat {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, -25px, 0);
+    opacity: 0;
+  }
+}
+
+.wallpaper-info {
+  background-color: #fff;
+  padding: 20px 40px 0;
+
+  .tips-url {
+    text-align: center;
+    display: block;
+    color: @theme-color;
+    line-height: 50px;
+    font-size: 16px;
+  }
+
+  ol li {
+    float: left;
+    margin-right: 35px;
+    padding-left: 10px;
+    position: relative;
+    line-height: 34px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0px;
+      top: 50%;
+      margin-top: -2px;
+      border-radius: 50%;
+      width: 4px;
+      height: 4px;
+    }
+
+    a {
+      text-decoration: underline;
+      color: @theme-color;
+    }
+  }
+
+  .desc {
+    border-top: 1px solid #ddd;
+    margin-top: 15px;
+
+    p {
+      font-size: 14px;
+    }
+  }
+}

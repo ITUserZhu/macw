@@ -1,0 +1,144 @@
+{% extends 'inc/base.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="css/content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      {% if category %}
+      &gt; <a href="{{ category.url }}">{{ category.keyword }}</a>
+      {% else %}
+      &gt; <a href="/list/">图库</a>
+      {% endif %}
+      &gt; <span>{{ content.title }}</span>
+    </div>
+    <section class="content-info clearfix">
+      <article>
+        <div class="content-info_img">
+          <img src="{{ content.thumb }}" alt="{{ content.title }}">
+        </div>
+        {% if atlas_info %}
+        <div class="content-info_swiper swiper-container">
+          <ul class="swiper-wrapper">
+            {% for item in atlas_info.info %}
+            <li class="swiper-slide {% if content.id == item.id %}active{% endif %}" data-id="{{ item.id }}">
+              <a href="{{ item.url }}" title="{{ item.title }}">
+                <img src="{{ item.thumb }}" alt="{{ item.title }}">
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+          <div class="swiper-button-prev content-info_arrow"></div>
+          <div class="swiper-button-next content-info_arrow"></div>
+        </div>
+        {% endif %}
+      </article>
+      <aside>
+        <div class="content-info_operate">
+          <button class="shopping" id="shopping" title="添加购物车"><i class="icon-shop"></i></button>
+          <button class="collect" id="collect" title="添加收藏"><i class="icon-collect"></i></button>
+        </div>
+        <div class="content-info_wrap">
+          <h1>{{ content.title }}</h1>
+          {% for item in photo_info %}
+          <button class="download" data-id="{{ item.id }}" data-type="{{ item.format_type }}">下载 {{ item.format_type }}
+            <em>({{ item.point }}积分)</em></button>
+          {% endfor %}
+          <ol>
+            <li><em>图片ID：</em> <span>{{ content.id }}</span></li>
+            <li><em>格式：</em> {% for i,item in photo_info %}{% if i != 0 %}、{% endif %}{{ item.format_type }}
+              {% endfor %}</li>
+            <li><em>尺寸：</em> {{ photo_info[0].width }}*{{ photo_info[0].height }} px</li>
+            {% for item in photo_info %}
+            <li><em>{{ item.format_type }}大小：</em> {{ item.file_size }}</li>
+            {% endfor %}
+            <li><em>分辨率：</em> {{ photo_info[0].dpi }} dpi</li>
+            <li><em>版权：</em> {% if free_type == 1 %}商用素材{% else %}共享素材{% endif %}</li>
+            <li><em>发布时间：</em> {{ content.update_time | date('Y-m-d') }}</li>
+            <li><a href="https://www.__host.com/mac/55.html"><em>推荐软件：</em> Adobe Photoshop CC 2019</a></li>
+          </ol>
+          {% if camera.camera_model != '' %}
+          <div class="content-info_wrap-camera">
+            <span title="{{ camera.camera_model }}">型号： {{ camera.camera_model }}</span>
+            <span>ISO： {{ camera.camera_iso }}</span>
+            <span>光圈： {{ camera.camera_diaphragm }}</span>
+            <span>Exif： {{ camera.camera_exif }}</span>
+            <span>曝光： {{ camera.camera_exposure }}</span>
+            <span>焦距： {{ camera.camera_focus }}</span>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="content-info_share">
+          <p>分享</p>
+          <div id="share-wraps">
+            <span title="微信分享" class="icon-wx"></span>
+            <span title="QQ空间分享" class="icon-qzone"></span>
+            <span title="新浪微博分享" class="icon-xinlang">
+              <em class="path1"></em>
+              <em class="path2"></em>
+              <em class="path3"></em>
+              <em class="path4"></em>
+            </span>
+            <span title="花瓣采集" class="icon-huaban"></span>
+          </div>
+        </div>
+
+        <div class="content-info_atlas-info">
+          <p class="title">系列 —— {{ atlas_info.title }}</p>
+          <p class="num">( {{ atlas_info.pic_num }}张图片 )</p>
+          <a href="{{ atlas_info.url }}">更多 &gt;</a>
+        </div>
+      </aside>
+    </section>
+    {% if similar_photo %}
+    <section class="material-list">
+      <div class="sec-title">
+        <h2>相似图片</h2>
+        <a href="/list/">更多 &gt;</a>
+      </div>
+      <ul class="material clearfix">
+        {% for item in rand_arr %}
+        <li data-id="{{ similar_photo[item].id }}" data-w="{{ similar_photo[item].width }}"
+          data-h="{{ similar_photo[item].height }}">
+          <a href="{{ similar_photo[item].url }}" title="{{ similar_photo[item].title }}">
+            <img src="{{ similar_photo[item].thumb }}" alt="{{ similar_photo[item].title }}">
+            <div class="mask">
+              <div class="mask-operate">
+                <button class="collect"><i class="icon-collect"></i></button>
+                <button class="shopping"><i class="icon-shop"></i></button>
+                <button class="download"><i class="icon-download"></i></button>
+              </div>
+            </div>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+    <section class="sec-tags">
+      <div class="sec-title">
+        <h3>标签</h3>
+      </div>
+      <ul class="clearfix">
+        {% for item in tag_info %}
+        <li>
+          <a href="/search/{{ item }}.html">{{ item }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
+  <input type="hidden" id="content-info" data-id="{{ content.id }}" data-model="5" data-thumb="{{ content.thumb }}"
+    data-url="{{ url }}" data-title="{{ content.title }}" data-width="{{ content.width }}"
+    data-height="{{ content.height }}" data-desc="{{ content.description }}">
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/content.min.js"></script>
+{% endblock %}

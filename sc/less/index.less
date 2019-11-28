@@ -1,0 +1,237 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-25 15:00:07 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-26 17:31:48
+ * 素材首页
+ */
+
+@import 'components/common';
+@import 'modules/list';
+@import 'modules/topic';
+@import '/node_modules/swiper/css/swiper.min.css';
+
+section {
+  margin-bottom: 40px;
+
+  &.banner {
+    width: 100%;
+    height: 0;
+    padding-bottom: 22%;
+    position: relative;
+    overflow: hidden;
+
+    .banner-swiper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+
+      .swiper-slide {
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          min-height: 100%;
+          position: absolute;
+          left: 0px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+
+    .banner-mask {
+      position: absolute;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      padding-top: 6%;
+      left: 0;
+      top: 0;
+      background-color: rgba(0, 0, 0, .4);
+
+      .banner-mask_title {
+        text-align: center;
+        font-size: 28px;
+        color: #fff;
+      }
+
+      form {
+        max-width: 60%;
+        margin: 40px auto 15px;
+        height: 50px;
+        position: relative;
+
+        input {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border-radius: 25px;
+          padding: 0 140px 0 30px;
+          background-color: #fff;
+          color: #666;
+          font-size: 16px;
+        }
+
+        button {
+          position: absolute;
+          right: 0;
+          top: 0;
+          height: 100%;
+          width: 120px;
+          border-radius: 0 25px 25px 0;
+          color: #fff;
+          background-color: @theme-color;
+          font-size: 16px;
+        }
+      }
+
+      .banner-mask_hot {
+        color: #fff;
+        max-width: 60%;
+        padding-left: 20px;
+        margin: 0 auto;
+
+        a {
+          color: #fff;
+          padding: 0 15px;
+        }
+      }
+    }
+  }
+
+  &.newest {
+    padding: 0 100px;
+    min-height: 500px;
+
+    aside {
+      float: left;
+      width: 250px;
+
+      h2 {
+        font-size: 22px;
+        color: #bbb;
+        margin: 20px 0;
+      }
+
+      .newest-nav {
+        span {
+          display: block;
+          color: #666;
+          font-size: 17px;
+          line-height: 66px;
+          cursor: pointer;
+
+          &.active {
+            color: @theme-color;
+          }
+        }
+      }
+    }
+
+    article {
+      overflow: hidden;
+      padding: 0 5px;
+
+      ul {
+        display: none;
+
+        &.active {
+          display: block;
+        }
+
+        li {
+          .list;
+        }
+      }
+    }
+  }
+
+  &.classify {
+    position: relative;
+    height: 240px;
+    padding: 30px 0;
+
+    .classify-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        min-height: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        filter: grayscale(100%);
+        filter: gray;
+        opacity: .4;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+
+      h2 {
+        text-align: center;
+        font-size: 22px;
+      }
+
+      .classify-nav {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+
+        a {
+          position: relative;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 100px;
+          color: #fff;
+          border: 1px solid #666;
+          font-size: 16px;
+
+          &:hover {
+            &::before {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #666;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all .2s;
+          }
+        }
+      }
+    }
+  }
+
+  &.topic {
+    h3 {
+      font-size: 22px;
+      text-align: center;
+    }
+
+    ul li {
+      .topic;
+    }
+  }
+}

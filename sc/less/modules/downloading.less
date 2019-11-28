@@ -1,0 +1,117 @@
+.loop(@n, @i: 1) when (@i =< @n) {
+  &:nth-child(@{i}) {
+    animation-delay: (@i * 0.05s);
+  }
+
+  .loop(@n, (@i + 1));
+}
+
+.down-loading {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+
+  .load-war {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    height: 300px;
+    width: 300px;
+    font-size: 12px;
+
+    p {
+      font-size: 30px;
+      color: #fff;
+
+      em {
+        display: inline-block;
+        margin: 0 2px;
+        animation: jump 1s infinite;
+        .loop(7);
+      }
+    }
+  }
+
+  .load-base {
+    height: 9em;
+    width: 9em;
+    left: 50%;
+    margin: .5rem -7.5em 0;
+    position: absolute;
+    top: 50%;
+    transform: rotateX(45deg) rotateZ(45deg);
+    transform-style: preserve-3d;
+
+    .cube {
+      width: 3em;
+      height: 3em;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      float: left;
+      background-color: @theme-color;
+      position: relative;
+      transform: translateZ(3em);
+      transform-style: preserve-3d;
+      transition: all 0.25s;
+      box-shadow: 13em 13em 1.5em rgba(0, 0, 0, 0.1);
+      animation: anim 1s infinite;
+
+      &::after {
+        content: '';
+        float: left;
+        position: absolute;
+        height: 3em;
+        width: 3em;
+        left: 0px;
+        top: 0px;
+        background-color: darken(@theme-color, 10%);
+        transform: rotateX(-90deg) translateY(3em);
+        transform-origin: 100% 100%;
+      }
+
+      &::before {
+        content: '';
+        float: left;
+        position: absolute;
+        height: 3em;
+        width: 3em;
+        left: 0px;
+        top: 0px;
+        background-color: darken(@theme-color, 20%);
+        transform: rotateY(90deg) translateX(3em);
+        transform-origin: 100% 0;
+      }
+
+      .loop(9);
+    }
+  }
+}
+
+@keyframes anim {
+  50% {
+    transform: translateZ(0.5em);
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

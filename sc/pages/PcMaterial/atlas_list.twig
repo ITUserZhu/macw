@@ -1,0 +1,56 @@
+{% extends 'inc/base.twig' %}
+{% import "components/pagination.twig" as pagi %}
+
+{% block css %}
+<link rel="stylesheet" href="css/atlas.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      {% if tag_id == 0 %}
+      &gt; <span>图集</span>
+      {% else %}
+      &gt; <a href="/tlist/">图集</a>
+      {% endif %}
+      {% for item in category_info %}
+      {% if item.id == tag_id %}
+      &gt; <span>{{ item.keyword }}</span>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <nav class="nav-classify">
+      <a href="/tlist/" {% if tag_id == 0 %}class="active" {% endif %}>全部</a>
+      {% for item in category_info %}
+      <a href="/tlist/{{ item.id }}.html" {% if tag_id == item.id %}class="active" {% endif %}>{{ item.keyword }}</a>
+      {% endfor %}
+    </nav>
+
+    <section class="atlas">
+      <ul class="clearfix">
+        {% for item in atlas_list %}
+        <li><a href="{{ item.url }}" title="{{ item.title }}">
+            <div class="img">
+              <img src="{{ item.thumb }}" alt="{{ item.title }}">
+              <div class="mask"><span>进入图集 &gt;</span></div>
+            </div>
+            <div class="con">
+              <p class="title">{{ item.title }}</p>
+              <p class="tags">
+                {% for v in item.tags %}
+                {% if v %}
+                <span>{{ v }}</span>
+                {% endif %}
+                {% endfor %}
+              </p>
+            </div>
+          </a></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {{ pagi.pagi(total, page, 15, '/tlist/' ~ tag_id) }}
+  </div>
+</main>
+{% endblock %}

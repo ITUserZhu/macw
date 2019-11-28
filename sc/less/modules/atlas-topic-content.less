@@ -1,0 +1,97 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-26 16:45:35 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-26 16:52:14
+ * 专题与图集内容公用样式
+ */
+
+@import '../components/common';
+@import 'list';
+@import 'pagination';
+@import '/node_modules/swiper/css/swiper.min.css';
+
+section {
+  &.material-list {
+    ul li {
+      .list;
+    }
+  }
+
+  &.material-new {
+    position: relative;
+    height: 185px;
+    margin-top: 50px;
+
+    ul li {
+      float: left;
+      width: 286px;
+      height: 185px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-right: 18px;
+
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+
+      &:hover {
+        .img .mask span {
+          text-decoration: underline;
+        }
+      }
+
+      .img {
+        width: 100%;
+        height: 100%;
+
+        img {
+          height: 100%;
+          min-width: 100%;
+          margin-left: 50%;
+          transform: translateX(-50%);
+        }
+
+        .mask {
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, .5);
+          text-align: center;
+
+          span {
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 31%;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .swiper-btn {
+      width: 50px;
+      height: 50px;
+      background-color: #fff;
+      border-radius: 50%;
+      color: #333;
+      outline: none;
+      .shadow(@size: 5px, @color: rgba(0, 0, 0, .1));
+
+      &.swiper-button-next {
+        right: -20px;
+      }
+
+      &.swiper-button-prev {
+        left: -20px;
+      }
+
+      &::after {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -1,0 +1,560 @@
+{% extends 'inc/base.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="css/per-index.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <span>个人中心</span>
+    </div>
+    <div class="clearfix">
+      <aside class="fl">
+        <div class="user-info">
+          <div class="heading-img">
+            <img src="{{ user_info.headimg | default('/assets/images/headimg.png') }}" alt="">
+          </div>
+          <p class="nickname">{{ user_info.nickname }}</p>
+          <p class="user-id">（ 用户id：{{ user_info.user_id }} ）</p>
+          <span class="vip-type">{% if user_info.vip == 0 %}普通会员{% elseif user_info.vip == 1 %}VIP会员{% endif %}</span>
+          {% if user_info.vip != 0 %}
+          <p class="endtime">
+            {% if user_info.overduedate > 2524579200 %}终身会员{% else %}{{ user_info.overduedate|date('Y-m-d') }}到期{% endif %}
+          </p>
+          {% endif %}
+        </div>
+        <ul>
+          <li class="nav-admin active"><a href="#/admin">账号信息</a></li>
+          <li class="nav-info"><a href="#/info">个人资料</a></li>
+          <li class="nav-collect"><a href="#/collect">我的收藏</a></li>
+          <li class="nav-download"><a href="#/download">我的下载</a></li>
+          <li class="nav-history"><a href="#/history">浏览足迹</a></li>
+          <li class="nav-recharge"><a href="#/recharge">充值记录</a></li>
+          <li class="nav-consume"><a href="#/consume">消费记录</a></li>
+          <li class="nav-share"><a href="#/share">分享记录</a></li>
+          <li class="nav-coupon"><a href="#/coupon">我的优惠券</a></li>
+          <li class="nav-news"><a href="#/news">消息中心</a></li>
+        </ul>
+      </aside>
+      <article class="fr">
+        <div class="article-item article-admin active">
+          <h2>账号信息</h2>
+          <section>
+            <div class="info-box sign">
+              <p>每日签到、 抽奖</p>
+              <span class="info-btn sign-btn">{% if is_sign == 1 %}抽奖{% else %}签到{% endif %}</span>
+            </div>
+            <div class="info-box type">
+              <p>
+                {% if user_info.vip == 0 %}
+                <em>普通会员</em>
+                {% elseif user_info.vip == 1 %}
+                {% if user_info.overduedate > 2524579200 %}
+                <em>终身会员</em>
+                {% else %}
+                <em>VIP会员</em> 到期时间： {{ user_info.overduedate|date('Y-m-d') }}
+                {% endif %}
+                {% endif %}
+
+              </p>
+              {% if user_info.vip == 1 and user_info.overduedate < 2524579200 %}
+              <span class="info-btn renew-btn">续费</span>
+              {% else %}
+              <a href="/vip.html" class="info-btn">成为VIP</a>
+              {% endif %}
+            </div>
+            <div class="info-box point">
+              <p>账户余额： <em>{{ user_info.point }}</em> 积分</p>
+              <a href="/vip.html"><span class="info-btn recharge-btn">充值</span></a>
+            </div>
+            <div class="info-box power clearfix">
+              <div class="fl">
+                <p>免费下载特权</p>
+                <div>
+                  <span>软件 <em>{{ user_info.f_down_limit }}</em> 次/每日</span>
+                  <span>视频 <em>{{ user_info.f_down_v_limit }}</em> 次/每日</span>
+                  <span>素材 <em>{{ user_info.f_down_pic_limit }}</em> 次/每日</span>
+                </div>
+                <p>收费下载特权</p>
+                <div>
+                  <span>软件 <em>{{ user_info.download_limit }}</em> 次/每日</span>
+                  <span>视频 <em>{{ user_info.download_v_limit }}</em> 次/每日</span>
+                  <span>素材 <em>{{ user_info.download_pic_limit }}</em> 次/每日</span>
+                </div>
+              </div>
+              <div class="fr">
+                <p>今日免费下载次数剩余</p>
+                <div>
+                  <span>软件剩余 <em>{{ user_info.free_surplus }}</em> 次</span>
+                  <span>视频剩余 <em>{{ user_info.free_surplus_video }}</em> 次</span>
+                  <span>素材剩余 <em>{{ user_info.free_surplus_pic }}</em> 次</span>
+                </div>
+                <p>今日收费下载次数剩余</p>
+                <div>
+                  <span>软件剩余 <em>{{ user_info.surplus }}</em> 次</span>
+                  <span>视频剩余 <em>{{ user_info.surplus_video }}</em> 次</span>
+                  <span>素材剩余 <em>{{ user_info.surplus_pic }}</em> 次</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="article-item article-info">
+          <h2>个人信息</h2>
+          <section>
+            <form id="per-info">
+              <label for="nickname">
+                <span>昵称：</span>
+                <input type="text" id="nickname" name="nickname" value="{{ user_info.nickname }}" maxlength="10">
+              </label>
+              <label for="gender" class="gender">
+                <span>性别：</span>
+                <select name="sex" id="gender"
+                  value="{% if user_info.sex == '男' %}1{% elseif user_info.sex == '女' %}2{% endif %}">
+                  <option value="1" {% if user_info.sex == '男' %}selected{% endif %}>男</option>
+                  <option value="2" {% if user_info.sex == '女' %}selected{% endif %}>女</option>
+                </select>
+              </label>
+              <label for="phone" class="phone">
+                <span>手机号码：</span>
+                <input type="text" id="phone" value="{{ user_info.phone }}" readonly placeholder="未绑定手机">
+                <em id="bind-change">{% if user_info.phone == '' %}立即绑定{% else %}更换手机{% endif %}</em>
+              </label>
+              <label for="job">
+                <span>职业：</span>
+                <input type="text" name="job" id="job" value="{{ user_info.job }}">
+              </label>
+              <label for="email">
+                <span>邮箱：</span>
+                <input type="email" name="email" id="email" value="{{ user_info.email }}">
+              </label>
+              <label for="prov" class="citylabel">
+                <span>省市：</span>
+                <select name="province" id="prov" class="prov" value="{{ user_info.province }}">
+                  <option value="">请选择</option>
+                </select>
+                <select name="city" id="city" class="city" value="{{ user_info.city }}">
+                  <option value="">请选择</option>
+                </select>
+              </label>
+              <label for="addr">
+                <span>地址：</span>
+                <input type="text" id="addr" name="address" value="{{ user_info.address }}">
+              </label>
+              <button class="disabeld">保存</button>
+            </form>
+          </section>
+        </div>
+        <div class="article-item list-item article-collect">
+          <h2>我的收藏</h2>
+          <section>
+            <div class="collection-nav collect">
+              <span class="active">应用</span>
+              <span>插件</span>
+              <span>素材</span>
+              <span>视频</span>
+              <span>模板</span>
+            </div>
+            <div class="collection-wrap collect">
+              <div class="soft active">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="col-soft-pagi"></div>
+              </div>
+              <div class="plugin">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="col-plugin-pagi"></div>
+              </div>
+              <div class="material">
+                <ul class=" clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="col-material-pagi"></div>
+              </div>
+              <div class="video">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="col-video-pagi"></div>
+              </div>
+              <div class="template">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="col-template-pagi"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="article-item list-item article-download">
+          <h2>我的下载</h2>
+          <section>
+            <div class="collection-nav download">
+              <span class="active">应用</span>
+              <span>插件</span>
+              <span>素材</span>
+              <span>视频</span>
+              <span>模板</span>
+            </div>
+            <div class="collection-wrap download">
+              <div class="soft active">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="down-soft-pagi"></div>
+              </div>
+              <div class="plugin">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="down-plugin-pagi"></div>
+              </div>
+              <div class="material">
+                <ul class=" clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="down-material-pagi"></div>
+              </div>
+              <div class="video">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="down-video-pagi"></div>
+              </div>
+              <div class="template">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="down-template-pagi"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="article-item list-item article-history">
+          <h2>浏览足迹</h2>
+          <section>
+            <div class="collection-nav history">
+              <span class="active">应用</span>
+              <span>插件</span>
+              <span>素材</span>
+              <span>视频</span>
+              <span>模板</span>
+            </div>
+            <div class="collection-wrap history">
+              <div class="soft active">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="hist-soft-pagi"></div>
+              </div>
+              <div class="plugin">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="hist-plugin-pagi"></div>
+              </div>
+              <div class="material">
+                <ul class=" clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="hist-material-pagi"></div>
+              </div>
+              <div class="video">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="hist-video-pagi"></div>
+              </div>
+              <div class="template">
+                <ul class="clearfix">
+
+                </ul>
+                <div class="ajax-pagination" id="hist-template-pagi"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="article-item table-list article-recharge">
+          <h2>充值记录</h2>
+          <section>
+            <form id="recharge-form">
+              <fieldset>
+                <label>
+                  订单时间：
+                  <select name="add_time">
+                    <option value="-1">全部</option>
+                    <option value="3days">最近3天</option>
+                    <option value="1week">最近7天</option>
+                    <option value="1month">最近一月</option>
+                  </select>
+                </label>
+                <label>
+                  支付方式：
+                  <select name="pay_id">
+                    <option value="-1">全部</option>
+                    <option value="wei">微信</option>
+                    <option value="ali">支付宝</option>
+                  </select>
+                </label>
+                <label>
+                  购买类型：
+                  <select name="point_type">
+                    <option value="-1">全部</option>
+                    <option value="integral">积分</option>
+                    <option value="package">vip</option>
+                  </select>
+                </label>
+              </fieldset>
+            </form>
+            <table>
+              <thead>
+                <tr>
+                  <th>购买类型</th>
+                  <th>日期</th>
+                  <th>支付方式</th>
+                  <th>支付金额</th>
+                  <th width="40%">充值内容</th>
+                </tr>
+              </thead>
+              <tbody id="recharge-table">
+
+              </tbody>
+            </table>
+            <div class="ajax-pagination" id="recharge-pagi"></div>
+          </section>
+        </div>
+        <div class="article-item table-list article-consume">
+          <h2>消费记录</h2>
+          <section>
+            <form id="consume-form">
+              <fieldset>
+                <label>
+                  消费时间：
+                  <select name="add_time">
+                    <option value="4">全部</option>
+                    <option value="1">最近3天</option>
+                    <option value="2">最近7天</option>
+                    <option value="3">最近一月</option>
+                  </select>
+                </label>
+                <label>
+                  消费类型：
+                  <select name="spend_type">
+                    <option value="0">全部</option>
+                    <option value="2">积分下载</option>
+                    <option value="3">免费下载</option>
+                    <option value="4">积分抽奖</option>
+                  </select>
+                </label>
+                {# <label>
+                    消费内容：
+                    <input type="text" name="msg" placeholder="请输入关键字搜索">
+                    <button>搜索</button>
+                  </label> #}
+              </fieldset>
+            </form>
+            <table>
+              <thead>
+                <tr>
+                  <th width="45%">购买类型</th>
+                  <th>日期</th>
+                  <th>消费类型</th>
+                  <th>积分</th>
+                </tr>
+              </thead>
+              <tbody id="consume-table">
+
+              </tbody>
+            </table>
+            <div class="ajax-pagination" id="consume-pagi"></div>
+          </section>
+        </div>
+        <div class="article-item table-list article-share">
+          <h2>分享记录</h2>
+          <section>
+            <table>
+              <thead>
+                <tr>
+                  <th>日期</th>
+                  <th>积分来源</th>
+                  <th>积分</th>
+                </tr>
+              </thead>
+              <tbody id="share-table">
+
+              </tbody>
+            </table>
+            <div class="ajax-pagination" id="share-pagi"></div>
+          </section>
+        </div>
+        <div class="article-item article-coupon">
+          <h2>我的优惠券</h2>
+          <section>
+            <div class="share-nav" id="coupon-nav">
+              <span class="active" data-status="-1">全部</span>
+              <span data-status="0">未使用</span>
+              <span data-status="1">已过期</span>
+            </div>
+            <ul class="clearfix" id="coupon-wrap">
+
+            </ul>
+            <div class="ajax-pagination" id="coupon-pagi"></div>
+          </section>
+        </div>
+        <div class="article-item table-list article-news">
+          <h2>消息中心</h2>
+          <section>
+            <div class="news-nav">
+              <span class="active">系统消息</span>
+              <span>已提交问题</span>
+              <span>问题提交</span>
+            </div>
+            <div class="news-wrap">
+              <div class="news-sysinfo active">
+                <table>
+                  <thead>
+                    <tr>
+                      <th width="30%">时间</th>
+                      <th>发件人</th>
+                      <th width="40%">内容</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sysinfo-table">
+
+                  </tbody>
+                </table>
+                <div class="ajax-pagination" id="sysinfo-pagi"></div>
+              </div>
+              <div class="news-list">
+                <table>
+                  <thead>
+                    <tr>
+                      <th width="30%">问题网址</th>
+                      <th>问题类型</th>
+                      <th width="40%">问题描述</th>
+                      <th>提交时间</th>
+                    </tr>
+                  </thead>
+                  <tbody id="report-table">
+
+                  </tbody>
+                </table>
+                <div class="ajax-pagination" id="report-pagi"></div>
+              </div>
+              <div class="news-suport">
+                <form id="news-support">
+                  <fieldset>
+                    <span>问题类型：</span>
+                    <label for="disdow"><input type="radio" name="error_type" value="无法下载" id="disdow">无法下载</label>
+                    <label for="disver"><input type="radio" name="error_type" value="版本不对" id="disver">版本不对</label>
+                    <label for="complaint"><input type="radio" name="error_type" value="版权投诉"
+                        id="complaint">版权投诉</label>
+                    <label for="other"><input type="radio" name="error_type" value="其他" id="other">其他</label>
+                  </fieldset>
+                  <fieldset>
+                    <span>问题网址：</span>
+                    <input type="url" name="url" placeholder="请输入问题页面URL">
+                  </fieldset>
+                  <fieldset>
+                    <span>问题描述：</span>
+                    <textarea name="content" placeholder="请输入问题描述"></textarea>
+                  </fieldset>
+                  <button>提交</button>
+                  <p class="news-tips"></p>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+      <input type="hidden" id="model-ids" data-mac="{{ mac_model_id }}" data-plugin="{{ plugin_model_id }}"
+        data-material="{{ photo_model_id }}" data-sign="{{ is_sign }}" data-template="{{ template_model_id }}"
+        data-video="{{ video_model_id }}">
+    </div>
+  </div>
+  <div id="renew-box">
+    <div class="renew-box">
+      <span class="close-renew">X</span>
+      <p class="renew-title">{{ point_info.point_name }}续费：</p>
+      <div class="renew-price" data-id="{{ point_info.id }}"><span>{{ point_info.discount_money }}元</span>
+        <s>{{ point_info.point_money }}元</s>
+        /{{ point_info.point_name | replace({'会员套餐': ''}) | replace({'Vip': ''}) }}</div>
+      <p class="renew-title">充值方式：</p>
+      <div class="renew-recharge">
+        <p class="should-pay">支付金额： <span><em>{{ point_info.discount_money }}</em>元</span></p>
+        <div class="ewm-box">
+          <div class="ewm alipay">
+            <img src="/assets/images/vip/loadcode.gif">
+          </div>
+          <p><i class="icon-alipay"></i>支付宝支付</p>
+        </div>
+        <div class="ewm-box">
+          <div class="ewm wxpay">
+            <img src="/assets/images/vip/loadcode.gif">
+          </div>
+          <p><i class="icon-wxpay"></i>微信支付</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="bind-change-phone">
+    <div class="bind-change">
+      <span class="close-bind">X</span>
+
+      <div class="toggle-bind">
+        <form id="bind-phone" class="active">
+          <p class="form-title">绑定手机</p>
+          <fieldset>
+            <span>手机号码：</span>
+            <input type="text" value="" name="phone" maxlength="11">
+          </fieldset>
+          <fieldset>
+            <span>验证码：</span>
+            <input type="text" value="" name="phone_code" maxlength="6" class="bind-ipt">
+            <div class="bind-btn disabeld">获取验证码</div>
+          </fieldset>
+          <fieldset>
+            <span>输入密码：</span>
+            <input type="password" name="pswd" minlength="6">
+          </fieldset>
+          <fieldset>
+            <span>确认密码：</span>
+            <input type="password" name="repswd" minlength="6">
+          </fieldset>
+          <p class="bind-tips"></p>
+          <button>确认</button>
+        </form>
+        <form id="change-phone">
+          <p class="form-title">更换绑定</p>
+          <fieldset>
+            <span>原手机号：</span>
+            <input type="text" value="{{ user_info.phone }}" name="phone_old" maxlength="11" readonly>
+          </fieldset>
+          <fieldset>
+            <span>验证码：</span>
+            <input type="text" value="" maxlength="6" name="phone_code" class="bind-ipt">
+            <div class="bind-btn">获取验证码</div>
+          </fieldset>
+          <fieldset>
+            <span>新手机号：</span>
+            <input type="text" value="" maxlength="11" name="phone">
+          </fieldset>
+          <p class="change-tips">注：若无原手机号，请联系客服QQ：{{ customer_qq }}更改</p>
+          <p class="bind-tips"></p>
+          <button>确认</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/per-index.min.js"></script>
+{% endblock %}

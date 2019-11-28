@@ -1,0 +1,130 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/topic-index.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <span>专题</span>
+    </div>
+    <section class="index-show clearfix">
+      <div class="index-show_fl">
+        <a href="{{ newSpecial[0].title }}">
+          <p class="title">{{ newSpecial[0].title }}</p>
+          <span>共{{ newSpecial[0].num | default(0) }}个软件</span>
+          <div class="img"><img src="{{ newSpecial[0].thumbs }}" alt="{{newSpecial[0].title}}"></div>
+          <button>进入专题</button>
+        </a>
+      </div>
+      <div class="index-show_imgs">
+        {% for item in newSpecial | slice(1, 5) %}
+        <div class="img-item">
+          <a href="{{ item.url }}" title="{{ item.title }}">
+            <div class="mask">
+              <p>{{ item.title }}</p>
+            </div>
+            <div class="img"><img src="{{ item.thumbs }}" alt="{{ item.title }}"></div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="topic-classify">
+      <div class="sec-title">
+        <h3>浏览分类</h3>
+      </div>
+      <ul>
+        <li>
+          <p class="cate-title">
+            <a href="/z/ls_{{ soft_nav }}_1.html"><img src="{{ special_cate_thumb[soft_nav] }}">软件</a>
+          </p>
+          <div class="cate-second">
+            {% for item in category_data if item.parent_id == soft_nav %}
+            <a href="{{ item.url }}"><img src="{{ item.thumb }}"> {{ item.cate_name }}</a>
+            {% endfor %}
+            <a href="/z/ls_{{ soft_nav }}_1.html" class="more">更多&gt;</a>
+          </div>
+        </li>
+        <li>
+          <p class="cate-title">
+            <a href="/z/ls_{{ game_nav }}_1.html"><img src="{{ special_cate_thumb[game_nav] }}">游戏</a>
+          </p>
+          <div class="cate-second">
+            {% for item in category_data if item.parent_id == game_nav %}
+            <a href="{{ item.url }}"><img src="{{ item.thumb }}"> {{ item.cate_name }}</a>
+            {% endfor %}
+            <a href="/z/ls_{{ game_nav }}_1.html" class="more">更多&gt;</a>
+          </div>
+        </li>
+        <li>
+          <p class="cate-title">
+            <a href="/z/lc_{{ plugin_nav }}_1.html"><img src="{{ special_cate_thumb[plugin_nav] }}">插件</a>
+          </p>
+          <div class="cate-second">
+            {% for item in category_data if item.parent_id == plugin_nav %}
+            <a href="{{ item.url }}"><img src="{{ item.thumb }}"> {{ item.cate_name }}</a>
+            {% endfor %}
+            <a href="/z/lc_{{ plugin_nav }}_1.html" class="more">更多&gt;</a>
+          </div>
+        </li>
+        <li>
+          <p class="cate-title">
+            <a href="/z/lmb_{{ template_nav }}_1.html"><img src="{{ special_cate_thumb[template_nav] }}">模板</a>
+          </p>
+          <div class="cate-second">
+            {% for item in category_data if item.parent_id == template_nav %}
+            <a href="{{ item.url }}"><img src="{{ item.thumb }}"> {{ item.cate_name }}</a>
+            {% endfor %}
+            <a href="/z/lmb_{{ template_nav }}_1.html" class="more">更多&gt;</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <section class="boutique-soft">
+      <div class="sec-title">
+        <h2>精选软件专题</h2>
+        <a href="/z/ls_{{ soft_nav }}_1.html">更多专题 →</a>
+      </div>
+
+      <ul class="clearfix">
+        {{ component.topics(soft_special_data) }}
+      </ul>
+    </section>
+    <section class="boutique-soft">
+      <div class="sec-title">
+        <h2>精选游戏专题</h2>
+        <a href="/z/ls_{{ game_nav }}_1.html">更多专题 →</a>
+      </div>
+
+      <ul class="clearfix">
+        {{ component.topics(game_special_data) }}
+      </ul>
+    </section>
+    <section class="boutique-plugin">
+      <div class="sec-title">
+        <h2>精选插件专题</h2>
+        <a href="/z/lc_{{ plugin_nav }}_1.html">更多专题 →</a>
+      </div>
+
+      <ul class="clearfix">
+        {{ component.topic(plugin_special_data) }}
+      </ul>
+    </section>
+    <section class="boutique-plugin">
+      <div class="sec-title">
+        <h2>精选模板专题</h2>
+        <a href="/z/lmb_{{ template_nav }}_1.html">更多专题 →</a>
+      </div>
+
+      <ul class="clearfix">
+        {{ component.topic(template_special_data) }}
+      </ul>
+    </section>
+  </div>
+</main>
+{% endblock %}

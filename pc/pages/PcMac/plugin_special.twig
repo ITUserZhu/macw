@@ -1,0 +1,42 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+{% import "components/pagination.twig" as pagi %}
+
+{% block css %}
+<link rel="stylesheet" href="css/topic-list.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt;<a href="/z/">专题</a>
+      {% if category_data.parent_cate_name %}
+      &gt; <a href="{{ category_data.parent_cate_url }}">{{ category_data.parent_cate_name }}</a>
+      {% endif %}
+      {% if category_data.cate_name %}
+      &gt; <span>{{ category_data.cate_name }}</span>
+      {% endif %}
+    </div>
+    <div class="plugin-type">
+      <h1>
+        插件专题
+      </h1>
+      <a href="/z/">返回专题首页</a>
+    </div>
+    <nav class="topic-nav">
+      {% for item in cate_info %}
+      <a href="{{ item.url }}" {% if category_data.id == item.id %}class="active" {% endif %}><img
+          src="{{ item.thumb }}"> {{ item.cate_name }}</a>
+      {% endfor %}
+    </nav>
+    <section class="topic-list">
+      <ul class="plugin clearfix">
+        {{ component.topic(plugin_special_data) }}
+      </ul>
+    </section>
+    {{ pagi.pagi(special_count, page, 15, '/z/lc_' ~ category_data.id ) }}
+  </div>
+</main>
+{% endblock %}

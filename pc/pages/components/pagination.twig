@@ -1,0 +1,42 @@
+{# 翻页 #}
+{% macro pagi(total, page, limit, url) %}
+{% set pageTotal = (total / limit) | round(0, 'ceil') %}
+{% if pageTotal > 1 %}
+<div class="pagination">
+	{% if page <= 1 %}
+	<a class="pre btn" target="_self">&lt;</a>
+	{% else %}
+	<a href="{{ url }}_{{ page - 1 }}.html" class="pre btn" target="_self">&lt;</a>
+	{% endif %}
+	{% if total <= (limit * 10) %}
+	{% for i in 1..(pageTotal) %}
+	<a href="{{ url }}_{{ i }}.html" class="num {% if i == page %}active{% endif %}" target="_self">{{ i }}</a>
+	{% endfor %}
+	{% else %}
+	<!--{% if page < 6 %}-->
+	{% for i in 1..9 %}
+	<a href="{{ url }}_{{ i }}.html" class="num {% if i == page %}active{% endif %}" target="_self">{{ i }}</a>
+	{% endfor %}
+	<span>...</span>
+	<a href="{{ url }}_{{ pageTotal }}.html" class="num" target="_self">{{ pageTotal }}</a>
+	<!-- {% elseif page > 5 and page < (pageTotal - 4) %} -->
+	<a href="{{ url }}_1.html" class="num" target="_self">1</a>
+	<span>...</span>
+	{% for i in (page - 3)..(page + 3) %}
+	<a href="{{ url }}_{{ i }}.html" class="num {% if i == page %}active{% endif %}" target="_self">{{ i }}</a>
+	{% endfor %}
+	<span>...</span>
+	<a href="{{ url }}_{{ pageTotal }}.html" class="num" target="_self">{{ pageTotal }}</a>
+	<!--{% else %}-->
+	<a href="{{ url }}_1.html" class="num" target="_self">1</a>
+	<span>...</span>
+	{% for i in (pageTotal - 8)..(pageTotal) %}
+	<a href="{{ url }}_{{ i }}.html" class="num {% if i == page %}active{% endif %}" target="_self">{{ i }}</a>
+	{% endfor %}
+	<!--{% endif %}-->
+	{% endif %}
+	<a href="{% if page >= pageTotal %}javascript:;{% else %}{{ url }}_{{ page + 1 }}.html{% endif %}" class="next btn"
+		target="_self">&gt;</a>
+</div>
+{% endif %}
+{% endmacro %}

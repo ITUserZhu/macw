@@ -1,0 +1,74 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-18 13:47:22 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-18 14:10:00
+ */
+@import 'plugin-index';
+
+section {
+  &.banner {
+    .banner-wrap {
+      position: relative;
+      width: 480px;
+      float: right;
+    }
+
+    .swiper-btn {
+      width: 36px;
+      height: 30px;
+      right: auto;
+      border-radius: 3px;
+      bottom: 40px;
+      left: -16px;
+      background-color: rgba(0, 0, 0, .6);
+    }
+
+    .swiper-button-prev {
+      right: auto;
+      left: -60px;
+    }
+
+    .banner-imgs {
+      transform: translate(-20px, -20px);
+
+    }
+
+    .banner-infos ul li {
+      padding-left: 100px;
+      padding-right: 120px;
+
+      .types {
+        padding-left: 0;
+
+        span {
+          background-color: transparent;
+          color: #999;
+          padding-left: 0;
+          text-align: left;
+        }
+
+      }
+
+      .title {
+        border: none;
+        padding-left: 0;
+      }
+    }
+  }
+
+  &.plugin-classify {
+    ul li {
+      height: 60px;
+      line-height: 60px;
+      max-width: unset;
+      padding: 0;
+      text-align: center;
+
+      p {
+        margin-bottom: 0;
+        font-size: 17px;
+      }
+    }
+  }
+}

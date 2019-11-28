@@ -1,0 +1,106 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/article-content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="article-info">
+    <div class="container">
+      <div class="breakhumbs">
+        <a href="/">首页</a>
+        &gt; <a href="/nlist/">教程</a>
+        &gt; <a href="{{ cate_info.url }}">{{ cate_info.cate_name }}</a>
+        &gt; <span>{{ article_content.title }}</span>
+      </div>
+      <div class="content-info">
+        <div class="content-info_wrap">
+          <div class="content-info_con">
+            <h1>{{ article_content.title }}</h1>
+            <p class="infos">
+              <span>时间：{{ article_content.update_time | date('Y-m-d') }}</span>
+              <span>浏览：{{ article_content.hits_total }}</span>
+              <span>编辑：{{ article_content.editor }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="article-main">
+    <div class="container clearfix">
+      <article>
+        <section class="content">
+          <div class="fr-view">
+            {{article_content.content | raw}}
+          </div>
+        </section>
+        {% if resRelatedGroup_soft[1] %}
+        <section class="article-list">
+          <h2>相关文章</h2>
+          <ul class="clearfix">
+            {{ component.article(resRelatedGroup_soft[1]) }}
+          </ul>
+        </section>
+        {% endif %}
+      </article>
+      <aside>
+        {% if resRelatedGroup_soft[15] %}
+        <section class="rel-soft">
+          <h2>相关软件</h2>
+          <ul>
+            {{ component.soft(resRelatedGroup_soft[15]) }}
+          </ul>
+        </section>
+        {% endif %}
+        {% if hot_article %}
+        <section class="hot-article">
+          <h3>热门文章</h3>
+          <ul>
+            {% for item in hot_article %}
+            <li><a href="{{ item.url }}" title="{{ item.title }}">
+                <p class="title">{{ item.title }}</p>
+              </a></li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+        {% if new_article %}
+        <section class="hot-article">
+          <h3>最新文章</h3>
+          <ul>
+            {% for item in new_article %}
+            <li><a href="{{ item.url }}" title="{{ item.title }}">
+                <p class="title">{{ item.title }}</p>
+                <span>{{ item.update_time | date('Y-m-d') }}</span>
+              </a></li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+        {% if hot_soft %}
+        <section class="hot-soft">
+          <h3>热门软件</h3>
+          <ul>
+            {% for item in hot_soft %}
+            <li><a href="{{ item.url }}">
+                <div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+                <p class="title">{{ item.title }}</p>
+              </a></li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+  <input type="hidden" id="content-info" data-src="{{ article_content.thumb }}" data-id="{{ article_content.id }}"
+    data-model="{{ article_content.model_id }}" data-url="{{ url }}" data-title="{{ article_content.title }}">
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/article-content.min.js"></script>
+{% endblock %}

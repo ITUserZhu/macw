@@ -1,0 +1,247 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-18 15:32:33 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-22 11:28:07
+ */
+@import 'components/common';
+@import '/node_modules/swiper/css/swiper.min.css';
+@import 'modules/template-list';
+@import 'modules/article-list';
+@import 'modules/fr-view';
+@import 'modules/video-play';
+@import 'modules/share';
+@import 'modules/downloda-recharge';
+
+section {
+  padding: 35px 0 40px;
+  margin-bottom: 10px;
+  .shadow;
+
+  h2,
+  h3 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+
+    em {
+      letter-spacing: -3px;
+    }
+
+    a {
+      font-size: 14px;
+      color: @theme-color;
+      text-decoration: underline;
+    }
+  }
+
+  &:first-child {
+    .shadow(@y: 5px, @size: 5px);
+    padding-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.content {
+    .content-info {
+      padding-top: 20px;
+      height: 180px;
+      position: relative;
+      border-bottom: 1px solid #eee;
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        word-break: break-all;
+      }
+
+      .content-info_con {
+        float: left;
+        max-width: 1000px;
+
+        .infos {
+          span {
+            margin-right: 40px;
+            color: #666;
+
+            i {
+              margin-right: 5px;
+            }
+
+            &.share {
+              cursor: pointer;
+            }
+
+            &:last-child a {
+              color: @soft-color;
+            }
+          }
+        }
+
+        .other-recommend {
+          font-size: 0;
+          line-height: 60px;
+          height: 60px;
+
+          a {
+            display: inline-block;
+            max-width: 38%;
+            font-size: 14px;
+
+            &:first-child {
+              max-width: 60%;
+              margin-right: 2%;
+
+              img {
+                width: 30px;
+                height: 30px;
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 5px;
+              }
+
+              span {
+                .text-ovh;
+                width: calc(100% - 35px);
+                display: inline-block;
+                vertical-align: middle;
+              }
+            }
+
+            &:last-child {
+              color: @theme-color;
+
+              em {
+                .text-ovh;
+                display: inline-block;
+                font-weight: bold;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+      }
+
+      .content-info_btns {
+        position: absolute;
+        width: 150px;
+        height: 130px;
+        right: 0;
+        bottom: 0;
+
+        .btns-fn {
+          color: #666;
+          line-height: 60px;
+          margin: 0 5px;
+
+          i {
+            margin-right: 5px;
+            color: #999;
+          }
+
+          &:last-child {
+            float: right;
+          }
+        }
+
+        .download {
+          height: 40px;
+          background-color: @theme-color;
+          border-radius: 20px;
+          color: #fff;
+          width: 100%;
+          vertical-align: middle;
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  &.screenshot {
+    .screenshot-swiper {
+      width: 800px;
+      height: 450px;
+
+      ul li {
+        .video-play {
+          .video-play;
+          user-select: none;
+        }
+
+        video {
+          width: 100%;
+          height: 100%;
+        }
+
+        .img-wrap {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        }
+
+        img {
+          margin-left: 50%;
+          height: 100%;
+          transform: translateX(-50%);
+          user-select: none;
+        }
+      }
+    }
+
+    .screenshot-wrap_small {
+      margin-top: 30px;
+      height: 90px;
+      position: relative;
+
+      .screenshot-arrow {
+        color: #9A9A9A;
+        outline: none;
+      }
+
+      .swiper-button-prev {
+        left: -55px;
+      }
+
+      .swiper-button-next {
+        right: -55px;
+      }
+
+      ul li {
+        width: 160px;
+        height: 90px;
+        border: 1px solid #E8E8E8;
+        margin-right: 13px;
+
+        &.swiper-slide-thumb-active {
+          border: 2px solid @theme-color;
+        }
+
+        video {
+          width: 100%;
+          height: 100%;
+        }
+
+        img {
+          height: 100%;
+          margin-left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+
+  &.soft-list {
+    ul li {
+      .template-list;
+    }
+  }
+
+  &.article-list {
+    ul li {
+      .article-list;
+    }
+  }
+}

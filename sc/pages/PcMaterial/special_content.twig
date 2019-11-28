@@ -1,0 +1,65 @@
+{% extends 'inc/base.twig' %}
+{% import "components/pagination.twig" as pagi %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/topic-content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <a href="/z/">专题</a>
+      {% if parent_info %}
+      &gt; <a href="{{ parent_info.url }}">{{ parent_info.cate_name }}</a>
+      {% endif %}
+      &gt; <span>{{ special_info.title }}</span>
+    </div>
+
+    <section class="topic-info">
+      <div class="info-con">
+        <h1>{{ special_info.title }}</h1>
+        <p class="num">共{{ special_info.num }}张图片</p>
+        <p class="desc">{{ special_info.description }}</p>
+      </div>
+      <div class="info-img">
+        <div class="img"><img src="{{ special_info.thumb }}" alt="{{ special_info.title }}"></div>
+      </div>
+    </section>
+    <section class="material-list">
+      <ul class="material clearfix">
+        {{ component.list(special_list) }}
+      </ul>
+    </section>
+    {{ pagi.pagi(special_info.num, page, 24, '/z/' ~ special_info.id) }}
+    {% if newestSpecial %}
+    <section class="material-new">
+      <div class="swiper-container">
+        <ul class="swiper-wrapper">
+          {% for item in newestSpecial %}
+          <li class="swiper-slide">
+            <a href="{{ item.url }}">
+              <div class="img">
+                <img src="{{ item.thumb }}" alt="{{ item.title }}">
+                <div class="mask"><span>{{ item.title }}</span></div>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% if newestSpecial | length > 4 %}
+      <div class="swiper-button-prev swiper-btn"></div>
+      <div class="swiper-button-next swiper-btn"></div>
+      {% endif %}
+    </section>
+    {% endif %}
+  </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/topic-atlas-content.min.js"></script>
+{% endblock %}

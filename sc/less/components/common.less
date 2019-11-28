@@ -1,0 +1,110 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-25 09:43:52 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-27 13:16:30
+ * 公用样式
+ */
+
+// 重置样式
+@import '../static/reset';
+// 字体图标样式
+@import '../static/fonts';
+// 登录注册
+@import '../modules/login';
+// 头部与底部样式
+@import 'header';
+@import 'footer';
+
+// 面包屑
+@import 'breakhumbs';
+// confirm样式表
+@import '/node_modules/jquery-confirm/dist/jquery-confirm.min.css';
+
+// 通用变量
+@theme-color: #0B9E00;
+
+// 其他颜色
+@col-color: #FF4646;
+@qq-color: #1EBCF6;
+@wx-color: #19C249;
+@phone-color: #FFCF11;
+@money-color: #FEC808;
+
+
+
+html,
+body {
+  font: 14px/1.6 'Titillium', '微软雅黑', 'Arial', '黑体', '宋体', 'sans-serif';
+}
+
+/**
+ * 通用类名与方法
+*/
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+// 清浮动
+.clearfix {
+  display: block;
+  zoom: 1;
+
+  &:after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+.shadow(@color: multiply(lighten(@theme-color, 68%), #efefef), @size: 10px, @x: 0, @y: 0) {
+  box-shadow: @x @y @size 0 @color;
+}
+
+// 单行省略号
+.text-ovh(@w: 100%) {
+  display: block;
+  width: @w;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 图片模糊化
+.filter-blur(@size: 40px, @w: 100%) {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+
+  img {
+    width: @w;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(@size);
+  }
+}
+
+main {
+  min-height: 750px;
+  min-width: 1200px;
+  padding-bottom: 50px;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}

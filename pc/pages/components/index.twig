@@ -1,0 +1,168 @@
+<!-- 软件 -->
+{% macro soft(data) %}
+{% for item in data %}
+<li>
+	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="img-wrap">
+			<div class="bg"><img src="{{ item.thumb }}" alt="{{ item.title | striptags }}"></div>
+			<div class="img">
+				<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+			</div>
+		</div>
+		<div class="con">
+			<p class="title">{{ item.title | raw }}</p>
+			<p class="version">{{ item.version }}</p>
+			<span class="time">
+				<i class="icon-times"></i>
+				{{ item.update_time }}</span>
+		</div>
+	</a>
+</li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 模板 -->
+{% macro template(data, hastype = false) %}
+{% for item in data %}
+<li>
+	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="img-wrap">
+			{% if hastype %}
+			<div class="type">
+				<span>Lr预设</span>
+			</div>
+			{% endif %}
+			<div class="img">
+				<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+			</div>
+		</div>
+		<div class="con">
+			<p class="title">{{ item.title | raw }}</p>
+			<span class="btn">下载</span>
+		</div>
+	</a>
+</li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 插件 -->
+{% macro plugin(data) %}
+{% for i,item in data %}
+<li>
+	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		{% if i % 2 == 0 %}
+		<div class="img-wrap">
+			<div class="img">
+				<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+			</div>
+		</div>
+		<div class="con">
+			<p class="title">{{ item.title | raw }}</p>
+			<span class="btn">立即下载 &gt;</span>
+		</div>
+		{% else %}
+		<div class="con">
+			<p class="title">{{ item.title | raw }}</p>
+			<span class="btn">立即下载 &gt;</span>
+		</div>
+		<div class="img-wrap">
+			<div class="img">
+				<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+			</div>
+		</div>
+		{% endif %}
+	</a>
+</li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 文章1 -->
+{% macro article(data) %}
+{% for i,item in data %}
+<li>
+	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="time">
+			<p>{{ item.update_time | date('d') }}</p>
+			<span>{{ item.update_time | date('Y-m') }}</span>
+		</div>
+		<p class="title">{{ item.title | raw }}</p>
+	</a>
+</li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 文章2 -->
+{% macro articles(data) %}
+{% for i,item in data %}
+<li>
+	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<p class="title">{{ item.title | raw }}</p>
+		<p class="infos">
+			<span>{{ item.cate_name }}</span>
+			<span>{{ item.update_time }}</span>
+			<span><i class="icon-eye2"></i>{{ item.hits_total }}</span>
+		</p>
+		<p class="desc">{{ item.description }}</p>
+		<span class="more">查看全文&gt;</span>
+	</a>
+</li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 专题 -->
+{% macro topic(data) %}
+{% for item in data %}
+<li><a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="img-wrap">
+			<div class="mask">
+				<p>进入专题</p>
+			</div>
+			<div class="img"><img src="{{ item.thumbs | default(item.thumb) }}" alt="{{ item.title | striptags }}"></div>
+		</div>
+		<p class="title">{{ item.title | raw }}</p>
+	</a></li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 专题软件 -->
+{% macro topics(data) %}
+{% for item in data %}
+<li><a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="top">
+			<div class="img">
+				<img src="{{ item.thumbs | default(item.thumb) }}" alt="{{ item.title | striptags }}">
+			</div>
+			<div class="con">
+				<p class="title">{{ item.title | raw }}</p>
+				<span>共{{ item.num | default(item.res_num) | default(0) }}个软件</span>
+			</div>
+		</div>
+		<div class="bot">
+			<p class="desc">{{ item.description }}</p>
+		</div>
+	</a></li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 壁纸 -->
+{% macro wallpaper(data) %}
+{% for item in data %}
+<li>
+	<a href="{{ item.url }}" title="{{ item.title | raw }}">
+		<div class="imgs">
+			<div class="img-cover">
+				<img src="{{ item.multi_map[0] }}" alt="{{ item.title | striptags }}">
+			</div>
+			<div class="img-array">
+				{% for v in item.multi_map %}
+				<img data-src="{{ v }}">
+				{% endfor %}
+			</div>
+		</div>
+		<div class="con">
+			<p class="title">{{ item.title | raw }}</p>
+		</div>
+	</a>
+</li>
+{% endfor %}
+{% endmacro %}

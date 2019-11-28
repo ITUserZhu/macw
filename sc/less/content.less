@@ -1,0 +1,280 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-27 11:14:20 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-27 16:09:41
+ */
+
+@import 'components/common';
+@import 'modules/list';
+@import 'modules/downloda-recharge';
+@import 'modules/share-pic';
+@import '/node_modules/swiper/css/swiper.min.css';
+
+section {
+  margin-bottom: 20px;
+
+  .sec-title {
+    line-height: 40px;
+    margin-bottom: 10px;
+
+    h2,
+    h3 {
+      font-size: 17px;
+      display: inline-block;
+    }
+
+    a {
+      float: right;
+      color: @theme-color;
+    }
+  }
+
+  &.content-info {
+    article {
+      float: left;
+      width: 960px;
+
+      .content-info_img {
+        width: 100%;
+        height: 800px;
+        border: 1px solid #f4f4f4;
+        position: relative;
+
+        img {
+          position: absolute;
+          max-width: 100%;
+          max-height: 100%;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      .content-info_swiper {
+        height: 170px;
+        padding-top: 20px;
+        width: 100%;
+
+        ul li {
+          width: auto;
+          height: 150px;
+
+          &.active {
+            border: 2px solid @theme-color;
+          }
+
+          img {
+            height: 100%;
+          }
+        }
+
+        .content-info_arrow {
+          height: 100%;
+          width: 50px;
+          color: #fff;
+          top: 0;
+          margin-top: 0;
+          outline: none;
+
+          &::after {
+            font-size: 22px;
+            font-weight: bold;
+          }
+
+          &.swiper-button-prev {
+            background: linear-gradient(to right, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0));
+            left: 0;
+          }
+
+          &.swiper-button-next {
+            background: linear-gradient(to left, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0));
+            right: 0;
+          }
+        }
+      }
+    }
+
+    aside {
+      width: 240px;
+      height: 970px;
+      float: right;
+      position: relative;
+
+      .content-info_operate {
+        text-align: right;
+        line-height: 60px;
+
+        button {
+          height: 100%;
+          padding: 0 10px;
+
+          i {
+            font-size: 18px;
+            color: #999;
+          }
+
+          &.shopping.active {
+            i {
+              color: @money-color;
+            }
+          }
+
+          &.collect.active {
+            i {
+              color: @col-color;
+            }
+          }
+        }
+      }
+
+      .content-info_wrap {
+        position: absolute;
+        top: 60px;
+        left: -120px;
+        width: 360px;
+        height: 630px;
+        padding: 30px 20px 20px;
+        background-color: #fff;
+        .shadow(@x: 2px);
+
+        h1 {
+          font-size: 16px;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+
+        button {
+          display: block;
+          height: 40px;
+          width: 100%;
+          border-radius: 5px;
+          background-color: @theme-color;
+          color: #fff;
+          font-size: 16px;
+          margin-bottom: 20px;
+        }
+
+        ol li {
+          line-height: 30px;
+
+          em {
+            display: inline-block;
+            width: 80px;
+            color: #999;
+            text-indent: 10px;
+          }
+        }
+
+        .content-info_wrap-camera {
+          border-top: 1px solid #ddd;
+          margin-top: 15px;
+          padding-top: 10px;
+
+          span {
+            display: inline-block;
+            width: 50%;
+            line-height: 30px;
+          }
+        }
+      }
+
+      .content-info_share {
+        position: absolute;
+        height: 70px;
+        width: 100%;
+        bottom: 170px;
+        left: 0;
+        border-top: 1px solid #ddd;
+
+        p {
+          position: absolute;
+          top: -10px;
+          left: 0;
+          padding-right: 5px;
+          background-color: #fff;
+          text-align: right;
+          width: 70px;
+          height: 20px;
+        }
+
+        div {
+          text-align: right;
+          padding-top: 10px;
+
+          span {
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            width: 50px;
+            height: 36px;
+            line-height: 36px;
+            font-size: 18px;
+
+            &.icon-wx {
+              color: @wx-color;
+            }
+          }
+        }
+      }
+
+      .content-info_atlas-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 170px;
+        border: 1px solid #ddd;
+        border-left: none;
+        padding: 35px 10px;
+        text-align: center;
+
+        .title {
+          font-size: 15px;
+        }
+
+        .num {
+          color: #999;
+          margin: 5px 0 10px;
+        }
+
+        a {
+          color: @theme-color;
+        }
+      }
+    }
+  }
+
+  &.material-list {
+    ul li {
+      .list;
+    }
+  }
+
+  &.sec-tags {
+    ul li {
+      float: left;
+      margin-right: 20px;
+      height: 36px;
+      line-height: 36px;
+      padding: 0 10px;
+      border: 1px solid #e8e8e8;
+      transition: all .2s;
+      margin-bottom: 20px;
+      border-radius: 3px;
+
+      a {
+        color: #666;
+      }
+
+      &:hover {
+        background-color: @theme-color;
+        border-color: @theme-color;
+
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

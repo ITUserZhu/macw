@@ -1,0 +1,68 @@
+{% extends 'inc/base.twig' %}
+{% import "components/pagination.twig" as pagi %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/atlas-content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <a href="/tlist/">图集</a>
+      {% if category %}
+      &gt; <a href="/tlist/{{ category.id }}_1.html">{{ category.keyword }}</a>
+      {% endif %}
+      &gt; <span>{{ atlas.title }}</span>
+    </div>
+
+    <section class="atlas-info">
+      <h1>{{ atlas.title }}</h1>
+      {% if atlasTags[0] %}
+      <p class="tags">
+        {% for item in atlasTags %}
+        <span>{{ item }}</span>
+        {% endfor %}
+      </p>
+      {% endif %}
+      {% if category %}
+      <a href="/tlist/{{ category.id }}_1.html" class="more">查看所有图集 &gt;</a>
+      {% else %}
+      <a href="/tlist/" class="more">查看所有图集 &gt;</a>
+      {% endif %}
+    </section>
+    <section class="material-list">
+      <ul class="material clearfix">
+        {{ component.list(atlas_list) }}
+      </ul>
+    </section>
+    {{ pagi.pagi(total, page, 24, '/atlas/' ~ atlas.id) }}
+    <section class="material-new">
+      <div class="swiper-container">
+        <ul class="swiper-wrapper">
+          {% for item in newestAtlas %}
+          <li class="swiper-slide">
+            <a href="{{ item.url }}">
+              <div class="img">
+                <img src="{{ item.thumb }}" alt="{{ item.title }}">
+                <div class="mask"><span>{{ item.title }}</span></div>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% if newestAtlas | length > 4 %}
+      <div class="swiper-button-prev swiper-btn"></div>
+      <div class="swiper-button-next swiper-btn"></div>
+      {% endif %}
+    </section>
+  </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/topic-atlas-content.min.js"></script>
+{% endblock %}

@@ -1,0 +1,182 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<base target="_blank">
+<link rel="stylesheet" href="css/template-content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="content">
+    <div class="container">
+      <div class="breakhumbs">
+        <a href="/">首页</a>
+        &gt;
+        <a href="/mblist/">模板</a>
+
+        {% if template_content.parent_id_cate_name %}
+        &gt;
+        <a href="{{ template_content.category_url_by_parent_id }}">{{ template_content.parent_id_cate_name }}</a>
+        {% endif %}
+        {% if template_content.cate_name %}
+        &gt;
+        <a href="{{ template_content.category_url }}">{{ template_content.cate_name }}</a>
+        {% endif %}
+        &gt;
+        <span>{{ template_content.title }}
+          {{ template_content.version }}</span>
+      </div>
+      <div class="content-info">
+        <div class="content-info_wrap">
+          <div class="content-info_con">
+            <h1>{{ template_content.title }}
+              {{ template_content.version }}</h1>
+            <p class="infos">
+              <span>
+                <i class="icon-size"></i>
+                {{ template_content.file_size }}
+              </span>
+              <span>
+                <i class="icon-time"></i>
+                {{ template_content.update_time | date('Y-m-d') }}</span>
+              <span>
+                <i class="icon-point3"></i>
+                {{ template_content.point }}
+                积分</span>
+              <span class="share" id="share">
+                <i class="icon-share"></i>分享有礼</span>
+              <span>
+                <a href="/vip.html">
+                  <i class="icon-recharge2"></i>
+                  点击在线充值
+                </a>
+              </span>
+            </p>
+            {% if needInfo or resRelatedGroup_soft[1] %}
+            <div class="other-recommend">
+              {% if needInfo %}
+              <a href="{{ needInfo.link }}" title="{{ needInfo.description }}">
+                <img src="{{ needInfo.thumb }}" alt="{{ needInfo.description }}">
+                <span>推荐软件：{{ needInfo.description }}</span>
+              </a>
+              {% endif %}
+              {% if resRelatedGroup_soft[1] %}
+              <a href="{{ resRelatedGroup_soft[1][0].url }}" class="teach-link" target="_blank" rel="nofollow"
+                title="{{ resRelatedGroup_soft[1][0].title }}">【<em>教程：{{ resRelatedGroup_soft[1][0].title }}</em>】</a>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+          <div class="content-info_btns">
+            <div class="btns">
+              <p>
+                <button class="btns-fn" id="collect">
+                  <i class="icon-collect"></i><span>点击收藏</span></button>
+                <button class="btns-fn" id="support">
+                  <i class="icon-support"></i>
+                  <em>
+                    {{  template_content.click_good }}
+                  </em>
+                </button>
+              </p>
+              <p><button class="download" id="download">立即下载</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% if video or images %}
+  <section class="screenshot">
+    <div class="container">
+      <div class="screenshot-wrap">
+        <div class="swiper-container screenshot-swiper">
+          <ul class="swiper-wrapper">
+            {% for i,item in video %}
+            <li class="swiper-slide">
+              <div class="img-wrap {% if i == 0 %}active{% endif %}">
+                <video src="{{ item }}" preload="meta" controls></video>
+                <span class="video-play"></span>
+              </div>
+            </li>
+            {% endfor %}
+            {% for i,item in images %}
+            <li class="swiper-slide">
+              <div class="img-wrap {% if i == 0 and video | length == 0 %}active{% endif %}"><img src="{{ item }}">
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="screenshot-wrap_small">
+          <div class="swiper-container" id="screenshot-small">
+            <ul class="swiper-wrapper">
+              {% for i,item in video %}
+              <li class="swiper-slide"><video src="{{ item }}"></video></li>
+              {% endfor %}
+              {% for i,item in images %}
+              <li class="swiper-slide"><img src="{{ item }}"></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% if images | length > 7 %}
+          <div class="swiper-button-prev screenshot-arrow"></div>
+          <div class="swiper-button-next screenshot-arrow"></div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+  <section class="description">
+    <div class="container">
+      <h2>内容介绍</h2>
+      <div class="content fr-view">
+        {{ template_content.content | raw }}
+      </div>
+    </div>
+  </section>
+  {% if resRelatedGroup_soft[17] %}
+  <section class="soft-list">
+    <div class="container">
+      <h2>相关模板</h2>
+      <ul class="clearfix">
+        {{ component.template(resRelatedGroup_soft[17]) }}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+  {% if resRelatedGroup_soft[0] %}
+  <section class="soft-list">
+    <div class="container">
+      <h2>专题
+        <em>——</em>
+        {{ resRelatedGroup_soft[0][0].title }}
+        <br><a href="{{ resRelatedGroup_soft[0][0].url }}">进入专题 &gt;</a>
+      </h2>
+      <ul class="clearfix">
+        {{ component.template(resRelatedGroup_soft[0][0].special_content) }}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+  {% if resRelatedGroup_soft[1] %}
+  <section class="article-list">
+    <div class="container">
+      <h2>相关文章</h2>
+      <ul class="clearfix">
+        {{ component.article(resRelatedGroup_soft[1]) }}
+      </ul>
+    </div>
+  </section>
+  {% endif %}
+  <input type="hidden" id="content-info" data-src="{{ template_content.thumb }}" data-id="{{ template_content.id }}"
+    data-model="{{ template_content.model_id }}" data-point="{{ template_content.point }}" data-url="{{ url }}"
+    data-title="{{ template_content.title }}">
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/template-content.min.js"></script>
+{% endblock %}

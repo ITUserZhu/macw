@@ -1,0 +1,40 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-26 14:06:10 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-26 15:26:15
+ */
+
+@import 'components/common';
+@import 'modules/topic';
+@import 'modules/pagination';
+
+.nav-classify {
+  text-align: center;
+
+  a {
+    line-height: 20px;
+    height: 20px;
+    display: inline-block;
+    border-right: 1px solid #999;
+    padding: 0 45px;
+    color: #999;
+    font-size: 17px;
+
+    &:last-child {
+      border: none;
+    }
+
+    &.active {
+      color: @theme-color;
+    }
+  }
+}
+
+section {
+  &.topic {
+    ul li {
+      .topic;
+    }
+  }
+}

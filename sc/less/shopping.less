@@ -1,0 +1,242 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-27 17:04:56 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-27 17:40:16
+ */
+
+@import 'components/common.less';
+@import 'modules/downloda-recharge';
+
+.shopping-car {
+  min-height: 700px;
+  font-size: 16px;
+  position: relative;
+
+  .table {
+    height: 650px;
+    width: 100%;
+    margin-bottom: 20px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-track {
+      background-color: #eee;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: #eee;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: @theme-color;
+    }
+  }
+
+  .shop-top {
+    position: absolute;
+    transform: rotate(-90deg);
+    cursor: pointer;
+    right: 5px;
+    bottom: 5px;
+    text-align: center;
+
+    i {
+      font-size: 20px;
+      color: #aaa;
+    }
+  }
+
+  table {
+    width: 100%;
+
+    i.select {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      text-align: center;
+      line-height: 22px;
+      border: 1px solid #999;
+      vertical-align: middle;
+      margin-right: 10px;
+      cursor: pointer;
+      font-size: 25px;
+      text-align: center;
+      color: @theme-color;
+
+      &::before {
+        opacity: 0;
+      }
+
+      &.active {
+        &::before {
+          opacity: 1;
+          filter: none;
+        }
+
+      }
+    }
+
+    p {
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      margin-top: 20px;
+      color: #666;
+    }
+
+    td,
+    th {
+      text-align: center;
+
+      &:nth-child(1) {
+        width: 100px;
+      }
+
+      &:nth-child(2) {
+        width: 500px;
+        text-align: left;
+      }
+
+      &:nth-child(3) {
+        width: 300px;
+      }
+
+      &:nth-child(4) {
+        width: 180px;
+      }
+    }
+
+    thead {
+      tr {
+        line-height: 50px;
+        border-bottom: 1px solid #eee;
+
+        th {
+          font-weight: normal;
+
+          &:nth-child(2) {
+            text-indent: 120px;
+          }
+
+          span {
+            vertical-align: middle;
+          }
+        }
+
+        &:nth-child(2) {
+          height: 10px;
+          background-color: #f4f4f4;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #eee;
+      }
+
+      td {
+        padding: 20px 0;
+
+        &:nth-child(1) {
+          text-align: left;
+
+          i {
+            &.select {
+              margin-left: 17px;
+            }
+          }
+        }
+
+        .icon-del {
+          cursor: pointer;
+          font-size: 18px;
+          padding: 10px;
+        }
+
+        .img {
+          width: 80px;
+          height: 80px;
+          overflow: hidden;
+          display: inline-block;
+          vertical-align: middle;
+          margin-right: 20px;
+
+          img {
+            height: 100%;
+            margin-left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+
+        .name {
+          display: inline-block;
+          max-width: 400px;
+          vertical-align: middle;
+        }
+
+        &.type-choose {
+          label {
+            word-break: break-all;
+            display: inline-block;
+          }
+
+          input {
+            margin: 0 5px 0 15px;
+
+            &:checked {
+              background-color: #1681fe;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .foot {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #6b6b6b;
+    position: relative;
+    margin-bottom: 10px;
+
+    .del-all,
+    .destroy-all {
+      display: inline-block;
+      border: 1px solid #ddd;
+      width: 148px;
+      height: 32px;
+      text-align: center;
+      line-height: 32px;
+      border-radius: 5px;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+
+    .fr {
+      font-size: 18px;
+      margin-right: 250px;
+
+      em {
+        font-size: 24px;
+        color: @theme-color;
+        margin-right: 5px;
+      }
+    }
+
+    button {
+      outline: none;
+      border: none;
+      background-color: @theme-color;
+      color: #fff;
+      position: absolute;
+      right: 0;
+      top: 10px;
+      width: 120px;
+      height: 40px;
+      cursor: pointer;
+    }
+  }
+}

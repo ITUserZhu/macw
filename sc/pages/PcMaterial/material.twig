@@ -1,0 +1,87 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<base target="_blank">
+<link rel="stylesheet" href="css/index.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="banner">
+    <div class="banner-swiper swiper-container">
+      <div class="swiper-wrapper">
+        {% for item in index_banner %}
+        <div class="swiper-slide"><img src="{{ item.image }}"></div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="banner-mask">
+      <p class="banner-mask_title">想要的摄影图片都在这里</p>
+      <form id="index-search">
+        <input type="text" name="key" placeholder="搜你喜欢的">
+        <button>搜索</button>
+      </form>
+      <div class="banner-mask_hot">
+        <span>大家都在搜：</span>
+        {% for item in hot_keyword %}
+        <a href="/search/{{ item.keyword }}.html">{{ item.keyword }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="newest">
+    <aside>
+      <h2>最新更新</h2>
+      <nav class="newest-nav">
+        {% for item in pic_cate %}
+        <span {% if loop.index == 1 %}class="active" {% endif %}>{{ item.keyword }}</span>
+        {% endfor %}
+      </nav>
+    </aside>
+    <article>
+      {% for item in pic_cate %}
+      {% if loop.index == 1 %}
+      <ul class="material active">
+        {{ component.list(item.info) }}
+      </ul>
+      {% else %}
+      <ul class="material">
+        {{ component.list(item.info, true) }}
+      </ul>
+      {% endif %}
+      {% endfor %}
+    </article>
+  </section>
+
+  <section class="classify">
+    {% set classify_num1 = random(pic_cate | length - 1) %}
+    {% set classify_num2 = random(pic_cate[classify_num1].info | length - 1) %}
+    <div class="classify-bg">
+      <img src="{{ pic_cate[classify_num1].info[classify_num2].thumb }}">
+    </div>
+    <div class="container">
+      <h2>浏览分类</h2>
+      <nav class="classify-nav">
+        {% for item in pic_cate %}
+        <a href="/list/{{ item.id }}_1.html">{{ item.keyword }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </section>
+
+  <section class="topic">
+    <div class="container">
+      <h3>精选专题</h3>
+      <ul class="clearfix">
+        {{ component.topic(specialBestInfo) }}
+      </ul>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/index.min.js"></script>
+{% endblock %}

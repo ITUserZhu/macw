@@ -1,0 +1,30 @@
+<!-- 素材列表 -->
+{% macro list(data, original = false) %}
+{% for v in data %}
+<li data-id="{{ v.id }}" data-w="{{ v.width }}" data-h="{{ v.height }}">
+  <a href="{{ v.url }}" title="{{ v.title }}">
+    <img {% if original %}data-{% endif %}src="{{ v.thumb }}" alt="{{ v.title }}">
+    <div class="mask">
+      <div class="mask-operate">
+        <button class="collect"><i class="icon-collect"></i></button>
+        <button class="shopping"><i class="icon-shop"></i></button>
+        <button class="down"><i class="icon-download"></i></button>
+      </div>
+    </div>
+  </a>
+</li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 专题列表 -->
+{% macro topic(data) %}
+{% for item in data %}
+<li><a href="{{ item.url }}">
+    <div class="img">
+      <img src="{{ item.info[0].thumb | default(item.thumb) }}" alt="{{ item.title }}">
+      <div class="mask"><span>进入专题 &gt;</span></div>
+    </div>
+    <p class="title">{{ item.title }}</p>
+  </a></li>
+{% endfor %}
+{% endmacro %}

@@ -1,0 +1,80 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-19 14:47:07 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-19 15:01:20
+ */
+@import 'components/common';
+@import 'modules/soft-list';
+@import 'modules/template-list';
+
+h1 {
+  font-size: 26px;
+  line-height: 84px;
+}
+
+.rank-nav {
+  a {
+    display: inline-block;
+    width: 90px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    margin-right: 20px;
+
+    &.active {
+      background-color: @theme-color;
+      border-color: @theme-color;
+      color: #fff;
+    }
+  }
+}
+
+section {
+  margin-top: 30px;
+
+  ul.toggle {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  &.rank-soft {
+    ul li {
+      .soft-list;
+    }
+  }
+
+  &.rank-plugin {
+    ul li {
+      .template-list;
+    }
+  }
+
+  .rank-pagi {
+    text-align: center;
+    margin: 30px 0;
+
+    span {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: @theme-color;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
+      margin: 0 20px;
+      cursor: pointer;
+
+      &.active {
+        background-color: fadeout(@theme-color, 50%);
+      }
+    }
+  }
+}

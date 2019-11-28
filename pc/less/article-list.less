@@ -1,0 +1,54 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-18 16:53:16 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-18 17:20:50
+ */
+@import 'components/common';
+@import 'modules/articles-list';
+@import 'modules/pagination';
+
+section {
+  &.list-nav {
+    .list-nav_wrap {
+      display: flex;
+
+      a {
+        flex: 1;
+        margin-right: 40px;
+        height: 90px;
+        border-radius: 5px;
+        font-size: 16px;
+        line-height: 2;
+        padding: 15px 20px;
+        color: @theme-color;
+        font-weight: bold;
+        .shadow;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &.active {
+          background-color: @theme-color;
+          color: #fff;
+
+          em {
+            color: #fff;
+          }
+        }
+
+        em {
+          color: #999;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  &.list-wrap {
+    ul li {
+      .articles-list;
+    }
+  }
+}

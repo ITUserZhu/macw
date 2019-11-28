@@ -1,0 +1,194 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+{% import "components/pagination.twig" as pagi %}
+
+{% block css %}
+<link rel="stylesheet" href="css/search.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <span>搜索 - {{ keyword }}</span>
+    </div>
+
+    <div class="search-wrap">
+      <h1>搜索结果</h1>
+      <form id="search-form" class="search-form">
+        <input type="text" placeholder="请输入搜索关键字，例：腾讯QQ" name="key" value="{{ keyword }}">
+        <button><i class="icon-search2"><em class="path1"></em><em class="path2"></em></i></button>
+      </form>
+
+      <nav class="search-nav">
+        <a href="/search/all/{{ keyword }}/{{ sort }}_1.html" {% if model == 'all' %}class="active" {% endif %}>全部</a>
+        <a href="/search/mac/{{ keyword }}/{{ sort }}_1.html" {% if model == 'mac' %}class="active" {% endif %}>应用</a>
+        <a href="/search/plugin/{{ keyword }}/{{ sort }}_1.html" {% if model == 'plugin' %}class="active"
+          {% endif %}>插件</a>
+        <a href="/search/template/{{ keyword }}/{{ sort }}_1.html" {% if model == 'template' %}class="active"
+          {% endif %}>模板</a>
+        <a href="/search/wallpaper/{{ keyword }}/{{ sort }}_1.html" {% if model == 'wallpaper' %}class="active"
+          {% endif %}>壁纸</a>
+        <a href="/search/article/{{ keyword }}/{{ sort }}_1.html" {% if model == 'article' %}class="active"
+          {% endif %}>资讯</a>
+        <a href="/search/special/{{ keyword }}/{{ sort }}_1.html" {% if model == 'special' %}class="active"
+          {% endif %}>专题</a>
+      </nav>
+    </div>
+    <p class="order">
+      <a href="/search/{{ model }}/{{ keyword }}/0_1.html" {% if sort == 0 %}class="active" {% endif %}>综合</a>
+      <a href="/search/{{ model }}/{{ keyword }}/1_1.html" {% if sort == 1 %}class="active" {% endif %}>最新</a>
+    </p>
+    <p class="result">
+      <em>“{{ keyword }}”</em>共 <em>{{ sum }}</em>个结果：
+    </p>
+    <section>
+      {% if model == 'all' %}
+      <ul class="all">
+        {% for item in data %}
+        {% if item.res_num %}
+        <li>
+          <p class="title">
+            <a href="{{ item.url }}" target="_blank">
+              {{ item.title | raw }}
+              <span class="topic">专题</span>
+            </a>
+          </p>
+          <div class="con">
+            <p class="desc">{{ item.description | raw }}</p>
+            <p class="time">
+              <a href="{{ item.url }}">{{ item.url }}</a>
+              <span>更新时间： {{ item.update_time }}</span>
+            </p>
+          </div>
+        </li>
+        {% else %}
+        {% if item.model_id == 15 %}
+        <li>
+          <p class="title">
+            <a href="{{ item.url }}" target="_blank">
+              <img src="{{ item.thumb }}" alt="{{ item.title | raw }}">
+              {{ item.title | raw }}
+              <span class="soft">应用</span>
+            </a>
+          </p>
+          <p class="desc">{{ item.description | raw }}</p>
+          <p class="time">
+            <a href="{{ item.url }}">{{ item.url }}</a>
+            <span>更新时间： {{ item.update_time }}</span>
+          </p>
+        </li>
+        {% elseif item.model_id == 1 %}
+        <li class="other">
+          <p class="title">
+            <a href="{{ item.url }}" target="_blank">
+              {{ item.title | raw }}
+              <span class="article">资讯</span>
+            </a>
+          </p>
+          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | raw }}"></div>
+          <div class="con">
+            <p class="desc">{{ item.description | raw }}</p>
+            <p class="time">
+              <a href="{{ item.url }}">{{ item.url }}</a>
+              <span>更新时间： {{ item.update_time }}</span>
+            </p>
+          </div>
+        </li>
+        {% elseif item.model_id == 17 %}
+        <li class="other">
+          <p class="title">
+            <a href="{{ item.url }}" target="_blank">
+              {{ item.title | raw }}
+              <span class="plugin">插件</span>
+            </a>
+          </p>
+          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | raw }}"></div>
+          <div class="con">
+            <p class="desc">{{ item.description | raw }}</p>
+            <p class="time">
+              <a href="{{ item.url }}">{{ item.url }}</a>
+              <span>更新时间： {{ item.update_time }}</span>
+            </p>
+          </div>
+        </li>
+        {% elseif item.model_id == 20 %}
+        <li class="other">
+          <p class="title">
+            <a href="{{ item.url }}" target="_blank">
+              {{ item.title | raw }}
+              <span class="bz">壁纸</span>
+            </a>
+          </p>
+          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | raw }}"></div>
+          <div class="con">
+            <p class="desc">{{ item.description | raw }}</p>
+            <p class="time">
+              <a href="{{ item.url }}">{{ item.url }}</a>
+              <span>更新时间： {{ item.update_time }}</span>
+            </p>
+          </div>
+        </li>
+        {% elseif item.model_id == 19 %}
+        <li class="other">
+          <p class="title">
+            <a href="{{ item.url }}" target="_blank">
+              {{ item.title | raw }}
+              <span class="templete">模板</span>
+            </a>
+          </p>
+          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | raw }}"></div>
+          <div class="con">
+            <p class="desc">{{ item.description | raw }}</p>
+            <p class="time">
+              <a href="{{ item.url }}">{{ item.url }}</a>
+              <span>更新时间： {{ item.update_time }}</span>
+            </p>
+          </div>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if model == 'mac' %}
+      <ul class="soft clearfix">
+        {{ component.soft(data) }}
+      </ul>
+      {% endif %}
+      {% if model == 'plugin' %}
+      <ul class="plugin clearfix">
+        {{ component.template(data) }}
+      </ul>
+      {% endif %}
+      {% if model == 'template' %}
+      <ul class="templete clearfix">
+        {{ component.template(data) }}
+      </ul>
+      {% endif %}
+      {% if model == 'special' %}
+      <ul class="topic clearfix">
+        {{ component.topics(data) }}
+      </ul>
+      {% endif %}
+      {% if model == 'article' %}
+      <ul class="article clearfix">
+        {{ component.articles(data) }}
+      </ul>
+      {% endif %}
+      {% if model == 'wallpaper' %}
+      <ul class="bz dest-wrap">
+        {{ component.wallpaper(data) }}
+      </ul>
+      {% endif %}
+    </section>
+    {{ pagi.pagi(sum, page, page_size, '/search/' ~ model ~ '/' ~ keyword ~ '/' ~ sort) }}
+  </div>
+  <input type="hidden" id="search-info" data-model="{{ model }}" data-keyword="{{ keyword }}">
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/search.min.js"></script>
+{% endblock %}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% spaceless %}
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="applicable-device" content="pc" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>
+		{% block page_title %}
+		{{ page_title|default('__hostname下载') }}
+		{% endblock %}
+	</title>
+	<meta name="keywords" content="{% block page_kw %}{{ page_kw|default('__hostname下载') }}{% endblock %}">
+	<meta name="description" content="{% block page_desc %}{{ page_desc }}{% endblock %}">
+	<link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon" /> {% block css %}{% endblock %}
+</head>
+<body>
+	<!-- 头部 -->
+	<header>
+		<div class="header">
+			<div class="header-logo">
+				<a href="">
+					<img src="/assets/images/logo.png" alt="__hostname下载">
+				</a>
+			</div>
+			<div class="header-login">
+				<div class="header-login_btns active">
+					<button id="login-in">登录</button>
+					<button id="reg-in">注册</button>
+				</div>
+				<div class="header-login_logined"></div>
+			</div>
+			<div class="header-search">
+				<i class="icon-search2">
+					<span class="path1"></span>
+					<span class="path2"></span>
+				</i>
+			</div>
+			<nav class="header-nav">
+				<a href="/" {% if active == 'index' %} class="active" {% endif %} target="_self">首页</a>
+				<a href="/list/" {% if active == 'mac' %} class="active" {% endif %} target="_blank">应用</a>
+				<a href="/cjlist/" {% if active == 'plugin' %} class="active" {% endif %} target="_blank">插件</a>
+				<a href="/mblist/" {% if active == 'template' %} class="active" {% endif %} target="_blank">模板</a>
+				<a href="/dlist/" {% if active == 'wallpaper' %} class="active" {% endif %} target="_blank">壁纸</a>
+				<a href="https://v.macw.com/">视频</a>
+				<a href="/z/" {% if active == 'special' %} class="active" {% endif %} target="_blank">专题</a>
+				<a href="/nlist/" {% if active == 'article' %} class="active" {% endif %} target="_blank">教程</a>
+				<a href="https://sc.macw.com/" target="_blank">素材</a>
+				<a href="/rank/soft.html" {% if active == 'rank' %} class="active" {% endif %} target="_blank">榜单</a>
+				<a href="/vip.html" {% if active == 'vip' %} class="active" {% endif %} target="_blank">VIP</a>
+			</nav>
+		</div>
+		<div class="header-search-box">
+			<form id="header-form">
+				<input type="text" placeholder="搜点什么">
+				<button>
+					<i class="icon-search2">
+						<span class="path1"></span>
+						<span class="path2"></span>
+					</i>
+				</button>
+			</form>
+			<span class="search-close">X</span>
+		</div>
+	</header>
+	<!-- 内容 -->
+	{% block content %}{% endblock %}
+	<footer>
+		<div class="footer">
+			<div class="footer-nav">
+				<a href="">关于网站</a>
+				<a href="">会员说明</a>
+				<a href="">版权声明</a>
+				<span>客服QQ:
+					{{ customer_qq }}</span>
+				<a href="">下载帮助</a>
+				<a href="">联系我们</a>
+				<a href="">分享规则</a>
+			</div>
+			<div class="footer-copyright">
+				<p>本站为非盈利性个人网站，本站所有软件来自互联网，版权属原著所有，如有需要请购买正版。如有侵权，敬请来信联系我们，我们立即删除。<br>
+					Copyright © 2019 www.__host.com online services. All rights reserved. 冀ICP备19004143号-1</p>
+			</div>
+		</div>
+	</footer>
+	<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+	{% block script %}
+	<script src="js/common.min.js"></script>
+	{% endblock %}
+</body>
+</html>
+{% endspaceless %}

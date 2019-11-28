@@ -1,0 +1,326 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-11-12 10:34:17 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-11-22 14:01:55
+ */
+
+header {
+  .shadow();
+  height: 70px;
+  line-height: 70px;
+  min-width: 1200px;
+  padding: 0 40px;
+  position: relative;
+  z-index: 19;
+
+  @media (max-width: 1240px) {
+    padding: 0 24px;
+  }
+
+  .header {
+    display: block;
+
+    .header-logo {
+      float: left;
+      width: 200px;
+      padding: 2px 0;
+
+      img {
+        height: 60px;
+        vertical-align: middle;
+      }
+
+      .header-logo_title {
+        overflow: hidden;
+        height: 50px;
+        line-height: 1.2;
+        padding-top: 5px;
+        font-weight: bold;
+
+        p {
+          font-size: 20px;
+          letter-spacing: 2px;
+
+          em {
+            color: @theme-color;
+          }
+        }
+      }
+    }
+
+    .header-nav {
+      float: right;
+
+      a {
+        display: inline-block;
+        height: 100%;
+        padding: 0 18px;
+        font-size: 16px;
+
+        &.active {
+          color: @theme-color;
+        }
+
+        &:last-child {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .header-search {
+      float: right;
+      padding: 0 20px;
+      font-size: 26px;
+      cursor: pointer;
+
+      i {
+        vertical-align: middle;
+      }
+    }
+
+    .header-login {
+      float: right;
+      padding: 0 10px;
+
+      &>div {
+        display: none;
+
+        &.active {
+          display: block;
+        }
+      }
+
+      button {
+        height: 36px;
+        width: 80px;
+        border-radius: 20px;
+        color: @theme-color;
+        vertical-align: middle;
+        background-color: transparent;
+        font-size: 16px;
+        font-weight: bold;
+
+        &:first-child {
+          background-color: @theme-color;
+          color: #fff;
+        }
+      }
+
+      .header-login_logined {
+        &:hover {
+          .head-user {
+            .acvtor-info::after {
+              transform: rotate(-180deg);
+            }
+
+            .user-function {
+              display: block;
+            }
+          }
+        }
+
+        .head-user {
+          width: 150px;
+          height: 70px;
+          position: relative;
+
+          .acvtor-info {
+            position: relative;
+            cursor: pointer;
+
+            &::after {
+              content: "";
+              position: absolute;
+              right: 5px;
+              top: 50%;
+              margin-top: -5px;
+              border-top: 10px solid #999;
+              border-left: 5px solid transparent;
+              border-right: 5px solid transparent;
+              transform: rotate(0deg);
+              transition: all .2s;
+            }
+
+            .head-img {
+              display: inline-block;
+              vertical-align: middle;
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              overflow: hidden;
+              font-size: 0;
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+
+            .name-vip {
+              display: inline-block;
+              line-height: 1.6;
+              padding: 12px 0;
+              vertical-align: middle;
+              margin-left: 5px;
+
+              p {
+                .text-ovh;
+                max-width: 90px;
+              }
+
+              span {
+                padding: 0 5px;
+                background-color: #ccc;
+                border-radius: 3px;
+                color: #fff;
+
+                &.vip {
+                  background-color: #FEC808;
+                }
+              }
+            }
+          }
+
+          .user-function {
+            width: 245px;
+            padding: 0 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .1);
+            border-radius: 3px;
+            position: absolute;
+            right: 0;
+            top: 70px;
+            display: none;
+            z-index: 99;
+            animation: menu .2s ease-in-out;
+            color: #333;
+
+            .user-item {
+              border-bottom: 1px solid #DEDEDE;
+              line-height: 1.6;
+              padding: 20px 10px;
+
+              &:last-child {
+                border: none;
+                cursor: pointer;
+
+                i {
+                  margin-right: 10px;
+                }
+
+              }
+
+            }
+
+            ul {
+              border-bottom: 1px solid #DEDEDE;
+              padding: 10px;
+
+              li {
+                line-height: 40px;
+
+                a {
+                  display: block;
+                }
+
+                i {
+                  margin-right: 5px;
+                  font-size: 26px;
+                  vertical-align: middle;
+                }
+
+              }
+
+            }
+
+            .user-name {
+              padding: 15px 10px;
+
+              span {
+                .text-ovh();
+                display: inline-block;
+                max-width: 92px;
+                vertical-align: middle;
+              }
+
+              em {
+                color: @theme-color;
+                font-size: 12px;
+                margin-left: 10px;
+              }
+
+              p {
+                color: #666;
+                margin-top: 5px;
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+    }
+  }
+
+  .header-search-box {
+    display: none;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+
+    form {
+      width: 95%;
+      height: 100%;
+      padding: 10px 0;
+      display: inline-block;
+      position: relative;
+
+      input {
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        height: 100%;
+        padding-right: 100px;
+        font-size: 16px;
+      }
+
+      button {
+        position: absolute;
+        right: 0;
+        top: 10px;
+        height: 50px;
+        width: 100px;
+        text-align: center;
+        background-color: #fff;
+
+        i {
+          font-size: 26px;
+          display: block;
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          border-radius: 50%;
+          background-color: #333;
+          margin: 5px auto;
+
+          .path2::before {
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .search-close {
+      display: inline-block;
+      width: 5%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}

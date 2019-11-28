@@ -1,0 +1,41 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+{% import "components/pagination.twig" as pagi %}
+
+{% block css %}
+<link rel="stylesheet" href="css/topic.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      {% if cat_id == 0 %}
+      &gt; <span>专题</span>
+      {% else %}
+      &gt; <a href="/z/">专题</a>
+      {% endif %}
+
+      {% for item in cate_info %}
+      {% if item.id == cat_id %}
+      &gt; <span>{{ item.cate_name }}</span>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <nav class="nav-classify">
+      <a href="/z/" {% if cat_id == 0 %}class="active" {% endif %}>全部</a>
+      {% for item in cate_info %}
+      <a href="/z/l_{{ item.id }}_1.html" {% if cat_id == item.id %}class="active" {% endif %}>{{ item.cate_name }}</a>
+      {% endfor %}
+    </nav>
+
+    <section class="topic">
+      <ul class="clearfix">
+        {{ component.topic(special_list) }}
+      </ul>
+    </section>
+    {{ pagi.pagi(total, page, 15, '/z/l_' ~ cat_id) }}
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/plugin-index.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="container">
+		<div class="breakhumbs">
+			<a href="/">首页</a>
+			&gt; <span>插件</span>
+		</div>
+		<section class="banner">
+			<div class="banner-infos swiper-container" id="banner-infos">
+				<ul class="swiper-wrapper">
+					{% for i,item in newest_mac_plug %}
+					<li class="swiper-slide">
+						<a href="{{ item.url }}">
+							<div class="infos">
+								<p class="types">
+									<span>{{ item.cate_name }}</span>
+								</p>
+								<p class="title">{{ item.title }}
+									{{ item.verion }}</p>
+								<div class="btns">
+									<button>
+										<i class="icon-download"></i>下载</button>
+									<button>
+										<i class="icon-collect"></i>收藏</button>
+								</div>
+							</div>
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="banner-imgs swiper-container" id="banner-imgs">
+				<ul class="swiper-wrapper">
+					{% for i,item in newest_mac_plug %}
+					<li class="swiper-slide">
+						<div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+					</li>
+					{% endfor %}
+				</ul>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-button-prev swiper-btn"></div>
+				<div class="swiper-button-next swiper-btn"></div>
+			</div>
+		</section>
+		<section class="plugin-classify">
+			<div class="sec-title">
+				<h2>浏览分类</h2>
+			</div>
+			<ul>
+				{% for item in pluginCategories %}
+				<li><a href="{{ item.url }}">
+						<p><img src="{{ item.thumb }}">{{ item.cate_name }}</p>
+						<span>{{ item.res_num }}个插件</span>
+					</a></li>
+				{% endfor %}
+			</ul>
+		</section>
+		<section class="newest">
+			<div class="sec-title">
+				<h2>最新更新</h2>
+				<div>
+					<span class="prev-btn">&lt;</span>
+					<span class="next-btn">&gt;</span>
+				</div>
+			</div>
+			<ul class="active clearfix">
+				{{ component.template(recentUpdatePlugin | slice(0,8)) }}
+			</ul>
+			<ul class="clearfix">
+				{{ component.template(recentUpdatePlugin | slice(8,16)) }}
+			</ul>
+		</section>
+		<section class="boutique-topic">
+			<div class="sec-title">
+				<h3>精选专题</h3>
+				<a href="">更多专题 →</a>
+			</div>
+			<ul class="clearfix">
+				{{ component.topic(pluginSpecialData) }}
+			</ul>
+		</section>
+		<section class="newest">
+			<div class="sec-title">
+				<h3>精选插件</h3>
+				<a href="/cjlist/0_0_1.html">更多 →</a>
+			</div>
+			<ul class="active clearfix">
+				{{ component.template(selectedPlugin) }}
+			</ul>
+		</section>
+	</div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/plugin-index.min.js"></script>
+{% endblock %}

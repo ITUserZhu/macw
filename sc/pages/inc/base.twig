@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% spaceless %}
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="applicable-device" content="pc" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>
+		{% block page_title %}
+		{{ page_title|default('__hostname下载') }}
+		{% endblock %}
+	</title>
+	<meta name="keywords" content="{% block page_kw %}{{ page_kw|default('__hostname下载') }}{% endblock %}">
+	<meta name="description" content="{% block page_desc %}{{ page_desc }}{% endblock %}">
+	<link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon" />
+	{% block css %}{% endblock %}
+</head>
+<body>
+	<!-- 头部 -->
+	<header>
+		<div class="header">
+			<div class="header-top">
+				<div class="header-top_nav">
+					<a href="/">素材</a>
+					<a href="https://v.__host.com/">视频</a>
+					<a href="https://www.__host.com">软件</a>
+				</div>
+
+				<div class="header-top_fr">
+					<div class="header-shopping_car">
+						<a href="/material/shopping.html">
+							<i class="icon-shop"></i>
+							<span>0</span>
+						</a>
+					</div>
+					<div class="header-top_login">
+						<div class="header-top_login_btns active" id="login-box">
+							<button id="login-in">登录</button>
+							<i>/</i>
+							<button id="reg-in">注册</button>
+						</div>
+						<div class="header-top_login_logined" id="logined-box"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="header-bot">
+				<div class="header-bot_logo">
+					<a href="">
+						<img src="/assets/images/logo.png" alt="__hostname下载">
+					</a>
+				</div>
+
+				<div class="header-bot_search">
+					<form id="header-bot_form">
+						<input type="text" placeholder="搜你喜欢的">
+						<button>
+							<i class="icon-search"></i>
+						</button>
+					</form>
+				</div>
+
+				<nav class="header-bot_nav">
+					<a href="/" {% if active == 'index' %} class="active" {% endif %} target="_self">首页</a>
+					<a href="/list/" {% if active == 'list' %} class="active" {% endif %}>图库</a>
+					<a href="/z/" {% if active == 'special' %} class="active" {% endif %}>专题</a>
+					<a href="/tlist/" {% if active == 'atlas' %} class="active" {% endif %}>图集</a>
+					<a href="https://www.__host.com/vip.html" {% if active == 'vip' %} class="active" {% endif %}
+						target="_blank">VIP</a>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<!-- 内容 -->
+	{% block content %}{% endblock %}
+	<footer>
+		<div class="footer">
+			<div class="footer-nav">
+				<a href="">关于网站</a>
+				<a href="">会员说明</a>
+				<a href="">版权声明</a>
+				<span>客服QQ:
+					{{ customer_qq }}</span>
+				<a href="">下载帮助</a>
+				<a href="">联系我们</a>
+				<a href="">分享规则</a>
+			</div>
+			<div class="footer-copyright">
+				<p>本站为非盈利性个人网站，本站所有软件来自互联网，版权属原著所有，如有需要请购买正版。如有侵权，敬请来信联系我们，我们立即删除。<br>
+					Copyright © 2019 www.__host.com online services. All rights reserved. 冀ICP备19004143号-1</p>
+			</div>
+		</div>
+	</footer>
+	<script async src='http://xsc.__host.com:3000/browser-sync/browser-sync-client.js?v=2.26.7'></script>
+	<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+	{% block script %}
+	<script src="js/common.min.js"></script>
+	{% endblock %}
+</body>
+</html>
+{% endspaceless %}

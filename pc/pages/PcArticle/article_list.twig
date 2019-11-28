@@ -1,0 +1,38 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+{% import "components/pagination.twig" as pagi %}
+
+{% block css %}
+<link rel="stylesheet" href="css/article-list.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <a href="/nlist/">教程</a>
+      {% for item in root_info %}
+      {% if item.id == id %}<span>
+        &gt; {{ item.cate_name }}</span>{% endif %}
+      {% endfor %}
+    </div>
+
+    <section class="list-nav">
+      <div class="list-nav_wrap">
+        <a href="/nlist/" {% if id == 0 %}class="active" {% endif %}>全部<br><em>{{total}}篇文章</em></a>
+        {% for item in root_info %}
+        <a href="{{ item.url }}" {% if item.id == id %}class="active"
+          {% endif %}>{{ item.cate_name }}<br><em>{{item.res_num}}篇文章</em></a>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="list-wrap">
+      <ul class="article clearfix">
+        {{ component.articles(article_info) }}
+      </ul>
+    </section>
+    {{ pagi.pagi(total, page, 20, '/nlist/' ~ id ) }}
+  </div>
+</main>
+{% endblock %}

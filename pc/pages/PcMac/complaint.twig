@@ -1,0 +1,49 @@
+{% extends 'inc/base.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="css/complaint.min.css">
+{% endblock %}
+
+{% block content %}
+<main class="container">
+  <div class="report">
+    <h1>内容举报</h1>
+    <form action="" id="form-report">
+      <fieldset>
+        <p>产品名称</p>
+        <input type="text" placeholder="例如：腾讯QQ2017">
+      </fieldset>
+      <fieldset>
+        <p>问题链接<em>*</em></p>
+        <input type="url" placeholder="例如：https://www.macdown.com/mac/1.html" name="url" id="url">
+        <p class="fr"></p>
+      </fieldset>
+      <fieldset>
+        <p>问题描述<em>*</em><span class="fr">* 只填写一个地址，若有多个地址请记录在问题描述</span></p>
+        <textarea name="content" id="" placeholder="请详细写清楚产品出现的问题，方便我们编辑快速核实并处理" id="content"></textarea>
+        <p class="fr"></p>
+      </fieldset>
+      <fieldset>
+        <p>联系方式<em>*</em></p>
+        <select name="contact_type" id="contact_type">
+          <option value="1">QQ</option>
+          <option value="2">手机</option>
+          <option value="3">邮箱</option>
+        </select>
+        <div class="connect">
+          <input name="contact_way_q" type="number" min="5" max="12" placeholder="请输入QQ号码" class="active">
+          <input name="contact_way_p" type="number" min="11" max="13" placeholder="请输入手机号码">
+          <input name="contact_way_e" type="email" placeholder="请输入邮箱">
+        </div>
+        <p class="fr"></p>
+      </fieldset>
+      <input type="submit" value="提交" id="submit">
+      <p class="suc-tip"></p>
+    </form>
+  </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/complaint.min.js"></script>
+{% endblock %}

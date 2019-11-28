@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-25 15:02:14 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-26 16:29:43
+ * @Last Modified time: 2019-11-28 15:06:26
  * 首页
  */
 
@@ -14,10 +14,19 @@ import Swiper from 'swiper';
 import './plugins/waterfall.js';
 // 引入工具
 import {
-  toggleActive
+  toggleActive,
+  commonSearch
 } from './util';
 
 $(function () {
+  // 头部搜索
+  const $indexSearch = $('#index-search');
+  $indexSearch.on('submit', function (e) {
+    e.preventDefault();
+    let _val = $(this).find('input').val();
+    commonSearch(_val);
+  });
+
   // banner轮播
   new Swiper('.banner-swiper', {
     autoplay: true,

@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-27 17:04:56 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-27 17:40:16
+ * @Last Modified time: 2019-11-29 09:12:57
  */
 
 @import 'components/common.less';
@@ -62,10 +62,11 @@
       cursor: pointer;
       font-size: 25px;
       text-align: center;
-      color: @theme-color;
+      color: @money-color;
 
       &::before {
         opacity: 0;
+        margin-left: -3px;
       }
 
       &.active {
@@ -221,7 +222,7 @@
 
       em {
         font-size: 24px;
-        color: @theme-color;
+        color: @money-color;
         margin-right: 5px;
       }
     }

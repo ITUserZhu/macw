@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-27 17:05:58 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-28 13:58:22
+ * @Last Modified time: 2019-11-29 09:15:18
  */
 // 引入公用模块
 import './components/common';
@@ -12,6 +12,10 @@ import Download from './components/download-recharge';
 import {
   SHOPPING_APIS
 } from './api';
+
+import {
+  confirmBox
+} from './util';
 
 let trHtml = `
   <tr data-id="{{ id }}">
@@ -122,9 +126,11 @@ $(function () {
     // 删除当前
     destroy(e) {
       let id = $(e.target).closest('tr').data('id');
-      this.datas.splice(this.getIndexFromEl(e.target), 1);
+
       this.destroyAjax({
         ids: id
+      }, () => {
+        this.datas.splice(this.getIndexFromEl(e.target), 1);
       });
     },
     // 删除所有选中
@@ -134,32 +140,41 @@ $(function () {
       this.getSelData().forEach(function (v) {
         ids.push(v.id)
       });
-      this.destroyAjax({
-        ids: ids.join(',')
-      });
-      this.datas = this.getNoActiveTodos();
-      this.render();
+      confirmBox('确定删除所有选中？', () => {
+        this.destroyAjax({
+          ids: ids.join(',')
+        }, () => {
+          this.datas = this.getNoActiveTodos();
+        });
+      })
+
     },
     // 清空所有
     emptyAll() {
       let ids = [];
       if (this.datas.length == 0) return;
+
       this.datas.forEach(function (v) {
         ids.push(v.id)
       });
-      this.datas = [];
-      this.destroyAjax({
-        ids: ids.join(',')
-      });
+
+      confirmBox('确定清空购物车？', () => {
+        this.destroyAjax({
+          ids: ids.join(',')
+        }, () => {
+          this.datas = [];
+        });
+      })
     },
     // 删除请求
-    destroyAjax(data) {
+    destroyAjax(data, fn) {
       $.ajax({
           url: SHOPPING_APIS.del,
           type: 'POST',
           data: data
         })
         .done(() => {
+          fn();
           this.render();
         });
     },
@@ -190,7 +205,6 @@ $(function () {
     // 渲染数据
     render() {
       let datas = this.datas;
-      window.sessionStorage.shopNum = datas.length;
       $('.header-shopping_car').find('span')
         .addClass('animation')
         .text(datas.length);
@@ -251,7 +265,9 @@ $(function () {
           if (v.status) _this.downShopList.push(v.id);
         });
       });
-      _this.downShopList.length && this.download(_this.downShopList);
+      confirmBox('确定下载并删除已选中素材吗？', () => {
+        this.download(_this.downShopList);
+      })
     },
     // 下载
     download(data) {

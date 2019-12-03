@@ -1,0 +1,65 @@
+{% extends 'inc/base.twig' %}
+{% import "components/pagination.twig" as pagi %}
+
+{% block css %}
+<link rel="stylesheet" href="css/rank.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <a href="/rank/">排行榜</a>
+      {% for item in cate_info if cat_id == item.id %}
+      &gt; <span>{{ item.cate_name }}</span>
+      {% endfor %}
+    </div>
+    <section>
+      <div class="rank-title">
+        <h1>排行榜</h1>
+        <nav class="rank-nav">
+          <a href="/rank/0_1.html" {% if cat_id == 0 %}class="active" {% endif %}>全部</a>
+          {% for item in cate_info %}
+          <a href="/rank/{{ item.id }}_1.html" {% if cat_id == item.id %}class="active"
+            {% endif %}>{{ item.cate_name }}</a>
+          {% endfor %}
+        </nav>
+      </div>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          {% for i,item in videoList | slice(0, 3) %}
+          <div class="swiper-slide">
+            <a href="{{ item.url }}" title="{{ item.title }}">
+              <div class="video-item">
+                <video muted loop poster="{{ item.thumb }}" data-src="{{ item.preview_url }}"></video>
+                <span
+                  class="num {% if i == 0 %}first{% elseif i == 1 %}two{% else %}three{% endif %}">{{ (page - 1) * 15 + i + 1 }}</span>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="swiper-button-prev rank-arrow"></div>
+        <div class="swiper-button-next rank-arrow"></div>
+      </div>
+      <ul class="clearfix">
+        {% for i,item in videoList if i > 2 %}
+        <li><a href="{{ item.url }}" title="{{ item.title }}">
+            <div class="video-item">
+              <video muted loop poster="{{ item.thumb }}" data-src="{{ item.preview_url }}"></video>
+              <span class="num {% if page == 1 %}page1{% endif %}">{{ (page - 1) * 15 + i + 1 }}</span>
+            </div>
+          </a></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {{ pagi.pagi(total, page, 15, '/rank/' ~ cat_id) }}
+  </div>
+
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/rank.min.js"></script>
+{% endblock %}

@@ -1,0 +1,144 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-12-03 16:18:01 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-12-03 17:23:00
+ */
+
+@import 'components/common';
+@import 'modules/pagination';
+@import '/node_modules/swiper/css/swiper.min.css';
+@import 'modules/video-play';
+
+section {
+  .rank-title {
+    line-height: 48px;
+    margin-bottom: 20px;
+
+    h1 {
+      display: inline-block;
+      font-size: 22px;
+    }
+
+    .rank-nav {
+      float: right;
+
+      a {
+        display: inline-block;
+        padding: 0 15px;
+        font-size: 16px;
+        color: #666;
+
+        &.active {
+          color: @theme-color;
+        }
+      }
+    }
+  }
+
+  .video-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all .2s;
+    overflow: hidden;
+
+    &.hover {
+      transform: scale(1.2);
+      z-index: 2;
+
+      video {
+        z-index: 2;
+      }
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .num {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      font-size: 16px;
+      border-radius: 50%;
+      line-height: 110px;
+      text-align: center;
+      color: #fff;
+      background-color: rgba(0, 0, 0, .6);
+      left: 50%;
+      margin-left: -40px;
+      top: -40px;
+
+      &.first {
+        background-color: #E61516;
+      }
+
+      &.two {
+        background-color: #F0B967;
+      }
+
+      &.three {
+        background-color: #EECF50;
+      }
+    }
+  }
+
+  ul li {
+    float: left;
+    width: 368px;
+    height: 214px;
+    background-color: #fff;
+    padding: 8px;
+    margin-right: 48px;
+    margin-top: 40px;
+    .shadow;
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
+
+  .swiper-container {
+    height: 315px;
+    width: 100%;
+    padding-top: 45px;
+    --swiper-theme-color: #fff;
+
+    .rank-arrow {
+      outline: none;
+    }
+
+    .swiper-button-prev {
+      left: 50%;
+      margin-left: -20%;
+    }
+
+    .swiper-button-next {
+      right: 50%;
+      margin-right: -20%;
+    }
+
+    .swiper-slide {
+      width: 400px;
+      height: 232px;
+      background-color: #fff;
+      padding: 8px;
+      transition: all .2s;
+      opacity: .8;
+      .shadow(@color: rgba(0, 0, 0, .1));
+
+      &.swiper-slide-next {
+        transform: scale(1.3);
+        opacity: 1;
+        z-index: 2;
+      }
+
+      .video-item.hover {
+        transform: scale(1);
+      }
+    }
+  }
+}

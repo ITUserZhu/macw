@@ -1,0 +1,181 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<base target="_blank">
+<link rel="stylesheet" href="css/index.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="main-bg">
+		{% set random_index = random(indexShowVideos | length - 1) %}
+		<img src="{{ indexShowVideos[random_index].thumb }}">
+	</div>
+	<div class="container">
+		<section class="index-show">
+			<div class="index-show_swiper clearfix">
+				<div class="swiper-container" id="index-swiper">
+					<ul class="swiper-wrapper">
+						{% for item in indexShowVideos %}
+						<li class="swiper-slide">
+							<div class="video">
+								<span class="video-tag">{{ item.cate_name | default('标志动画') }}</span>
+								<video muted loop poster="{{ item.thumb }}" data-src="{{ item.preview_url }}"></video>
+								<div class="video-play"></div>
+							</div>
+							<div class="video-info">
+								<a href="{{ item.url }}">
+									<p class="title">{{ item.title }} <span><i class="icon-video3"></i> {{ item.time }}</span></p>
+									<p class="desc">{{ item.description }}</p>
+									<button>下载</button>
+								</a>
+							</div>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="swiper-pagi-wrap">
+					<p class="index-title">精选视频库，应有尽有</p>
+					<p class="index-desc">这里不止及你所想，还有更多惊喜尽在其中……</p>
+					<div class="pagi-box">
+						<button class="swiper-btn-prev"><span>&lt; 上一个</span></button>
+						<button class="swiper-btn-next"><span>下一个 &gt;</span></button>
+					</div>
+				</div>
+			</div>
+			<ul class="video-list clearfix">
+				{% for item in indexShowVideos %}
+				<li data-src="{{ item.preview_url }}"><a href="{{ item.url }}" title="{{ item.title }}">
+						<div class="img">
+							<span class="video-tag">{{ item.cate_name | default('标志动画') }}</span>
+							<img src="{{ item.thumb }}" alt="{{ item.title }}">
+						</div>
+						<div class="con">
+							<p class="title">{{ item.title }}</p>
+							<span><i class="icon-video"></i> {{ item.time }}</span>
+						</div>
+					</a></li>
+				{% endfor %}
+			</ul>
+		</section>
+		<section class="newest-video">
+			<div class="sec-title">
+				<h2>最新视频</h2>
+			</div>
+			<div class="newest-video_wraps clearfix">
+				<div class="first-video fl">
+					<a href="{{ aeList[0].url }}" title="{{ aeList[0].title }}">
+						<div class="img" data-src="{{ aeList[0].preview_url }}">
+							<img src="{{ aeList[0].thumb }}" alt="{{ aeList[0].title }}">
+						</div>
+						<div class="con">
+							<p class="title">{{ aeList[0].title }}</p>
+						</div>
+					</a>
+				</div>
+				<div class="other-videos fr">
+					<h3>AE模板 <a href="">更多 &gt;</a></h3>
+					<div class="swiper-container swiper-ae">
+						<ul class="swiper-wrapper">
+							{% for i,item in aeList if i > 0 %}
+							<li class="swiper-slide">
+								<a href="{{ item.url }}" title="{{ item.title }}">
+									<div class="img" data-src="{{ item.preview_url }}">
+										<img src="{{ item.thumb }}" alt="{{ item.title }}">
+									</div>
+									<div class="con">
+										<p class="title">{{ item.title }}</p>
+										<i class="icon-play"></i>
+									</div>
+								</a>
+							</li>
+							{% endfor %}
+						</ul>
+						<div class="swiper-pagination pagi-ae"></div>
+					</div>
+				</div>
+			</div>
+			<div class="newest-video_wraps clearfix">
+				<div class="first-video fr">
+					<a href="{{ prList[0].url }}" title="{{ prList[0].title }}">
+						<div class="img" data-src="{{ prList[0].preview_url }}">
+							<img src="{{ prList[0].thumb }}" alt="{{ prList[0].title }}">
+						</div>
+						<div class="con">
+							<p class="title">{{ prList[0].title }}</p>
+						</div>
+					</a>
+				</div>
+				<div class="other-videos fl">
+					<h3>PR模板 <a href="">更多 &gt;</a></h3>
+					<div class="swiper-container swiper-pr">
+						<ul class="swiper-wrapper">
+							{% for i,item in prList if i > 0 %}
+							<li class="swiper-slide">
+								<a href="{{ item.url }}" title="{{ item.title }}">
+									<div class="img" data-src="{{ item.preview_url }}">
+										<img src="{{ item.thumb }}" alt="{{ item.title }}">
+									</div>
+									<div class="con">
+										<p class="title">{{ item.title }}</p>
+										<i class="icon-play"></i>
+									</div>
+								</a>
+							</li>
+							{% endfor %}
+						</ul>
+						<div class="swiper-pagination pagi-pr"></div>
+					</div>
+				</div>
+			</div>
+			<div class="newest-video_wraps clearfix">
+				<div class="first-video fl">
+					<a href="{{ videoList[0].url }}" title="{{ videoList[0].title }}">
+						<div class="img" data-src="{{ videoList[0].preview_url }}">
+							<img src="{{ videoList[0].thumb }}" alt="{{ videoList[0].title }}">
+						</div>
+						<div class="con">
+							<p class="title">{{ videoList[0].title }}</p>
+						</div>
+					</a>
+				</div>
+				<div class="other-videos fr">
+					<h3>视频素材 <a href="">更多 &gt;</a></h3>
+					<div class="swiper-container swiper-video">
+						<ul class="swiper-wrapper">
+							{% for i,item in videoList if i > 0 %}
+							<li class="swiper-slide">
+								<a href="{{ item.url }}" title="{{ item.title }}">
+									<div class="img" data-src="{{ item.preview_url }}">
+										<img src="{{ item.thumb }}" alt="{{ item.title }}">
+									</div>
+									<div class="con">
+										<p class="title">{{ item.title }}</p>
+										<i class="icon-play"></i>
+									</div>
+								</a>
+							</li>
+							{% endfor %}
+						</ul>
+						<div class="swiper-pagination pagi-video"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="hot-topic">
+			<div class="sec-title">
+				<h2>热门专题</h2>
+				<a href="">更多 &gt;</a>
+			</div>
+			<ul class="clearfix">
+				{{ component.topic(video_special_data) }}
+			</ul>
+		</section>
+	</div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/index.min.js"></script>
+{% endblock %}

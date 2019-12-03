@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% spaceless %}
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="applicable-device" content="pc" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>
+		{% block page_title %}
+		{{ page_title|default('__hostname下载') }}
+		{% endblock %}
+	</title>
+	<meta name="keywords" content="{% block page_kw %}{{ page_kw|default('__hostname下载') }}{% endblock %}">
+	<meta name="description" content="{% block page_desc %}{{ page_desc }}{% endblock %}">
+	<link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon" /> {% block css %}{% endblock %}
+</head>
+<body>
+	<!-- 头部 -->
+	<header>
+		<div class="header">
+			<div class="header-logo">
+				<a href="">
+					<img src="/assets/images/logo.png" alt="__hostname下载">
+				</a>
+			</div>
+			<div class="header-login">
+				<div class="header-login_btns active">
+					<button id="login-in">登录</button>
+					<button id="reg-in">注册</button>
+				</div>
+				<div class="header-login_logined"></div>
+			</div>
+			<div class="header-search">
+				<i class="icon-search2">
+					<span class="path1"></span>
+					<span class="path2"></span>
+				</i>
+			</div>
+			<nav class="header-nav">
+				<a href="/" {% if active == 'index' %} class="active" {% endif %} target="_self"><em>首页</em></a>
+				{% for item in cate_info %}
+				<a href="{{ item.url }}" {% if parent_id == item.id %} class="active" {% endif %}
+					target="_blank"><em>{{ item.cate_name }}</em></a>
+				{% endfor %}
+				<a href="/z/" {% if active == 'special' %} class="active" {% endif %} target="_blank"><em>专题</em></a>
+				<a href="/rank/" {% if active == 'rank' %} class="active" {% endif %} target="_blank"><em>排行榜</em></a>
+				<a href="https://www.macw.com/" target="_blank"><em>软件</em></a>
+				<a href="https://sc.macw.com/" target="_blank"><em>素材</em></a>
+				<a href="https://www.macw.com/vip.html" {% if active == 'vip' %} class="active" {% endif %}
+					target="_blank"><em>VIP</em></a>
+			</nav>
+		</div>
+		<div class="header-search-box">
+			<form id="header-form">
+				<input type="text" placeholder="搜点什么">
+				<button>
+					<i class="icon-search2">
+						<span class="path1"></span>
+						<span class="path2"></span>
+					</i>
+				</button>
+			</form>
+			<span class="search-close">X</span>
+		</div>
+	</header>
+	<!-- 内容 -->
+	{% block content %}{% endblock %}
+	<footer>
+		<div class="footer">
+			<div class="footer-nav">
+				<a href="">关于网站</a>
+				<a href="">会员说明</a>
+				<a href="">版权声明</a>
+				<span>客服QQ:
+					{{ customer_qq }}</span>
+				<a href="">下载帮助</a>
+				<a href="">联系我们</a>
+				<a href="">分享规则</a>
+			</div>
+			<div class="footer-copyright">
+				<p>本站为非盈利性个人网站，本站所有软件来自互联网，版权属原著所有，如有需要请购买正版。如有侵权，敬请来信联系我们，我们立即删除。<br>
+					Copyright © 2019 www.__host.com online services. All rights reserved. 冀ICP备19004143号-1</p>
+			</div>
+		</div>
+	</footer>
+	<script async src='http://xsv.__host.com:3000/browser-sync/browser-sync-client.js?v=2.26.7'></script>
+	<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+	{% block script %}
+	<script src="js/common.min.js"></script>
+	{% endblock %}
+</body>
+</html>
+{% endspaceless %}

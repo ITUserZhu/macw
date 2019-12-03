@@ -1,0 +1,56 @@
+{% extends 'inc/base.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="css/topic-content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="topic-info">
+    <div class="container">
+      <div class="breakhumbs">
+        <a href="/">首页</a>
+        &gt; <a href="/z/">专题</a>
+        &gt; <a href="{{ info.cate_url }}">{{ info.cate_name }}</a>
+        &gt; <span>{{ info.title }}</span>
+      </div>
+      <div class="info-wrap clearfix">
+        <div class="info-wrap_fl">
+          <h1>{{ info.title }}</h1>
+          <p class="desc">
+            {{ info.description }}
+          </p>
+          <p class="other">
+            <span>格式：{{ info.video_type }}</span> /
+            <span>分辨率：{{ info.resolution }}</span> /
+            <span>大小：{{ info.size }}</span>
+          </p>
+        </div>
+        <div class="info-wrap_fr">
+          <div class="img"><img src="{{ info.thumbs }}"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="topic-list">
+    <div class="container">
+      {% for i,item in content_info %}
+      <div class="item-num">
+        <p>{{ item.name }} {{ item.video_type }}</p>
+      </div>
+      <ul class="items-wrap video-ul">
+        {% for v in item.data %}
+        <li data-src="{{ v.preview_url }}"><a href="{{ v.url }}" title="{{ v.title }}" target="_blank">
+            <div class="img"><img src="{{ v.thumb }}" alt="{{ v.title }}"></div>
+          </a></li>
+        {% endfor %}
+      </ul>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/list.min.js"></script>
+{% endblock %}

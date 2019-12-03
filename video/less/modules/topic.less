@@ -1,0 +1,48 @@
+.topic() {
+  float: left;
+  width: 368px;
+  margin-right: 48px;
+
+  &:nth-child(3n) {
+    margin-right: 0;
+  }
+
+  .imgs {
+    height: 207px;
+    position: relative;
+    .shadow(@color: rgba(0, 0, 0, .1));
+
+    .img {
+      position: absolute;
+      width: 218px;
+      height: 127px;
+      left: 60px;
+      top: 68px;
+      padding: 5px;
+      background-color: #fff;
+      .shadow(@color: rgba(147, 147, 147, .3));
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      &:first-child {
+        transform: rotate(17deg);
+        transform-origin: right bottom;
+      }
+    }
+  }
+
+  .con {
+    .title {
+      line-height: 50px;
+      font-size: 16px;
+      .text-ovh;
+    }
+
+    span {
+      color: #999;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+{% import "components/pagination.twig" as pagi %}
+
+{% block css %}
+<link rel="stylesheet" href="css/list.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="list-banner">
+    <div class="bg-img">
+      <img src="{{ videoList[0].thumb }}">
+      <div class="mask"></div>
+    </div>
+    <div class="container">
+      <div class="breakhumbs">
+        <a href="/">首页</a>
+        {% set file_name = '' %}
+        {% for item in cate_info if item.id == parent_id %}
+        {% set file_name = item.file_name %}
+        &gt; <a href="{{ item.url }}">{{ item.cate_name }}</a>
+        {% endfor %}
+        {% if cat_id != 0 %}
+        {% for item in cate_info if item.id == parent_id %}
+        {% for v in item.info if v.id == cat_id %}
+        &gt; <span>{{ v.cate_name }}</span>
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
+      </div>
+      {% for item in cate_info if item.id == parent_id %}
+      <h1>{{ item.cate_name }}</h1>
+      {% endfor %}
+      <div class="list-nav">
+        <a href="/{{ file_name }}list/0_1.html" {% if cat_id == 0 %}class="active" {% endif %}>全部</a>
+        {% for item in cate_info if item.id == parent_id %}
+        {% for v in item.info %}
+        <a href="/{{ file_name }}list/{{ v.id }}_1.html" {% if cat_id == v.id %}class="active"
+          {% endif %}>{{ v.cate_name }}</a>
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <section class="video-list">
+    <div class="container">
+      <ul class="video-ul clearfix">
+        {{ component.list(videoList) }}
+      </ul>
+    </div>
+  </section>
+  {{ pagi.pagi(total, page, 18, '/' ~ file_name ~ 'list/' ~ cat_id) }}
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/list.min.js"></script>
+{% endblock %}

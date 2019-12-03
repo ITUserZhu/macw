@@ -1,0 +1,27 @@
+<!-- 专题 -->
+{% macro topic(data) %}
+{% for item in data %}
+<li data-src="{{ item.thumb_arr[0].preview_url }}"><a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="imgs">
+			{% for v in item.thumb_arr %}
+			<div class="img"><img src="{{ v.thumb }}"></div>
+			{% endfor %}
+		</div>
+		<div class="con">
+			<p class="title">{{ item.title }}</p>
+			<span>{{ item.num }}个视频</span>
+		</div>
+	</a></li>
+{% endfor %}
+{% endmacro %}
+
+{% macro list(data) %}
+{% for item in data %}
+<li data-src="{{ item.preview_url }}"><a href="{{ item.url }}" title="{{ item.title }}">
+		<div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+		<div class="con">
+			<p class="title">{{ item.title }}</p>
+		</div>
+	</a></li>
+{% endfor %}
+{% endmacro %}

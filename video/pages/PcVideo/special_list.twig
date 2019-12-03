@@ -1,0 +1,46 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+{% import "components/pagination.twig" as pagi %}
+
+{% block css %}
+<link rel="stylesheet" href="css/topic-list.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="list-banner">
+    <div class="bg-img">
+      <img src="{{ video_special_data[0].thumb_arr[0].thumb }}">
+      <div class="mask"></div>
+    </div>
+    <div class="container">
+      <div class="breakhumbs">
+        <a href="/">首页</a>
+        &gt; <a href="/z/">专题</a>
+        {% for item in special_cate_info if item.id == cat_id %}
+        &gt; <span>{{ item.cate_name }}</span>
+        {% endfor %}
+      </div>
+      <h1>专题</h1>
+      <div class="list-nav">
+        <a href="/z/" {% if cat_id == 0 %}class="active" {% endif %}>全部</a>
+        {% for item in special_cate_info %}
+        <a href="{{ item.url }}">{{ item.cate_name }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <section class="topic-list">
+    <div class="container">
+      <ul class="video-ul clearfix">
+        {{ component.topic(video_special_data) }}
+      </ul>
+    </div>
+  </section>
+  {{ pagi.pagi(total, page, 15, '/z/l_' ~ cat_id) }}
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/list.min.js"></script>
+{% endblock %}

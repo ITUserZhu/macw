@@ -36,7 +36,8 @@
       <ul class="video-ul clearfix">
         {% for item in data %}
         {% if item.res_num %}
-        <li class="topic" data-src="{{ item.thumb }}"><a href="{{ item.url }}" title="{{ item.title | striptags }}">
+        <li class="topic" data-src="{{ item.preview_url }}"><a href="{{ item.url }}"
+            title="{{ item.title | striptags }}">
             <div class="imgs">
               <div class="img"><img src="{{ item.thumb }}"></div>
               <div class="img"><img src="{{ item.thumb }}"></div>
@@ -57,7 +58,7 @@
         {% endfor %}
       </ul>
     </section>
-    {{ pagi.pagi(sum, page, 15, '/search' ~ model ~ '/' ~ keyword ~ '/' ~ sort) }}
+    {{ pagi.pagi(sum, page, 15, '/search/' ~ model ~ '/' ~ keyword ~ '/' ~ sort) }}
   </div>
 </main>
 {% endblock %}

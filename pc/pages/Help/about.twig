@@ -1,0 +1,65 @@
+{% extends 'inc/base.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="css/about.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      当前位置：
+      <a href="/">首页</a>
+      &gt; <span>关于网站</span>
+    </div>
+    <div class="about-box">
+      <div class="top-check">
+        <ul class="clearfix">
+          <li class="check-nav about active"><a target="_self" href="#about">关于本站</a></li>
+          <li class="check-nav open"><a target="_self" href="#open">会员说明</a></li>
+          <li class="check-nav help"><a target="_self" href="#help">下载帮助</a></li>
+          <li class="check-nav call"><a target="_self" href="#call">联系我们</a></li>
+          <li class="check-nav copyright"><a target="_self" href="#copyright">版权声明</a></li>
+          <li class="check-nav share"><a target="_self" href="#share">分享规则</a></li>
+        </ul>
+      </div>
+      <ul class="content-container">
+        <li class="content-check">
+          <div class="content">
+            {{ help.about | raw }}
+          </div>
+        </li>
+        <li class="content-check">
+          <div class="content">
+            {{ help.open | raw }}
+          </div>
+        </li>
+        <li class="content-check">
+          <div class="content">
+            {{ help.help | raw }}
+          </div>
+        </li>
+        <li class="content-check">
+          <div class="content">
+            {{ help.call | raw }}
+          </div>
+        </li>
+        <li class="content-check">
+          <div class="content">
+            {{ help.copyright | raw }}
+          </div>
+        </li>
+        <li class="content-check">
+          <div class="content">
+            {{ help.share | raw }}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/about.min.js"></script>
+{% endblock %}

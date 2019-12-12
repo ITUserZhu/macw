@@ -1,0 +1,124 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/list.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="list-filter">
+    <!-- 分类 -->
+    <div class="list-filter_item">
+      {% if cate_id != 0 %}
+      {% for item in category_info if cate_id == item.id %}
+      <p class="list-filter_type">{{ item.keyword }}</p>
+      {% endfor %}
+      {% else %}
+      <p class="list-filter_type">全部</p>
+      {% endif %}
+      <div class="list-filter_cont">
+        <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}0_{{ order }}_{{ format_type }}_{{ size }}_1.html"
+          {% if cate_id == 0 %}class="active" {% endif %}>全部</a>
+        {% for item in category_info %}
+        <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ item.id }}_{{ order }}_{{ format_type }}_{{ size }}_1.html"
+          {% if cate_id == item.id %}class="active" {% endif %}>{{ item.keyword }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- 格式 -->
+    <div class="list-filter_item">
+      {% if format_type != 0 %}
+      {% for item in format_type_info if format_type == item.id %}
+      <p class="list-filter_type">{{ item.format_name }}</p>
+      {% endfor %}
+      {% else %}
+      <p class="list-filter_type">全部</p>
+      {% endif %}
+      <div class="list-filter_cont">
+        <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_0_{{ size }}_1.html"
+          {% if format_type == 0 %}class="active" {% endif %}>全部</a>
+        {% for item in format_type_info %}
+        <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ item.id }}_{{ size }}_1.html"
+          {% if format_type == item.id %}class="active" {% endif %}>{{ item.format_name }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- 匹配排序 -->
+    <div class="list-filter_item">
+      {% if order == 0 %}
+      <p class="list-filter_type">综合匹配</p>
+      {% elseif order == 1 %}
+      <p class="list-filter_type">最新</p>
+      {% else %}
+      <p class="list-filter_type">最热</p>
+      {% endif %}
+      <div class="list-filter_cont">
+        <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_0_{{ format_type }}_{{ size }}_1.html"
+          {% if order == 0 %}class="active" {% endif %}>综合匹配</a>
+        <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_1_{{ format_type }}_{{ size }}_1.html"
+          {% if order == 1 %}class="active" {% endif %}>最新</a>
+        <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_2_{{ format_type }}_{{ size }}_1.html"
+          {% if order == 2 %}class="active" {% endif %}>最新</a>
+      </div>
+    </div>
+    <!-- 大小图 -->
+    <div class="list-filter_item">
+      {% if size == 1 %}
+      <p class="list-filter_type">小图</p>
+      {% elseif size == 2 %}
+      <p class="list-filter_type">中图</p>
+      {% else %}
+      <p class="list-filter_type">大图</p>
+      {% endif %}
+      <div class="list-filter_cont">
+        <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_1_1.html"
+          {% if size == 1 %}class="active" {% endif %}>小图</a>
+        <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_2_1.html"
+          {% if size == 2 %}class="active" {% endif %}>中图</a>
+        <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_3_1.html"
+          {% if size == 3 %}class="active" {% endif %}>大图</a>
+      </div>
+    </div>
+    <!-- 鼠标大图功能 -->
+    <div class="show-big"><i class="icon-eye"></i></div>
+    <!-- 清空条件 -->
+    <a href="/list/" class="filter-empty">清空筛选</a>
+  </div>
+
+  <div class="breakhumbs">
+    <a href="/">首页</a>
+    &gt; <a href="/list/">图库</a>
+    {% if cate_id != 0 %}
+    {% for item in category_info if cate_id == item.id %}
+    &gt; <a
+      href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_1.html">{{ item.keyword }}{% if keywords %}
+      &gt; {{ keywords }}{% endif %} </a>
+    {% endfor %}
+    {% endif %}
+  </div>
+
+  <section class="material-list">
+    <ul class="material {% if size == 2 %}waterfall{% elseif size == 3 %}big{% else %}small{% endif %} clearfix">
+      {{ component.list(photo_data) }}
+    </ul>
+  </section>
+  {% set page_total = (photo_total / 50) | round(0, 'ceil') %}
+  <section class="list-pagi">
+    {% if page == 1 %}
+    <span>上一页</span>
+    {% else %}
+    <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_{{ page - 1 }}.html">上一页</a>
+    {% endif %}
+    {% if page == page_total %}
+    <span>下一页</span>
+    {% else %}
+    <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_{{ page + 1 }}.html">下一页</a>
+    {% endif %}
+  </section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/list.min.js"></script>
+{% endblock %}

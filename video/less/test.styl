@@ -1,0 +1,397 @@
+.national-warp {
+	position: fixed;
+	transform: translateY(100%);
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 9998;
+	text-align: center;
+	transition: transform 0.5s ease;
+	&.show {
+		transform: translateY(100%);
+	}
+	.activity-bar {
+		position: relative;
+		top: -295px;
+		height: 295px;
+		width: 936px;
+		margin: 0 auto;
+		cursor: pointer;
+		.prize-item-wrap {
+			position: relative;
+			width: 1200px;
+			left: 50%;
+			margin-left: -600px;
+			.prize-item {
+				width: 234px;
+				position: absolute;
+				float: left;
+				text-align: center;
+				transform: translate3d(0, -30px, 0);
+				&.prize-1 {
+					left: 31%;
+					z-index: 2;
+					transition: transform 0.7s cubic-bezier(0.1, 1.85, 0.52, 0.85);
+				}
+				&.prize-2 {
+					left: 49%;
+					transition: transform 0.7s cubic-bezier(0.1, 1.85, 0.52, 0.85) 0.1s;
+				}
+			}
+			&.animate {
+				.prize-item {
+					transform: translate3d(0, -260px, 0);
+				}
+			}
+		}
+		.bar-box {
+			position: relative;
+			z-index: 3;
+		}
+		.act-close {
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			right: 50%;
+			top: 0;
+			z-index: 4;
+			margin-right: -470px;
+			background-color: rgba(0, 0, 0, 0.8);
+			opacity: 0;
+			color: #fff;
+			text-align: center;
+			line-height: 50px;
+			font-size: 20px;
+		}
+	}
+	.back-national {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		font-size: 24px;
+		background-color: rgba(0, 0, 0, 0.8);
+		color: #fff;
+		cursor: pointer;
+		span {
+			img {
+				vertical-align: middle;
+				margin-left: 8px;
+			}
+		}
+		i {
+			&.fr {
+				font-style: normal;
+				margin-right: 20px;
+			}
+		}
+	}
+	&.active {
+		transform: translateY(0) !important;
+		.activity-bar {
+			display: none;
+		}
+	}
+	.activity-box {
+		position: absolute;
+		background-color: rgba(32, 32, 32, 0.8);
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		.activity-content {
+			overflow: hidden;
+			height: 100%;
+			background-color: #52318c;
+			.act-content {
+				height: 100%;
+				overflow-y: auto;
+				&::-webkit-scrollbar-track {
+					background-color: #52308e;
+				}
+				&::-webkit-scrollbar {
+					width: 2px;
+					background-color: #52308e;
+				}
+				&::-webkit-scrollbar-thumb {
+					background-color: #cc5fe08c;
+				}
+				.act-main {
+					overflow: hidden;
+					margin: 0 auto;
+					min-height: 1440px;
+					background-image: url('/assets/images/activity/19-1212/bg.png');
+					background-size: cover;
+					background-position: top center;
+					background-repeat: no-repeat;
+					.act-logo {
+						margin-top: 200px;
+					}
+				}
+			}
+			.act-time {
+				font-size: 30px;
+				color: #fff;
+				margin-top: -90px;
+				em {
+					display: inline-block;
+					width: 60px;
+					height: 60px;
+					line-height: 60px;
+					background-color: #ffd513;
+					color: #fff;
+					text-align: center;
+					border-radius: 5px;
+					margin: 0 5px 0 10px;
+					vertical-align: middle;
+					font-size: 36px;
+				}
+			}
+			.act-recharge-box {
+				text-align: center;
+				margin: 100px auto 0;
+				max-width: 1200px;
+				.fl {
+					width: 550px;
+					height: 496px;
+					background-image: url('/assets/images/activity/19-1212/choose.png');
+					background-size: cover;
+					padding: 80px 50px 0;
+					box-sizing: border-box;
+					background-position: center;
+					color: #fff;
+					text-align: left;
+					.type-show {
+						color: #52308e;
+						height: 90px;
+						position: relative;
+						font-size: 20px;
+						margin-top: 50px;
+						&:last-child {
+							margin-top: 80px;
+						}
+						.type-title {
+							font-weight: bold;
+							font-size: 24px;
+							span {
+								font-size: 38px;
+								margin-left: 15px;
+								em {
+									font-size: 20px;
+								}
+							}
+						}
+						p {
+							width: 300px;
+						}
+						button {
+							position: absolute;
+							right: 0;
+							top: 50%;
+							margin-top: -20px;
+							width: 120px;
+							height: 40px;
+							color: #52308e;
+							border: 1px solid #52308e;
+							border-radius: 5px;
+							font-size: 20px;
+							font-weight: bold;
+							cursor: pointer;
+							background-color: transparent;
+						}
+						&.active {
+							button {
+								background-color: #52308e;
+								color: #fff;
+							}
+						}
+					}
+				}
+				.fr {
+					width: 550px;
+					height: 496px;
+					background-image: url('/assets/images/activity/19-1212/recharges.png');
+					background-size: cover;
+					box-sizing: border-box;
+					padding: 130px 0 0;
+					text-align: center;
+					font-size: 24px;
+					color: #4e308a;
+					.pay-wrap {
+						.pay-num {
+							padding-left: 20px;
+						}
+					}
+					.pay-num {
+						span {
+							font-size: 46px;
+							height: 30px;
+							line-height: 30px;
+							color: #e5bc0d;
+							text-shadow: 1px 1px 1px #111;
+							i {
+								font-style: normal;
+							}
+						}
+					}
+					.pay-scan {
+						display: none;
+						overflow: hidden;
+						text-align: center;
+						&.active {
+							display: block;
+						}
+						.ewm {
+							display: inline-block;
+							margin: 15px;
+							vertical-align: middle;
+							padding: 0 30px 30px;
+							& > p {
+								font-size: 16px;
+								line-height: 58px;
+								color: #00aaef;
+								text-align: center;
+								i {
+									font-size: 22px;
+									vertical-align: text-bottom;
+									margin-right: 2px;
+								}
+							}
+							&:nth-child(2) {
+								& > p {
+									color: #2aa13e;
+								}
+							}
+							.nacti-tip-text {
+								position: absolute;
+								width: 100%;
+								height: 100%;
+								z-index: 2;
+								background-color: rgba(0, 0, 0, 0.8);
+								line-height: 110px;
+								color: #fff;
+								display: none;
+								text-align: center;
+								font-size: 16px;
+							}
+							.pay-box {
+								position: relative;
+								width: 110px;
+								height: 110px;
+							}
+							img {
+								position: absolute;
+								top: 0;
+								left: 0;
+								width: 110px;
+								height: 110px;
+							}
+						}
+						.pay-num {
+							margin-right: 68px;
+							display: inline-block;
+							font-size: 16px;
+							.num {
+								font-size: 32px;
+								color: #fb6d5f;
+							}
+						}
+						.intro-img {
+							display: inline-block;
+							width: 140px;
+							height: 164px;
+							vertical-align: middle;
+							img {
+								width: 100%;
+								height: 100%;
+							}
+						}
+						.ali-logo-r {
+							height: 50px;
+							line-height: 50px;
+							border-radius: 5px;
+							background-color: #fff;
+							border: 1px solid #fe6601;
+							margin-top: 20px;
+							img {
+								vertical-align: middle;
+								margin: 0 25px;
+							}
+							.intro {
+								color: #999;
+							}
+							.pay-num {
+								float: right;
+								font-size: 16px;
+								margin-right: 20px;
+								em {
+									color: #fe6608;
+								}
+							}
+						}
+						form {
+							line-height: 1.5em;
+						}
+						.btn-ali {
+							width: 148px;
+							height: 38px;
+							line-height: 38px;
+							color: #fff;
+							letter-spacing: 2px;
+							font-size: 16px;
+							background-color: #fe6600;
+							box-shadow: 0 2px 0 0 #cc2a1e;
+							position: relative;
+							text-align: center;
+							cursor: pointer;
+							display: block;
+							margin: 40px auto;
+							border-radius: 5px;
+							outline: 0;
+							border: none;
+						}
+					}
+				}
+			}
+			.pay-type {
+				margin: 10px 0;
+				span {
+					display: inline-block;
+					text-align: center;
+					height: 34px;
+					line-height: 34px;
+					padding: 0 20px;
+					border: 1px solid #dddddd;
+					margin-right: 25px;
+					font-size: 16px;
+					cursor: pointer;
+					img {
+						vertical-align: middle;
+						margin-right: 5px;
+					}
+					&.active {
+						background: linear-gradient(to right, #f416f4, #2feaf2);
+					}
+					i {
+						margin-right: 5px;
+					}
+				}
+			}
+			.ewm-wrap {
+				width: 110px;
+				height: 110px;
+			}
+			.vip-img {
+				width: 90%;
+				max-width: 1036px;
+				margin: 120px auto;
+				display: block;
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

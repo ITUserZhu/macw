@@ -3,7 +3,9 @@
 {% for v in data %}
 <li data-id="{{ v.id }}" data-w="{{ v.width }}" data-h="{{ v.height }}">
   <a href="{{ v.url }}" title="{{ v.title }}">
-    <img {% if original %}data-{% endif %}src="{{ v.thumb }}" alt="{{ v.title }}">
+    <div class="img">
+      <img {% if original %}data-{% endif %}src="{{ v.thumb }}" alt="{{ v.title }}">
+    </div>
     <div class="mask">
       <div class="mask-operate">
         <button class="collect"><i class="icon-collect"></i></button>

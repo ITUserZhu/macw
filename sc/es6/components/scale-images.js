@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-12-03 13:15:09 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-12 17:45:38
+ * @Last Modified time: 2019-12-13 09:16:35
  * 视频or图片鼠标悬浮展示功能
  */
 
@@ -101,12 +101,17 @@ class ScaleImages {
     if (this.toolDom && (this.checkShow || !this.opts.checkbtn)) {
       this.opts.conCallback && this.toolDom.find('video')[0].pause();
       this.toolDom.hide();
-      this.isShown = false
+      this.isShown = false;
     }
   }
 
   timeInterval(event) {
     if (this.checkShow || !this.opts.checkbtn) {
+      if(!this.opts.fadeTime) {
+        this.showScale(event);
+        return;
+      };
+      
       this.timer = setTimeout(() => {
         this.showScale(event);
       }, this.opts.fadeTime)
@@ -121,18 +126,24 @@ class ScaleImages {
 
     let itemW = this.toolDom.width(),
       itemH = this.toolDom.height(),
+      mouseX = e.clientX,
       curX, curY,
       $curBox = $(e.target).closest(this.opts.item);
-
+    // console.log(itemW, itemH);
     let box = $curBox.get(0).getBoundingClientRect();
-
-    if (box[this.opts.oftXPosition] > this.winW / 2) {
+    
+    // 鼠标进入位置位于屏幕中间左右
+    if (mouseX > this.winW / 2) {
       curX = box.left - itemW - this.opts.oftX
     } else {
       curX = box.right + this.opts.oftX
     }
-
+    
+    // 左右如果出屏幕则定位在屏幕边上
     curX < 0 && (curX = 0);
+    if((curX + itemW) > this.winW) {
+      curX = this.winW - itemW
+    };
 
     if (this.opts.oftYPosition === 'top') {
       if (box.top < itemH) {
@@ -152,7 +163,7 @@ class ScaleImages {
       }
     } else {
       if ((box.top + $curBox.outerHeight() / 2) < itemH / 2) {
-        if (box.top < 0) {
+        if (box.top < 0 || (itemH > this.winH / 2)) {
           curY = 0
         } else {
           curY = box.top
@@ -180,14 +191,14 @@ class ScaleImages {
     this.toolT = curY;
 
     if (this.opts.fade) {
-      this.toolDom.fadeIn()
+      this.toolDom.stop().fadeIn()
     } else {
       this.toolDom.show()
     };
 
     !this.opts.checkbtn && this.playVideo()
 
-    this.isShown = true
+    this.isShown = true;
   }
 
   changeScrollTop(e) {

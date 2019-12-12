@@ -53,7 +53,7 @@
 
 				<div class="header-bot_search">
 					<form id="header-bot_form">
-						<input type="text" placeholder="搜你喜欢的">
+						<input type="text" placeholder="搜你喜欢的" {% if keywords %}value="{{ keywords }}"{% endif %}>
 						<button>
 							<i class="icon-search"></i>
 						</button>

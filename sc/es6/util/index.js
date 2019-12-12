@@ -111,6 +111,6 @@ export const commonSearch = (str) => {
   let newVal = str.replace(reg1, '').replace(reg2, '').trim().replace(/\s+/g, ' ').replace(/\+/g, '%2b');
 
   if (newVal) {
-    window.location.href = '/search/' + newVal + '_1.html';
+    window.location.href = '/search/' + newVal + '.html';
   }
 }

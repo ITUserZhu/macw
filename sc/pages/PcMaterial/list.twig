@@ -7,6 +7,7 @@
 
 {% block content %}
 <main>
+  {% set page_total = (photo_total / 50) | round(0, 'ceil') %}
   <div class="list-filter">
     <!-- 分类 -->
     <div class="list-filter_item">
@@ -83,7 +84,29 @@
     <!-- 鼠标大图功能 -->
     <div class="show-big"><i class="icon-eye"></i></div>
     <!-- 清空条件 -->
+    {% if keywords %}
+    <a href="/search/{{ keywords }}.html" class="filter-empty">清空筛选</a>
+    {% else %}
     <a href="/list/" class="filter-empty">清空筛选</a>
+    {% endif %}
+
+    <div class="check-pagi">
+      <input type="number" min="0" max="{{ page_total }}" value="{{ page }}"
+        data-url="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_checkPagi.html">
+      / <em>{{ page_total }}</em>
+      {% if page == 1 %}
+      <span>&lt;</span>
+      {% else %}
+      <a
+        href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_{{ page - 1 }}.html">&lt;</a>
+      {% endif %}
+      {% if page == page_total %}
+      <span>&gt;</span>
+      {% else %}
+      <a
+        href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_{{ page + 1 }}.html">&gt;</a>
+      {% endif %}
+    </div>
   </div>
 
   <div class="breakhumbs">
@@ -91,10 +114,11 @@
     &gt; <a href="/list/">图库</a>
     {% if cate_id != 0 %}
     {% for item in category_info if cate_id == item.id %}
-    &gt; <a
-      href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_1.html">{{ item.keyword }}{% if keywords %}
-      &gt; {{ keywords }}{% endif %} </a>
+    &gt; <span>{{ item.keyword }}{% if keywords %}
+      - {{ keywords }}{% endif %} </span>
     {% endfor %}
+    {% else %}
+    &gt; <span>全部  {% if keywords %} - {{ keywords }} {% endif %}</span>
     {% endif %}
   </div>
 
@@ -103,19 +127,41 @@
       {{ component.list(photo_data) }}
     </ul>
   </section>
-  {% set page_total = (photo_total / 50) | round(0, 'ceil') %}
+  {# 翻页 #}
   <section class="list-pagi">
     {% if page == 1 %}
     <span>上一页</span>
     {% else %}
-    <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_{{ page - 1 }}.html">上一页</a>
+    <a
+      href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_{{ page - 1 }}.html">上一页</a>
     {% endif %}
     {% if page == page_total %}
     <span>下一页</span>
     {% else %}
-    <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_{{ page + 1 }}.html">下一页</a>
+    <a
+      href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_{{ page + 1 }}.html">下一页</a>
     {% endif %}
   </section>
+  <div class="bot-pagi">
+    <span>{{ photo_total }}张图像</span>
+    <div class="check-pagi">
+      <input type="number" min="0" max="{{ page_total }}" value="{{ page }}"
+        data-url="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_checkPagi.html">
+      / <em>{{ page_total }}</em>
+      {% if page == 1 %}
+      <span>&lt;</span>
+      {% else %}
+      <a
+        href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_{{ page - 1 }}.html">&lt;</a>
+      {% endif %}
+      {% if page == page_total %}
+      <span>&gt;</span>
+      {% else %}
+      <a
+        href="{% if keywords %}/search/{{ keywords }}_{% else %}/list/{% endif %}{{ cate_id }}_{{ order }}_{{ format_type }}_{{ size }}_{{ page + 1 }}.html" id="next-url">&gt;</a>
+      {% endif %}
+    </div>
+  </div>
 </main>
 {% endblock %}
 

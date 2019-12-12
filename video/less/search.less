@@ -1,0 +1,119 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-12-13 12:03:29 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-12-13 13:34:02
+ */
+
+@import 'components/common';
+@import 'modules/list';
+@import 'modules/topic';
+@import 'modules/pagination';
+
+.search-box {
+  height: 80px;
+  padding: 20px 60px;
+  .shadow(@color: rgba(177, 177, 177, .5));
+
+  form {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    input {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 1px solid #E8E8E8;
+      padding: 0 90px 0 20px;
+      outline: none;
+      background-color: #fff;
+      font-size: 16px;
+    }
+
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 80px;
+      text-align: center;
+      background-color: @theme-color;
+      color: #fff;
+    }
+  }
+}
+
+.result-filter {
+  height: 40px;
+  line-height: 40px;
+  margin: 20px 0;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+
+  .result {
+    font-size: 14px;
+
+    span {
+      color: @theme-color;
+      font-size: 20px;
+    }
+  }
+
+  a {
+    padding: 0 15px;
+    margin: 0 5px;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      margin-left: -10px;
+      width: 20px;
+      height: 2px;
+      bottom: -5px;
+      background-color: transparent;
+    }
+
+    &.active {
+      color: @theme-color;
+
+      &::after {
+        background-color: @theme-color;
+      }
+    }
+  }
+}
+
+section {
+  &.video-list {
+    li {
+      &.list {
+        .list;
+
+        .con .title {
+          line-height: 50px;
+          margin-top: 0;
+        }
+      }
+
+      &.topic {
+        .topic;
+      }
+
+      margin-top: 20px;
+
+      &:nth-child(-n+3) {
+        margin-top: 0;
+      }
+
+      .con .title em {
+        color: @theme-color;
+      }
+    }
+  }
+}

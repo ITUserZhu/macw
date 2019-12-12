@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-29 10:28:32 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-29 11:01:36
+ * @Last Modified time: 2019-12-12 15:12:37
  * 全站通用板块
  */
 // 引入登录注册模块
@@ -42,8 +42,7 @@ $(function () {
 
   $headerForm.on('submit', function (e) {
     e.preventDefault();
-    let _val = $(this).find('input').val(),
-      _model = $(this).data('model') || 'all';
-    commonSearch(_val, _model);
+    let _val = $(this).find('input').val();
+    commonSearch(_val);
   });
 });

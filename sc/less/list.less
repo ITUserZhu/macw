@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-12-12 16:11:26 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-12 18:01:35
+ * @Last Modified time: 2019-12-13 10:03:08
  * 素材列表页面
  */
 
@@ -202,6 +202,61 @@ section {
   }
 }
 
+// 翻页
+.check-pagi {
+  float: right;
+  margin-top: 5px;
+  font-size: 16px;
+  text-align: center;
+
+  input {
+    width: 50px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    text-align: center;
+    outline: none;
+    appearance: none;
+    -moz-appearance: textfield;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      appearance: none;
+    }
+  }
+
+  a,
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50px;
+    height: 30px;
+    line-height: 26px;
+    color: #fff;
+    font-size: 24px;
+    margin-left: 10px;
+    background-color: #999;
+    cursor: default;
+  }
+
+  a {
+    cursor: pointer;
+    background-color: @theme-color;
+  }
+}
+
+.bot-pagi {
+  padding: 20px 100px;
+  border-top: 1px solid #ddd;
+  color: #999;
+  line-height: 40px;
+  font-size: 16px;
+
+  .check-pagi {
+    margin-top: 0;
+  }
+}
+
 
 // 图片鼠标大图
 .scaleTool {
@@ -209,7 +264,7 @@ section {
   z-index: 999;
   display: none;
   width: 800px;
-  min-height: 290px;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, .3);
   font-size: 0;
 
   .video-load {

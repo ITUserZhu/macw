@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-12 17:45:53 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-29 10:59:52
+ * @Last Modified time: 2019-12-12 15:12:28
  */
 // 引入confirm插件
 import 'jquery-confirm'
@@ -106,12 +106,12 @@ export const alertBox = (msg, obj = {}) => {
 }
 
 // 搜索过滤字符
-export const commonSearch = (str, type = 'all') => {
+export const commonSearch = (str) => {
   const reg1 = new RegExp(/[`~!@#$%^*()_\=<>?:"{}|\/;'\\[\]·~！@#￥%……*（）——\={}|《》？：“”【】、；‘’，。、|]/g),
     reg2 = new RegExp(/^,|,$/);
   let newVal = str.replace(reg1, '').replace(reg2, '').trim().replace(/\s+/g, ' ').replace(/\+/g, '%2b');
 
   if (newVal) {
-    window.location.href = '/search/' + type + '/' + newVal + '/0_1.html';
+    window.location.href = '/search/' + newVal + '.html';
   }
 }

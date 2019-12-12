@@ -1,6 +1,20 @@
 {% extends 'inc/base.twig' %}
 {% import "components/index.twig" as component %}
 
+{% block meta %}
+<meta property="og:type" content="soft" />
+<meta property="og:description" content="{{ mac_content.description }}" />
+<meta property="og:soft:file_size" content="{{ mac_content.file_size }}" />
+<meta property="og:soft:operating_system" content="{{ mac_content.systems }}" />
+<meta property="og:image" content="{{ mac_content.thumb }}" />
+<meta property="og:release_date" content="{{ mac_content.update_time | date('Y-m-d') }}" />
+<meta property="og:title" content="{{ mac_content.title }}" />
+<meta property="og:soft:download_count " content="{{ mac_content.hits_total }}" />
+<meta property="og:soft:language" content="{{ mac_content.language }}" />
+<meta property="og:soft:license" content="{{ mac_content.copy_type }}" />
+<meta property="og:soft:url" content="{{ url }}" />
+{% endblock %}
+
 {% block css %}
 <base target="_blank">
 <link rel="stylesheet" href="css/mac-content.min.css">

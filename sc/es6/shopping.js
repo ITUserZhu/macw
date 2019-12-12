@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-27 17:05:58 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-29 09:15:18
+ * @Last Modified time: 2019-12-11 11:52:12
  */
 // 引入公用模块
 import './components/common';
@@ -265,8 +265,16 @@ $(function () {
           if (v.status) _this.downShopList.push(v.id);
         });
       });
+      if (_this.downShopList.length === 0) return;
       confirmBox('确定下载并删除已选中素材吗？', () => {
         this.download(_this.downShopList);
+      }, {
+        title: '下载提示',
+        buttons: {
+          sure: {
+            btnClass: 'btn-green'
+          }
+        }
       })
     },
     // 下载

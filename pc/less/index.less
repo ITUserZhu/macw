@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-12 10:07:57 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-14 14:16:33
+ * @Last Modified time: 2019-12-12 16:03:23
  */
 
 @import 'components/common';
@@ -261,6 +261,10 @@ section {
         height: 360px;
         opacity: 0;
         transition: opacity 0s ease 1s;
+
+        &:first-child {
+          z-index: 1;
+        }
 
         &.active {
           opacity: 1;

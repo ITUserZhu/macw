@@ -3,7 +3,6 @@
 {% import "components/pagination.twig" as pagi %}
 
 {% block css %}
-<base target="_blank">
 <link rel="stylesheet" href="css/list.min.css">
 {% endblock %}
 
@@ -25,7 +24,7 @@
             全部
           </a>
           {% for item in cate_info %}
-          <a href="{{ item.url }}" {% if category_data.parent_id == item.id or item.id == id %} class="active"
+          <a href="{{ item.url }}" {% if category_data.parent_id == item.id or item.id == cat_id %} class="active"
             {% endif %}>
             {{ item.cate_name }}
           </a>

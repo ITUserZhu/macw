@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-12 17:45:48 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-21 11:35:25
+ * @Last Modified time: 2019-12-12 16:06:12
  * 首页
  */
 
@@ -56,7 +56,7 @@ $(function () {
   const $videoLis = $('.newest-video_wrap').find('ul').children('li');
   const videoLen = $videoLis.length;
   let curVideoIndex = 0,
-    curVideoZIndex = 0,
+    curVideoZIndex = 1,
     videoLoading = null;
   // 视频点击播放与暂停
   $videoLis.on('click', '.video-wrap', function () {
@@ -87,15 +87,16 @@ $(function () {
   // 翻页点击
   $videoPagi.on('click', function (e) {
     let $target = $(e.target).closest('button');
-    curVideoZIndex++;
 
     if ($target.is('.btn-prev')) {
       if (curVideoIndex > 0) {
         curVideoIndex--;
+        curVideoZIndex++;
       }
     } else if ($target.is('.btn-next')) {
       if (curVideoIndex < (videoLen - 1)) {
         curVideoIndex++;
+        curVideoZIndex++;
       }
     }
     clearInterval(videoLoading);

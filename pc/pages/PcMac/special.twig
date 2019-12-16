@@ -14,7 +14,7 @@
     </div>
     <section class="index-show clearfix">
       <div class="index-show_fl">
-        <a href="{{ newSpecial[0].title }}">
+        <a href="{{ newSpecial[0].url }}" title="{{ newSpecial[0].title }}">
           <p class="title">{{ newSpecial[0].title }}</p>
           <span>共{{ newSpecial[0].num | default(0) }}个软件</span>
           <div class="img"><img src="{{ newSpecial[0].thumbs }}" alt="{{newSpecial[0].title}}"></div>

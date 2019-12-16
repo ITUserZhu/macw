@@ -20,7 +20,7 @@
 
     <section class="list-nav">
       <div class="list-nav_wrap">
-        <a href="/nlist/" {% if id == 0 %}class="active" {% endif %}>全部<br><em>{{total}}篇文章</em></a>
+        <a href="/nlist/" {% if id == 0 %}class="active" {% endif %}>全部<br><em>{{news_total}}篇文章</em></a>
         {% for item in root_info %}
         <a href="{{ item.url }}" {% if item.id == id %}class="active"
           {% endif %}>{{ item.cate_name }}<br><em>{{item.res_num}}篇文章</em></a>

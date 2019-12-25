@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-12 17:45:48 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-25 09:36:31
+ * @Last Modified time: 2019-12-25 16:19:02
  * 首页
  */
 
@@ -20,6 +20,7 @@ $(function () {
   new Swiper('.swiper-container', {
     autoplay: true,
     loop: true,
+    loopAdditionalSlides: 3,
     slidesPerView: 3,
     roundLengths: true,
     spaceBetween: 60,

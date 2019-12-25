@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-14 16:09:23 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-25 14:07:16
+ * @Last Modified time: 2019-12-25 14:37:20
  * mac软件内容
  */
 
@@ -62,7 +62,7 @@ $(function () {
     $conImgs = $('.fr-view').find('img'),
     $fixNav = $('section.section-nav');
   // 需要出现悬浮高度
-  const fixShowHeight = $('.rec-topic').offset().top;
+  const fixShowHeight = $('.rec-topic').length && $('.rec-topic').offset().top || 500;
 
   let sectionHeight = new Array;
   // 存入栏目高度

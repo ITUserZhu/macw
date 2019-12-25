@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-22 10:38:15 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-28 10:15:01
+ * @Last Modified time: 2019-12-25 15:46:29
  * 软件下载与充值弹框功能
  */
 
@@ -367,9 +367,9 @@ class Download {
                 </li>`;
 			} else {
 				data.vip += `<li data-price="${ v.point_money }" data-usp="${ v.usd_price }" data-id="${ v.id }">
-                    <span class="type">VIP套餐</span>
+                    <span class="type">${ v.point_name }</span>
                     <p><em>${ v.day_money }</em> 元/天
-                        <span>${ v.point_money } 元/${ v.point_name.replace('会员套餐', '').substring(3) }</span>
+                        <span>${ v.point_money } 元/${ v.point_name.replace('会员套餐', '') }</span>
                     </p>
                 </li>`
 			}

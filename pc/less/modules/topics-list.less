@@ -1,69 +1,58 @@
 .topics-list() {
   float: left;
-  width: 560px;
-  height: 260px;
-  margin-right: 80px;
-  margin-top: 30px;
-  padding: 30px 40px 0;
+  width: 270px;
+  height: 230px;
+  margin-right: 40px;
+  margin-top: 60px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 0 20px;
   .shadow;
 
-  &:hover {
-    .shadow(@color: fadeout(darken(@theme-color, 30%), 80%), @size: 20px);
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
 
-    .top .con .title {
+  &:nth-child(-n+4) {
+    margin-top: 40px;
+  }
+
+  &:hover {
+
+    .title,
+    .desc {
       color: @theme-color;
     }
   }
 
-  &:nth-child(2n) {
-    margin-right: 0;
-  }
+  .imgs {
+    height: 80px;
+    padding-left: 25px;
 
-  &:nth-child(-n+2) {
-    margin-top: 0;
-  }
+    img {
+      height: 100%;
+      width: 80px;
+      display: inline-block;
+      position: relative;
+      margin-left: -25px;
 
-  .top {
-    .img {
-      width: 100px;
-      height: 100px;
-      float: left;
-      margin-right: 30px;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    .con {
-      overflow: hidden;
-      height: 100px;
-
-      .title {
-        font-size: 16px;
-        margin-bottom: 15px;
-
-        em {
-          color: @theme-color;
-        }
-      }
-
-      span {
-        color: #999;
+      &:nth-child(2) {
+        transform-origin: center;
+        transform: scale(1.25) translateY(-18px);
+        z-index: 2;
       }
     }
   }
 
-  .bot {
-    padding: 15px 0;
-    border-top: 1px solid #D1D1D1;
-    margin-top: 20px;
+  .title {
+    .text-ovh;
+    font-size: 20px;
+    margin: 20px 0;
+  }
 
-    .desc {
-      height: 4.8em;
-      overflow: hidden;
-      color: #666;
-    }
+  .desc {
+    height: 3.2em;
+    overflow: hidden;
+    color: #666;
   }
 }

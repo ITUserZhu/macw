@@ -81,11 +81,17 @@
 {% for i,item in data %}
 <li>
 	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
-		<div class="time">
-			<p>{{ item.update_time | date('d') }}</p>
-			<span>{{ item.update_time | date('Y-m') }}</span>
+		<div class="img">
+			<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
 		</div>
-		<p class="title">{{ item.title | raw }}</p>
+		<div class="con">
+			<p class="title"><i>{{ item.cate_name }}</i>{{ item.title | raw }}</p>
+			<p class="desc">{{ item.description }}</p>
+			<p class="info">
+				<span><i class="icon-eye2"></i>{{ item.hits_total }}</span>
+				<span><i class="icon-time"></i>{{ item.update_time | date('Y-m-d') }}</span>
+			</p>
+		</div>
 	</a>
 </li>
 {% endfor %}
@@ -127,19 +133,14 @@
 <!-- 专题软件 -->
 {% macro topics(data) %}
 {% for item in data %}
-<li><a href="{{ item.url }}" title="{{ item.title | striptags }}">
-		<div class="top">
-			<div class="img">
-				<img src="{{ item.thumbs | default(item.thumb) }}" alt="{{ item.title | striptags }}">
-			</div>
-			<div class="con">
-				<p class="title">{{ item.title | raw }}</p>
-				<span>共{{ item.num | default(item.res_num) | default(0) }}个软件</span>
-			</div>
+<li><a href="{{ item.url }}" title="{{ item.title }}">
+		<div class="imgs">
+			{% for v in item.thumb_arr %}
+			<img src="{{ v }}">
+			{% endfor %}
 		</div>
-		<div class="bot">
-			<p class="desc">{{ item.description }}</p>
-		</div>
+		<p class="title">{{ item.title }}</p>
+		<p class="desc">{{ item.description }}</p>
 	</a></li>
 {% endfor %}
 {% endmacro %}

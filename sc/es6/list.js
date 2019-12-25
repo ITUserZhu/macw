@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-12-12 16:32:10 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-13 09:57:32
+ * @Last Modified time: 2019-12-25 11:09:11
  */
 
 // 引入公用模块
@@ -16,18 +16,21 @@ $(function () {
   // 瀑布流
   const $material = $('.waterfall');
 
-  $material.flexImages({
-    'rowHeight': 280,
-    'container': 'li',
-  });
-  // 图片放大功能
-  new ScaleImages('.material', {
-    item: 'li',
-    fadeTime: 0,
-    fade: true,
-    oftX: 15,
-    checkbtn: '.show-big'
-  })
+  if ($material.children().length) {
+    $material.flexImages({
+      'rowHeight': 280,
+      'container': 'li',
+    });
+    // 图片放大功能
+    new ScaleImages('.material', {
+      item: 'li',
+      fadeTime: 0,
+      fade: true,
+      oftX: 15,
+      checkbtn: '.show-big'
+    })
+  }
+
   // 条件切换
   const $listFilterItem = $('.list-filter_item');
   $listFilterItem.on('click', function () {
@@ -51,13 +54,13 @@ $(function () {
   });
 
   // 判断滚动到底部加载下一页
-  $('#next-url').length && $(window).on('scroll', function(e) {
+  $('#next-url').length && $(window).on('scroll', function (e) {
     const nextUrl = $('#next-url').attr('href');
     let $this = $(this),
       viewH = $this.height(),
       contentH = $('body').get(0).scrollHeight,
       scrollT = $this.scrollTop();
-    if(scrollT / (contentH-viewH) >= 1) {
+    if (scrollT / (contentH - viewH) >= 1) {
       window.location.href = nextUrl;
     }
   });

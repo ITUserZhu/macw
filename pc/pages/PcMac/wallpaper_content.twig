@@ -42,8 +42,11 @@
         <li>所需系统： {{ wallpaper_content.systems }}</li>
         <li>尺寸： {{ wallpaper_content.resolution }}</li>
       </ol>
-      <div class="desc fr-view">
+      {# <div class="desc fr-view">
         {{ wallpaper_content.content | raw }}
+      </div> #}
+      <div class="desc fr-view markdown-body editormd-preview-container">
+        {{ wallpaper_content.content | markdown_to_html }}
       </div>
     </div>
   </div>

@@ -1,0 +1,39 @@
+.kfwx() {
+  position: relative;
+  cursor: default;
+
+  &:hover {
+    .wx-img {
+      display: block;
+    }
+  }
+
+  .wx-img {
+    position: absolute;
+    left: 50%;
+    margin-left: -75px;
+    top: -185px;
+    padding: 15px;
+    background-color: #333;
+    text-align: center;
+    width: 150px;
+    height: 170px;
+    display: none;
+    .shadow;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      margin-left: -7px;
+      bottom: -10px;
+      border-top: 10px solid #333;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}

@@ -1,57 +1,83 @@
 .article-list() {
-  width: 380px;
-  height: 70px;
+  width: 570px;
+  padding: 30px 0;
+  border-bottom: 1px solid #EFEFEF;
   float: left;
-  margin-right: 30px;
-  margin-top: 20px;
-  .shadow;
+  margin-right: 60px;
 
-  &:nth-child(3n) {
+  &:nth-child(2n) {
     margin-right: 0;
   }
 
-  &:nth-child(-n+3) {
-    margin-top: 10px;
+  &:hover {
+    .con {
+      .title {
+        color: @theme-color;
+      }
+    }
   }
 
-  &:hover {
-    .time {
-      background-color: @theme-color;
+  .img {
+    float: left;
+    height: 100px;
+    width: 133px;
+    overflow: hidden;
+    margin-right: 10px;
+
+    img {
+      height: 100%;
+      margin-left: 50%;
+      transform: translateX(-50%);
     }
+  }
+
+  .con {
+    overflow: hidden;
+    height: 100px;
 
     .title {
-      color: @theme-color;
+      .text-ovh;
+      line-height: 24px;
+      height: 24px;
+      font-size: 18px;
+
+      i {
+        display: inline-block;
+        vertical-align: top;
+        width: 60px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        font-size: 12px;
+        color: #fff;
+        margin-right: 10px;
+        background-color: @theme-color;
+      }
+
+      em {
+        color: @theme-color;
+      }
     }
-  }
 
-  .time {
-    float: left;
-    height: 100%;
-    width: 80px;
-    text-align: center;
-    padding-top: 5px;
-    color: #fff;
-    background-color: #bbb;
-    transition: all .2s;
-
-    p {
-      font-size: 22px;
+    .desc {
+      height: 3.2em;
+      overflow: hidden;
+      color: #999;
+      margin: 5px 0;
     }
-  }
 
-  .title {
-    overflow: hidden;
-    line-height: 1.85;
-    background-color: #fff;
-    height: 70px;
-    overflow: hidden;
-    padding: 7px 20px;
-    font-size: 16px;
-    transition: all .2s;
-    word-break: break-all;
+    .info {
+      color: #ccc;
 
-    em {
-      color: @theme-color;
+      span {
+        i {
+          margin-right: 5px;
+        }
+
+        &:last-child {
+          float: right;
+        }
+      }
     }
   }
 }

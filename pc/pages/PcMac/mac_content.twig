@@ -42,145 +42,229 @@
 			</div>
 			<div class="content-info">
 				<div class="content-info_wrap">
+					<div class="content-info_thumbs">
+						<div class="img">
+							<img src="{{ images[0] }}" title="点击查看截图">
+							<span><img src="/assets/images/expand.png"></span>
+						</div>
+					</div>
 					<div class="content-info_con">
+						<div class="img"><img src="{{ mac_content.thumb }}" alt="{{ mac_content.title }}"></div>
 						<h1>{{ mac_content.title }}
 							{{ mac_content.version }}</h1>
 						<p class="infos">
-							<span>
-								<i class="icon-time"></i>
-								{{ mac_content.update_time | date('Y-m-d') }}</span>
-							<span>
-								<i class="icon-point3"></i>
-								{{ mac_content.point }}
-								积分</span>
-							<span>
-								<i class="icon-qq"></i>
-								客服QQ：{{ customer_qq }}</span>
+							<span>大小：{{ mac_content.file_size }}</span>
+							<span>时间：{{ mac_content.update_time | date('Y-m-d') }}</span>
+							<span>语言：{{ mac_content.language }}</span>
+							<span>积分：{{ mac_content.point }}积分</span>
+							<span>系统：{{ mac_content.systems }}</span>
 						</p>
 						<div class="btns">
-							<div class="download-box">
-								<button class="download" id="download">立即下载</button>
-								<div class="down-tips">
-									<a href="/news/1.html" target="_blank">【安装软件遇到提示损坏，打不开，来自xx不明的开发者，详见：
-										<em>解决方法 </em>】
-									</a>
-								</div>
-							</div>
-							<button class="btns-fn" id="collect">
-								<i class="icon-collect"></i><span>点击收藏</span></button>
+							<button class="btns-fn" id="collect"><i class="icon-collect"></i><span>点击收藏</span></button>
 							<button class="btns-fn" id="support">
 								<i class="icon-support"></i>
-								<em>
-									{{  mac_content.click_good }}
-								</em>
+								<em>{{  mac_content.click_good }}</em>
 							</button>
-							<button class="btns-fn" id="share">
-								<i class="icon-share"></i>分享有礼</button>
+							<button class="btns-fn" id="share"><i class="icon-share"></i>分享有礼</button>
+							<div class="kf-link btns-fn">
+								<i class="icon-wx"></i>客服微信
+								<div class="wx-img">
+									<img src="/assets/images/sidebar/wx.png" alt="微信客服">
+									<p>打开微信扫一扫</p>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="content-info_img">
-						<span>
-							<i class="icon-size2"></i>
-							{{ mac_content.file_size }}</span>
-						<span>
-							<i class="icon-language"></i>
-							{{ mac_content.language }}</span>
-						<span>
-							<i class="icon-menu"></i>
-							{{ mac_content.res_type }}</span>
-						<span>
-							<i class="icon-os"></i><br>
-							{{ mac_content.systems }}</span>
-						<div class="img">
-							<div class="img-bg"><img src="{{ mac_content.thumb }}"></div>
-							<img src="{{ mac_content.thumb }}" alt="{{ mac_content.title }}">
+						<div class="download-box">
+							<button class="download" id="download"><i class="icon-download"></i>立即下载</button>
+							<div class="down-tips">
+								<a href="/news/1.html" target="_blank">【安装软件遇到提示损坏，打不开，来自xx不明的开发者，详见：
+									<em>解决方法 </em>】
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section-nav">
+		<div class="container clearfix">
+			<div class="con-title">
+				<img src="{{ mac_content.thumb }}" alt="{{ mac_content.title }} {{ mac_content.version }}">
+				<p>{{ mac_content.title }} {{ mac_content.version }}</p>
+			</div>
+			<div class="con-sec">
+				<ul id="nav-ul">
+					<li class="active">内容介绍</li>
+					{% if guess_info %}
+					<li>猜你喜欢</li>
+					{% endif %}
+					{% if resRelatedGroup_soft[15] %}
+					<li>相关软件</li>
+					{% endif %}
+					{% if resRelatedGroup_soft[0] %}
+					<li>相关专题</li>
+					{% endif %}
+					{% if resRelatedGroup_soft[1] %}
+					<li>相关文章</li>
+					{% endif %}
+				</ul>
+				<button id="fix-download"><i class="icon-download"></i>下载</button>
 			</div>
 		</div>
 	</section>
 	{% if video or images %}
 	<section class="screenshot">
-		<div class="container">
-			<h2>软件界面</h2>
-			<div class="screenshot-wrap">
-				<div class="swiper-container screenshot-swiper">
-					<ul class="swiper-wrapper">
-						{% for i,item in video %}
-						<li class="swiper-slide">
-							<div class="img-wrap {% if i == 0 %}active{% endif %}">
-								<video src="{{ item }}" preload="meta" controls></video>
-								<span class="video-play"></span>
-							</div>
-						</li>
-						{% endfor %}
-						{% for i,item in images %}
-						<li class="swiper-slide">
-							<div class="img-wrap {% if i == 0 and video | length == 0 %}active{% endif %}"><img src="{{ item }}">
-							</div>
-						</li>
-						{% endfor %}
-					</ul>
-					<div class="swiper-pagination"></div>
-				</div>
-				<!--左箭头-->
-				<div class="swiper-button-prev screenshot-arrow"></div>
-				<!--右箭头-->
-				<div class="swiper-button-next screenshot-arrow"></div>
+		<span class="screenshot-close">X</span>
+		<div class="screenshot-wrap">
+			<div class="swiper-container screenshot-swiper">
+				<ul class="swiper-wrapper">
+					{% for i,item in video %}
+					<li class="swiper-slide">
+						<div class="img-wrap {% if i == 0 %}active{% endif %}">
+							<video src="{{ item }}" preload="meta" controls></video>
+							<span class="video-play"></span>
+						</div>
+					</li>
+					{% endfor %}
+					{% for i,item in images %}
+					<li class="swiper-slide">
+						<div class="img-wrap {% if i == 0 and video | length == 0 %}active{% endif %}"><img src="{{ item }}">
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
 			</div>
+			<!--左箭头-->
+			<div class="swiper-button-prev screenshot-arrow left"></div>
+			<!--右箭头-->
+			<div class="swiper-button-next screenshot-arrow right"></div>
+		</div>
+		<div class="screenshot-wrap-thumbs">
+			<div class="swiper-container screenshot-swiper-thumbs">
+				<ul class="swiper-wrapper">
+					{% for i,item in video %}
+					<li class="swiper-slide">
+						<div class="img-wrap {% if i == 0 %}active{% endif %}">
+							<video src="{{ item }}" preload="meta"></video>
+							<span class="icon-play"></span>
+						</div>
+					</li>
+					{% endfor %}
+					{% for i,item in images %}
+					<li class="swiper-slide">
+						<div class="img-wrap {% if i == 0 and video | length == 0 %}active{% endif %}"><img src="{{ item }}">
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="swiper-button-prev screenshot-arrow-thumbs left"></div>
+			<div class="swiper-button-next screenshot-arrow-thumbs right"></div>
 		</div>
 	</section>
 	{% endif %}
-	{% if guess_info %}
-	<section class="soft-list">
+	{% if recommend_special %}
+	<section class="rec-topic">
 		<div class="container">
-			<h2>猜你喜欢</h2>
+			<h2>推荐专题</h2>
 			<ul class="clearfix">
-				{{ component.soft(guess_info) }}
+				{{ component.topics(recommend_special) }}
 			</ul>
 		</div>
 	</section>
 	{% endif %}
-	<section class="description">
+	<section class="sec-item description">
 		<div class="container">
 			<h2>软件介绍</h2>
-			<div class="content fr-view">
-				{{ mac_content.content | raw }}
+			<div class="content fr-view markdown-body editormd-preview-container">
+				{{ mac_content.content | markdown_to_html }}
 			</div>
 		</div>
 	</section>
-	{% if resRelatedGroup_soft[15] %}
-	<section class="soft-list">
+	{% if guess_info %}
+	<section class="sec-item soft-list">
 		<div class="container">
-			<h2>相关软件</h2>
-			<ul class="clearfix">
-				{{ component.soft(resRelatedGroup_soft[15]) }}
-			</ul>
+			<h2>猜你喜欢</h2>
+			<div class="sec-toggle-wrap">
+				<ul class="clearfix active">
+					{{ component.soft(guess_info | slice(0, 5)) }}
+				</ul>
+				<ul class="clearfix">
+					{{ component.soft(guess_info | slice(5, 5)) }}
+				</ul>
+			</div>
+			{% if guess_info | length > 5 %}
+			<div class="sec-toggle-btn">
+				<span class="active"></span>
+				<span></span>
+			</div>
+			{% endif %}
 		</div>
 	</section>
 	{% endif %}
-	{% if resRelatedGroup_soft[0] %}
-	<section class="soft-list">
+	{% if resRelatedGroup_soft[15] %}
+	<section class="sec-item soft-list">
 		<div class="container">
-			<h2>专题
-				<em>——</em>
-				{{ resRelatedGroup_soft[0][0].title }}
-				<br><a href="{{ resRelatedGroup_soft[0][0].url }}">进入专题 &gt;</a>
-			</h2>
-			<ul class="clearfix">
-				{{ component.soft(resRelatedGroup_soft[0][0].special_content) }}
-			</ul>
+			<h2>相关软件</h2>
+			<div class="sec-toggle-wrap">
+				<ul class="clearfix active">
+					{{ component.soft(resRelatedGroup_soft[15] | slice(0, 5)) }}
+				</ul>
+				<ul class="clearfix">
+					{{ component.soft(resRelatedGroup_soft[15] | slice(5, 5)) }}
+				</ul>
+			</div>
+			{% if resRelatedGroup_soft[15] | length > 5 %}
+			<div class="sec-toggle-btn">
+				<span class="active"></span>
+				<span></span>
+			</div>
+			{% endif %}
 		</div>
+	</section>
+	{% endif %}
+	{% if resRelatedGroup_soft[0][0].special_content %}
+	<section class="sec-item soft-list">
+		<div class="container">
+			<h2>相关专题</h2>
+			<div class="sec-toggle-wrap">
+				<ul class="clearfix active">
+					{{ component.soft(resRelatedGroup_soft[0][0].special_content | slice(0, 5)) }}
+				</ul>
+				<ul class="clearfix">
+					{{ component.soft(resRelatedGroup_soft[0][0].special_content | slice(5, 5)) }}
+				</ul>
+			</div>
+			{% if resRelatedGroup_soft[0][0].special_content | length > 5 %}
+			<div class="sec-toggle-btn">
+				<span class="active"></span>
+				<span></span>
+			</div>
+			{% endif %}
+		</div>
+		<a class="sec-more" href="{{ resRelatedGroup_soft[0][0].url }}">进入专题</a>
 	</section>
 	{% endif %}
 	{% if resRelatedGroup_soft[1] %}
-	<section class="article-list">
+	<section class="sec-item article-list">
 		<div class="container">
 			<h2>相关文章</h2>
-			<ul class="clearfix">
-				{{ component.article(resRelatedGroup_soft[1]) }}
-			</ul>
+			<div class="sec-toggle-wrap">
+				<ul class="clearfix active">
+					{{ component.article(resRelatedGroup_soft[1] | slice(0, 6)) }}
+				</ul>
+				<ul class="clearfix">
+					{{ component.article(resRelatedGroup_soft[1] | slice(6, 6)) }}
+				</ul>
+			</div>
+
+			{% if resRelatedGroup_soft[1] | length > 6 %}
+			<div class="sec-toggle-btn">
+				<span class="active"></span>
+				<span></span>
+			</div>
+			{% endif %}
 		</div>
 	</section>
 	{% endif %}

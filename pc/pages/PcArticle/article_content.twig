@@ -33,8 +33,11 @@
     <div class="container clearfix">
       <article>
         <section class="content">
-          <div class="fr-view">
+          {# <div class="fr-view">
             {{article_content.content | raw}}
+          </div> #}
+          <div class="fr-view markdown-body editormd-preview-container">
+            {{ article_content.content | markdown_to_html }}
           </div>
         </section>
         {% if resRelatedGroup_soft[1] %}

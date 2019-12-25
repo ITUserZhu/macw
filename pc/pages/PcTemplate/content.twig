@@ -131,8 +131,8 @@
   <section class="description">
     <div class="container">
       <h2>内容介绍</h2>
-      <div class="content fr-view">
-        {{ template_content.content | raw }}
+      <div class="content fr-view markdown-body editormd-preview-container">
+        {{ template_content.content | markdown_to_html }}
       </div>
     </div>
   </section>

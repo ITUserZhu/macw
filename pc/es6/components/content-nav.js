@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-15 09:39:58 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-21 11:33:32
+ * @Last Modified time: 2019-12-25 14:19:37
  * 内容目录导航
  * @params:
  * wrap 整个内容容器 dom对象
@@ -29,6 +29,7 @@ class ContentFixNav {
       float: 'left',
       top: '60%',
       showTop: 300,
+      hideTop: 100000,
       scrollT: 0,
     };
     this.options = $.extend({}, this.options, opts);
@@ -37,7 +38,7 @@ class ContentFixNav {
   }
 
   render() {
-    $('body').append($(`<div id="content-nav" class="${this.options.float}" style="top: ${this.options.top};"></div>`));
+    $('main').append($(`<div id="content-nav" class="${this.options.float}" style="top: ${this.options.top};"></div>`));
     this.contentNav = $('#content-nav');
 
     let _this = this;
@@ -108,7 +109,7 @@ class ContentFixNav {
       _index,
       _this = this;
 
-    if (scrollTop >= this.options.showTop) {
+    if (scrollTop >= this.options.showTop && scrollTop < this.options.hideTop) {
       _this.contentNav.show();
     } else {
       _this.contentNav.hide();

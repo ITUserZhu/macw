@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-15 10:28:32 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-21 18:04:24
+ * @Last Modified time: 2019-12-24 16:12:49
  * 全站通用板块
  */
 // 引入登录注册模块
@@ -32,7 +32,7 @@ $(function () {
     $headerForm = $('#header-form');
 
   $headerSearchBtn.on('click', function () {
-    $headerSearchBox.show();
+    $headerSearchBox.show().find('input').focus();
     $headerBox.hide();
   });
 

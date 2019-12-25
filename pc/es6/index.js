@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-12 17:45:48 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-12 16:06:12
+ * @Last Modified time: 2019-12-25 09:36:31
  * 首页
  */
 
@@ -18,6 +18,7 @@ import {
 $(function () {
   // 轮播图
   new Swiper('.swiper-container', {
+    autoplay: true,
     loop: true,
     slidesPerView: 3,
     roundLengths: true,

@@ -167,3 +167,26 @@
 </li>
 {% endfor %}
 {% endmacro %}
+
+<!-- 装机必备 -->
+{% macro necessary(data) %}
+{% for item in data %}
+<li><a href="{{ item.url }}" title="{{ item.title }}">
+		<p class="title">{{ item.title }}</p>
+		<p class="version">{{ item.version }}</p>
+		<div class="con">
+			<div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+			<p class="desc">{{ item.description }}</p>
+		</div>
+		<p class="infos">
+			<span>时间：{{ item.update_time | date('Y-m-d') }}</span>
+			{% if item.file_size %}
+			<span>大小：{{ item.file_size }}</span>
+			{% endif %}
+			{% if item.systems %}
+			<span>系统：{{ item.systems }}</span>
+			{% endif %}
+		</p>
+	</a></li>
+{% endfor %}
+{% endmacro %}

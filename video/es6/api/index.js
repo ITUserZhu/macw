@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-15 09:58:52 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-29 10:59:08
+ * @Last Modified time: 2019-12-27 11:54:35
  */
 
 // 软件内容页接口：
@@ -27,8 +27,8 @@ export const VIP_APIS = {
 // 登录
 export const LOGIN_APIS = {
   login_go: '/login_go',
-  wx_login: '/wechat_login?type=1',
-  qq_login: '/qq_login?type=1',
+  wx_login: '/wechat_login?type=3',
+  qq_login: '/qq_login?type=3',
   reg: '/register',
   code_img: '/api/code_img',
   phone_reg: '/phone_register',

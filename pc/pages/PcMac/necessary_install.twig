@@ -1,0 +1,45 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/necessary-install.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt; <span>装机必备</span>
+    </div>
+    <section class="list-nav">
+      <div class="list-nav_cate">
+        <span>分类：</span>
+        <div class="list-nav_links">
+          {% for item in year_data %}
+          <a href="/necessary/{{ item }}_{{ month_now }}.html" {% if item == year_now %} class="active"
+            {% endif %}>{{ item }}年每月推荐应用</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="list-nav_cate">
+        <span>月份：</span>
+        <div class="list-nav_links">
+          {% for item in month_data %}
+          <a href="/necessary/{{ year_now }}_{{ item }}.html" {% if item == month_now %} class="active"
+            {% endif %}>{{ item }}月份</a>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <section class="necessary">
+      {% for name,item in cate_info %}
+      <h2><img src="{{ item.thumb }}">{{ name }}</h2>
+      <ul class="clearfix">
+        {{ component.necessary(item.data) }}
+      </ul>
+      {% endfor %}
+    </section>
+  </div>
+</main>
+{% endblock %}

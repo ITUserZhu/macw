@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-21 11:12:45 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-25 14:18:12
+ * @Last Modified time: 2019-12-26 13:37:29
  * 内容页通用板块
  */
 
@@ -56,13 +56,12 @@ $(function () {
 
   // 内容目录导航
   const $frView = $('.fr-view'),
-    $contentH = $('.fr-view .intro').length > 0 ? $('.fr-view .intro') : $('.fr-view h3').length > 0 ? $('.fr-view h3') : $('.fr-view .t_h3');
+    $contentH = $('.fr-view .intro').length > 0 ? $('.fr-view .intro') : $('.fr-view h2').length > 0 ? $('.fr-view h2') : $('.fr-view h3');
   const descTop = $('.fr-view').offset().top - window.innerHeight / 2;
-  const hideTop = $frView.closest('section').next().offset().top || 10000;
+
   new ContentFixNav($frView, $contentH, {
-    scrollT: MODELID == 15 ? 70 : 0,
+    scrollT: MODELID == 15 ? 80 : 0,
     showTop: descTop,
-    hideTop,
     top: '40%',
   });
 

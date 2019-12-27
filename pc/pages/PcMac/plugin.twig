@@ -65,22 +65,26 @@
 		<section class="newest">
 			<div class="sec-title">
 				<h2>最新更新</h2>
-				<div>
-					<span class="prev-btn">&lt;</span>
-					<span class="next-btn">&gt;</span>
+				{% if recentUpdatePlugin | length > 8 %}
+				<div class="sec-check">
+					<span class="active">&lt;</span>
+					<span>&gt;</span>
 				</div>
+				{% endif %}
 			</div>
-			<ul class="active clearfix">
-				{{ component.template(recentUpdatePlugin | slice(0,8)) }}
-			</ul>
-			<ul class="clearfix">
-				{{ component.template(recentUpdatePlugin | slice(8,8)) }}
-			</ul>
+			<div>
+				<ul class="active clearfix">
+					{{ component.template(recentUpdatePlugin | slice(0,8)) }}
+				</ul>
+				<ul class="clearfix">
+					{{ component.template(recentUpdatePlugin | slice(8,8)) }}
+				</ul>
+			</div>
 		</section>
 		<section class="boutique-topic">
 			<div class="sec-title">
 				<h3>精选专题</h3>
-				<a href="">更多专题 →</a>
+				<a href="/z/lc_3_1.html">更多专题 →</a>
 			</div>
 			<ul class="clearfix">
 				{{ component.topic(pluginSpecialData) }}

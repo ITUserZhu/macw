@@ -44,8 +44,14 @@
 				<div class="content-info_wrap">
 					<div class="content-info_thumbs">
 						<div class="img">
-							<img src="{{ images[0] }}" title="点击查看截图">
+							{% if video[0] %}
+							<video src="{{ video[0] }}" title="点击查看截图"></video>
+							{% else %}
+							<img src="{{ images[0] | default(mac_content.thumb) }}" title="点击查看截图">
+							{% endif %}
+							{% if video[0] or images[0] %}
 							<span><img src="/assets/images/expand.png"></span>
+							{% endif %}
 						</div>
 					</div>
 					<div class="content-info_con">
@@ -129,7 +135,9 @@
 					{% endfor %}
 					{% for i,item in images %}
 					<li class="swiper-slide">
-						<div class="img-wrap {% if i == 0 and video | length == 0 %}active{% endif %}"><img src="{{ item }}">
+						<div data-swiper-zoom="2"
+							class="img-wrap swiper-zoom-container {% if i == 0 and video | length == 0 %}active{% endif %}"><img
+								src="{{ item }}">
 						</div>
 					</li>
 					{% endfor %}

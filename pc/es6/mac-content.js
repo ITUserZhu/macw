@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-14 16:09:23 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-25 14:37:20
+ * @Last Modified time: 2019-12-26 11:57:57
  * mac软件内容
  */
 
@@ -36,6 +36,7 @@ $(function () {
       })
 
       new Swiper('.screenshot-swiper', {
+        zoom: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',

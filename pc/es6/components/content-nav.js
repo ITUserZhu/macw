@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-15 09:39:58 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-25 14:19:37
+ * @Last Modified time: 2019-12-26 13:37:09
  * 内容目录导航
  * @params:
  * wrap 整个内容容器 dom对象
@@ -29,7 +29,6 @@ class ContentFixNav {
       float: 'left',
       top: '60%',
       showTop: 300,
-      hideTop: 100000,
       scrollT: 0,
     };
     this.options = $.extend({}, this.options, opts);
@@ -78,11 +77,11 @@ class ContentFixNav {
       })
     };
 
-    Promise.all(promiseAll).then((img) => {
+    Promise.all(promiseAll).then(() => {
       _this.titleDoms.each(function (index, el) {
         _this.hHeightArr.push(Math.ceil($(el).offset().top) - _this.options.scrollT);
       })
-
+      _this.hideTop = _this.wrapDoms.closest('section').next().offset().top || 10000
       _this.initEvent();
     })
 
@@ -109,7 +108,7 @@ class ContentFixNav {
       _index,
       _this = this;
 
-    if (scrollTop >= this.options.showTop && scrollTop < this.options.hideTop) {
+    if (scrollTop >= this.options.showTop && scrollTop < this.hideTop) {
       _this.contentNav.show();
     } else {
       _this.contentNav.hide();

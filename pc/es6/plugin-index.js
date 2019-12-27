@@ -2,12 +2,17 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-15 15:39:41 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-21 11:35:35
+ * @Last Modified time: 2019-12-27 11:16:37
  * 插件首页
  */
 
+// 引入公用模块
+import './components/common';
 // 轮播图
 import Swiper from 'swiper';
+import {
+  toggleActive
+} from './util'
 
 $(function () {
   let bannerInfos = new Swiper('#banner-infos', {
@@ -33,4 +38,12 @@ $(function () {
       },
     },
   })
+  // 最新更新切换
+  const $checkBtn = $('.sec-check'),
+    $checkWrapUl = $('section.newest').find('ul');
+
+  $checkBtn.on('click', 'span', function () {
+    let _index = $(this).index();
+    toggleActive([$(this), $checkWrapUl.eq(_index)]);
+  });
 });

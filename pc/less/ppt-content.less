@@ -1,0 +1,71 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-12-30 13:31:00 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-12-30 13:46:06
+ */
+
+@import 'word-content';
+@import 'modules/ppt-list';
+
+.word-content {
+  article {
+    background: transparent;
+    padding: 0;
+
+    .img-wrap {
+      padding-top: 0;
+    }
+
+    video {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+section {
+  &.rel-ppts {
+    ul li {
+      .ppt-list;
+      width: 180px;
+      height: 296px;
+      padding: 5px;
+      margin-right: 10px;
+      margin-top: 10px;
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+
+      .mask {
+        button {
+          width: 100px;
+          height: 30px;
+          margin-left: -50px;
+          top: 226px;
+          font-size: 14px;
+        }
+
+        .title {
+          line-height: 30px;
+          height: 30px;
+          font-size: 12px;
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+
+  &.rel-topic {
+    ul.ppt li {
+      .ppt-list;
+      height: 210px;
+      padding: 8px 9px;
+
+      .mask button {
+        top: 112px;
+      }
+    }
+  }
+}

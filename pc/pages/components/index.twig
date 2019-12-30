@@ -75,6 +75,19 @@
 {% endfor %}
 {% endmacro %}
 
+<!-- ppt列表模板 -->
+{% macro ppt(data) %}
+{% for item in data %}
+<li><a href="{{ item.url }}" title="{{ item.title }}">
+		<div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+		<div class="mask">
+			<button>立即下载</button>
+			<p class="title">{{ item.title }}</p>
+		</div>
+	</a></li>
+{% endfor %}
+{% endmacro %}
+
 <!-- 插件 -->
 {% macro plugin(data) %}
 {% for i,item in data %}

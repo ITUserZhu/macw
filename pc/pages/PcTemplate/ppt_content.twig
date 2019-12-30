@@ -2,7 +2,7 @@
 {% import "components/index.twig" as component %}
 
 {% block css %}
-<link rel="stylesheet" href="css/word-content.min.css">
+<link rel="stylesheet" href="css/ppt-content.min.css">
 {% endblock %}
 
 {% block content %}
@@ -32,7 +32,9 @@
       </div>
       <article>
         <section class="img-wrap">
-          <div class="mask"></div>
+          {% if video | length > 0 %}
+          <video src="{{ video[0] }}" controls autoplay preload="meta"></video>
+          {% endif %}
           <div class="img">
             <img src="{{ template_content.thumb }}">
           </div>
@@ -48,6 +50,7 @@
             <li>时间 <span>{{ template_content.update_time }}</span></li>
             <li>下载 <span>{{ template_content.point }}积分</span></li>
             <li>页数 <span>{{ template_content.num }}</span></li>
+            <li>比例 <span>{{ template_content.proportion }}</span></li>
           </ul>
           <div class="btns">
             <button class="btns-fn" id="collect">
@@ -70,13 +73,13 @@
           </div>
         </section>
         {% if resRelatedGroup_soft[19] %}
-        <section class="rel-words">
+        <section class="rel-ppts">
           <div class="sec-title">
-            <h2>相关Word</h2>
-            <a href="/mblist/28_0_1.html">查看更多 &gt;&gt;</a>
+            <h2>相关PPT</h2>
+            <a href="/mblist/1_0_1.html">查看更多 &gt;&gt;</a>
           </div>
           <ul class="clearfix">
-            {{ component.word(resRelatedGroup_soft[19]) }}
+            {{ component.ppt(resRelatedGroup_soft[19]) }}
           </ul>
         </section>
         {% endif %}
@@ -92,8 +95,8 @@
         <p class="nums">共{{ resRelatedGroup_soft[0][0].num }}套模板</p>
         <p class="desc">{{ resRelatedGroup_soft[0][0].description }}</p>
       </div>
-      <ul class="word clearfix">
-        {{ component.words(resRelatedGroup_soft[0][0].special_content) }}
+      <ul class="ppt clearfix">
+        {{ component.ppt(resRelatedGroup_soft[0][0].special_content) }}
       </ul>
     </section>
     {% endif %}

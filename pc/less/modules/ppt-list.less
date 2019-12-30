@@ -1,9 +1,10 @@
-.word-topic-list() {
+.ppt-list() {
   float: left;
   width: 280px;
-  height: 210px;
+  height: 460px;
+  padding: 8px;
   margin-right: 26px;
-  margin-bottom: 26px;
+  margin-top: 26px;
   position: relative;
   .shadow;
 
@@ -22,10 +23,10 @@
   }
 
   .img {
-    width: 120px;
-    height: 170px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    margin: 15px auto;
+    background-color: #eee;
 
     img {
       width: 100%;
@@ -38,13 +39,10 @@
     height: 100%;
     left: 0;
     top: 0;
-    background-image: url('/assets/images/bgs/word-topic-list-bg.png');
-    background-repeat: no-repeat;
-    background-size: cover;
 
     button {
       position: absolute;
-      top: 110px;
+      top: 360px;
       left: 50%;
       margin-left: -80px;
       background-color: @theme-color;
@@ -66,7 +64,6 @@
       width: 100%;
       height: 44px;
       line-height: 44px;
-      color: @theme-color;
       padding: 0 10px;
       background-color: rgba(255, 255, 255, .9);
       opacity: 0;

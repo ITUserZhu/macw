@@ -4,7 +4,7 @@
   "article-list.min.css": "article-list-883a7bde31.min.css",
   "complaint.min.css": "complaint-a8b4f3ae4c.min.css",
   "index.min.css": "index-0f16e49c25.min.css",
-  "list.min.css": "list-f39b7b8fe9.min.css",
+  "list.min.css": "list-396a626345.min.css",
   "mac-content.min.css": "mac-content-9662ee3682.min.css",
   "necessary-install.min.css": "necessary-install-4cf52c9064.min.css",
   "per-index.min.css": "per-index-5cc7d42a64.min.css",
@@ -18,5 +18,6 @@
   "topic-index.min.css": "topic-index-d20cb45791.min.css",
   "topic-list.min.css": "topic-list-bc87fc9411.min.css",
   "vip.min.css": "vip-2cf01ee675.min.css",
-  "wallpaper-content.min.css": "wallpaper-content-b4651ca943.min.css"
+  "wallpaper-content.min.css": "wallpaper-content-b4651ca943.min.css",
+  "word-content.min.css": "word-content-96df959ca8.min.css"
 }

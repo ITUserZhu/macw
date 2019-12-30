@@ -1,0 +1,234 @@
+/*
+ * @Author: Liliang Zhu 
+ * @Date: 2019-12-27 17:03:51 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2019-12-30 10:53:12
+ */
+
+@import 'components/common';
+@import 'modules/article-list';
+@import 'modules/word-list';
+@import 'modules/word-topic-list';
+@import 'modules/fr-view';
+@import 'modules/share';
+@import 'modules/downloda-recharge';
+
+.h-title {
+  font-size: 24px;
+  line-height: 28px;
+  border-left: 10px solid @theme-color;
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+
+.word-content {
+  .shadow;
+  padding: 36px 10px;
+  margin-bottom: 40px;
+
+  article {
+    width: 780px;
+    float: left;
+    padding: 50px 60px;
+    background: linear-gradient(to bottom, #e0e7ea, #edeff3);
+
+    .img-wrap {
+      position: relative;
+      padding-top: 70px;
+
+      .mask {
+        background-image: url('/assets/images/bgs/word-list.png');
+        background-repeat: no-repeat;
+        background-size: 60% auto;
+        background-position: top;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+
+      .img {
+        width: 100%;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  aside {
+    width: 370px;
+    float: right;
+
+    section {
+      padding: 30px 0;
+      border-top: 1px solid #F4F4F4;
+
+      &:first-child {
+        padding-top: 0;
+        padding-bottom: 50px;
+        border: none;
+      }
+
+      .sec-title {
+        line-height: 20px;
+        margin-bottom: 10px;
+
+        h2 {
+          font-size: 18px;
+          font-weight: bold;
+          display: inline;
+        }
+
+        a {
+          float: right;
+          color: #999;
+        }
+      }
+    }
+  }
+}
+
+section {
+  &.fn-infos {
+    .download {
+      width: 100%;
+      height: 48px;
+      border-radius: 25px;
+      background-color: @theme-color;
+      font-size: 18px;
+      color: #fff;
+
+      i {
+        margin-right: 10px;
+      }
+    }
+
+    .recharge {
+      color: @theme-color;
+      display: block;
+      text-align: center;
+      line-height: 30px;
+      margin: 10px 0;
+
+      i {
+        margin-right: 10px;
+      }
+    }
+
+    ul li {
+      line-height: 40px;
+
+      span {
+        float: right;
+        color: #666;
+      }
+    }
+
+    .btns {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      .btns-fn {
+        height: 30px;
+        width: 110px;
+        border-radius: 15px;
+        color: #fff;
+
+        &:first-child {
+          background-color: #FF5353;
+        }
+
+        &:nth-child(2) {
+          background-color: #FF703E;
+        }
+
+        &:last-child {
+          background-color: #46CA81;
+        }
+
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  &.description {
+    .fr-view {
+      padding: 0;
+    }
+  }
+
+  &.rel-words {
+    ul li {
+      .word-list;
+      width: 180px;
+      height: 280px;
+      padding: 15px;
+      padding-bottom: 0;
+      margin-right: 10px;
+      margin-top: 10px;
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+
+      .img-wrap {
+        height: 238px;
+        padding-top: 16px;
+
+        .mask {
+          button {
+            width: 100px;
+            height: 30px;
+            margin-left: -50px;
+            bottom: 20px;
+            font-size: 14px;
+          }
+        }
+      }
+
+      .title {
+        line-height: 30px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  &.rel-topic {
+    .topic-info {
+      height: 150px;
+      margin: 30px 0 40px;
+      background-image: url('/assets/images/bgs/topic-bg.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      text-align: center;
+      font-size: 16px;
+      color: #fff;
+
+      .title {
+        font-size: 22px;
+        line-height: 40px;
+      }
+
+      .nums {
+        line-height: 40px;
+      }
+
+      .desc {
+        .text-ovh;
+        line-height: 30px;
+      }
+    }
+
+    ul li {
+      .word-topic-list;
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+{% import "components/pagination.twig" as pagi %}
+
+{% block css %}
+<link rel="stylesheet" href="css/list.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt;<a href="/mblist/">
+        模板</a>
+      {% if category_data.parent_cate_name %}
+      &gt;
+      <a href="{{ category_data.parent_cate_url }}">{{ category_data.parent_cate_name }}</a>
+      {% endif %}
+      {% if category_data.cate_name %}
+      &gt;
+      <span>{{ category_data.cate_name }}</span>
+      {% endif %}
+    </div>
+    <section class="list-nav">
+      <div class="list-nav_cate">
+        <span>分类：</span>
+        <div class="list-nav_links">
+          <a href="/mblist/0_0_1.html" {% if category_data.parent_id == 0 %} class="active" {% endif %}>
+            <img src="{{ template_data[0].thumb }}">全部
+          </a>
+          {% for item in cate_info %}
+          <a href="{{ item.url }}" {% if category_data.parent_id == item.id or item.id == id %} class="active"
+            {% endif %}>
+            <img src="{{ item.thumb }}">{{ item.cate_name }}
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% if category_data.parent_id != 0 %}
+      {% for item in cate_info if item.id == category_data.parent_id %}
+      <div class="list-nav_cate">
+        <span>类别：</span>
+        <div class="list-nav_links">
+          <a href="/mblist/{{ id }}_{{ vip }}_1.html" {% if category_data.parent_id == id %} class="active" {% endif %}>
+            <img src="{{ template_data[1].thumb }}">全部
+          </a>
+          {% for v in item.info %}
+          <a href="{{ v.url }}" {% if id == v.id %} class="active" {% endif %}>
+            <img src="{{ v.thumb }}">
+            {{ v.cate_name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+      <div class="list-nav_cate">
+        <span>筛选：</span>
+        <div class="list-nav_links">
+          <a href="/mblist/{{ id }}_0_1.html" {% if vip == 0 %} class="active" {% endif %}>全部</a>
+          <a href="/mblist/{{ id }}_1_1.html" {% if vip == 1 %} class="active" {% endif %}>收费</a>
+          <a href="/mblist/{{ id }}_2_1.html" {% if vip == 2 %} class="active" {% endif %}>免费</a>
+        </div>
+      </div>
+    </section>
+    <section class="list-wrap">
+      <ul class="word clearfix">
+        {{ component.word(template_data) }}
+      </ul>
+    </section>
+    {{ pagi.pagi(total_num, page, 12, '/mblist/' ~ id ~'_' ~ vip ) }}
+  </div>
+</main>
+{% endblock %}

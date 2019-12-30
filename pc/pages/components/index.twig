@@ -45,6 +45,36 @@
 {% endfor %}
 {% endmacro %}
 
+<!-- Word模板 -->
+{% macro word(data) %}
+{% for item in data %}
+<li>
+	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="img-wrap">
+			<div class="mask">
+				<button>立即下载</button>
+			</div>
+			<div class="img"><img src="{{ item.thumb }}" alt="{{ item.title | striptags }}"></div>
+		</div>
+		<p class="title">{{ item.title | raw }}</p>
+	</a>
+</li>
+{% endfor %}
+{% endmacro %}
+
+<!-- Word专题列表模板 -->
+{% macro words(data) %}
+{% for item in data %}
+<li><a href="{{ item.url }}" title="{{ item.title }}">
+		<div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+		<div class="mask">
+			<button>立即下载</button>
+			<p class="title">{{ item.title }}</p>
+		</div>
+	</a></li>
+{% endfor %}
+{% endmacro %}
+
 <!-- 插件 -->
 {% macro plugin(data) %}
 {% for i,item in data %}

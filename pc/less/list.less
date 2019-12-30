@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-14 13:11:27 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-27 13:52:43
+ * @Last Modified time: 2019-12-27 16:34:21
  * 列表页面
  */
 @import 'components/common';
@@ -11,6 +11,7 @@
 
 @import 'modules/soft-list';
 @import 'modules/template-list';
+@import 'modules/word-list';
 @import 'modules/wallpaper-list';
 
 .list-wrap {
@@ -32,6 +33,12 @@
     &.wallpaper {
       li {
         .wallpaper-list;
+      }
+    }
+
+    &.word {
+      li {
+        .word-list;
       }
     }
   }

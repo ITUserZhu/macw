@@ -1,0 +1,107 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/word-content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="container">
+    <div class="breakhumbs">
+      <a href="/">首页</a>
+      &gt;
+      <a href="/mblist/">模板</a>
+
+      {% if template_content.parent_id_cate_name %}
+      &gt;
+      <a href="{{ template_content.category_url_by_parent_id }}">{{ template_content.parent_id_cate_name }}</a>
+      {% endif %}
+      {% if template_content.cate_name %}
+      &gt;
+      <a href="{{ template_content.category_url }}">{{ template_content.cate_name }}</a>
+      {% endif %}
+      &gt;
+      <span>{{ template_content.title }}
+        {{ template_content.version }}</span>
+    </div>
+
+    <div class="word-content clearfix">
+      <div class="h-title">
+        <h1>{{ template_content.title }}</h1>
+      </div>
+      <article>
+        <section class="img-wrap">
+          <div class="mask"></div>
+          <div class="img">
+            <img src="{{ template_content.thumb }}">
+          </div>
+        </section>
+      </article>
+      <aside>
+        <section class="fn-infos">
+          <button class="download" id="download"><i class="icon-download"></i>立即下载</button>
+          <a href="/vip.html" class="recharge"><i class="icon-recharge"></i>点击在线充值</a>
+          <ul>
+            <li>格式 <span>{{ template_content.format }}</span></li>
+            <li>大小 <span>{{ template_content.file_size }}</span></li>
+            <li>时间 <span>{{ template_content.update_time }}</span></li>
+            <li>下载 <span>{{ template_content.point }}积分</span></li>
+            <li>页数 <span>{{ template_content.num }}</span></li>
+          </ul>
+          <div class="btns">
+            <button class="btns-fn" id="collect">
+              <i class="icon-collect"></i>
+              <span>点击收藏</span>
+            </button>
+            <button class="btns-fn" id="support">
+              <i class="icon-support"></i>
+              <em>{{ template_content.click_good }}</em>
+            </button>
+            <button class="btns-fn" id="share"><i class="icon-share"></i>分享有礼</button>
+          </div>
+        </section>
+        <section class="description">
+          <div class="sec-title">
+            <h2>内容介绍</h2>
+          </div>
+          <div class="fr-view markdown-body editormd-preview-container">
+            {{ template_content.content | raw }}
+          </div>
+        </section>
+        {% if resRelatedGroup_soft[19] %}
+        <section class="rel-words">
+          <div class="sec-title">
+            <h2>相关Word</h2>
+            <a href="/mblist/28_0_1.html">查看更多 &gt;&gt;</a>
+          </div>
+          <ul class="clearfix">
+            {{ component.word(resRelatedGroup_soft[19]) }}
+          </ul>
+        </section>
+        {% endif %}
+      </aside>
+    </div>
+    <section class="rel-topic">
+      <div class="h-title">
+        <h2>相关专题</h2>
+      </div>
+      <div class="topic-info">
+        <p class="title">{{ resRelatedGroup_soft[0][0].title }}</p>
+        <p class="nums">共{{ resRelatedGroup_soft[0][0].num }}套模板</p>
+        <p class="desc">{{ resRelatedGroup_soft[0][0].description }}</p>
+      </div>
+      <ul class="clearfix">
+        {{ component.words(resRelatedGroup_soft[0][0].special_content) }}
+      </ul>
+    </section>
+  </div>
+  <input type="hidden" id="content-info" data-src="{{ template_content.thumb }}" data-id="{{ template_content.id }}"
+    data-model="{{ template_content.model_id }}" data-point="{{ template_content.point }}" data-url="{{ url }}"
+    data-title="{{ template_content.title }}">
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/word-content.min.js"></script>
+{% endblock %}

@@ -33,7 +33,10 @@
       <article>
         <section class="img-wrap">
           {% if video | length > 0 %}
-          <video src="{{ video[0] }}" controls autoplay preload="meta"></video>
+          <div class="video-wrap">
+            <video src="{{ video[0] }}" controls autoplay preload="meta"></video>
+            <span class="video-play"></span>
+          </div>
           {% endif %}
           <div class="img">
             <img src="{{ template_content.thumb }}">

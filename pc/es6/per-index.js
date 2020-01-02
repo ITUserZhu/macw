@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-21 13:35:15 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-28 14:17:19
+ * @Last Modified time: 2020-01-02 15:21:51
  * 个人中心
  */
 
@@ -235,8 +235,9 @@ $(function () {
       // 公共翻页元素
       this.pagiDom = $('.ajax-pagination');
       this.loadingImg = '/assets/images/vip/loadcode.gif';
-      this.captchaNum = '2086409997';
+      this.captchaNum = '2050354954';
       this.initPagiEvent();
+      this.initAdminEvent();
     }
 
     initHtmls() {
@@ -398,17 +399,11 @@ $(function () {
       switch (hash) {
         case 'admin':
           if (!this.hasInitAdmin) {
-            this.initAdminEvent();
-            this.hasInitAdmin = true;
-          };
-          break;
-        case 'info':
-          if (!this.hasBindCity) {
             this.bindInfoCity();
             this.watchInfoChange();
             this.bindPhoneEvent();
-            this.hasBindCity = true;
-          }
+            this.hasInitAdmin = true;
+          };
           break;
         case 'collect':
           if (!this.hasGetCol.soft) {
@@ -603,7 +598,7 @@ $(function () {
         success: function (msg) {
           if (msg['code'] == 200) {
             UTIL.alertBox('保存修改成功');
-            $('.nickname').add('#user-name').text(data.nickname);
+            $('.nickname em').add('.name-vip p').add('.user-function .infos span').text(data.nickname);
             $(e.target).find('button').addClass('disabeld');
           } else {
             UTIL.alertBox(msg.msg);
@@ -829,25 +824,25 @@ $(function () {
             break;
           case 'plugin':
             if (!this.hasGetCol.plugin) {
-              this.getColData(this.modelIds.plugin, 9);
+              this.getColData(this.modelIds.plugin, 8);
               this.hasGetCol.plugin = true;
             };
             break;
           case 'material':
             if (!this.hasGetCol.material) {
-              this.getColData(this.modelIds.material, 12);
+              this.getColData(this.modelIds.material, 10);
               this.hasGetCol.material = true;
             };
             break;
           case 'video':
             if (!this.hasGetCol.video) {
-              this.getColData(this.modelIds.video, 9);
+              this.getColData(this.modelIds.video, 6);
               this.hasGetCol.video = true;
             };
             break;
           case 'template':
             if (!this.hasGetCol.template) {
-              this.getColData(this.modelIds.template, 9);
+              this.getColData(this.modelIds.template, 8);
               this.hasGetCol.template = true;
             };
             break;
@@ -888,23 +883,23 @@ $(function () {
       switch (typeName) {
         case type + '-soft-pagi':
           model_id = _this.modelIds.mac;
-          page_size = 15
+          page_size = 10
           break;
         case type + '-plugin-pagi':
           model_id = _this.modelIds.plugin;
-          page_size = 9
+          page_size = 8
           break;
         case type + '-material-pagi':
           model_id = _this.modelIds.material;
-          page_size = 12
+          page_size = 10
           break;
         case type + '-video-pagi':
           model_id = _this.modelIds.video;
-          page_size = 9
+          page_size = 6
           break;
         case type + '-template-pagi':
           model_id = _this.modelIds.template;
-          page_size = 9
+          page_size = 8
           break;
       };
 
@@ -965,7 +960,7 @@ $(function () {
     }
 
     // 获取收藏数据
-    getColData(model_id = this.modelIds.mac, page_size = 15, page = 1) {
+    getColData(model_id = this.modelIds.mac, page_size = 10, page = 1) {
       let _this = this,
         pagi, wrap, tempHtml, isMaterial = false;
 
@@ -1075,25 +1070,25 @@ $(function () {
             break;
           case 'plugin':
             if (!this.hasGetDown.plugin) {
-              this.getDownData(this.modelIds.plugin, 9);
+              this.getDownData(this.modelIds.plugin, 8);
               this.hasGetDown.plugin = true;
             };
             break;
           case 'material':
             if (!this.hasGetDown.material) {
-              this.getDownData(this.modelIds.material, 12);
+              this.getDownData(this.modelIds.material, 10);
               this.hasGetDown.material = true;
             };
             break;
           case 'video':
             if (!this.hasGetDown.video) {
-              this.getDownData(this.modelIds.video, 9);
+              this.getDownData(this.modelIds.video, 6);
               this.hasGetDown.video = true;
             };
             break;
           case 'template':
             if (!this.hasGetDown.template) {
-              this.getDownData(this.modelIds.template, 9);
+              this.getDownData(this.modelIds.template, 8);
               this.hasGetDown.template = true;
             };
             break;
@@ -1119,7 +1114,7 @@ $(function () {
     }
 
     // 获取下载数据
-    getDownData(model_id = this.modelIds.mac, page_size = 15, page = 1) {
+    getDownData(model_id = this.modelIds.mac, page_size = 10, page = 1) {
       let _this = this,
         pagi, wrap, tempHtml, isMaterial = false;
 
@@ -1192,25 +1187,25 @@ $(function () {
             break;
           case 'plugin':
             if (!this.hasGetHistory.plugin) {
-              this.getHistoryData(this.modelIds.plugin, 9);
+              this.getHistoryData(this.modelIds.plugin, 8);
               this.hasGetHistory.plugin = true;
             };
             break;
           case 'material':
             if (!this.hasGetHistory.material) {
-              this.getHistoryData(this.modelIds.material, 12);
+              this.getHistoryData(this.modelIds.material, 10);
               this.hasGetHistory.material = true;
             };
             break;
           case 'video':
             if (!this.hasGetHistory.video) {
-              this.getHistoryData(this.modelIds.video, 9);
+              this.getHistoryData(this.modelIds.video, 6);
               this.hasGetHistory.video = true;
             };
             break;
           case 'template':
             if (!this.hasGetHistory.template) {
-              this.getHistoryData(this.modelIds.template, 9);
+              this.getHistoryData(this.modelIds.template, 8);
               this.hasGetHistory.template = true;
             };
             break;
@@ -1236,7 +1231,7 @@ $(function () {
     }
 
     // 获取浏览数据
-    getHistoryData(model_id = this.modelIds.mac, page_size = 15, page = 1) {
+    getHistoryData(model_id = this.modelIds.mac, page_size = 10, page = 1) {
       let _this = this,
         pagi, wrap, tempHtml, isMaterial = false;
 
@@ -1714,51 +1709,51 @@ $(function () {
       switch (context) {
         //收藏翻页
         case '#col-soft-pagi':
-          this.getColData(this.modelIds.mac, 15, num);
+          this.getColData(this.modelIds.mac, 10, num);
           break;
         case '#col-plugin-pagi':
-          this.getColData(this.modelIds.plugin, 9, num);
+          this.getColData(this.modelIds.plugin, 8, num);
           break;
         case '#col-template-pagi':
-          this.getColData(this.modelIds.template, 9, num);
+          this.getColData(this.modelIds.template, 8, num);
           break;
         case '#col-material-pagi':
-          this.getColData(this.modelIds.material, 12, num);
+          this.getColData(this.modelIds.material, 10, num);
           break;
         case '#col-video-pagi':
-          this.getColData(this.modelIds.video, 9, num);
+          this.getColData(this.modelIds.video, 6, num);
           break;
           // 足迹翻页
         case '#hist-soft-pagi':
-          this.getHistoryData(this.modelIds.mac, 15, num);
+          this.getHistoryData(this.modelIds.mac, 10, num);
           break;
         case '#hist-plugin-pagi':
-          this.getHistoryData(this.modelIds.plugin, 9, num);
+          this.getHistoryData(this.modelIds.plugin, 8, num);
           break;
         case '#hist-template-pagi':
-          this.getHistoryData(this.modelIds.template, 9, num);
+          this.getHistoryData(this.modelIds.template, 8, num);
           break;
         case '#hist-material-pagi':
-          this.getHistoryData(this.modelIds.material, 12, num);
+          this.getHistoryData(this.modelIds.material, 10, num);
           break;
         case '#hist-video-pagi':
-          this.getHistoryData(this.modelIds.video, 9, num);
+          this.getHistoryData(this.modelIds.video, 6, num);
           break;
           // 下载翻页
         case '#down-soft-pagi':
-          this.getDownData(this.modelIds.mac, 15, num);
+          this.getDownData(this.modelIds.mac, 10, num);
           break;
         case '#down-plugin-pagi':
-          this.getDownData(this.modelIds.plugin, 9, num);
+          this.getDownData(this.modelIds.plugin, 8, num);
           break;
         case '#down-template-pagi':
-          this.getDownData(this.modelIds.template, 9, num);
+          this.getDownData(this.modelIds.template, 8, num);
           break;
         case '#down-material-pagi':
-          this.getDownData(this.modelIds.material, 12, num);
+          this.getDownData(this.modelIds.material, 10, num);
           break;
         case '#down-video-pagi':
-          this.getDownData(this.modelIds.video, 9, num);
+          this.getDownData(this.modelIds.video, 6, num);
           break;
           //充值
         case '#recharge-pagi':

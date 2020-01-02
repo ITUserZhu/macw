@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-20 09:18:49 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-21 14:56:21
+ * @Last Modified time: 2020-01-02 10:46:34
  * 登录注册弹框功能板块
  */
 
@@ -99,7 +99,7 @@ let loginHtml = `
 
 class Login {
   constructor() {
-    this.captchaNum = '2086409997';
+    this.captchaNum = '2050354954';
     this.sendingCode = false;
   }
 

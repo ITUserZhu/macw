@@ -2,10 +2,11 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-12-30 13:31:00 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-30 13:46:06
+ * @Last Modified time: 2019-12-30 17:37:51
  */
 
 @import 'word-content';
+@import 'modules/video-play';
 @import 'modules/ppt-list';
 
 .word-content {
@@ -17,9 +18,17 @@
       padding-top: 0;
     }
 
-    video {
-      width: 100%;
+    .video-wrap {
+      position: relative;
       margin-bottom: 30px;
+
+      video {
+        width: 100%;
+      }
+
+      .video-play {
+        .video-play;
+      }
     }
   }
 }

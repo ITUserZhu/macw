@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-21 11:12:45 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-26 13:37:29
+ * @Last Modified time: 2019-12-30 17:40:27
  * 内容页通用板块
  */
 
@@ -35,7 +35,7 @@ $(function () {
     SOFTID = $contentInfo.data('id');
 
   // 视频监听状态
-  const $videosBtn = $('.swiper-slide').find('.video-play'),
+  const $videosBtn = $('.swiper-slide').length ? $('.swiper-slide').find('.video-play') : $('.video-play'),
     videos = $videosBtn.prev('video');
 
   $videosBtn.on('click', function (e) {

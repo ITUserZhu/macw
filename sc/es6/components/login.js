@@ -99,7 +99,7 @@ let loginHtml = `
 
 class Login {
   constructor() {
-    this.captchaNum = '2086409997';
+    this.captchaNum = '2050354954';
     this.sendingCode = false;
   }
 

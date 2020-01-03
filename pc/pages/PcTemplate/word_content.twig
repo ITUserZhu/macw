@@ -61,6 +61,14 @@
             <button class="btns-fn" id="share"><i class="icon-share"></i>分享有礼</button>
           </div>
         </section>
+        {% if needInfo %}
+        <section class="need-soft">
+          <a href="{{ needInfo.link }}" title="{{ needInfo.description }}">
+            <img src="{{ needInfo.thumb }}" alt="{{ needInfo.description }}">
+            <span>推荐软件：{{ needInfo.description }}</span>
+          </a>
+        </section>
+        {% endif %}
         <section class="description">
           <div class="sec-title">
             <h2>内容介绍</h2>
@@ -82,6 +90,17 @@
         {% endif %}
       </aside>
     </div>
+    <section class="section-nav">
+      <div class="container clearfix">
+        <div class="con-title">
+          <img src="/assets/images/logo.png">
+          <p>{{ template_content.title }}</p>
+        </div>
+        <div class="con-sec">
+          <button id="fix-download"><i class="icon-download"></i>下载</button>
+        </div>
+      </div>
+    </section>
     {% if resRelatedGroup_soft[0] %}
     <section class="rel-topic">
       <div class="h-title">

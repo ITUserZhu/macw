@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-21 13:35:15 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-02 15:21:51
+ * @Last Modified time: 2020-01-02 16:32:16
  * 个人中心
  */
 
@@ -477,7 +477,7 @@ $(function () {
           return;
         }
         lottery = new Lottery();
-
+        this.hasGetConsume = false;
       })
 
       this.adminHook.renew.on('click', () => {

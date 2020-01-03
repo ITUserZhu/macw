@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-18 17:49:23 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-25 16:14:15
+ * @Last Modified time: 2020-01-03 13:13:06
  */
 @import 'components/common';
 @import 'modules/soft-list';
@@ -56,12 +56,26 @@ section {
     width: 930px;
     float: left;
 
+    .editor-tips {
+      background-color: #F7F7F7;
+      padding: 10px;
+
+      p {
+        margin-bottom: 0;
+      }
+
+      a {
+        color: #898989;
+      }
+    }
+
     section {
       border-radius: 5px;
       padding: 20px 20px 30px;
       .shadow;
 
-      h2 {
+      h2,
+      h3 {
         font-size: 22px;
         text-align: center;
       }
@@ -69,6 +83,8 @@ section {
       &.article-list {
         ul li {
           .article-list;
+          width: 100%;
+          margin-right: 0;
         }
       }
     }

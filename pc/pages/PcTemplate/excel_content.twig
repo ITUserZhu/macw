@@ -2,7 +2,7 @@
 {% import "components/index.twig" as component %}
 
 {% block css %}
-<link rel="stylesheet" href="css/ppt-content.min.css">
+<link rel="stylesheet" href="css/excel-content.min.css">
 {% endblock %}
 
 {% block content %}
@@ -32,15 +32,11 @@
       </div>
       <article>
         <section class="img-wrap">
-          {% if video | length > 0 %}
-          <div class="video-wrap">
-            <video src="{{ video[0] }}" controls autoplay preload="meta"></video>
-            <span class="video-play"></span>
-          </div>
-          {% endif %}
+          <p class="type"><img src="/assets/images/exc-logo.png">{{ template_content.pretitle }}</p>
           <div class="img">
             <img src="{{ template_content.thumb }}">
           </div>
+          <div class="mask"></div>
         </section>
       </article>
       <aside>
@@ -52,8 +48,7 @@
             <li>大小 <span>{{ template_content.file_size }}</span></li>
             <li>时间 <span>{{ template_content.update_time }}</span></li>
             <li>下载 <span>{{ template_content.point }}积分</span></li>
-            <li>页数 <span>{{ template_content.num }}</span></li>
-            <li>比例 <span>{{ template_content.proportion }}</span></li>
+            {# <li>页数 <span>{{ template_content.num }}</span></li> #}
           </ul>
           <div class="btns">
             <button class="btns-fn" id="collect">
@@ -67,6 +62,7 @@
             <button class="btns-fn" id="share"><i class="icon-share"></i>分享有礼</button>
           </div>
         </section>
+
         {% if needInfo %}
         <section class="need-soft">
           <a href="{{ needInfo.link }}" title="{{ needInfo.description }}">
@@ -75,6 +71,7 @@
           </a>
         </section>
         {% endif %}
+
         <section class="description">
           <div class="sec-title">
             <h2>内容介绍</h2>
@@ -86,11 +83,11 @@
         {% if resRelatedGroup_soft[19] %}
         <section class="rel-ppts">
           <div class="sec-title">
-            <h2>相关PPT</h2>
-            <a href="/mblist/1_0_1.html">查看更多 &gt;&gt;</a>
+            <h2>相关Excel</h2>
+            <a href="/mblist/44_0_1.html">查看更多 &gt;&gt;</a>
           </div>
           <ul class="clearfix">
-            {{ component.ppt(resRelatedGroup_soft[19]) }}
+            {{ component.excel(resRelatedGroup_soft[19]) }}
           </ul>
         </section>
         {% endif %}
@@ -117,8 +114,8 @@
         <p class="nums">共{{ resRelatedGroup_soft[0][0].num }}套模板</p>
         <p class="desc">{{ resRelatedGroup_soft[0][0].description }}</p>
       </div>
-      <ul class="ppt clearfix">
-        {{ component.ppt(resRelatedGroup_soft[0][0].special_content) }}
+      <ul class="excel clearfix">
+        {{ component.excel(resRelatedGroup_soft[0][0].special_content) }}
       </ul>
     </section>
     {% endif %}

@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-12-27 17:03:51 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-30 13:44:19
+ * @Last Modified time: 2020-01-03 16:53:10
  */
 
 @import 'components/common';
@@ -92,6 +92,93 @@
 }
 
 section {
+  &.section-nav {
+    position: fixed;
+    z-index: 998;
+    left: 0;
+    top: 0;
+    padding: 0;
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+    min-width: 1200px;
+    font-size: 16px;
+    margin-bottom: 0;
+    display: none;
+
+    .con-title {
+      height: 70px;
+      font-size: 0;
+      max-width: 80%;
+      float: left;
+
+      img {
+        display: inline-block;
+        height: 60px;
+        vertical-align: middle
+      }
+
+      p {
+        .text-ovh;
+        max-width: calc(100% - 220px);
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 18px;
+        margin-left: 10px;
+      }
+    }
+
+    .con-sec {
+      height: 100%;
+      display: flex;
+      float: right;
+
+      button {
+        width: 130px;
+        height: 36px;
+        line-height: 36px;
+        margin-top: 17px;
+        margin-left: 10px;
+        background-color: @theme-color;
+        color: #fff;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 16px;
+
+        i {
+          margin-right: 8px;
+          font-size: 18px;
+          vertical-align: text-bottom;
+        }
+      }
+    }
+  }
+
+  &.need-soft {
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    padding: 0 !important;
+
+    img {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin-right: 15px;
+      vertical-align: middle;
+    }
+
+    span {
+      .text-ovh;
+      display: inline-block;
+      vertical-align: middle;
+      width: auto;
+      max-width: 300px;
+    }
+  }
+
   &.fn-infos {
     .download {
       width: 100%;

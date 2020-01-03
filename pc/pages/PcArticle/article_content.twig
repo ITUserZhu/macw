@@ -33,16 +33,19 @@
     <div class="container clearfix">
       <article>
         <section class="content">
-          {# <div class="fr-view">
-            {{article_content.content | raw}}
-          </div> #}
           <div class="fr-view markdown-body editormd-preview-container">
             {{ article_content.content | markdown_to_html }}
+            <div class="editor-tips">
+              <p>
+                以上就是MacW小编为大家带来的“{{ article_content.title }}”，本文关键词：“{{ article_content.keywords }}”，链接：“<a
+                  href="{{ pc_url }}">{{ pc_url }}</a>”，转载请保留。
+              </p>
+            </div>
           </div>
         </section>
         {% if resRelatedGroup_soft[1] %}
         <section class="article-list">
-          <h2>相关文章</h2>
+          <h3>相关文章</h3>
           <ul class="clearfix">
             {{ component.article(resRelatedGroup_soft[1]) }}
           </ul>
@@ -52,7 +55,7 @@
       <aside>
         {% if resRelatedGroup_soft[15] %}
         <section class="rel-soft">
-          <h2>相关软件</h2>
+          <h3>相关软件</h3>
           <ul>
             {{ component.soft(resRelatedGroup_soft[15]) }}
           </ul>

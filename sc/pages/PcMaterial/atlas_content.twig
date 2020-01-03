@@ -21,6 +21,7 @@
     <section class="atlas-info">
       <h1>{{ atlas.title }}</h1>
       {% if atlasTags[0] %}
+      <p class="desc">{{ atlas.description }}</p>
       <p class="tags">
         {% for item in atlasTags %}
         <span>{{ item }}</span>

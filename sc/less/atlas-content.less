@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-26 15:40:03 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-26 16:46:34
+ * @Last Modified time: 2020-01-03 10:47:50
  */
 
 @import './modules/atlas-topic-content';
@@ -10,12 +10,19 @@
 section {
   &.atlas-info {
     position: relative;
-    height: 110px;
+    // height: 110px;
     margin-bottom: 30px;
 
     h1 {
       font-size: 26px;
       line-height: 68px;
+    }
+
+    .desc {
+      max-width: 800px;
+      max-height: 4.8em;
+      overflow: hidden;
+      margin-bottom: 15px;
     }
 
     .tags {
@@ -34,7 +41,8 @@ section {
     a {
       position: absolute;
       right: 0;
-      bottom: 10px;
+      bottom: 50%;
+      margin-bottom: -15px;
       line-height: 30px;
       font-size: 16px;
       color: @theme-color;

@@ -23,17 +23,15 @@
           <p class="user-id">您的ID：{{ user_info.user_id }}</p>
           <p class="vip-type">身份：
             {% if user_info.vip == 0 %}
-            普通会员 <a href="/vip.html" class="info-btn">购买VIP</a>
+            <em>普通会员</em> <a href="/vip.html" class="info-btn">购买VIP</a>
             {% elseif user_info.vip == 1 %}
-            VIP会员 <span class="info-btn renew-btn">续费</span>
-            <span class="vip-times">
-              到期时间：
-              {% if user_info.overduedate > 2524579200 %}
-              永久
-              {% else %}
-              {{ user_info.overduedate|date('Y-m-d') }}
-              {% endif %}
-            </span>
+            {% if user_info.overduedate > 2524579200 %}
+            <em>终身会员</em>
+            {% else %}
+            <em>{{ user_info.vip_name | replace({'套餐': ''}) }}</em>
+            <span class="info-btn renew-btn">续费</span>
+            <span class="vip-times">到期时间： {{ user_info.overduedate|date('Y-m-d') }}</span>
+            {% endif %}
             {% endif %}
           </p>
           <p>积分：{{ user_info.point }}</p>

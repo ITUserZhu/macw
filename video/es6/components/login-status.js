@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-21 11:33:36 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-02 14:13:57
+ * @Last Modified time: 2020-01-03 10:46:18
  * 登录状态判断与头像展示
  */
 import {
@@ -25,7 +25,7 @@ const HEAD_LOGIN_HTML = `
         </div>
         <div class="user-function">
             <div class="user-item user-info">
-              <div class="img"><img src="{ headimg }"></div>
+              <div class="img"><a href="https://www.__host.com/mac/pm#/admin"><img src="{ headimg }"></a></div>
               <div class="infos">
                 <p><span>{ username }</span> ID：{ userid }</p>
                 <p>{ vipType } <a href="https://www.__host.com/vip.html">充值</a></p>
@@ -38,15 +38,15 @@ const HEAD_LOGIN_HTML = `
               <span>视频：{ vTimes }次</span>
             </div>
             <ul>
-              <li><a href="/mac/pm#/admin"><i class="icon-admin"></i>用户中心</a></li>
-              <li><a href="/mac/pm#/collect"><i class="icon-collectl"></i>我的收藏</a></li>
-              <li><a href="/mac/pm#/download"><i class="icon-down"></i>我的下载</a></li>
-              <li><a href="/mac/pm#/history"><i class="icon-footer"></i>浏览足迹</a></li>
-              <li><a href="/mac/pm#/recharge"><i class="icon-recharge3"></i>充值记录</a></li>
-              <li><a href="/mac/pm#/consume"><i class="icon-consume"></i>消费记录</a></li>
-              <li><a href="/mac/pm#/share"><i class="icon-shares"></i>分享记录</a></li>
-              <li><a href="/mac/pm#/coupon"><i class="icon-coupons"></i>优惠券</a></li>
-              <li><a href="/mac/pm#/news"><i class="icon-info"></i>消息中心</a></li>
+              <li><a href="https://www.__host.com/mac/pm#/admin"><i class="icon-admin"></i>用户中心</a></li>
+              <li><a href="https://www.__host.com/mac/pm#/collect"><i class="icon-collectl"></i>我的收藏</a></li>
+              <li><a href="https://www.__host.com/mac/pm#/download"><i class="icon-down"></i>我的下载</a></li>
+              <li><a href="https://www.__host.com/mac/pm#/history"><i class="icon-footer"></i>浏览足迹</a></li>
+              <li><a href="https://www.__host.com/mac/pm#/recharge"><i class="icon-recharge3"></i>充值记录</a></li>
+              <li><a href="https://www.__host.com/mac/pm#/consume"><i class="icon-consume"></i>消费记录</a></li>
+              <li><a href="https://www.__host.com/mac/pm#/share"><i class="icon-shares"></i>分享记录</a></li>
+              <li><a href="https://www.__host.com/mac/pm#/coupon"><i class="icon-coupons"></i>优惠券</a></li>
+              <li><a href="https://www.__host.com/mac/pm#/news"><i class="icon-info"></i>消息中心</a></li>
               <li class="user-out"><i class="icon-out"></i>退出</li>
             </ul>
         </div>
@@ -105,10 +105,10 @@ const DEFAULTHEADIMG = '/assets/images/headimg.png';
     html += HEAD_LOGIN_HTML
       .replace('{ isVip }', data.vip == 0 ? '' : 'vip')
       .replace('{ point }', data.point)
-      .replace('{ vipType }', '普通会员')
-      .replace('{ pcTimes }', 0)
-      .replace('{ scTimes }', 0)
-      .replace('{ vTimes }', 0)
+      .replace('{ vipType }', data.vip_name)
+      .replace('{ pcTimes }', data.surplus)
+      .replace('{ scTimes }', data.surplus_pic)
+      .replace('{ vTimes }', data.surplus_video)
       .replace(/{ username }/g, data.nickname)
       .replace('{ userid }', data.id)
       .replace(/{ headimg }/g, data.headimg || DEFAULTHEADIMG)

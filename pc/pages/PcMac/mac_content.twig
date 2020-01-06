@@ -136,8 +136,10 @@
 					{% for i,item in images %}
 					<li class="swiper-slide">
 						<div data-swiper-zoom="2"
-							class="img-wrap swiper-zoom-container {% if i == 0 and video | length == 0 %}active{% endif %}"><img
-								src="{{ item }}">
+							class="img-wrap swiper-zoom-container {% if i == 0 and video | length == 0 %}active{% endif %}">
+							<a href="{{ item }}" data-fancybox="images">
+								<img src="{{ item }}">
+							</a>
 						</div>
 					</li>
 					{% endfor %}

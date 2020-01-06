@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-14 16:09:23 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-26 11:57:57
+ * @Last Modified time: 2020-01-06 11:40:09
  * mac软件内容
  */
 
@@ -10,6 +10,9 @@
 import './modules/content-operate';
 // 轮播图
 import Swiper from 'swiper';
+// fancybox插件调用
+import '@fancyapps/fancybox';
+
 import {
   toggleActive
 } from './util'

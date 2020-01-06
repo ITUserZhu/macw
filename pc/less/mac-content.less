@@ -2,11 +2,12 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-14 14:41:57 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-27 13:55:44
+ * @Last Modified time: 2020-01-06 11:43:24
  * 软件内容页面
  */
 @import 'components/common'; // 公用
 @import '/node_modules/swiper/css/swiper.min.css'; // 轮播
+@import '/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css';
 @import 'modules/soft-list'; // 软件列表
 @import 'modules/article-list'; // 文章列表
 @import 'modules/topics-list'; // 专题列表
@@ -449,13 +450,18 @@ section {
             outline: none;
           }
 
-          img {
+          a {
+            display: block;
             height: 100%;
-            // position: absolute;
-            // left: 50%;
-            // top: 0;
-            // transform: translateX(-50%);
-            user-select: none;
+
+            img {
+              height: 100%;
+              // position: absolute;
+              // left: 50%;
+              // top: 0;
+              // transform: translateX(-50%);
+              user-select: none;
+            }
           }
         }
       }

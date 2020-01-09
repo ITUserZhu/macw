@@ -21,6 +21,7 @@
           <li class="check-nav call"><a target="_self" href="#call">联系我们</a></li>
           <li class="check-nav copyright"><a target="_self" href="#copyright">版权声明</a></li>
           <li class="check-nav share"><a target="_self" href="#share">分享规则</a></li>
+          <li class="check-nav self"><a target="_self" href="#self">隐私协议</a></li>
         </ul>
       </div>
       <ul class="content-container">
@@ -52,6 +53,11 @@
         <li class="content-check">
           <div class="content">
             {{ help.share | raw }}
+          </div>
+        </li>
+        <li class="content-check">
+          <div class="content">
+            {{ help.agreement | raw }}
           </div>
         </li>
       </ul>

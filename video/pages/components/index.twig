@@ -25,3 +25,48 @@
 	</a></li>
 {% endfor %}
 {% endmacro %}
+
+<!-- 首页列表 -->
+{% macro index_list(data, num, type) %}
+{% for i,item in data %}
+<li {% if i < num %}class="active" {% endif %} data-src="{{ item.preview_url }}">
+	<a href="{{ item.url }}" title="{{ item.title }}">
+		<div class="img">
+			<img src="{{ item.thumb }}" alt="{{ item.title }}">
+		</div>
+		<div class="con">
+			<p class="title">{{ item.title }}</p>
+			<p>
+				{% if type %}
+				<em class="{{ type }}">{{ type == 'ae'? 'AE模板': type == 'pr'? 'PR模板': '视频素材' }}</em>
+				{% else %}
+				{% set randomNums = random(2) %}
+				<em class="{{ randomNums == 0 ? 'ae': randomNums == 1 ? 'pr': 'v'}}">{{ item.cate_name }}</em>
+				{% endif %}
+				<span><i class="icon-video"></i>{{ item.time }}</span>
+			</p>
+		</div>
+	</a>
+</li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 首页专题 -->
+{% macro index_topic(data) %}
+{% for item in data %}
+<li><a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="img" data-src="{{ item.thumb_arr[0].preview_url }}">
+			<img src="{{ item.thumbs | default(item.thumb_arr[0].thumb) }}">
+			<span class="video-play"></span>
+		</div>
+		<div class="con">
+			<p class="title">{{ item.title }}</p>
+			<p class="desc">{{ item.description }}</p>
+			<p class="info">
+				共{{ item.num }}个视频
+				<span>查看更多&gt;&gt;</span>
+			</p>
+		</div>
+	</a></li>
+{% endfor %}
+{% endmacro %}

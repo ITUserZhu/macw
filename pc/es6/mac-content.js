@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-14 16:09:23 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-06 11:40:09
+ * @Last Modified time: 2020-01-06 16:51:38
  * mac软件内容
  */
 
@@ -18,6 +18,19 @@ import {
 } from './util'
 
 $(function () {
+  // 取消fancybox放大关闭后聚焦
+  $.fancybox.defaults.backFocus = false;
+
+  // 所有内容图片添加a标签包裹
+  $('.fr-view').find('img').each((i, v) => {
+    $(v).wrap(`<a data-fancybox="frview" href="${ $(v).attr('src') }"></a>`);
+  })
+  // 调用点击放大功能脚本
+  $('[data-fancybox="frview"]').fancybox({
+    thumbs: {
+      autoStart: true,
+    }
+  });
   // 点击展示截图
   const $contentInfoThumbsEntry = $('.content-info_thumbs');
   const $screenshotBox = $('section.screenshot');
@@ -30,6 +43,7 @@ $(function () {
 
   $contentInfoThumbsEntry.on('click', '.img', function () {
     $screenshotBox.show();
+    $('body').addClass('ovh');
     if (!thumbsSwiper) {
       thumbsSwiper = new Swiper('.screenshot-swiper-thumbs', {
         spaceBetween: 10,
@@ -58,6 +72,8 @@ $(function () {
   // 点击隐藏
   $screenshotClose.on('click', function () {
     $screenshotBox.hide();
+    $('body').removeClass('ovh');
+    videos.length && videos.get(0).pause();
   });
 
   // 头部悬浮导航

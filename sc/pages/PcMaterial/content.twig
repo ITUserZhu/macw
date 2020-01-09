@@ -106,12 +106,12 @@
         <li data-id="{{ similar_photo[item].id }}" data-w="{{ similar_photo[item].width }}"
           data-h="{{ similar_photo[item].height }}">
           <a href="{{ similar_photo[item].url }}" title="{{ similar_photo[item].title }}">
-            <img src="{{ similar_photo[item].thumb }}" alt="{{ similar_photo[item].title }}">
+            <div class="img"><img src="{{ similar_photo[item].thumb }}" alt="{{ similar_photo[item].title }}"></div>
             <div class="mask">
               <div class="mask-operate">
                 <button class="collect"><i class="icon-collect"></i></button>
                 <button class="shopping"><i class="icon-shop"></i></button>
-                <button class="download"><i class="icon-download"></i></button>
+                <button class="down"><i class="icon-download"></i></button>
               </div>
             </div>
           </a>

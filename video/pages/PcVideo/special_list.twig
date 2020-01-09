@@ -9,8 +9,9 @@
 {% block content %}
 <main>
   <section class="list-banner">
+    {% set randomNum = random(video_special_data | length - 1) %}
     <div class="bg-img">
-      <img src="{{ video_special_data[0].thumb_arr[0].thumb }}">
+      <img src="{{ video_special_data[randomNum].thumb_arr[0].thumb }}">
       <div class="mask"></div>
     </div>
     <div class="container">
@@ -21,11 +22,14 @@
         &gt; <span>{{ item.cate_name }}</span>
         {% endfor %}
       </div>
-      <h1>专题</h1>
+      <div class="list-infos">
+        <h1>专题</h1>
+        <p class="desc">{{ page_desc }}</p>
+      </div>
       <div class="list-nav">
         <a href="/z/" {% if cat_id == 0 %}class="active" {% endif %}>全部</a>
         {% for item in special_cate_info %}
-        <a href="{{ item.url }}">{{ item.cate_name }}</a>
+        <a href="{{ item.url }}" {% if cat_id == item.id %}class="active" {% endif %}>{{ item.cate_name }}</a>
         {% endfor %}
       </div>
     </div>

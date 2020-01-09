@@ -19,11 +19,11 @@
     <div class="vip-wraps">
       <ul class="combo active clearfix">
         {% for item in data if item.point_type == 2 %}
-        <li class="item" data-id="{{ item.id }}" data-price="{{ item.discount_money | round(0) }}"
+        <li class="item" data-id="{{ item.id }}" data-price="{{ item.point_money | round(0) }}"
           data-us="{{ item.usd_price | round(0) }}">
           <p class="title">{{ item.point_name }}</p>
           <div class="price">
-            ￥<span>{{ item.discount_money | round(0) }}</span>
+            ￥<span>{{ item.point_money | round(0) }}</span>
             (${{ item.usd_price | round(0) }})
           </div>
           <ol>
@@ -37,11 +37,11 @@
       </ul>
       <ul class="point clearfix">
         {% for item in data if item.point_type == 1 %}
-        <li class="item" data-id="{{ item.id }}" data-price="{{ item.discount_money | round(0) }}"
+        <li class="item" data-id="{{ item.id }}" data-price="{{ item.point_money | round(0) }}"
           data-us="{{ item.usd_price | round(0) }}">
           <p class="title">{{ item.point_name }}</p>
           <div class="price">
-            ￥<span>{{ item.discount_money | round(0) }}</span>
+            ￥<span>{{ item.point_money | round(0) }}</span>
             (${{ item.usd_price | round(0) }})
           </div>
           <ol>

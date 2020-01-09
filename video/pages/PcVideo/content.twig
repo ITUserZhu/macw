@@ -7,9 +7,6 @@
 
 {% block content %}
 <main>
-  <div class="content-bg">
-    <img src="{{ videoContent.thumb }}">
-  </div>
   <div class="container">
     <div class="breakhumbs">
       <a href="/">首页</a>
@@ -22,79 +19,73 @@
       <div class="content-video_wrap">
         <div class="video-box">
           <div class="water-marker">__host.com</div>
-          <video controls loop autoplay preload="meta">
+          <video controls loop autoplay preload="meta" controlslist="nodownload">
             <source src="{{ videoContent.preview_url }}">
           </video>
           <div class="video-play"></div>
         </div>
         <div class="video-title_box">
           <h1>{{ videoContent.title }}</h1>
-          <div class="video-btns">
-            <button id="support"><i class="icon-support"></i><span>{{ videoContent.click_good }}</span></button>
-            <button id="collect"><i class="icon-collect"></i><span>收藏</span></button>
-            <button id="download">立即下载</button>
-          </div>
+        </div>
+        <div class="video-btns">
+          <button id="collect"><i class="icon-collect"></i><span>点击收藏</span></button>
+          <button id="support"><i class="icon-support"></i><span>{{ videoContent.click_good }}</span></button>
+          <button id="share"><i class="icon-share"></i><span>分享有礼</span></button>
+          <button id="download"><i class="icon-download"></i>立即下载</button>
+        </div>
+        <div class="rec-soft">
+          {% if needInfo %}
+          推荐软件：
+          <a href="{{ needInfo.link }}">
+            <img src="{{ needInfo.thumb }}">{{ needInfo.description }}
+          </a>
+          {% endif %}
+          {% if videoContent.vjx_url %}
+          <span id="teach-temp" data-url="{{ videoContent.vjx_url }}">【 模板使用教程 】</span>
+          {% endif %}
         </div>
         <ol>
-          <li><i class="icon-video"></i> {{ videoContent.resolution }}</li>
-          <li><i class="icon-size"></i> {{ videoContent.file_size }}</li>
-          <li><i class="icon-video2"></i> {{ videoContent.video_type }}</li>
-          <li><i class="icon-time"></i> {{ videoContent.time }}</li>
-          <li><i class="icon-point"></i> {{ videoContent.point }}积分【Vip免积分】</li>
+          <li>分辨率： {{ videoContent.resolution }}</li>
+          <li>大小： {{ videoContent.file_size }}</li>
+          <li>格式： {{ videoContent.video_type }}</li>
+          <li>时长： {{ videoContent.time }}</li>
+          <li>下载： {{ videoContent.point }}积分【Vip免积分】</li>
           <li><a href="https://www.__host.com/vip.html"><i class="icon-recharge"></i> 点击在线充值</a></li>
+          <li>更新时间：{{ videoContent.update_time | date('Y-m-d') }}</li>
         </ol>
       </div>
     </section>
-    <section class="rel-video">
-      <div class="swiper-container" id="relvideo-swiper">
-        <ul class="swiper-wrapper">
-          {% for item in resRelatedGroup_soft[18] %}
-          <li class="swiper-slide"><a href="{{ item.url }}" title="{{ item.title }}">
-              <img src="{{ item.thumb }}" alt="{{ item.title }}">
-            </a></li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% if resRelatedGroup_soft[18] | length > 4 %}
-      <div class="swiper-button-prev swiper-btn"></div>
-      <div class="swiper-button-next swiper-btn"></div>
-      {% endif %}
-    </section>
+
     <section class="content-infos clearfix">
-      <aside>
-        <div class="content-thumb">
-          <img src="{{ videoContent.thumb }}" alt="{{ videoContent.title }}">
-        </div>
-        {% if resRelatedGroup_soft[17][0] %}
-        <div class="rec-plugin">
-          <p>推荐插件：</p>
-          <a href="{{ resRelatedGroup_soft[17][0].url }}">
-            <div class="img"><img src="{{ resRelatedGroup_soft[17][0].thumb }}"
-                alt="{{ resRelatedGroup_soft[17][0].title }}"></div>
-            <p class="title">{{ resRelatedGroup_soft[17][0].title }}</p>
-          </a>
-        </div>
-        {% endif %}
-      </aside>
-      <article>
-        <h2>{{ videoContent.title }}</h2>
-        {% if videoContent.vjx_url %}
-        <div class="teach" id="teach-temp" data-url="{{ videoContent.vjx_url }}">【 模板使用教程 】</div>
-        {% endif %}
-        <p class="rec-soft">推荐软件：<a href="{{ needInfo.link }}"><img src="{{ needInfo.thumb }}">
-            {{ needInfo.description }}</a></p>
-        <div class="video-desc">{{ videoContent.content | raw }}</div>
-      </article>
+      <h2>内容介绍</h2>
+      <div class="fr-view markdown-body editormd-preview-container">
+        {{ videoContent.content | raw }}
+      </div>
     </section>
+    {% if resRelatedGroup_soft[18] %}
+    <section class="rel-video">
+      <h2>相关视频</h2>
+      <ul class="videos-wrap clearfix">
+        {{ component.index_list(resRelatedGroup_soft[18], 8, '') }}
+      </ul>
+    </section>
+    {% endif %}
     {% if special_info %}
     <section class="rel-topic">
-      <div class="sec-title">
-        <h2>专题 <em>——</em> {{ special_info.title }}</h2>
-        <a href="{{ special_info.url }}">查看专题 &gt;</a>
+      <h2>相关专题</h2>
+      <div class="topic-info">
+        <div class="topic-bg"><img src="{{ special_info.thumbs }}">
+        </div>
+        <div class="info-con">
+          <p class="title">{{ special_info.title }} (共{{ special_info.res_num }}个视频)</p>
+          <p class="desc">{{ special_info.description }}</p>
+          <p class="time">更新时间：{{ special_info.create_time | date('Y-m-d') }}</p>
+        </div>
       </div>
-      <ul class="topic-list clearfix">
+      <ul class="videos-wrap clearfix">
         {{ component.list(special_info.content) }}
       </ul>
+      <a class="more-topic" href="{{ special_info.url }}">进入专题</a>
     </section>
     {% endif %}
   </div>

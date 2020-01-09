@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-12 17:45:48 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-25 16:19:02
+ * @Last Modified time: 2020-01-08 15:05:51
  * 首页
  */
 
@@ -10,6 +10,8 @@
 import './components/common';
 // 引入轮播图
 import Swiper from 'swiper';
+// 壁纸鼠标效果
+import './plugins/wallpaper';
 // 引入工具
 import {
   toggleActive
@@ -50,6 +52,12 @@ $(function () {
     let _index = $(this).index();
     toggleActive([$(this), $recommendUl.eq(_index)]);
   });
+  // 壁纸鼠标效果
+  $('ul.wallpaper').on('mouseenter', 'li', function () {
+    $(this).hoverCheck();
+  }).on('mouseleave', 'li', function () {
+    $(this).leaveCheck();
+  })
 
   // 最新视频
   // 头部首显操作
@@ -120,12 +128,12 @@ $(function () {
   const $materialImgs = $('.newest-material_pics').children('li');
   let materialTimer = null;
 
-  $materialImgs.on('mouseenter', function () {
+  $materialImgs.hover(function () {
     let _index = $(this).index();
     materialTimer = setTimeout(() => {
       toggleActive([$(this), $materialInfos.eq(_index)]);
     }, 200)
-  }).on('mouseleave', function () {
+  }, function () {
     clearTimeout(materialTimer);
   });
 

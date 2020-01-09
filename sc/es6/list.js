@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-12-12 16:32:10 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-25 11:09:11
+ * @Last Modified time: 2020-01-07 17:46:10
  */
 
 // 引入公用模块
@@ -54,14 +54,14 @@ $(function () {
   });
 
   // 判断滚动到底部加载下一页
-  $('#next-url').length && $(window).on('scroll', function (e) {
-    const nextUrl = $('#next-url').attr('href');
-    let $this = $(this),
-      viewH = $this.height(),
-      contentH = $('body').get(0).scrollHeight,
-      scrollT = $this.scrollTop();
-    if (scrollT / (contentH - viewH) >= 1) {
-      window.location.href = nextUrl;
-    }
-  });
+  // $('#next-url').length && $(window).on('scroll', function (e) {
+  //   const nextUrl = $('#next-url').attr('href');
+  //   let $this = $(this),
+  //     viewH = $this.height(),
+  //     contentH = $('body').get(0).scrollHeight,
+  //     scrollT = $this.scrollTop();
+  //   if (scrollT / (contentH - viewH) >= 1) {
+  //     window.location.href = nextUrl;
+  //   }
+  // });
 });

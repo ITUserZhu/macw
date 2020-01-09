@@ -23,7 +23,7 @@
 {% for item in data %}
 <li><a href="{{ item.url }}">
     <div class="img">
-      <img src="{{ item.info[0].thumb | default(item.thumb) }}" alt="{{ item.title }}">
+      <img src="{{ item.thumb | default(item.info[0].thumb) }}" alt="{{ item.title }}">
       <div class="mask"><span>进入专题 &gt;</span></div>
     </div>
     <p class="title">{{ item.title }}</p>

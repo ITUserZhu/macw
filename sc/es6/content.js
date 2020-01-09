@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-27 14:02:20 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-28 13:45:19
+ * @Last Modified time: 2020-01-07 17:45:43
  * 素材内容页面
  */
 
@@ -72,7 +72,6 @@ $(function () {
     } else {
       $('#login-in').trigger('click');
     }
-
   });
 
   // 添加足迹

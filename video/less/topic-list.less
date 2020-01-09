@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-12-03 09:14:57 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-03 10:35:42
+ * @Last Modified time: 2020-01-09 11:19:35
  */
 
 @import 'components/common';
@@ -38,6 +38,7 @@ section {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
+        filter: blur(15px);
       }
     }
 
@@ -50,12 +51,23 @@ section {
         }
       }
 
-      h1 {
-        font-size: 30px;
+      .list-infos {
+        margin: 50px auto 45px;
+        width: 800px;
         text-align: center;
-        margin: 60px 0 117px;
         color: #fff;
-        letter-spacing: 10px;
+
+        h1 {
+          font-size: 30px;
+          letter-spacing: 10px;
+          margin-bottom: 10px;
+        }
+
+        .desc {
+          height: 4.8em;
+          overflow: hidden;
+          font-size: 15px;
+        }
       }
 
       .list-nav {

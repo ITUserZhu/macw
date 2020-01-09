@@ -42,7 +42,8 @@
       <div class="list-nav_cate">
         <span>类别：</span>
         <div class="list-nav_links">
-          <a href="/cjlist/{{ id }}_{{ vip }}_1.html" {% if category_data.parent_id == id %} class="active" {% endif %}>
+          <a href="/cjlist/{{ category_data.parent_id }}_{{ vip }}_1.html" {% if category_data.parent_id == id %}
+            class="active" {% endif %}>
             <img src="{{ mac_plugin[1].thumb }}">全部
           </a>
           {% for v in item.info %}

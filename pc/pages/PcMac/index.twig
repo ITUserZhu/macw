@@ -39,13 +39,12 @@
 			<div class="recommend-nav">
 				<span class="active">
 					<em>
-						<i class="icon-support"></i>精品推荐</em>
+						<i class="icon-support"></i>
+						精品推荐
+					</em>
 				</span>
 				<span>
-					<em>软件</em>
-				</span>
-				<span>
-					<em>游戏</em>
+					<em>应用</em>
 				</span>
 				<span>
 					<em>插件</em>
@@ -53,22 +52,25 @@
 				<span>
 					<em>模板</em>
 				</span>
+				<span>
+					<em>壁纸</em>
+				</span>
 			</div>
 			<div class="recommend-wrap">
 				<ul class="soft clearfix active">
 					{{ component.soft(mac_newest_recommend) }}
 				</ul>
 				<ul class="soft clearfix">
-					{{ component.soft(mac_newest_soft) }}
-				</ul>
-				<ul class="soft clearfix">
-					{{ component.soft(mac_newest_game) }}
+					{{ component.soft(newest_mac) }}
 				</ul>
 				<ul class="template clearfix">
 					{{ component.template(newest_mac_plug) }}
 				</ul>
 				<ul class="template clearfix">
 					{{ component.template(newest_template) }}
+				</ul>
+				<ul class="wallpaper clearfix">
+					{{ component.wallpaper(newest_dest) }}
 				</ul>
 			</div>
 		</div>

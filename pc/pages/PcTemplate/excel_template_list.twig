@@ -42,7 +42,8 @@
       <div class="list-nav_cate">
         <span>类别：</span>
         <div class="list-nav_links">
-          <a href="/mblist/{{ id }}_{{ vip }}_1.html" {% if category_data.parent_id == id %} class="active" {% endif %}>
+          <a href="/mblist/{{ category_data.parent_id }}_{{ vip }}_1.html" {% if category_data.parent_id == id %}
+            class="active" {% endif %}>
             <img src="{{ template_data[1].thumb | default('/assets/images/logo.png') }}">全部
           </a>
           {% for v in item.info %}

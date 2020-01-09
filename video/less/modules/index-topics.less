@@ -1,0 +1,58 @@
+.index-topics() {
+  float: left;
+  width: 588px;
+  height: 164px;
+  border: 1px solid #F1F1F1;
+  margin-right: 24px;
+  margin-bottom: 26px;
+
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
+
+  .img {
+    height: 100%;
+    width: 290px;
+    float: left;
+    margin-right: 20px;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      height: 100%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+
+    span {
+      .video-play;
+    }
+  }
+
+  .con {
+    overflow: hidden;
+    height: 100%;
+    padding: 10px 15px 0 0;
+
+    .title {
+      .text-ovh;
+      line-height: 36px;
+      font-size: 16px;
+    }
+
+    .desc {
+      height: 4.8em;
+      overflow: hidden;
+      color: #666;
+    }
+
+    .info {
+      color: #999;
+      margin-top: 15px;
+
+      span {
+        float: right;
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-12-04 09:17:29 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-04 11:24:31
+ * @Last Modified time: 2020-01-08 16:27:58
  */
 
 // 引入公用模块
@@ -11,6 +11,8 @@ import './components/common';
 import Swiper from 'swiper';
 // 引入视频播放功能
 import VideoPlay from './components/video-play';
+// 引入分享功能
+import Share from './components/share';
 // api接口
 import {
   CONENT_APIS
@@ -72,6 +74,22 @@ $(function () {
     }
   });
 
+  // 点击分享
+  const $share = $('#share');
+  let share;
+  $share.on('click', function () {
+    // 判断登录
+    const ISLOGIN = $('.header-login_logined').hasClass('active');
+    if (ISLOGIN) {
+      if (!share) {
+        share = new Share();
+      }
+      share.init();
+    } else {
+      $('#login-in').trigger('click');
+    }
+  });
+
   // 收藏功能
   const $colBtn = $('#collect'),
     $colText = $colBtn.find('span'),
@@ -92,7 +110,7 @@ $(function () {
           if (res.status == 1) {
             $colText.text('已收藏');
           } else {
-            $colText.text('收藏');
+            $colText.text('点击收藏');
           }
         } else if ((res.code == 400 || res.code == 501) && data.is_click) {
           $('#login-in').trigger('click')
@@ -163,7 +181,7 @@ $(function () {
   });
 
   // 专题鼠标悬浮播放
-  new VideoPlay('.topic-list', {
+  new VideoPlay('.videos-wrap', {
     item: 'li',
     fade: true,
     oftX: 5,

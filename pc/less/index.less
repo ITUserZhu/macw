@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-12 10:07:57 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-03 09:30:01
+ * @Last Modified time: 2020-01-08 15:04:08
  */
 
 @import 'components/common';
@@ -10,6 +10,7 @@
 @import 'modules/soft-list';
 @import 'modules/plugin-list';
 @import 'modules/template-list';
+@import 'modules/wallpaper-list';
 @import 'modules/article-list';
 @import 'modules/video-play';
 
@@ -241,6 +242,16 @@ section {
             .template-list;
           }
         }
+
+        &.wallpaper {
+          li {
+            .wallpaper-list;
+
+            &:nth-child(-n+3) {
+              margin-top: 0;
+            }
+          }
+        }
       }
     }
   }
@@ -437,14 +448,15 @@ section {
       position: relative;
 
       li {
-        width: 100px;
+        width: 13%;
         height: 100%;
         float: left;
-        transition: all .3s;
+        background-color: #fff;
+        transition: width .2s ease-out;
+        .shadow;
 
         &.active {
-          width: 406px;
-          .shadow;
+          width: 48%;
 
           .img::after {
             opacity: 0;
@@ -471,8 +483,9 @@ section {
 
           .num {
             position: absolute;
+            z-index: 2;
             color: #fff;
-            text-shadow: 1px 1px 1px #ccc;
+            text-shadow: 1px 1px 1px #666;
             font-size: 30px;
             top: 5px;
             left: 15px;
@@ -480,7 +493,8 @@ section {
 
           img {
             height: 100%;
-            min-width: 100%;
+            margin-left: 50%;
+            transform: translateX(-50%);
           }
         }
       }

@@ -23,7 +23,7 @@ import {
   SEARCH
 } from '../api';
 
-$(function () {
+$(() => {
   // 头部登录注册
   const $loginBtn = $('.header-login_btns').children('button');
   $loginBtn.on('click', function () {
@@ -38,12 +38,12 @@ $(function () {
     $headerForm = $('#header-form'),
     $headerFormIpt = $headerForm.find('input');
   // 切换展示
-  $headerSearchBtn.on('click', function () {
+  $headerSearchBtn.on('click', () => {
     $headerSearchBox.show().find('input').focus();
     $headerBox.hide();
   });
   // 切换隐藏
-  $headerSearchBox.on('click', '.search-close', function () {
+  $headerSearchBox.on('click', '.search-close', () => {
     $headerSearchBox.hide();
     $headerSearchBox.find('input').val('');
     $headerBox.show();
@@ -58,15 +58,13 @@ $(function () {
   // 联想
   $headerFormIpt.autocomplete({
     paramName: 'k',
-    transformResult: function (response) {
+    transformResult: response => {
       if (response) {
         return {
-          suggestions: $.map(JSON.parse(response), function (v) {
-            return {
-              value: v.value.replace(/<\/?em>/g, ''),
-              data: v.data
-            };
-          })
+          suggestions: $.map(JSON.parse(response), v => ({
+            value: v.value.replace(/<\/?em>/g, ''),
+            data: v.data
+          }))
         };
       } else {
         return {
@@ -80,10 +78,7 @@ $(function () {
     },
     type: 'POST',
     serviceUrl: SEARCH.name,
-    onSelect: function (val) {
-      val.data && window.open(val.data);
-      return;
-    }
+    onSelect: val => val.data && window.open(val.data)
   });
 
 
@@ -124,7 +119,7 @@ $(function () {
 });
 
 // 百度推送
-(function () {
+(() => {
   let bp = document.createElement('script');
   let curProtocol = window.location.protocol.split(':')[0];
   if (curProtocol === 'https') {

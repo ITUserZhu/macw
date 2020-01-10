@@ -8,10 +8,10 @@
 	{% block meta %}{% endblock %}
 	<title>
 		{% block page_title %}
-		{{ page_title|default('__hostname下载') }}
+		{{ page_title|default('__netname下载') }}
 		{% endblock %}
 	</title>
-	<meta name="keywords" content="{% block page_kw %}{{ page_kw|default('__hostname下载') }}{% endblock %}">
+	<meta name="keywords" content="{% block page_kw %}{{ page_kw|default('__netname下载') }}{% endblock %}">
 	<meta name="description" content="{% block page_desc %}{{ page_desc }}{% endblock %}">
 	<link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon" /> {% block css %}{% endblock %}
 </head>
@@ -21,7 +21,7 @@
 		<div class="header">
 			<div class="header-logo">
 				<a href="/">
-					<img src="/assets/images/logo.png" alt="__hostname下载">
+					<img src="/assets/images/logo.png" alt="__netname下载">
 				</a>
 			</div>
 			<div class="header-login">
@@ -53,7 +53,7 @@
 			</nav>
 		</div>
 		<div class="header-search-box">
-			<form id="header-form" data-model="{% block search_type %}all{% endblock %}">
+			<form id="header-form" data-model="{% block search_type %}all {% endblock %}">
 				<input type="text" placeholder="搜点什么">
 				<button>
 					<i class="icon-search2">

@@ -75,13 +75,13 @@ class ContentFixNav {
         }
 
       })
-    };
+    }
 
     Promise.all(promiseAll).then(() => {
       _this.titleDoms.each(function (index, el) {
         _this.hHeightArr.push(Math.ceil($(el).offset().top) - _this.options.scrollT);
-      })
-      _this.hideTop = _this.wrapDoms.closest('section').next().offset().top || 10000
+      });
+      _this.hideTop = _this.wrapDoms.closest('section').next().offset().top || 10000;
       _this.initEvent();
     })
 

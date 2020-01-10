@@ -5,7 +5,6 @@
  * @Last Modified time: 2020-01-02 10:46:34
  * 登录注册弹框功能板块
  */
-
 // 调用序列号表单
 import '../plugins/serialize';
 // 调用api

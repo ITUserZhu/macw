@@ -118,9 +118,9 @@ export const confirmBox = (msg, fn, obj = {}) => {
         action: fn,
       },
     }
-  }, obj)
+  }, obj);
   $.confirm(newObj);
-}
+};
 
 // alert 方法， 同上
 export const alertBox = (msg, obj = {}) => {

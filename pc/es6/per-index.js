@@ -27,7 +27,7 @@ import './plugins/waterfall';
 import Lottery from './components/lottery';
 
 // 个人中心
-$(function () {
+$(() => {
   class PersonalOperate {
     constructor() {
       this.init()
@@ -534,7 +534,7 @@ $(function () {
           type: 'GET',
           success: function (msg) {
             if (msg.code == 200) {
-              UTIL.confirmBox('充值成功', function () {
+              UTIL.confirmBox('充值成功',  ()=> {
                 window.location.reload();
               }, {
                 title: '提示',
@@ -859,10 +859,9 @@ $(function () {
             id = $item.data('id'),
             $wrap = $item.parent();
 
-          UTIL.confirmBox('是否确认移除？'),
-            function () {
-              this.delUserItems($wrap, $item, id, 'col')
-            };
+          UTIL.confirmBox('是否确认移除？', ()=> {
+            this.delUserItems($wrap, $item, id, 'col')
+          });
         }
       });
     }
@@ -1105,10 +1104,10 @@ $(function () {
             id = $item.data('id'),
             $wrap = $item.parent();
 
-          UTIL.confirmBox('是否确认移除？'),
-            function () {
-              this.delUserItems($wrap, $item, id, 'down')
-            }
+          UTIL.confirmBox('是否确认移除？', ()=> {
+            this.delUserItems($wrap, $item, id, 'down')
+          });
+
         }
       });
     }
@@ -1222,10 +1221,9 @@ $(function () {
             id = $item.data('id'),
             $wrap = $item.parent();
 
-          UTIL.confirmBox('是否确认移除？'),
-            function () {
-              this.delUserItems($wrap, $item, id, 'hist')
-            };
+          UTIL.confirmBox('是否确认移除？', ()=> {
+            this.delUserItems($wrap, $item, id, 'hist')
+          });
         }
       });
     }

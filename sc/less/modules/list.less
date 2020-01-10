@@ -11,9 +11,26 @@
   .shadow;
 
   &:hover {
-    .mask {
+
+    .mask,
+    .atlas-link {
       opacity: 1;
     }
+  }
+
+  .atlas-link {
+    position: absolute;
+    z-index: 2;
+    top: 18px;
+    right: 18px;
+    width: 50px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #f5b914;
+    opacity: 0;
   }
 
   .img {

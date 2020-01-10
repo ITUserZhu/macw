@@ -53,7 +53,7 @@
 			</nav>
 		</div>
 		<div class="header-search-box">
-			<form id="header-form">
+			<form id="header-form" data-model="{% block search_type %}all{% endblock %}">
 				<input type="text" placeholder="搜点什么">
 				<button>
 					<i class="icon-search2">

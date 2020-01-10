@@ -19,7 +19,9 @@
     <section class="content-info clearfix">
       <article>
         <div class="content-info_img">
-          <img src="{{ content.thumb }}" alt="{{ content.title }}">
+          <a href="{{ content.thumb }}" data-fancybox data-caption="{{ content.title }}">
+            <img src="{{ content.thumb }}" alt="{{ content.title }}">
+          </a>
         </div>
         {% if atlas_info %}
         <div class="content-info_swiper swiper-container">

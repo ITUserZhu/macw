@@ -2,6 +2,9 @@
 {% macro list(data, original = false) %}
 {% for v in data %}
 <li data-id="{{ v.id }}" data-w="{{ v.width }}" data-h="{{ v.height }}">
+  {% if v.atlas_url %}
+  <a href="{{ v.atlas_url }}" target="_blank" class="atlas-link">图集</a>
+  {% endif %}
   <a href="{{ v.url }}" title="{{ v.title }}">
     <div class="img">
       <img {% if original %}data-{% endif %}src="{{ v.thumb }}" alt="{{ v.title }}">

@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-15 10:28:32 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-27 11:38:02
+ * @Last Modified time: 2020-01-10 09:16:36
  * 全站通用板块
  */
 // 引入登录注册模块
@@ -16,6 +16,12 @@ import './login-status';
 import {
   commonSearch
 } from '../util';
+// 引入搜索联想
+import '../plugins/jquery.autocomplete';
+// 搜索接口
+import {
+  SEARCH
+} from '../api';
 
 $(function () {
   // 头部登录注册
@@ -25,28 +31,61 @@ $(function () {
     toLoginType.init().showLogin(0, _index)
   });
 
-  // 头部搜索
+  // 头部搜索切换与联想
   const $headerSearchBtn = $('.header-search'),
     $headerSearchBox = $('.header-search-box'),
     $headerBox = $('.header'),
-    $headerForm = $('#header-form');
-
+    $headerForm = $('#header-form'),
+    $headerFormIpt = $headerForm.find('input');
+  // 切换展示
   $headerSearchBtn.on('click', function () {
     $headerSearchBox.show().find('input').focus();
     $headerBox.hide();
   });
-
+  // 切换隐藏
   $headerSearchBox.on('click', '.search-close', function () {
     $headerSearchBox.hide();
+    $headerSearchBox.find('input').val('');
     $headerBox.show();
   });
-
+  // 搜索
   $headerForm.on('submit', function (e) {
     e.preventDefault();
     let _val = $(this).find('input').val(),
       _model = $(this).data('model') || 'all';
     commonSearch(_val, _model);
   });
+  // 联想
+  $headerFormIpt.autocomplete({
+    paramName: 'k',
+    transformResult: function (response) {
+      if (response) {
+        return {
+          suggestions: $.map(JSON.parse(response), function (v) {
+            return {
+              value: v.value.replace(/<\/?em>/g, ''),
+              data: v.data
+            };
+          })
+        };
+      } else {
+        return {
+          suggestions: {}
+        }
+      }
+
+    },
+    params: {
+      'm': $headerForm.data('model')
+    },
+    type: 'POST',
+    serviceUrl: SEARCH.name,
+    onSelect: function (val) {
+      val.data && window.open(val.data);
+      return;
+    }
+  });
+
 
 
   // 侧边栏生成

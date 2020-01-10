@@ -2,8 +2,13 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-15 09:58:52 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-22 15:59:59
+ * @Last Modified time: 2020-01-09 17:12:47
  */
+
+// 搜索接口
+export const SEARCH = {
+  name: '/api/search_associate'
+}
 
 // 软件内容页接口：
 export const CONENT_APIS = {

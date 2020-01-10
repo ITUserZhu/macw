@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-27 14:02:20 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-07 17:45:43
+ * @Last Modified time: 2020-01-09 15:24:29
  * 素材内容页面
  */
 
@@ -12,6 +12,8 @@ import './components/common';
 import Swiper from 'swiper';
 // 瀑布流
 import './plugins/waterfall.js';
+// fancybox插件调用
+import '@fancyapps/fancybox';
 // api接口
 import {
   CONENT_APIS

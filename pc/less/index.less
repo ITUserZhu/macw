@@ -169,6 +169,7 @@ section {
         transition: all .2s;
         cursor: pointer;
         user-select: none;
+        background-color: #34495e;
 
         em {
           color: #fff;
@@ -197,26 +198,6 @@ section {
           &.active {
             transform: skewY(-3deg) translateY(5px);
           }
-        }
-
-        &:first-child {
-          background-color: @money-color;
-        }
-
-        &:nth-child(2) {
-          background-color: @topic-color;
-        }
-
-        &:nth-child(3) {
-          background-color: @soft-color;
-        }
-
-        &:nth-child(4) {
-          background-color: @plugin-color;
-        }
-
-        &:nth-child(5) {
-          background-color: @template-color;
         }
       }
     }
@@ -291,8 +272,8 @@ section {
             position: absolute;
             width: 100%;
             height: 100%;
-            left: 0px;
-            top: 0px;
+            left: 0;
+            top: 0;
 
             &::-webkit-media-controls {
               display: none !important;
@@ -830,7 +811,7 @@ section {
         }
 
         .con {
-          text-shadow: 1px 0px 1px #ccc;
+          text-shadow: 1px 0 1px #ccc;
           color: #fff;
           width: 220px;
 

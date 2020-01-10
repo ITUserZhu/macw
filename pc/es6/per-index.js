@@ -1290,7 +1290,6 @@ $(() => {
         })
     }
 
-
     // 获取已提交问题
     getNewsData(page = 1) {
       let _this = this,

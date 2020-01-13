@@ -18,7 +18,7 @@
     <section class="banner">
       <div class="banner-infos swiper-container" id="banner-infos">
         <ul class="swiper-wrapper">
-          {% for i,item in newTemplate %}
+          {% for i,item in IndexShowTemplate %}
           <li class="swiper-slide">
             <a href="{{ item.url }}">
               <div class="infos">
@@ -42,7 +42,7 @@
       <div class="banner-wrap">
         <div class="banner-imgs swiper-container" id="banner-imgs">
           <ul class="swiper-wrapper">
-            {% for i,item in newTemplate %}
+            {% for i,item in IndexShowTemplate %}
             <li class="swiper-slide">
               <div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
             </li>
@@ -68,7 +68,7 @@
     <section class="newest">
       <div class="sec-title">
         <h2>最新更新</h2>
-        {% if recentUpdateTemplate | length > 8 %}
+        {% if newTemplate | length > 8 %}
         <div class="sec-check">
           <span class="active">&lt;</span>
           <span>&gt;</span>
@@ -77,10 +77,10 @@
       </div>
       <div>
         <ul class="active clearfix">
-          {{ component.template(recentUpdateTemplate | slice(0,8)) }}
+          {{ component.template(newTemplate | slice(0,8)) }}
         </ul>
         <ul class="clearfix">
-          {{ component.template(recentUpdateTemplate | slice(8,8)) }}
+          {{ component.template(newTemplate | slice(8,8)) }}
         </ul>
       </div>
     </section>

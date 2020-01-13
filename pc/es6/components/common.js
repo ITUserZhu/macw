@@ -52,7 +52,7 @@ $(() => {
   $headerForm.on('submit', function (e) {
     e.preventDefault();
     let _val = $(this).find('input').val(),
-      _model = $(this).data('model') || 'all';
+      _model = $(this).data('model').trim() || 'all';
     commonSearch(_val, _model);
   });
   // 联想

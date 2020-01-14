@@ -1,18 +1,15 @@
 .template-list() {
-  width: 285px;
-  height: 270px;
+  width: 280px;
+  height: 430px;
   float: left;
-  margin-right: 20px;
-  margin-top: 30px;
+  margin-right: 26px;
+  margin-top: 26px;
   transition: all .2s;
+  position: relative;
   .shadow;
 
   &:nth-child(4n) {
     margin-right: 0;
-  }
-
-  &:nth-child(-n+4) {
-    margin-top: 0;
   }
 
   &:hover {
@@ -25,9 +22,9 @@
   }
 
   .img-wrap {
-    height: 160px;
+    height: 375px;
     width: 100%;
-    position: relative;
+    padding: 10px 10px 0;
     user-select: none;
 
     .type {
@@ -51,10 +48,10 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      background-color: #eee;
 
       img {
         width: 100%;
-        min-height: 100%;
       }
     }
   }
@@ -62,6 +59,9 @@
   .con {
     padding: 10px;
     text-align: center;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-top: -50px;
 
     .title {
       margin: 10px 0 15px;

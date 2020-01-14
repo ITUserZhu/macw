@@ -1,0 +1,67 @@
+.video-list() {
+  float: left;
+  width: 282px;
+  height: 235px;
+  margin: 0 24px 24px 0;
+  border-radius: 5px;
+  .shadow;
+
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+
+  .img {
+    height: 158px;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+
+    img {
+      height: 100%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .con {
+    position: relative;
+    padding: 0 14px;
+    border-radius: 0 0 5px 5px;
+
+    .title {
+      line-height: 44px;
+      font-size: 16px;
+      .text-ovh;
+    }
+
+    p {
+
+      em {
+        color: #fff;
+        border-radius: 3px;
+        padding: 2px 5px;
+
+        &.ae {
+          background-color: @ae-color;
+        }
+
+        &.pr {
+          background-color: @pr-color;
+        }
+
+        &.v {
+          background-color: @v-color;
+        }
+      }
+
+      span {
+        float: right;
+        color: #999;
+
+        i {
+          color: @theme-color;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

@@ -63,11 +63,11 @@
 				<ul class="soft clearfix">
 					{{ component.soft(newest_mac) }}
 				</ul>
-				<ul class="template clearfix">
-					{{ component.template(newest_mac_plug) }}
+				<ul class="plugin clearfix">
+					{{ component.plugin(newest_mac_plug) }}
 				</ul>
-				<ul class="template clearfix">
-					{{ component.template(newest_template) }}
+				<ul class="templates clearfix">
+					{{ component.templates(newest_template) }}
 				</ul>
 				<ul class="wallpaper clearfix">
 					{{ component.wallpaper(newest_dest) }}
@@ -82,52 +82,9 @@
 				<a href="https://v.__host.com">更多视频 →</a>
 			</div>
 			<div class="newest-video_wrap">
-				<ul>
-					{% for i,item in video_newest %}
-					<li {% if i == 0 %} class="active" {% endif %}>
-						<div class="video-wrap">
-							<video muted loop poster="{{ item.thumb }}" data-src="{{ item.preview_url }}"></video>
-							<div class="video-play"></div>
-						</div>
-						<div class="video-info">
-							<a href="{{ item.url }}">
-								<p class="title">{{ item.title }}</p>
-								<p class="infos">
-									<span>
-										<i class="icon-video"></i>
-										{{ item.resolution }}
-									</span>
-									<span>
-										<i class="icon-video2"></i>
-										{{ item.video_type }}
-									</span>
-									<span>
-										<i class="icon-size"></i>
-										{{ item.file_size }}</span>
-									<span>
-										<i class="icon-time"></i>
-										{{ item.time }}
-									</span>
-									<br>
-									<span>
-										<i class="icon-point"></i>
-										{{ item.point }}积分[Vip免积分]</span>
-								</p>
-								<button>立即下载</button>
-							</a>
-						</div>
-					</li>
-					{% endfor %}
+				<ul class="clearfix">
+          {{ component.video_list(video_newest) }}
 				</ul>
-				<div class="video-pagi">
-					<div class="video-pagi_num">
-						<em>01</em>/0{{ video_newest | length }}
-					</div>
-					<div class="video-pagi_btns">
-						<button class="btn-prev">←</button>
-						<button class="btn-next">→</button>
-					</div>
-				</div>
 			</div>
 		</div>
 	</section>
@@ -138,29 +95,8 @@
 				<a href="https://sc.__host.com">更多素材 →</a>
 			</div>
 			<div class="newest-material_wrap clearfix">
-				<ul class="newest-material_info">
-					{% for i,item in newest_material %}
-					<li {% if i == 0 %} class="active" {% endif %}>
-						<a href="{{ item.url }}">
-							<p class="number">
-								<em>0{{ i + 1 }}</em>/0{{ newest_material | length }}</p>
-							<p class="title">{{ item.title }}</p>
-							<button>立即下载</button>
-						</a>
-					</li>
-					{% endfor %}
-				</ul>
-				<ul class="newest-material_pics">
-					{% for i,item in newest_material %}
-					<li {% if i == 0 %} class="active" {% endif %}>
-						<a href="{{ item.url }}">
-							<div class="img">
-								<i class="num">0{{ i + 1 }}</i>
-								<img src="{{ item.thumb }}" alt="{{ item.title }}">
-							</div>
-						</a>
-					</li>
-					{% endfor %}
+				<ul class="clearfix">
+          {{ component.material_list(newest_material) }}
 				</ul>
 			</div>
 		</div>
@@ -198,7 +134,7 @@
 				<a href="/mblist/">更多模板 →</a>
 			</div>
 			<ul class="boutique-plugin_template clearfix">
-				{{ component.template(recommend_template) }}
+				{{ component.templates(recommend_template) }}
 			</ul>
 		</div>
 	</section>
@@ -208,9 +144,18 @@
 				<h2>最新文章</h2>
 				<a href="/nlist/">更多文章 →</a>
 			</div>
-			<ul class="clearfix">
-				{{ component.article(mac_article_newest ) }}
-			</ul>
+			<div class="article-wraps">
+        <ul class="active clearfix">
+          {{ component.article(mac_article_newest | slice(0, 6)) }}
+        </ul>
+        <ul class="clearfix">
+          {{ component.article(mac_article_newest | slice(6, 6)) }}
+        </ul>
+      </div>
+      <div class="article-check">
+        <span class="active"></span>
+        <span></span>
+      </div>
 		</div>
 	</section>
 	<section class="rank">

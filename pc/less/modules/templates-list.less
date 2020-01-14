@@ -1,0 +1,22 @@
+@import 'template-list';
+@import "ppt-list";
+@import "excel-list";
+@import "word-list";
+
+.templates-list() {
+  &.template {
+    .template-list;
+  }
+
+  &.ppt {
+    .ppt-list;
+  }
+
+  &.excel {
+    .excel-list;
+  }
+
+  &.word {
+    .word-list;
+  }
+}

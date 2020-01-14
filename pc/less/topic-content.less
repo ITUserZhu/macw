@@ -8,6 +8,7 @@
 @import 'components/common';
 @import 'modules/soft-list';
 @import 'modules/template-list';
+@import 'modules/plugin-list';
 @import 'modules/article-list';
 
 section {
@@ -51,11 +52,19 @@ section {
         }
       }
 
-      &.plugin {
+      &.template {
         margin-top: 40px;
 
         li {
           .template-list;
+        }
+      }
+
+      &.plugin {
+        margin-top: 40px;
+
+        li {
+          .plugin-list;
         }
       }
     }

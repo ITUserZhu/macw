@@ -1,10 +1,9 @@
 .autocomplete-suggestions {
   box-sizing: border-box;
-  border: 1px solid #999;
   background: #FFF;
   cursor: default;
   overflow: auto;
-  box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+  .shadow;
 
   &::-webkit-scrollbar-track {
     background-color: #eee;
@@ -19,7 +18,7 @@
     background-color: @theme-color;
   }
 
-  strong {
+  em {
     font-size: 16px;
     color: @theme-color;
     font-weight: bold;
@@ -27,10 +26,18 @@
 }
 
 .autocomplete-suggestion {
-  line-height: 40px;
-  padding: 0 20px;
+  line-height: 60px;
   white-space: nowrap;
   overflow: hidden;
+  padding: 0 18px;
+  border-bottom: 1px solid #eee;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .autocomplete-no-suggestion {

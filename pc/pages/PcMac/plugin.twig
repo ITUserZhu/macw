@@ -76,11 +76,11 @@
 				{% endif %}
 			</div>
 			<div>
-				<ul class="active clearfix">
-					{{ component.template(recentUpdatePlugin | slice(0,8)) }}
+				<ul class="active plugin clearfix">
+					{{ component.plugin(recentUpdatePlugin | slice(0,8)) }}
 				</ul>
-				<ul class="clearfix">
-					{{ component.template(recentUpdatePlugin | slice(8,8)) }}
+				<ul class="plugin clearfix">
+					{{ component.plugin(recentUpdatePlugin | slice(8,8)) }}
 				</ul>
 			</div>
 		</section>
@@ -98,8 +98,8 @@
 				<h3>精选插件</h3>
 				<a href="/cjlist/0_0_1.html">更多 →</a>
 			</div>
-			<ul class="active clearfix">
-				{{ component.template(selectedPlugin) }}
+			<ul class="active plugin clearfix">
+				{{ component.plugin(selectedPlugin) }}
 			</ul>
 		</section>
 	</div>

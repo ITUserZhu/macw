@@ -5,7 +5,8 @@
  * @Last Modified time: 2019-12-26 17:44:33
  */
 @import 'components/common';
-@import 'modules/template-list';
+@import 'modules/plugin-list';
+@import 'modules/templates-list';
 @import 'modules/topic-list';
 @import '/node_modules/swiper/css/swiper.min.css';
 
@@ -221,8 +222,16 @@ section {
         display: block;
       }
 
-      li {
-        .template-list;
+      &.plugin {
+        li {
+          .plugin-list;
+        }
+      }
+
+      &.template {
+        li {
+          .templates-list;
+        }
       }
     }
 

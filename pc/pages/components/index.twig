@@ -22,16 +22,11 @@
 {% endmacro %}
 
 <!-- 模板 -->
-{% macro template(data, hastype = false) %}
+{% macro template(data) %}
 {% for item in data %}
 <li>
 	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
 		<div class="img-wrap">
-			{% if hastype %}
-			<div class="type">
-				<span>Lr预设</span>
-			</div>
-			{% endif %}
 			<div class="img">
 				<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
 			</div>
@@ -102,12 +97,61 @@
 {% endfor %}
 {% endmacro %}
 
+<!-- 多种模板 -->
+{% macro templates(data) %}
+  {% for item in data %}
+    {% if item.type == 'ppt' %}
+    <li class="ppt"><a href="{{ item.url }}" title="{{ item.title }}">
+        <div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+        <div class="mask">
+          <button>立即下载</button>
+          <p class="title">{{ item.title }}</p>
+        </div>
+      </a></li>
+    {% elseif item.type == 'word' %}
+    <li class="word">
+      <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+        <div class="img-wrap">
+          <div class="mask">
+            <button>立即下载</button>
+          </div>
+          <div class="img"><img src="{{ item.thumb }}" alt="{{ item.title | striptags }}"></div>
+        </div>
+        <p class="title">{{ item.title | raw }}</p>
+      </a>
+    </li>
+    {% elseif item.type == 'excel' %}
+    <li class="excel"><a href="{{ item.url }}" title="{{ item.title }}">
+        <div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+        <div class="mask">
+          <p class="type"><img src="/assets/images/exc-logo.png">{{ item.pretitle }}</p>
+          <button>立即下载</button>
+          <p class="title">{{ item.title }}</p>
+        </div>
+      </a></li>
+    {% else %}
+    <li class="template">
+      <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+        <div class="img-wrap">
+          <div class="img">
+            <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+          </div>
+        </div>
+        <div class="con">
+          <p class="title">{{ item.title | raw }}</p>
+          <span class="btn">下载</span>
+        </div>
+      </a>
+    </li>
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+
 <!-- 插件 -->
 {% macro plugin(data) %}
 {% for i,item in data %}
 <li>
 	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
-		{% if i % 2 == 0 %}
 		<div class="img-wrap">
 			<div class="img">
 				<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
@@ -117,17 +161,6 @@
 			<p class="title">{{ item.title | raw }}</p>
 			<span class="btn">立即下载 &gt;</span>
 		</div>
-		{% else %}
-		<div class="con">
-			<p class="title">{{ item.title | raw }}</p>
-			<span class="btn">立即下载 &gt;</span>
-		</div>
-		<div class="img-wrap">
-			<div class="img">
-				<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
-			</div>
-		</div>
-		{% endif %}
 	</a>
 </li>
 {% endfor %}
@@ -246,4 +279,39 @@
 		</p>
 	</a></li>
 {% endfor %}
+{% endmacro %}
+
+<!-- 视频列表 -->
+{% macro video_list(data, type) %}
+  {% for i,item in data %}
+    <li data-src="{{ item.preview_url }}">
+      <a href="{{ item.url }}" title="{{ item.title }}">
+        <div class="img">
+          <img src="{{ item.thumb }}" alt="{{ item.title }}">
+        </div>
+        <div class="con">
+          <p class="title">{{ item.title }}</p>
+          <p>
+            {% if type %}
+              <em class="{{ type }}">{{ type == 'ae'? 'AE模板': type == 'pr'? 'PR模板': '视频素材' }}</em>
+            {% else %}
+              {% set randomNums = random(2) %}
+              <em class="{{ randomNums == 0 ? 'ae': randomNums == 1 ? 'pr': 'v'}}">{{ item.cate_name }}</em>
+            {% endif %}
+            <span><i class="icon-video"></i>{{ item.time }}</span>
+          </p>
+        </div>
+      </a>
+    </li>
+  {% endfor %}
+{% endmacro %}
+
+<!-- 素材列表 -->
+{% macro material_list(data) %}
+  {% for item in data %}
+    <li><a href="{{ item.url }}" title="{{ item.title }}">
+      <div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+      <p class="title">{{ item.title }}</p>
+    </a></li>
+  {% endfor %}
 {% endmacro %}

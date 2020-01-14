@@ -59,83 +59,15 @@ $(function () {
     $(this).leaveCheck();
   })
 
-  // 最新视频
-  // 头部首显操作
-  const $videoPagi = $('.video-pagi');
-  const $videoPagiNum = $videoPagi.find('.video-pagi_num em');
-  const $videoLis = $('.newest-video_wrap').find('ul').children('li');
-  const videoLen = $videoLis.length;
-  let curVideoIndex = 0,
-    curVideoZIndex = 1,
-    videoLoading = null;
-  // 视频点击播放与暂停
-  $videoLis.on('click', '.video-wrap', function () {
-    let $video = $(this).find('video');
+  // 最新文章切换
+  const $articleSection = $('.newest-article'),
+    $articleUl = $articleSection.find('.article-wraps').children('ul'),
+    $articleBtns = $articleSection.find('.article-check').children('span');
 
-    !$video.attr('src') && $video.attr('src', $video.data('src'));
-    if ($video.get(0).paused && !videoLoading) {
-      $(this).append('<div class="video-load"></div>');
-      $video.parent().find('.video-play').addClass('play').stop(true, true).delay(400).fadeOut();
-      videoLoading = setInterval(function () {
-        if ($video.get(0).readyState === 4) {
-          clearInterval(videoLoading);
-          $video.parent().find('.video-load').remove();
-          $video.get(0).play();
-          $video.parent().css('zIndex', '2');
-        }
-      }, 50)
-
-    } else {
-      clearInterval(videoLoading);
-      videoLoading = null;
-      $(this).find('.video-load').remove();
-      $(this).find('.video-play').removeClass('play').stop(true, true).show();
-      $video.get(0).pause();
-      $video.parent().css('zIndex', '0');
-    }
-  });
-  // 翻页点击
-  $videoPagi.on('click', function (e) {
-    let $target = $(e.target).closest('button');
-
-    if ($target.is('.btn-prev')) {
-      if (curVideoIndex > 0) {
-        curVideoIndex--;
-        curVideoZIndex++;
-      }
-    } else if ($target.is('.btn-next')) {
-      if (curVideoIndex < (videoLen - 1)) {
-        curVideoIndex++;
-        curVideoZIndex++;
-      }
-    }
-    clearInterval(videoLoading);
-    videoLoading = null;
-    toggleActive($videoLis.eq(curVideoIndex));
-    $videoLis.eq(curVideoIndex)
-      .find('.video-play').removeClass('play').show()
-      .end().find('.video-load').remove()
-      .end().css('zIndex', curVideoZIndex);
-
-    $videoLis.eq(curVideoIndex).find('video').parent().css('zIndex', '0');
-    $videoLis.eq(curVideoIndex).find('video').get(0).pause()
-
-    $videoPagiNum.text('0' + (curVideoIndex + 1));
-  });
-
-  // 最新素材
-  const $materialInfos = $('.newest-material_info').children('li');
-  const $materialImgs = $('.newest-material_pics').children('li');
-  let materialTimer = null;
-
-  $materialImgs.hover(function () {
+  $articleBtns.on('click', function () {
     let _index = $(this).index();
-    materialTimer = setTimeout(() => {
-      toggleActive([$(this), $materialInfos.eq(_index)]);
-    }, 200)
-  }, function () {
-    clearTimeout(materialTimer);
-  });
+    toggleActive([$(this), $articleUl.eq(_index)]);
+  })
 
   // 精品应用
   const $boutiqueAppType = $('.boutique-app_type');

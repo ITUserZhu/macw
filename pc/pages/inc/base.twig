@@ -24,45 +24,44 @@
 					<img src="/assets/images/logo.png" alt="__netname下载">
 				</a>
 			</div>
-			<div class="header-login">
-				<div class="header-login_btns active">
-					<button id="login-in">登录</button>
-					<button id="reg-in">注册</button>
-				</div>
-				<div class="header-login_logined"></div>
-			</div>
-			<div class="header-search">
-				<i class="icon-search2">
-					<span class="path1"></span>
-					<span class="path2"></span>
-				</i>
-			</div>
-			<nav class="header-nav">
-				<a href="/" {% if active == 'index' %} class="active" {% endif %} target="_self">首页</a>
-				<a href="/list/" {% if active == 'mac' %} class="active" {% endif %} target="_blank">应用</a>
-				<a href="/cjlist/" {% if active == 'plugin' %} class="active" {% endif %} target="_blank">插件</a>
-				<a href="/mblist/" {% if active == 'template' %} class="active" {% endif %} target="_blank">模板</a>
-				<a href="/dlist/" {% if active == 'wallpaper' %} class="active" {% endif %} target="_blank">壁纸</a>
-				<a href="https://v.macw.com/">视频</a>
-				<a href="/z/" {% if active == 'special' %} class="active" {% endif %} target="_blank">专题</a>
-				<a href="/nlist/" {% if active == 'article' %} class="active" {% endif %} target="_blank">教程</a>
-				<a href="https://sc.macw.com/" target="_blank">素材</a>
-				<a href="/rank/soft.html" {% if active == 'rank' %} class="active" {% endif %} target="_blank">榜单</a>
-				<a href="/necessary/" {% if active == 'necessary_install' %} class="active" {% endif %} target="_blank">装机必备</a>
-				<a href="/vip.html" {% if active == 'vip' %} class="active" {% endif %} target="_blank">VIP</a>
-			</nav>
-		</div>
-		<div class="header-search-box">
-			<form id="header-form" data-model="{% block search_type %}all{% endblock %}">
-				<input type="text" placeholder="搜点什么">
-				<button>
-					<i class="icon-search2">
-						<span class="path1"></span>
-						<span class="path2"></span>
-					</i>
-				</button>
-			</form>
-			<span class="search-close">X</span>
+
+      <div class="header-other">
+        <div class="header-search-login">
+
+          <form id="header-form" data-model="{% block search_type %}all{% endblock %}">
+            <input type="text" placeholder="请输入搜索内容…">
+            <button>
+              <i class="icon-search2">
+                <span class="path1"></span>
+                <span class="path2"></span>
+              </i>
+            </button>
+          </form>
+          <div class="header-login">
+            <div class="header-login_btns active">
+              <button id="login-in">登录</button>
+              <button id="reg-in">注册</button>
+            </div>
+            <div class="header-login_logined"></div>
+          </div>
+
+        </div>
+
+        <nav class="header-nav">
+          <a href="/" {% if active == 'index' %} class="active" {% endif %} target="_self">首页</a>
+          <a href="/list/" {% if active == 'mac' %} class="active" {% endif %} target="_blank">应用</a>
+          <a href="/cjlist/" {% if active == 'plugin' %} class="active" {% endif %} target="_blank">插件</a>
+          <a href="/mblist/" {% if active == 'template' %} class="active" {% endif %} target="_blank">模板</a>
+          <a href="/dlist/" {% if active == 'wallpaper' %} class="active" {% endif %} target="_blank">壁纸</a>
+          <a href="https://v.macw.com/">视频</a>
+          <a href="/z/" {% if active == 'special' %} class="active" {% endif %} target="_blank">专题</a>
+          <a href="/nlist/" {% if active == 'article' %} class="active" {% endif %} target="_blank">教程</a>
+          <a href="https://sc.macw.com/" target="_blank">素材</a>
+          <a href="/rank/soft.html" {% if active == 'rank' %} class="active" {% endif %} target="_blank">榜单</a>
+          <a href="/necessary/" {% if active == 'necessary_install' %} class="active" {% endif %} target="_blank">装机必备</a>
+          <a href="/vip.html" {% if active == 'vip' %} class="active" {% endif %} target="_blank">VIP</a>
+        </nav>
+      </div>
 		</div>
 	</header>
 	<!-- 内容 -->

@@ -32,22 +32,9 @@ $(() => {
   });
 
   // 头部搜索切换与联想
-  const $headerSearchBtn = $('.header-search'),
-    $headerSearchBox = $('.header-search-box'),
-    $headerBox = $('.header'),
-    $headerForm = $('#header-form'),
+  const $headerForm = $('#header-form'),
     $headerFormIpt = $headerForm.find('input');
-  // 切换展示
-  $headerSearchBtn.on('click', () => {
-    $headerSearchBox.show().find('input').focus();
-    $headerBox.hide();
-  });
-  // 切换隐藏
-  $headerSearchBox.on('click', '.search-close', () => {
-    $headerSearchBox.hide();
-    $headerSearchBox.find('input').val('');
-    $headerBox.show();
-  });
+
   // 搜索
   $headerForm.on('submit', function (e) {
     e.preventDefault();
@@ -58,11 +45,12 @@ $(() => {
   // 联想
   $headerFormIpt.autocomplete({
     paramName: 'k',
+    formatResult: suggestion => suggestion.value,
     transformResult: response => {
       if (response) {
         return {
           suggestions: $.map(JSON.parse(response), v => ({
-            value: v.value.replace(/<\/?em>/g, ''),
+            value: v.thumb && ('<img src='+ v.thumb +'>' + v.value) || v.value,
             data: v.data
           }))
         };
@@ -76,7 +64,9 @@ $(() => {
     params: {
       'm': $headerForm.data('model')
     },
+    width: 410,
     type: 'POST',
+    preserveInput: true,
     serviceUrl: SEARCH.name,
     onSelect: val => val.data && window.open(val.data)
   });

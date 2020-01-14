@@ -76,11 +76,11 @@
         {% endif %}
       </div>
       <div>
-        <ul class="active clearfix">
-          {{ component.template(newTemplate | slice(0,8)) }}
+        <ul class="active template clearfix">
+          {{ component.templates(newTemplate | slice(0,8)) }}
         </ul>
-        <ul class="clearfix">
-          {{ component.template(newTemplate | slice(8,8)) }}
+        <ul class="template clearfix">
+          {{ component.templates(newTemplate | slice(8,8)) }}
         </ul>
       </div>
     </section>
@@ -98,8 +98,8 @@
         <h3>精选模板</h3>
         <a href="/mblist/0_0_1.html">更多 →</a>
       </div>
-      <ul class="active clearfix">
-        {{ component.template(selectedTemplate) }}
+      <ul class="active template clearfix">
+        {{ component.templates(selectedTemplate) }}
       </ul>
     </section>
   </div>

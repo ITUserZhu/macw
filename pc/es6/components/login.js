@@ -206,7 +206,7 @@ class Login {
 
   // 第三方登录
   thirdLogin(e) {
-    let type = $(e.target).closest('span').data('type'),
+    let type = $(e.target).closest('.third-login').data('type'),
       newWindow;
 
     let thirdUrl = type == 'wx' ? LOGIN_APIS.wx_login : LOGIN_APIS.qq_login;

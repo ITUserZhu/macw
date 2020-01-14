@@ -105,17 +105,11 @@
 		<div class="container">
 			<div class="section-title">
 				<h2>精品应用</h2>
-				<div class="boutique-app_type">
-					<span class="active">软件</span>
-					<span>游戏</span>
-				</div>
+        <a href="/list/">更多应用 →</a>
 			</div>
 			<div class="boutique-app_wrap">
-				<ul class="clearfix active">
-					{{ component.soft(recommend_mac_soft) }}
-				</ul>
 				<ul class="clearfix">
-					{{ component.soft(recommend_mac_game) }}
+					{{ component.soft(recommend_mac_soft) }}
 				</ul>
 			</div>
 		</div>
@@ -165,7 +159,7 @@
 					<div class="rank-title_l"><a href="/rank/soft.html">软件<p>TOP 5</p></a>
 					</div>
 					<div class="rank-title_m">排行榜</div>
-					<div class="rank-title_r"><a href="/rank/game.html">游戏<p>TOP 5</p></a>
+					<div class="rank-title_r"><a href="/rank/soft.html">软件<p>TOP 10</p></a>
 					</div>
 					<div class="lines">
 						<i></i>
@@ -181,7 +175,7 @@
 					</div>
 				</div>
 				<ul class="rank-warp_soft">
-					{% for item in rank_soft %}
+					{% for item in rank_soft | slice(0, 5) %}
 					<li>
 						<a href="{{ item.url }}">
 							<div class="img-bg"><img src="{{ item.thumb }}"></div>
@@ -197,7 +191,7 @@
 					{% endfor %}
 				</ul>
 				<ul class="rank-warp_game">
-					{% for item in rank_game %}
+					{% for item in rank_soft | slice(5, 5) %}
 					<li>
 						<a href="{{ item.url }}">
 							<div class="img-bg"><img src="{{ item.thumb }}"></div>

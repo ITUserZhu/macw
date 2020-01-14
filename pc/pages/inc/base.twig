@@ -27,8 +27,29 @@
 
       <div class="header-other">
         <div class="header-search-login">
-
-          <form id="header-form" data-model="{% block search_type %}all{% endblock %}">
+          {% set search_arr = [
+            {type: 'mac', name: '应用'},
+            {type: 'plugin', name: '插件'},
+            {type: 'template', name: '模板'},
+            {type: 'wallpaper', name: '壁纸'},
+            {type: 'article', name: '文章'},
+            {type: 'special', name: '专题'}
+          ] %}
+          <form id="header-form">
+            <div class="search-type">
+              {% if active not in search_arr | column('type') %}
+              <span>综合</span>
+              {% endif %}
+              {% for item in search_arr if item.type == active %}
+                <span>{{ item.name }}</span>
+              {% endfor %}
+              <ul class="search-type-box">
+                <li {% if active not in search_arr | column('type')  %}class="active"{% endif %} data-model="all">综合</li>
+                {% for item in search_arr %}
+                <li {% if item.type == active %}class="active"{% endif %} data-model="{{ item.type }}">{{ item.name }}</li>
+                {% endfor %}
+              </ul>
+            </div>
             <input type="text" placeholder="请输入搜索内容…">
             <button>
               <i class="icon-search2">

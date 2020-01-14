@@ -6,7 +6,8 @@
  */
 @import 'components/common';
 @import 'modules/soft-list';
-@import 'modules/template-list';
+@import 'modules/templates-list';
+@import 'modules/plugin-list';
 
 h1 {
   font-size: 26px;
@@ -52,7 +53,13 @@ section {
 
   &.rank-plugin {
     ul li {
-      .template-list;
+      .plugin-list;
+    }
+  }
+
+  &.rank-templates {
+    ul li {
+      .templates-list;
     }
   }
 

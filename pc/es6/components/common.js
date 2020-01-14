@@ -23,6 +23,8 @@ import {
   SEARCH
 } from '../api';
 
+import {toggleActive} from '../util';
+
 $(() => {
   // 头部登录注册
   const $loginBtn = $('.header-login_btns').children('button');
@@ -33,13 +35,27 @@ $(() => {
 
   // 头部搜索切换与联想
   const $headerForm = $('#header-form'),
+    $headerSearchType = $headerForm.find('.search-type'),
     $headerFormIpt = $headerForm.find('input');
+
+  $headerSearchType.hover(function () {
+    $(this).find('ul').show();
+  }, function () {
+    $(this).find('ul').hide();
+  })
+
+  $headerForm.on('click', 'li', function () {
+    let val = $(this).text();
+    $headerForm.find('.search-type span').text(val);
+    $headerForm.find('ul').hide();
+    toggleActive($(this));
+  })
 
   // 搜索
   $headerForm.on('submit', function (e) {
     e.preventDefault();
     let _val = $(this).find('input').val(),
-      _model = $(this).data('model').trim() || 'all';
+      _model = $(this).find('li.active').data('model');
     commonSearch(_val, _model);
   });
   // 联想
@@ -62,7 +78,7 @@ $(() => {
 
     },
     params: {
-      'm': $headerForm.data('model')
+      'm': $headerForm.find('li.active').data('model')
     },
     width: 410,
     type: 'POST',

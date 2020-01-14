@@ -16,6 +16,8 @@ import './plugins/wallpaper';
 import {
   toggleActive
 } from './util';
+// 引入视频播放功能
+import VideoPlay from './components/video-play';
 
 $(function () {
   // 轮播图
@@ -69,12 +71,15 @@ $(function () {
     toggleActive([$(this), $articleUl.eq(_index)]);
   })
 
-  // 精品应用
-  const $boutiqueAppType = $('.boutique-app_type');
-  const $boutiqueAppWrap = $('.boutique-app_wrap').children('ul');
+  // 最新视频鼠标功能
+  const $videos = $('.newest-video_wrap').find('ul');
 
-  $boutiqueAppType.on('click', 'span', function () {
-    let _index = $(this).index();
-    toggleActive([$(this), $boutiqueAppWrap.eq(_index)]);
-  });
+  new VideoPlay($videos, {
+    item: 'li',
+    fade: true,
+    oftX: 5,
+    conCallback(src) {
+      return `<video autoplay muted loop><source src="${ src }" type="video/mp4">您的浏览器不支持html5播放器</video>`;
+    }
+  })
 });

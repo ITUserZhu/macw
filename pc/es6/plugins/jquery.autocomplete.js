@@ -543,6 +543,7 @@
                 ajaxSettings;
 
             options.params[options.paramName] = q;
+            options.params.m = that.el.prev().find('li.active').data('model');
 
             if (options.onSearchStart.call(that.element, options.params) === false) {
                 return;

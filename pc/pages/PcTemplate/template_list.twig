@@ -6,10 +6,6 @@
 <link rel="stylesheet" href="css/list.min.css">
 {% endblock %}
 
-
-{% block search_type %}template{% endblock %}
-
-
 {% block content %}
 <main>
   <div class="container">
@@ -69,8 +65,8 @@
       </div>
     </section>
     <section class="list-wrap">
-      <ul class="template clearfix">
-        {{ component.template(template_data) }}
+      <ul class="templates clearfix">
+        {{ component.templates(template_data) }}
       </ul>
     </section>
     {{ pagi.pagi(total_num, page, 16, '/mblist/' ~ id ~'_' ~ vip ) }}

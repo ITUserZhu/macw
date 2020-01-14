@@ -15,6 +15,7 @@
 @import 'modules/video-play';
 @import "modules/video-list";
 @import "modules/material-list";
+@import "modules/video-play-plugin";
 
 main {
   padding-bottom: 0;
@@ -289,30 +290,10 @@ section {
         margin-left: -15px;
       }
 
-      span {
-        display: inline-block;
-        margin-left: 60px;
-        color: #999;
-        cursor: pointer;
-
-        &.active {
-          color: @theme-color;
-        }
-
-        &:first-child {
-          margin-left: 0;
-        }
-      }
     }
 
     .boutique-app_wrap {
       ul {
-        display: none;
-
-        &.active {
-          display: block;
-        }
-
         li {
           .soft-list;
         }
@@ -339,6 +320,9 @@ section {
 
       li {
         .templates-list;
+        &:nth-child(-n+4) {
+          margin-top: 0;
+        }
       }
     }
   }
@@ -356,6 +340,12 @@ section {
 
       li {
         .article-list;
+        .shadow;
+        border: none;
+        padding: 15px;
+        margin-right: 24px;
+        width: 588px;
+        margin-bottom: 24px;
       }
     }
 

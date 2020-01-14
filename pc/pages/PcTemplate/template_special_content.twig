@@ -5,10 +5,6 @@
 <link rel="stylesheet" href="css/topic-content.min.css">
 {% endblock %}
 
-
-{% block search_type %}special{% endblock %}
-
-
 {% block content %}
 <main>
   <div class="container">
@@ -28,8 +24,8 @@
       </div>
     </section>
     <section class="content-list">
-      <ul class="template clearfix">
-        {{ component.template(special_content) }}
+      <ul class="templates clearfix">
+        {{ component.templates(special_content) }}
       </ul>
     </section>
     {% if article_info %}

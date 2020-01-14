@@ -295,8 +295,7 @@
             {% if type %}
               <em class="{{ type }}">{{ type == 'ae'? 'AE模板': type == 'pr'? 'PR模板': '视频素材' }}</em>
             {% else %}
-              {% set randomNums = random(2) %}
-              <em class="{{ randomNums == 0 ? 'ae': randomNums == 1 ? 'pr': 'v'}}">{{ item.cate_name }}</em>
+              <em class="{{ item.type }}">{{ item.cate_name }}</em>
             {% endif %}
             <span><i class="icon-video"></i>{{ item.time }}</span>
           </p>

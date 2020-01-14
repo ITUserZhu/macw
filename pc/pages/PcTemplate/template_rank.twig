@@ -5,9 +5,6 @@
 <link rel="stylesheet" href="css/rank.min.css">
 {% endblock %}
 
-
-{% block search_type %}template{% endblock %}
-
 {% block content %}
 <main>
   <div class="container">
@@ -19,17 +16,17 @@
     </div>
     <h1>排行榜单</h1>
     <div class="rank-nav">
-      <a href="/rank/soft.html">软件</a>
-      <a href="/rank/game.html">游戏</a>
+      <a href="/rank/soft.html">应用</a>
+{#      <a href="/rank/game.html">游戏</a>#}
       <a href="/rank/cj.html">插件</a>
       <a href="/rank/mb.html" class="active">模板</a>
     </div>
-    <section class="rank-plugin">
+    <section class="rank-templates">
       <ul class="toggle active clearfix">
-        {{ component.template(rank_info | slice(0, 20)) }}
+        {{ component.templates(rank_info | slice(0, 20)) }}
       </ul>
       <ul class="toggle clearfix">
-        {{ component.template(rank_info | slice(20, 20)) }}
+        {{ component.templates(rank_info | slice(20, 20)) }}
       </ul>
       {% if rank_info | length > 20 %}
       <div class="rank-pagi">

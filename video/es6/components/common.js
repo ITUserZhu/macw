@@ -11,6 +11,8 @@ import {
 } from './login'
 // 判断登录状态模块
 import './login-status';
+// 引入搜索联想
+import '../plugins/jquery.autocomplete';
 // 搜索
 import {
   commonSearch
@@ -28,22 +30,53 @@ $(function () {
   const $headerSearchBtn = $('.header-search'),
     $headerSearchBox = $('.header-search-box'),
     $headerBox = $('.header'),
-    $headerForm = $('#header-form');
+    $headerForm = $('#header-form'),
+    $headerIpt = $headerForm.find('input');
 
   $headerSearchBtn.on('click', function () {
     $headerSearchBox.show();
     $headerBox.hide();
+    $headerIpt.focus();
   });
 
   $headerSearchBox.on('click', '.search-close', function () {
     $headerSearchBox.hide();
     $headerBox.show();
+    $headerIpt.val('');
   });
 
   $headerForm.on('submit', function (e) {
     e.preventDefault();
     let _val = $(this).find('input').val();
     commonSearch(_val);
+  });
+
+  $headerIpt.autocomplete({
+    paramName: 'k',
+    formatResult: suggestion => suggestion.value,
+    transformResult: response => {
+      if (response) {
+        return {
+          suggestions: $.map(JSON.parse(response), v => ({
+            value: v.thumb && ('<img src='+ v.thumb +'>' + v.value) || v.value,
+            data: v.data
+          }))
+        };
+      } else {
+        return {
+          suggestions: {}
+        }
+      }
+
+    },
+    params: {
+      'm': 'video'
+    },
+    width: 1040,
+    type: 'POST',
+    preserveInput: true,
+    serviceUrl: 'https://www.macw.com/api/search_associate',
+    onSelect: val => val.data && window.open(val.data)
   });
 });
 

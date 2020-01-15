@@ -19,13 +19,42 @@ import VideoPlay from './components/video-play';
 
 $(function () {
   // 头部搜索
-  const $searchForm = $('#video-search');
+  const $searchForm = $('#video-search'),
+    $searchFormIpt = $searchForm.find('input');
 
   $searchForm.on('submit', function (e) {
     e.preventDefault();
     let _val = $(this).find('input').val();
     commonSearch(_val);
-  })
+  });
+
+  $searchFormIpt.autocomplete({
+    paramName: 'k',
+    formatResult: suggestion => suggestion.value,
+    transformResult: response => {
+      if (response) {
+        return {
+          suggestions: $.map(JSON.parse(response), v => ({
+            value: v.thumb && ('<img src='+ v.thumb +'>' + v.value) || v.value,
+            data: v.data
+          }))
+        };
+      } else {
+        return {
+          suggestions: {}
+        }
+      }
+
+    },
+    params: {
+      'm': 'video'
+    },
+    width: 630,
+    type: 'POST',
+    preserveInput: true,
+    serviceUrl: 'https://www.macw.com/api/search_associate',
+    onSelect: val => val.data && window.open(val.data)
+  });
   // 首显轮播
   const $videoInfos = $('.index-infos-wrap').children('.video-info');
   let $videosWrap, $videos;

@@ -58,6 +58,7 @@ $(function () {
     params: {
       'm': 'pic'
     },
+    deferRequestBy: 500,
     type: 'POST',
     preserveInput: true,
     serviceUrl: 'https://www.macw.com/api/search_associate',

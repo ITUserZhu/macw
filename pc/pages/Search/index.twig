@@ -68,7 +68,7 @@
         <li>
           <p class="title">
             <a href="{{ item.url }}" target="_blank">
-              <img src="{{ item.thumb }}" alt="{{ item.title | raw }}">
+              <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
               {{ item.title | raw }}
               <span class="soft">应用</span>
             </a>
@@ -87,7 +87,7 @@
               <span class="article">资讯</span>
             </a>
           </p>
-          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | raw }}"></div>
+          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | striptags }}"></div>
           <div class="con">
             <p class="desc">{{ item.description | raw }}</p>
             <p class="time">
@@ -104,7 +104,7 @@
               <span class="plugin">插件</span>
             </a>
           </p>
-          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | raw }}"></div>
+          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | striptags }}"></div>
           <div class="con">
             <p class="desc">{{ item.description | raw }}</p>
             <p class="time">
@@ -121,7 +121,7 @@
               <span class="bz">壁纸</span>
             </a>
           </p>
-          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | raw }}"></div>
+          <div class="img fl"><img src="{{ item.thumb | default(item.multi_map[0]) }}" alt="{{ item.title | striptags }}"></div>
           <div class="con">
             <p class="desc">{{ item.description | raw }}</p>
             <p class="time">
@@ -138,7 +138,7 @@
               <span class="templete">模板</span>
             </a>
           </p>
-          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | raw }}"></div>
+          <div class="img fl"><img src="{{ item.thumb }}" alt="{{ item.title | striptags }}"></div>
           <div class="con">
             <p class="desc">{{ item.description | raw }}</p>
             <p class="time">

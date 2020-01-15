@@ -46,6 +46,7 @@ $(function () {
       }
 
     },
+    deferRequestBy: 500,
     params: {
       'm': 'pic'
     },

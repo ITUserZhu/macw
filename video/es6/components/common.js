@@ -72,6 +72,7 @@ $(function () {
     params: {
       'm': 'video'
     },
+    deferRequestBy: 500,
     width: 1040,
     type: 'POST',
     preserveInput: true,

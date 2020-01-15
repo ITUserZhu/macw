@@ -307,12 +307,12 @@ $(() => {
           <a href="{{ url }}">
             <div class="img-wrap">
               <div class="img">
-                <img src="{{ thumb }}">
-              </div>
+              <img src="{{ thumb }}">
+            </div>
             </div>
             <div class="con">
               <p class="title">{{ title }}</p>
-              <span class="btn">下载</span>
+              <span class="btn">立即下载 &gt;</span>
             </div>
           </a>
         </li>

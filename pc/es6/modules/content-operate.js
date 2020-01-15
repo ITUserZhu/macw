@@ -165,6 +165,7 @@ $(function () {
 
   $support.on('click', function () {
     let num = $(this).find('em').text() / 1,
+      isWallpaper = $(this).find('em').text() == '+1',
       $this = $(this);
     $.ajax({
       url: CONENT_APIS.support,
@@ -175,7 +176,11 @@ $(function () {
       },
       success: function (res) {
         if (res.code == 200) {
-          $this.find('em').text(num + 1)
+          if(isWallpaper) {
+            $this.addClass('active')
+          } else {
+            $this.find('em').text(num + 1);
+          }
         } else {
           alertBox(res.msg)
         }

@@ -223,13 +223,17 @@
 <!-- 专题软件 -->
 {% macro topics(data) %}
 {% for item in data %}
-<li><a href="{{ item.url }}" title="{{ item.title }}">
+<li><a href="{{ item.url }}" title="{{ item.title | striptags }}">
 		<div class="imgs">
-			{% for v in item.thumb_arr %}
-			<img src="{{ v }}">
-			{% endfor %}
+      {% if item.thumb_arr %}
+        {% for v in item.thumb_arr %}
+        <img src="{{ v }}">
+        {% endfor %}
+      {% else %}
+      <img class="img-only" src="{{ item.thumbs | default(item.thumb) }}">
+      {% endif %}
 		</div>
-		<p class="title">{{ item.title }}</p>
+		<p class="title">{{ item.title | raw }}</p>
 		<p class="desc">{{ item.description }}</p>
 	</a></li>
 {% endfor %}

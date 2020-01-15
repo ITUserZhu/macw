@@ -7,6 +7,7 @@
 @import 'components/common';
 @import 'modules/soft-list';
 @import 'modules/template-list';
+@import 'modules/plugin-list';
 @import 'modules/lottery';
 
 .fl {
@@ -318,14 +319,26 @@ article {
             }
           }
         }
+        div.plugin {
+          li {
+            .plugin-list;
+          }
+        }
 
+        div.template {
+          li {
+            .template-list;
+            &:nth-child(-n+4) {
+              margin-top: 0;
+            }
+          }
+        }
         div.plugin,
         div.template {
           li {
             background-color: #fff;
             position: relative;
-            .template-list;
-            margin-right: 10px;
+            margin-right: 20px;
             width: 265px;
 
             &:hover {

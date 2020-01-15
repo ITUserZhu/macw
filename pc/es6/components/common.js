@@ -58,6 +58,7 @@ $(() => {
       _model = $(this).find('li.active').data('model');
     commonSearch(_val, _model);
   });
+
   // 联想
   $headerFormIpt.autocomplete({
     paramName: 'k',
@@ -75,19 +76,16 @@ $(() => {
           suggestions: {}
         }
       }
-
     },
     params: {
       'm': $headerForm.find('li.active').data('model')
     },
-    width: 410,
+    deferRequestBy: 500,
     type: 'POST',
     preserveInput: true,
     serviceUrl: SEARCH.name,
     onSelect: val => val.data && window.open(val.data)
   });
-
-
 
   // 侧边栏生成
   new SideBar({

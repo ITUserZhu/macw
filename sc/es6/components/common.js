@@ -11,10 +11,13 @@ import {
 } from './login'
 // 判断登录状态模块，动态处理收藏与购物车
 import './login-status';
+// 引入搜索联想
+import '../plugins/jquery.autocomplete';
 // 搜索
 import {
   commonSearch
 } from '../util';
+import {SEARCH} from "../../../pc/es6/api";
 
 $(function () {
   // 头部登录注册
@@ -25,11 +28,40 @@ $(function () {
   });
 
   // 头部搜索
-  const $headerForm = $('#header-bot_form');
+  const $headerForm = $('#header-bot_form'),
+    $headerIpt = $headerForm.find('input');
+
   $headerForm.on('submit', function (e) {
     e.preventDefault();
     let _val = $(this).find('input').val();
     commonSearch(_val);
+  });
+
+  $headerIpt.autocomplete({
+    paramName: 'k',
+    formatResult: suggestion => suggestion.value,
+    transformResult: response => {
+      if (response) {
+        return {
+          suggestions: $.map(JSON.parse(response), v => ({
+            value: v.thumb && ('<img src='+ v.thumb +'>' + v.value) || v.value,
+            data: v.data
+          }))
+        };
+      } else {
+        return {
+          suggestions: {}
+        }
+      }
+
+    },
+    params: {
+      'm': 'pic'
+    },
+    type: 'POST',
+    preserveInput: true,
+    serviceUrl: 'https://www.macw.com/api/search_associate',
+    onSelect: val => val.data && window.open(val.data)
   });
 });
 

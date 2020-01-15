@@ -20,11 +20,39 @@ import {
 
 $(function () {
   // 头部搜索
-  const $indexSearch = $('#index-search');
+  const $indexSearch = $('#index-search'),
+    $indexSearchIpt = $indexSearch.find('input');
   $indexSearch.on('submit', function (e) {
     e.preventDefault();
     let _val = $(this).find('input').val();
     commonSearch(_val);
+  });
+
+  $indexSearchIpt.autocomplete({
+    paramName: 'k',
+    formatResult: suggestion => suggestion.value,
+    transformResult: response => {
+      if (response) {
+        return {
+          suggestions: $.map(JSON.parse(response), v => ({
+            value: v.thumb && ('<img src='+ v.thumb +'>' + v.value) || v.value,
+            data: v.data
+          }))
+        };
+      } else {
+        return {
+          suggestions: {}
+        }
+      }
+
+    },
+    params: {
+      'm': 'pic'
+    },
+    type: 'POST',
+    preserveInput: true,
+    serviceUrl: 'https://www.macw.com/api/search_associate',
+    onSelect: val => val.data && window.open(val.data)
   });
 
   // banner轮播

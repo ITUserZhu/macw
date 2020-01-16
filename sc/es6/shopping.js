@@ -26,7 +26,7 @@ let trHtml = `
     </td>
     <td class="type-choose">{{ options }} </td>
     <td>{{ point }}积分</td>
-    <td><i class="icon-del"></i></td>
+    <td><i class="icon-del">X</i></td>
   </tr>`;
 
 $(function () {

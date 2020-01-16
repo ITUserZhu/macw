@@ -45,7 +45,7 @@
 					<div class="content-info_thumbs">
 						<div class="img">
 							{% if video[0] %}
-							<video src="{{ video[0] }}" title="点击查看截图"></video>
+							<video src="{{ video[0] }}" preload="metadata" title="点击查看截图"></video>
 							{% else %}
 							<img src="{{ images[0] | default(mac_content.thumb) }}" title="点击查看截图">
 							{% endif %}
@@ -128,7 +128,7 @@
 					{% for i,item in video %}
 					<li class="swiper-slide">
 						<div class="img-wrap {% if i == 0 %}active{% endif %}">
-							<video src="{{ item }}" preload="meta" controls></video>
+							<video src="{{ item }}" preload="metadata" controls></video>
 							<span class="video-play"></span>
 						</div>
 					</li>
@@ -156,7 +156,7 @@
 					{% for i,item in video %}
 					<li class="swiper-slide">
 						<div class="img-wrap {% if i == 0 %}active{% endif %}">
-							<video src="{{ item }}" preload="meta"></video>
+							<video src="{{ item }}" preload="metadata"></video>
 							<span class="icon-play"></span>
 						</div>
 					</li>

@@ -95,13 +95,13 @@ $(function () {
 })();
 
 // 百度统计
-// (function() {
-//   const bdtjcode = 'a8714ebeafd6bbd7b7d4b3deb6c10797';
-//   let hm = document.createElement("script");
-//   hm.src = "https://hm.baidu.com/hm.js?" + bdtjcode;
-//   let s = document.getElementsByTagName("script")[0]; 
-//   s.parentNode.insertBefore(hm, s);
-// })();
+(function() {
+  const bdtjcode = 'a8dc54ec51e87376541aaf2c1ad569cd';
+  let hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?" + bdtjcode;
+  let s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
 
 // 360统计
 // (function(){

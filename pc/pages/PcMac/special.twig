@@ -8,7 +8,7 @@
 {% block content %}
 <main>
   <div class="container">
-    <div class="breakhumbs">
+    <div class="breadcrumbs">
       <a href="/">首页</a>
       &gt; <span>专题</span>
     </div>
@@ -48,17 +48,6 @@
             <a href="{{ item.url }}"><img src="{{ item.thumb }}"> {{ item.cate_name }}</a>
             {% endfor %}
             <a href="/z/ls_{{ soft_nav }}_1.html" class="more">更多&gt;</a>
-          </div>
-        </li>
-        <li>
-          <p class="cate-title">
-            <a href="/z/ls_{{ game_nav }}_1.html"><img src="{{ special_cate_thumb[game_nav] }}">游戏</a>
-          </p>
-          <div class="cate-second">
-            {% for item in category_data if item.parent_id == game_nav %}
-            <a href="{{ item.url }}"><img src="{{ item.thumb }}"> {{ item.cate_name }}</a>
-            {% endfor %}
-            <a href="/z/ls_{{ game_nav }}_1.html" class="more">更多&gt;</a>
           </div>
         </li>
         <li>

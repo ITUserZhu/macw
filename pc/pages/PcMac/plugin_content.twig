@@ -92,9 +92,9 @@
             </div>
             {% endif %}
           </div>
-          <div class="content-info_img">
+          {# <div class="content-info_img">
             <img src="{{ plugin_content.thumb }}" alt="{{ plugin_content.title }}">
-          </div>
+          </div> #}
         </div>
       </div>
     </div>
@@ -121,10 +121,12 @@
             {% endfor %}
           </ul>
           <div class="swiper-pagination"></div>
-          <div class="swiper-button-prev screenshot-arrow"></div>
-          <div class="swiper-button-next screenshot-arrow"></div>
         </div>
-        <div class="screenshot-wrap_small">
+        <div class="swiper-btns">
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+				</div>
+        {# <div class="screenshot-wrap_small">
           <ul>
             {% for i,item in video %}
             <li class="{% if i == 0 %}active{% endif %}"><video src="{{ item }}"></video></li>
@@ -133,7 +135,7 @@
             <li class="{% if i == 0 and video | length == 0 %}active{% endif %}"><img src="{{ item }}"></li>
             {% endfor %}
           </ul>
-        </div>
+        </div> #}
       </div>
     </div>
   </section>

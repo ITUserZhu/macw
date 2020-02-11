@@ -37,7 +37,7 @@ section {
 
   &:first-child {
     .shadow(@y: 5px, @size: 5px);
-    padding-top: 0;
+    padding: 0;
   }
 
   &:last-child {
@@ -56,8 +56,7 @@ section {
       }
 
       .content-info_con {
-        float: left;
-        width: 560px;
+        text-align: center;
 
         .infos {
           span {
@@ -104,6 +103,9 @@ section {
         }
 
         .other-recommend {
+          display: inline-block;
+          min-width: 45%;
+          padding: 0 40px;
           font-size: 0;
           line-height: 60px;
           height: 60px;
@@ -167,24 +169,52 @@ section {
 
   &.screenshot {
     .screenshot-wrap {
-      height: 470px;
+      position: relative;
+      --swiper-theme-color: @theme-color;
 
       .screenshot-swiper {
-        float: left;
-        width: 710px;
-        padding: 20px 0 50px;
+        width: 980px;
+        height: 470px;
+        padding: 65px 0px;
+        margin: 0 auto;
+
+        .swiper-pagination-bullet {
+          width: 10px;
+          height: 10px;
+          border-radius: 5px;
+
+          &.swiper-pagination-bullet-active {
+            width: 20px;
+          }
+        }
 
         li {
-          height: 400px;
+          transition: all .2s;
+
+          &.swiper-slide-active {
+            transform: scale(1.4);
+            z-index: 10;
+
+            .img-wrap {
+              overflow: visible;
+            }
+
+            .video-play {
+              opacity: 1;
+            }
+          }
 
           .video-play {
             .video-play;
             user-select: none;
+            opacity: 0;
           }
 
           video {
-            width: 100%;
             height: 100%;
+            transform: translateX(-50%);
+            margin-left: 50%;
+            background-color: #000;
           }
 
           .img-wrap {
@@ -202,8 +232,6 @@ section {
         }
 
         .swiper-pagination {
-          width: auto;
-          text-align: left;
           bottom: 5px;
 
           span {
@@ -230,6 +258,21 @@ section {
 
         .swiper-button-prev {
           right: 40px;
+        }
+      }
+
+      .swiper-btns {
+        div {
+          outline: none;
+          top: 44%;
+
+          &.swiper-button-prev {
+            left: 0;
+          }
+
+          &.swiper-button-next {
+            right: 0;
+          }
         }
       }
 

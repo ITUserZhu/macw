@@ -18,34 +18,34 @@ import {
 $(function () {
   // 轮播切换
   const $videosBtn = $('.swiper-slide').find('.video-play'),
-    videos = $videosBtn.prev('video'),
-    $checkLis = $('.screenshot-wrap_small').find('ul').children('li');
+    videos = $videosBtn.prev('video');
+    // $checkLis = $('.screenshot-wrap_small').find('ul').children('li');
 
-  let screenshotSwiper = new Swiper('.screenshot-swiper', {
+  new Swiper('.screenshot-swiper', {
+    loop: true,
+    slidesPerView: 2,
+    centeredSlides: true,
+    initialSlide: 0,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
     pagination: {
       el: '.swiper-pagination',
-      type: 'fraction',
-      renderFraction: function (currentClass, totalClass) {
-        return '<span>0<em class="' + currentClass + '"></em></span>' +
-          ' / ' +
-          '0<span class="' + totalClass + '"></span>';
-      },
+      clickable: true,
     },
+    simulateTouch: false,
     on: {
       slideChange: function () {
         videos.length && videos.get(0).pause();
-        toggleActive($checkLis.eq(this.activeIndex));
+        // toggleActive($checkLis.eq(this.activeIndex));
       },
     },
   });
 
   // 缩略图点击
-  $checkLis.on('click', function () {
-    let _index = $(this).index();
-    screenshotSwiper.slideTo(_index, 300, false)
-  });
+  // $checkLis.on('click', function () {
+  //   let _index = $(this).index();
+  //   screenshotSwiper.slideTo(_index, 300, false)
+  // });
 });

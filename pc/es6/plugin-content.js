@@ -48,4 +48,5 @@ $(function () {
   //   let _index = $(this).index();
   //   screenshotSwiper.slideTo(_index, 300, false)
   // });
+  // console.log(1);
 });

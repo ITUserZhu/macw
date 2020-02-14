@@ -11,7 +11,6 @@
       <a href="/">首页</a>
       &gt; <span>vip</span>
     </div>
-    <h1>会员中心</h1>
     <div class="vip-type">
       <span class="active">会员充值</span>
       <span>积分充值</span>
@@ -21,17 +20,23 @@
         {% for item in data if item.point_type == 2 %}
         <li class="item" data-id="{{ item.id }}" data-price="{{ item.point_money | round(0) }}"
           data-us="{{ item.usd_price | round(0) }}">
-          <p class="title">{{ item.point_name }}</p>
-          <div class="price">
-            ￥<span>{{ item.point_money | round(0) }}</span>
-            (${{ item.usd_price | round(0) }})
+          <div class="item-title">
+            <p class="title">{{ item.point_name }}</p>
+            <span>折合每天仅需{{ item.day_money }}元</span>
+            <i class="i-left"></i><i class="i-right"></i>
           </div>
-          <ol>
-            {% for v in item.remark %}
-            <li>{{ v | split('：') | first }}：<span>{{ v | split('：') | last }}</span></li>
-            {% endfor %}
-          </ol>
-          <button>立即订购</button>
+          <div class="item-infos">
+            <div class="price">
+              金额：<span>￥{{ item.point_money | round(0) }}</span>
+              (${{ item.usd_price | round(0) }})
+              <p>({{ item.point_name }})</p>
+            </div>
+            <ol {% if item.remark | length > 3 %}class="ol-fl"{% endif %}>
+              {% for v in item.remark %}
+              <li>{{ v | split('：') | first }}：<span>{{ v | split('：') | last }}</span></li>
+              {% endfor %}
+            </ol>
+          </div>
         </li>
         {% endfor %}
       </ul>
@@ -39,17 +44,23 @@
         {% for item in data if item.point_type == 1 %}
         <li class="item" data-id="{{ item.id }}" data-price="{{ item.point_money | round(0) }}"
           data-us="{{ item.usd_price | round(0) }}">
-          <p class="title">{{ item.point_name }}</p>
-          <div class="price">
-            ￥<span>{{ item.point_money | round(0) }}</span>
-            (${{ item.usd_price | round(0) }})
+          <div class="item-title">
+            <p class="title">{{ item.point_name }}</p>
+            <span>折合1积分仅需{{ (item.point_money / item.point_num) | round(2) }}元</span>
+            <i class="i-left"></i><i class="i-right"></i>
           </div>
-          <ol>
-            {% for v in item.remark %}
-            <li>{{ v | split('：') | first }}：<span>{{ v | split('：') | last }}</span></li>
-            {% endfor %}
-          </ol>
-          <button>立即订购</button>
+          <div class="item-infos">
+            <div class="price">
+              金额：<span>￥{{ item.point_money | round(0) }}</span>
+              (${{ item.usd_price | round(0) }})
+              <p>({{ item.point_name }})</p>
+            </div>
+            <ol {% if item.remark | length > 3 %}class="ol-fl"{% endif %}>
+              {% for v in item.remark %}
+              <li>{{ v | split('：') | first }}：<span>{{ v | split('：') | last }}</span></li>
+              {% endfor %}
+            </ol>
+          </div>
         </li>
         {% endfor %}
       </ul>

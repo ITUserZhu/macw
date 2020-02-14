@@ -1,0 +1,52 @@
+.topic-article() {
+  float: left;
+  width: 285px;
+  height: 260px;
+  margin-right: 20px;
+  margin-top: 20px;
+  padding: 20px 30px;
+  position: relative;
+  text-align: center;
+  .shadow;
+
+  &:nth-child(-n+4) {
+    margin-top: 0;
+  }
+
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+
+  &:hover {
+    .title, .num {
+      color: @theme-color;
+    }
+  }
+
+  .img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 10px;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .title {
+    .text-ovh;
+    line-height: 30px;
+    font-size: 16px;
+  }
+
+  .desc {
+    line-height: 1.8;
+    height: 3.6em;
+    overflow: hidden;
+    color: #999;
+    margin-top: 5px;
+  }
+}

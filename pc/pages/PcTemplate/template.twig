@@ -12,44 +12,6 @@
       <a href="/">首页</a>
       &gt; <span>模板</span>
     </div>
-    {# <section class="banner">
-      <div class="banner-infos swiper-container" id="banner-infos">
-        <ul class="swiper-wrapper">
-          {% for i,item in IndexShowTemplate %}
-          <li class="swiper-slide">
-            <a href="{{ item.url }}">
-              <div class="infos">
-                <p class="types">
-                  <span>{{ item.cate_name }}</span>
-                </p>
-                <p class="title">{{ item.title }}
-                  {{ item.verion }}</p>
-                <div class="btns">
-                  <button>
-                    <i class="icon-download"></i>下载</button>
-                  <button>
-                    <i class="icon-collect"></i>收藏</button>
-                </div>
-              </div>
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="banner-wrap">
-        <div class="banner-imgs swiper-container" id="banner-imgs">
-          <ul class="swiper-wrapper">
-            {% for i,item in IndexShowTemplate %}
-            <li class="swiper-slide">
-              <div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="swiper-button-prev swiper-btn"></div>
-        <div class="swiper-button-next swiper-btn"></div>
-      </div>
-    </section> #}
     <section class="plugin-classify">
       <div class="sec-title">
         <h2>浏览分类</h2>
@@ -86,8 +48,8 @@
         <h3>精选专题</h3>
         <a href="/z/lmb_1_1.html">更多专题 →</a>
       </div>
-      <ul class="clearfix">
-        {{ component.topic(templateSpecialData) }}
+      <ul class="template clearfix">
+        {{ component.topic_template(templateSpecialData) }}
       </ul>
     </section>
     <section class="newest">

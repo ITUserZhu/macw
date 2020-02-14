@@ -34,12 +34,38 @@
     </section>
     <section class="necessary">
       {% for item in cate_info %}
+      {% if item.model_id == 20 %}
       <h2><img src="{{ item.thumb }}">{{ item.cate_name }}</h2>
-      <ul class="clearfix">
+      <ul class="wallpaper clearfix">
+        {{ component.wallpaper(item.data) }}
+      </ul>
+      {% elseif item.model_id == 18 %}
+      <h2><img src="{{ item.thumb }}">{{ item.cate_name }}</h2>
+      <ul class="video clearfix">
+        {{ component.video_list(item.data) }}
+      </ul>
+      {% elseif item.model_id == 19 %}
+      <h2><img src="{{ item.thumb }}">{{ item.cate_name }}</h2>
+      <ul class="template clearfix">
+        {{ component.template(item.data) }}
+      </ul>
+      {% elseif item.model_id == 17 %}
+      <h2><img src="{{ item.thumb }}">{{ item.cate_name }}</h2>
+      <ul class="plugin clearfix">
+        {{ component.plugin(item.data) }}
+      </ul>
+      {% else %}
+      <h2><img src="{{ item.thumb }}">{{ item.cate_name }}</h2>
+      <ul class="soft clearfix">
         {{ component.necessary(item.data) }}
       </ul>
+      {% endif %}
       {% endfor %}
     </section>
   </div>
 </main>
+{% endblock %}
+
+{% block script %}
+<script src="js/necessary-install.min.js"></script>
 {% endblock %}

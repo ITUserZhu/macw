@@ -11,22 +11,22 @@
     <div class="breadcrumbs">
       <a href="/">首页</a>
       &gt; <a href="/z/">专题</a>
-      &gt; <a href="{{ category_data.parent_cate_url }}">{{ category_data.parent_cate_name }}</a>
+      &gt; <a href="/z/lwz_{{ category_data.parent_id }}_1.html">文章</a>
       &gt; <a href="{{ category_data.url }}">{{ category_data.cate_name }}</a>
-      &gt; <span>{{ info.title }}</span>
+      &gt; <span>{{ special_info.title }}</span>
     </div>
     <section class="info">
-      <h1>{{ info.title }}</h1>
+      <h1>{{ special_info.title }}</h1>
       <p class="desc">{{ info.description }}</p>
-      <p class="num">共{{ special_count }}款软件</p>
+      <p class="num">共{{ special_content | length }}篇文章</p>
       <div class="btns">
-        <a href="{{ category_data.parent_cate_url }}">专题列表</a>
+        <a href="/z/lwz_{{ category_data.parent_id }}_1.html">专题列表</a>
         <a href="/z/">专题首页</a>
       </div>
     </section>
     <section class="content-list">
-      <ul class="soft clearfix">
-        {{ component.soft(content_info) }}
+      <ul class="article clearfix">
+        {{ component.article(special_content) }}
       </ul>
     </section>
     {% if article_info %}

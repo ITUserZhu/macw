@@ -20,9 +20,7 @@
       {% endif %}
     </div>
     <div class="plugin-type">
-      <h1>
-        插件专题
-      </h1>
+      <h1>壁纸专题</h1>
       <a href="/z/">返回专题首页</a>
     </div>
     <nav class="topic-nav">
@@ -32,11 +30,11 @@
       {% endfor %}
     </nav>
     <section class="topic-list">
-      <ul class="plugin clearfix">
-        {{ component.topic_plugin(plugin_special_data) }}
+      <ul class="wallpaper clearfix">
+        {{ component.topic_wallpaper(wallpaper_special_data) }}
       </ul>
     </section>
-    {{ pagi.pagi(special_count, page, 20, '/z/lc_' ~ category_data.id ) }}
+    {{ pagi.pagi(special_count, page, 20, '/z/lbz_' ~ category_data.id ) }}
   </div>
 </main>
 {% endblock %}

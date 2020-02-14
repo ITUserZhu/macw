@@ -10,6 +10,11 @@
 @import 'modules/list-nav';
 
 @import 'modules/necessary';
+@import 'modules/wallpaper-list';
+@import 'modules/template-list';
+@import 'modules/plugin-list';
+@import 'modules/video-list';
+@import "modules/video-play-plugin";
 
 .list-nav {
   .list-nav_cate .list-nav_links a {
@@ -33,8 +38,38 @@ section.necessary {
   }
 
   ul {
-    li {
-      .necessary;
+    &.soft {
+      li {
+        .necessary;
+      }
+    }
+
+    &.wallpaper {
+      li {
+        .wallpaper-list;
+      }
+    }
+
+    &.video {
+      margin-top: 20px;
+      
+      li {
+        .video-list;
+      }
+    }
+
+    &.template {
+      li {
+        .template-list;
+      }
+    }
+
+    &.plugin {
+      margin-top: 20px;
+
+      li {
+        .plugin-list;
+      }
     }
   }
 }

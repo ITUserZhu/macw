@@ -5,8 +5,11 @@
  * @Last Modified time: 2019-11-19 14:03:35
  */
 @import 'components/common';
-@import 'modules/topic-list';
-@import 'modules/topics-list';
+@import 'modules/topic-plugin';
+@import 'modules/topic-soft';
+@import 'modules/topic-template';
+@import 'modules/topic-wallpaper';
+@import 'modules/topic-article';
 @import 'modules/pagination';
 
 .plugin-type {
@@ -28,14 +31,13 @@
 }
 
 .topic-nav {
-  display: flex;
-  justify-content: center;
-  flex-flow: wrap;
+  text-align: center;
   margin: 15px 0 40px;
 
   a {
     display: inline-block;
-    width: 110px;
+    min-width: 110px;
+    padding: 0 10px;
     height: 40px;
     line-height: 40px;
     text-align: center;
@@ -65,13 +67,31 @@ section.topic-list {
   ul {
     &.soft {
       li {
-        .topics-list;
+        .topic-soft;
       }
     }
 
     &.plugin {
       li {
-        .topic-list;
+        .topic-plugin;
+      }
+    }
+
+    &.template {
+      li {
+        .topic-template;
+      }
+    }
+
+    &.article {
+      li {
+        .topic-article;
+      }
+    }
+
+    &.wallpaper {
+      li {
+        .topic-wallpaper;
       }
     }
   }

@@ -10,6 +10,7 @@
 @import 'modules/templates-list';
 @import 'modules/plugin-list';
 @import 'modules/article-list';
+@import 'modules/wallpaper-list';
 
 section {
   margin-bottom: 20px;
@@ -75,10 +76,24 @@ section {
           .plugin-list;
         }
       }
+
+      &.article {
+        li {
+          .article-list;
+        }
+      }
+
+      &.wallpaper {
+        margin-top: 40px;
+
+        li {
+          .wallpaper-list;
+        }
+      }
     }
   }
 
-  &.article-list {
+  &.articles-list {
     margin-top: 50px;
 
     h2 {

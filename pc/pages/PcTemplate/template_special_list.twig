@@ -30,11 +30,11 @@
       {% endfor %}
     </nav>
     <section class="topic-list">
-      <ul class="plugin clearfix">
-        {{ component.topic(plugin_special_data) }}
+      <ul class="template clearfix">
+        {{ component.topic_template(template_special_data) }}
       </ul>
     </section>
-    {{ pagi.pagi(special_count, page, 15, '/z/lmb_' ~ category_data.id ) }}
+    {{ pagi.pagi(special_count, page, 20, '/z/lmb_' ~ category_data.id ) }}
   </div>
 </main>
 {% endblock %}

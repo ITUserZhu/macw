@@ -205,8 +205,27 @@
 {% endfor %}
 {% endmacro %}
 
-<!-- 专题 -->
-{% macro topic(data) %}
+<!-- 软件专题 -->
+{% macro topic_soft(data) %}
+{% for item in data %}
+<li><a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="imgs">
+      {% if item.thumb_arr %}
+        {% for v in item.thumb_arr %}
+        <img src="{{ v }}">
+        {% endfor %}
+      {% else %}
+      <img class="img-only" src="{{ item.thumbs | default(item.thumb) }}">
+      {% endif %}
+		</div>
+		<p class="title">{{ item.title | raw }}</p>
+		<p class="desc">{{ item.description }}</p>
+	</a></li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 插件专题 -->
+{% macro topic_plugin(data) %}
 {% for item in data %}
 <li><a href="{{ item.url }}" title="{{ item.title | striptags }}">
 		<div class="img-wrap">
@@ -220,20 +239,44 @@
 {% endfor %}
 {% endmacro %}
 
-<!-- 专题软件 -->
-{% macro topics(data) %}
+<!-- 模版专题 -->
+{% macro topic_template(data) %}
 {% for item in data %}
 <li><a href="{{ item.url }}" title="{{ item.title | striptags }}">
-		<div class="imgs">
-      {% if item.thumb_arr %}
-        {% for v in item.thumb_arr %}
-        <img src="{{ v }}">
-        {% endfor %}
-      {% else %}
-      <img class="img-only" src="{{ item.thumbs | default(item.thumb) }}">
-      {% endif %}
-		</div>
 		<p class="title">{{ item.title | raw }}</p>
+		<div class="imgs">
+			<img src="{{ item.thumb_arr[0] }}">
+			<img src="{{ item.thumb_arr[1] | default(item.thumb_arr[0]) }}">
+		</div>
+		<button>进入专题</button>
+	</a></li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 壁纸专题 -->
+{% macro topic_wallpaper(data) %}
+{% for item in data %}
+<li><a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="img">
+			<img src="{{ item.thumbs | default(item.thumb) }}">
+		</div>
+		<div class="maks">
+			<p class="title">{{ item.title }}</p>
+			<button>进入专题</button>
+		</div>
+	</a></li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 文章专题 -->
+{% macro topic_article(data) %}
+{% for item in data %}
+<li><a href="{{ item.url }}" title="{{ item.title | striptags }}">
+		<div class="img">
+			<img src="{{ item.thumbs | default(item.thumb) }}">
+		</div>
+		<p class="title">{{ item.title }}</p>
+		<p class="num">共{{ item.num }}篇文章</p>
 		<p class="desc">{{ item.description }}</p>
 	</a></li>
 {% endfor %}
@@ -318,3 +361,4 @@
     </a></li>
   {% endfor %}
 {% endmacro %}
+

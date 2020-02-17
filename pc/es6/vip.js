@@ -88,13 +88,10 @@ $(function () {
 			this.couponData.forEach(v => {
 				if (_this.defaultData.price >= v.min_consume / 1) {
 					let str = `
-						<li class="${v.coupon_point/1 == 10? 'ten': v.coupon_point/1 == 20? 'twenty': 'five'}" data-id="${v.id}" data-price="${v.coupon_point/1}">
-							<span class="use">使用中</span>
-							<div class="fl price">￥ <em>${v.coupon_point/1}</em></div>
-							<div class="time-price">
-								<p>满${v.min_consume/1}可用</p>
-								<span>${v.end_time}到期</span>
-							</div>
+						<li data-id="${v.id}" data-price="${v.coupon_point/1}">
+							<i></i>
+							<span><em>${v.coupon_point/1}</em>元代金券</span>
+							<span>(满${v.min_consume/1}可用)</span>
 						</li>`;
 					this.vipHooks.$couponWrap.append(str)
 				}

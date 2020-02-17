@@ -224,38 +224,38 @@ h1 {
 }
 
 .pay-box {
-  margin-top: 35px;
-  padding: 30px 0;
-  border: 1px solid #E8E8E8;
-
   section {
-    padding: 0 20px;
     box-sizing: border-box;
     background-color: #fff;
   }
 
   .coupon {
-    float: left;
-    width: 560px;
-    padding-bottom: 30px;
-    border-right: 1px solid #E8E8E8;
+    border: 1px solid #e8e8e8;
+    border-top: none;
+    border-bottom: none;
+    line-height: 40px;
+    padding: 25px 40px;
 
-    .title {
+    .should-pay {
+      float: left;
+      margin-right: 25px;
       font-size: 18px;
-      line-height: 60px;
 
-      em {
-        font-size: 14px;
-        color: #999;
+      span {
+        color: @money-color;
       }
+    }
 
+    .coupon-txt {
+      font-size: 16px;
+      float: left;
     }
 
     ul {
-      height: 180px;
       overflow: hidden;
       padding-right: 4px;
       overflow-y: auto;
+      max-height: 80px;
 
       &::-webkit-scrollbar-track {
         background-color: #eee;
@@ -270,179 +270,78 @@ h1 {
         background-color: @theme-color;
       }
 
-      &>p {
-        font-size: 20px;
-        text-align: center;
+      & > p {
+        font-size: 18px;
         color: #999;
-        line-height: 160px;
       }
 
       li {
+        width: 30%;
         float: left;
-        width: 49%;
-        height: 80px;
+        margin-right: 35px;
+        padding-left: 30px;
         position: relative;
-        overflow: hidden;
-        margin-right: 10px;
-        margin-top: 20px;
-        padding: 15px 0;
-        box-sizing: border-box;
-        border-radius: 5px 0 0 5px;
-        color: #fff;
+        font-size: 16px;
         cursor: pointer;
-        user-select: none;
 
-        &:before {
-          content: "";
-          position: absolute;
-          left: 5px;
-          bottom: 5px;
-          width: 5px;
-          height: 5px;
-          border-radius: 50%;
-          background-color: #fff;
-        }
-
-        &:after {
-          content: "";
-          position: absolute;
-          width: 0;
-          height: 100%;
-          top: 0px;
-          right: -4px;
-          border-right: 8px dotted #fff;
-        }
-
-        &:nth-child(2n) {
+        &:nth-child(3n) {
           margin-right: 0;
         }
 
-        &:nth-child(-n+2) {
-          margin-top: 0;
-        }
-
-        &.hundred {
-          background-color: #FFB400;
-
-          .time-price {
-            span {
-              color: #FFB400;
-            }
-          }
-        }
-
-        &.twenty {
-          background-color: #FF8939;
-
-          .time-price {
-            span {
-              color: #FF8939;
-            }
-          }
-        }
-
-        &.ten {
-          background-color: #B4AD9A;
-
-          .time-price {
-            span {
-              color: #B4AD9A;
-            }
-          }
-        }
-
-        &.five {
-          background-color: #D5B29A;
-
-          .time-price {
-            span {
-              color: #D5B29A;
-            }
-          }
-        }
-
         &.active {
-          .use {
-            display: block;
+          i {
+            border-color: @theme-color;
+            &::after {
+              opacity: 1;
+            }
           }
         }
 
-        .use {
+        i {
           position: absolute;
-          height: 18px;
-          width: 70px;
-          text-align: center;
-          background-color: @money-color;
-          line-height: 16px;
-          font-size: 12px;
-          right: -18px;
-          top: 9px;
-          transform: rotate(45deg);
-          display: none;
-        }
-
-        .price {
-          float: left;
-          height: 50px;
-          line-height: 50px;
-          width: 105px;
-          border-right: 1px dashed #fff;
-          text-align: center;
-          position: relative;
-
-          &:after {
+          left: 0;
+          top: 50%;
+          margin-top: -10px;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          border: 1px solid #999;
+          &::after {
             content: "";
             position: absolute;
-            right: -7px;
-            bottom: -22px;
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
-            background-color: #fff;
+            background-color: @theme-color;
+            top: 50%;
+            left: 50%;
+            margin-left: -6px;
+            margin-top: -6px;
+            opacity: 0;
           }
+        }
 
+        span {
+          padding-right: 10px;
           em {
-            font-size: 40px;
-            vertical-align: top;
-          }
-
-        }
-
-        .time-price {
-          span {
-            display: inline-block;
-            padding: 0 10px;
-            font-size: 12px;
-            background-color: #fff;
-            height: 20px;
-            line-height: 20px;
-            border-radius: 10px;
-            margin-top: 5px;
+            color: @money-color;
           }
         }
-
-        overflow: hidden;
-        text-align :center;
       }
     }
   }
 }
 
 .pay {
-  width: 630px;
-  height: 270px;
-  float: right;
+  border: 1px solid #e8e8e8;
+  padding-bottom: 20px;
+  text-align: center;
 
-  .should-pay {
+  .pay-tips {
     line-height: 60px;
     text-align: center;
-    font-size: 18px;
-
-    span {
-      color: @money-color;
-      font-size: 24px;
-    }
-
+    font-size: 16px;
+    
   }
 
   .ewm-box {

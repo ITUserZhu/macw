@@ -67,13 +67,14 @@
     </div>
     <div class="pay-box clearfix">
       <section class="coupon">
-        <p class="title">优惠券：<em>优惠券仅限支付宝、微信支付使用</em></p>
+        <p class="should-pay">应付金额： <span><em>98</em>元</span></p>
+        <p class="coupon-txt">可用优惠券：</p>
         <ul class="clearfix" id="coupon-wrap">
           <p>暂无优惠券</p>
         </ul>
       </section>
       <section class="pay">
-        <p class="should-pay">支付金额： <span><em>158</em>元</span></p>
+        <p class="pay-tips">请您选择一种支付方式</p>
         <div class="ewm-box">
           {% if login == 1 %}
           <div class="ewm" id="ali-pay">
@@ -113,6 +114,7 @@
     <div class="recharge-tips">
       <h3>温馨提示：</h3>
       <ul>
+        <li>优惠券仅限微信、支付宝使用</li>
         {% for item in reminder %}
         <li>{{ item }}</li>
         {% endfor %}

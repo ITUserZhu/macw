@@ -21,6 +21,7 @@
         <li class="item" data-id="{{ item.id }}" data-price="{{ item.point_money | round(0) }}"
           data-us="{{ item.usd_price | round(0) }}">
           <div class="item-title">
+            <div class="recharge-icon icon-vip-re"></div>
             <p class="title">{{ item.point_name }}</p>
             <span>折合每天仅需{{ item.day_money }}元</span>
             <i class="i-left"></i><i class="i-right"></i>
@@ -31,7 +32,7 @@
               (${{ item.usd_price | round(0) }})
               <p>({{ item.point_name }})</p>
             </div>
-            <ol {% if item.remark | length > 3 %}class="ol-fl"{% endif %}>
+            <ol {% if item.remark | length > 3 %}class="ol-fl" {% endif %}>
               {% for v in item.remark %}
               <li>{{ v | split('：') | first }}：<span>{{ v | split('：') | last }}</span></li>
               {% endfor %}
@@ -45,6 +46,7 @@
         <li class="item" data-id="{{ item.id }}" data-price="{{ item.point_money | round(0) }}"
           data-us="{{ item.usd_price | round(0) }}">
           <div class="item-title">
+            <div class="recharge-icon icon-point-re"></div>
             <p class="title">{{ item.point_name }}</p>
             <span>折合1积分仅需{{ (item.point_money / item.point_num) | round(2) }}元</span>
             <i class="i-left"></i><i class="i-right"></i>
@@ -55,7 +57,7 @@
               (${{ item.usd_price | round(0) }})
               <p>({{ item.point_name }})</p>
             </div>
-            <ol {% if item.remark | length > 3 %}class="ol-fl"{% endif %}>
+            <ol {% if item.remark | length > 3 %}class="ol-fl" {% endif %}>
               {% for v in item.remark %}
               <li>{{ v | split('：') | first }}：<span>{{ v | split('：') | last }}</span></li>
               {% endfor %}

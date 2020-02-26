@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-19 16:17:14 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-21 09:24:37
+ * @Last Modified time: 2020-02-26 14:46:35
  */
 
 @import 'components/common';
@@ -46,6 +46,7 @@ h1 {
   width: 99.99%;
   position: relative;
   border: 1px solid #EBEBEB;
+
   ul {
     height: 100px;
     background-color: @theme-color;
@@ -65,6 +66,7 @@ h1 {
 
       &:first-child {
         border-radius: 0 20px 0 0;
+
         .item-title {
           i.i-left {
             display: none;
@@ -79,6 +81,7 @@ h1 {
           &::after {
             display: none;
           }
+
           i.i-right {
             display: none;
           }
@@ -87,7 +90,11 @@ h1 {
 
       &.active {
         background-color: #fff;
-        
+
+        .recharge-icon {
+          color: @theme-color;
+        }
+
         .item-title {
           color: #333;
 
@@ -116,6 +123,15 @@ h1 {
           font-weight: 400;
         }
 
+        .recharge-icon {
+          position: absolute;
+          font-size: 44px;
+          left: 50%;
+          margin-left: -125px;
+          top: 50%;
+          margin-top: -25px;
+        }
+
         &::after {
           content: "";
           position: absolute;
@@ -128,12 +144,14 @@ h1 {
 
         i {
           display: none;
+
           &.i-right {
             position: absolute;
             right: -20px;
             bottom: -20px;
             border-bottom: 20px solid #fff;
             border-right: 20px solid transparent;
+
             &::before {
               content: "";
               position: absolute;
@@ -145,13 +163,14 @@ h1 {
               top: -20px;
             }
           }
-          
+
           &.i-left {
             position: absolute;
             left: -20px;
             bottom: -20px;
             border-bottom: 20px solid #fff;
             border-left: 20px solid transparent;
+
             &::before {
               content: "";
               position: absolute;
@@ -181,17 +200,17 @@ h1 {
           text-align: center;
           margin-right: 50px;
           margin-top: 10px;
-  
+
           span {
             font-size: 30px;
             color: @money-color;
           }
 
         }
-  
+
         ol {
           overflow: hidden;
-          
+
           &.ol-fl {
             li {
               float: left;
@@ -204,7 +223,7 @@ h1 {
             line-height: 2;
             position: relative;
             padding-left: 20px;
-  
+
             &::before {
               content: "";
               position: absolute;
@@ -270,7 +289,7 @@ h1 {
         background-color: @theme-color;
       }
 
-      & > p {
+      &>p {
         font-size: 18px;
         color: #999;
       }
@@ -291,6 +310,7 @@ h1 {
         &.active {
           i {
             border-color: @theme-color;
+
             &::after {
               opacity: 1;
             }
@@ -306,6 +326,7 @@ h1 {
           height: 20px;
           border-radius: 50%;
           border: 1px solid #999;
+
           &::after {
             content: "";
             position: absolute;
@@ -323,6 +344,7 @@ h1 {
 
         span {
           padding-right: 10px;
+
           em {
             color: @money-color;
           }
@@ -341,7 +363,7 @@ h1 {
     line-height: 60px;
     text-align: center;
     font-size: 16px;
-    
+
   }
 
   .ewm-box {

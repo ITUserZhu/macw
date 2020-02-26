@@ -25,7 +25,7 @@ const host = {
 const devType = 'pc';
 
 // 本地目录
-const filePath = 'macw/' + devType + '/';
+const filePath = 'project/' + devType + '/';
 // 生产目录
 const distResourcesPath = 'xs_cms/pub_' + devType + '/assets/';
 const distPagesPath = 'xs_cms/app/' + devType + '/view/';
@@ -88,9 +88,7 @@ export const freshHtml = cb => {
 let watchFiles = () => {
   browserSync.init({});
 
-  watch(filePath + 'less/**/*.less', {
-    delay: 500,
-  }, compileCss);
+  watch(filePath + 'less/**/*.less', compileCss);
 
   watch(filePath + 'es6/**/*.js', {
     delay: 500,

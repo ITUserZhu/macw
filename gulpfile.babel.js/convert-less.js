@@ -1,8 +1,8 @@
 /*
  * @Author: Liliang Zhu 
  * @Date: 2020-01-18 18:18:52 
- * @Last Modified by:   Liliang Zhu 
- * @Last Modified time: 2020-01-18 18:18:52 
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2020-02-26 14:50:57
  * 编译less
  */
 
@@ -30,15 +30,10 @@ import browser from 'browser-sync';
 const browserSync = browser.create();
 
 // css编译前缀
-const autoprefix = new lessAutoperfix({
-  browsers: [
-    ">0.25%",
-    "last 2 version",
-  ]
-});
+const autoprefix = new lessAutoperfix();
 
 let convertLess = (file, dist) => {
-  return src(file + 'less/*.less', {
+  return src(`${file}less/*.less`, {
       since: lastRun(convertLess, 100)
     })
     .pipe(less({
@@ -51,12 +46,12 @@ let convertLess = (file, dist) => {
     }))
     .pipe(rename(path => path.basename += '.min'))
     .pipe(rev())
-    .pipe(dest(dist + 'css'))
+    .pipe(dest(`${dist}css`))
     .pipe(rev.manifest())
-    .pipe(dest(file + 'mapjson/css'))
+    .pipe(dest(`${file}mapjson/css`))
     .pipe(browserSync.reload({
       stream: true
     }));
-}
+};
 
 export default convertLess;

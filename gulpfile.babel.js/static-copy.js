@@ -11,9 +11,8 @@ import {
   dest,
 } from 'gulp';
 
-let copyFile = (file, dist) => {
-  return src([file + 'fonts*/**', file + 'images*/**'])
+let copyFile = (file, dist) =>
+  src([`${file}fonts*/**`, `${file}images*/**`])
     .pipe(dest(dist));
-}
 
 export default copyFile;

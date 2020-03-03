@@ -30,12 +30,12 @@ const rmspaceOpen = /\%\}\s+\{\{/g;
 const rmspaceClose = /\}\}\s+\{\%/g;
 
 let convertHtml = (file, dist, basePath, host) => {
-  return src([file + 'mapjson/*/*.json', file + 'pages/**'])
+  return src([`${file}mapjson/*/*.json`, `${file}pages/**`])
     .pipe(revCollector({
       replaceReved: true,
       dirReplacements: {
-        'js': basePath + 'js/',
-        'css': basePath + 'css/'
+        'js': `${basePath}js/`,
+        'css': `${basePath}css/`
       }
     }))
     .pipe(minHtml({
@@ -53,6 +53,6 @@ let convertHtml = (file, dist, basePath, host) => {
     .pipe(browserSync.reload({
       stream: true
     }));
-}
+};
 
 export default convertHtml;

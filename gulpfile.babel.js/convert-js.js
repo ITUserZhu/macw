@@ -31,8 +31,8 @@ const browserSync = browser.create();
 import webpackConfig from '../webpack.config';
 
 let convertJs = (file, dist, host) => {
-  return src(file + 'es6/*.js')
-    .pipe(changed(dist + 'js', {
+  return src(`${file}es6/*.js`)
+    .pipe(changed(`${dist}js`, {
       extension: '.js'
     }))
     .pipe(named())
@@ -41,12 +41,12 @@ let convertJs = (file, dist, host) => {
     .pipe(rev())
     .pipe(replace(/__host/g, host.hostName))
     .pipe(replace(/__netname/g, host.hostTitle))
-    .pipe(dest(dist + 'js'))
+    .pipe(dest(`${dist}js`))
     .pipe(rev.manifest())
-    .pipe(dest(file + 'mapjson/js'))
+    .pipe(dest(`${file}mapjson/js`))
     .pipe(browserSync.reload({
       stream: true
     }));
-}
+};
 
 export default convertJs;

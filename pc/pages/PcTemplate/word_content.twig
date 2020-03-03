@@ -80,8 +80,8 @@
         {% if resRelatedGroup_soft[19] %}
         <section class="rel-words">
           <div class="sec-title">
-            <h2>相关Word</h2>
-            <a href="/mblist/2_0_1.html">查看更多 &gt;&gt;</a>
+            <h2>相关{% if template_content.parent_id == 5 %}思维导图{% else %}word{% endif %}</h2>
+            <a href="/mblist/{{ template_content.parent_id }}_0_1.html">查看更多 &gt;&gt;</a>
           </div>
           <ul class="clearfix">
             {{ component.word(resRelatedGroup_soft[19]) }}

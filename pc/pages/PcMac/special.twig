@@ -18,8 +18,8 @@
         <a class="active" href="/z/ls_{{ soft_nav }}_1.html"><img src="{{ special_cate_thumb[soft_nav] }}">软件</a>
         <a href="/z/lc_{{ plugin_nav }}_1.html"><img src="{{ special_cate_thumb[plugin_nav] }}">插件</a>
         <a href="/z/lmb_{{ template_nav }}_1.html"><img src="{{ special_cate_thumb[template_nav] }}">模板</a>
-        {# <a href="/z/lmb_{{ wallpaper_nav }}_1.html"><img src="{{ special_cate_thumb[wallpaper_nav] }}">壁纸</a> #}
         <a href="/z/lwz_{{ article_nav }}_1.html"><img src="{{ special_cate_thumb[article_nav] }}">文章</a>
+         <a href="/z/lbz_{{ wallpaper_nav }}_1.html"><img src="{{ special_cate_thumb[wallpaper_nav] }}">壁纸</a>
       </div>
       <ul>
         <li class="active">
@@ -37,13 +37,13 @@
           <a href="{{ item.url }}"><img src="{{ item.thumb }}"> {{ item.cate_name }}</a>
           {% endfor %}
         </li>
-        {# <li>
-          {% for item in category_data if item.parent_id == wallpaper_nav %}
-          <a href="{{ item.url }}"><img src="{{ item.thumb }}"> {{ item.cate_name }}</a>
-          {% endfor %}
-        </li> #}
         <li>
           {% for item in category_data if item.parent_id == article_nav %}
+          <a href="{{ item.url }}"><img src="{{ item.thumb }}"> {{ item.cate_name }}</a>
+          {% endfor %}
+        </li>
+        <li>
+          {% for item in category_data if item.parent_id == wallpaper_nav %}
           <a href="{{ item.url }}"><img src="{{ item.thumb }}"> {{ item.cate_name }}</a>
           {% endfor %}
         </li>
@@ -79,16 +79,6 @@
         {{ component.topic_template(template_special_data) }}
       </ul>
     </section>
-    <section class="boutique-wallpaper">
-      <div class="sec-title">
-        <h2>最新壁纸专题</h2>
-        <a href="/z/lbz_{{ wallpaper_nav }}_1.html">更多专题 →</a>
-      </div>
-
-      <ul class="clearfix">
-        {{ component.topic_wallpaper(wallpaper_special_data) }}
-      </ul>
-    </section>
     <section class="boutique-article">
       <div class="sec-title">
         <h2>最新文章专题</h2>
@@ -97,6 +87,16 @@
 
       <ul class="clearfix">
         {{ component.topic_article(article_special_data) }}
+      </ul>
+    </section>
+    <section class="boutique-wallpaper">
+      <div class="sec-title">
+        <h2>最新壁纸专题</h2>
+        <a href="/z/lbz_{{ wallpaper_nav }}_1.html">更多专题 →</a>
+      </div>
+
+      <ul class="clearfix">
+        {{ component.topic_wallpaper(wallpaper_special_data) }}
       </ul>
     </section>
   </div>

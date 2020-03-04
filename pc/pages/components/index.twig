@@ -27,7 +27,7 @@
 <li>
 	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
 		<div class="img-wrap">
-			<div class="img">
+			<div class="img {% if item.type == 'uncut' %}uncut{% endif %}">
 				<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
 			</div>
 		</div>
@@ -133,7 +133,7 @@
     <li class="template">
       <a href="{{ item.url }}" title="{{ item.title | striptags }}">
         <div class="img-wrap">
-          <div class="img">
+          <div class="img {% if item.type == 'uncut' %}uncut{% endif %}">
             <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
           </div>
         </div>

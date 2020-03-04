@@ -50,6 +50,18 @@
       overflow: hidden;
       background-color: #eee;
 
+      &.uncut {
+        position: relative;
+        img {
+          position: absolute;
+          width: auto;
+          height: 100%;
+          left: 50%;
+          top: 0;
+          transform: translateX(-50%);
+        }
+      }
+
       img {
         width: 100%;
       }

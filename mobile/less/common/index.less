@@ -1,0 +1,51 @@
+// 引入资源
+@import "../static/reset";
+@import "../static/fonts";
+@import "header";
+@import "footer";
+
+// 颜色配置
+@theme_color: #0b9e00;
+@theme_bg: #e8e8e8;
+@theme_info: #999;
+@theme_disabled: #a09fa2;
+
+// 通用类
+
+// 清除浮动
+.clearfix {
+  display: block;
+  zoom: 1;
+
+  &::before,
+  &::after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+//浮动
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+// 单行省略号
+.text-ovh(@w: 100%) {
+  display: block;
+  width: @w;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shadow(@x: 0, @y: 2px, @size: 15px, @color: #f5f5f5) {
+  box-shadow: @x @y @size 0 @color;
+}

@@ -30,6 +30,7 @@
       <a href="/z/">返回专题首页</a>
     </div>
     <nav class="topic-nav">
+      <a href="{{ category_data.parent_cate_url }}" {% if category_data.id == 1 %}class="active" {% endif %}>全部</a>
       {% for item in cate_info %}
       <a href="{{ item.url }}" {% if category_data.id == item.id %}class="active" {% endif %}><img
           src="{{ item.thumb }}"> {{ item.cate_name }}</a>

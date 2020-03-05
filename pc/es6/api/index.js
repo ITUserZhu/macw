@@ -8,7 +8,7 @@
 // 搜索接口
 export const SEARCH = {
   name: '/api/search_associate'
-}
+};
 
 // 软件内容页接口：
 export const CONENT_APIS = {
@@ -39,19 +39,19 @@ export const LOGIN_APIS = {
   phone_reg: '/phone_register',
   send_note: '/api/password_retrieval',
   rset_code: '/api/password_code',
-}
+};
 
 // 用户状态与退出
 export const LOGIN_STATUS = {
   is_login: '/api/user_management_top',
   login_out: '/login_out',
-}
+};
 
 // 抽奖接口
 export const LOTTERY_APIS = {
   sign: '/api/sign_prize',
   prize: '/api/get_reward_info'
-}
+};
 
 // 个人中心 
 export const USER_APIS = {
@@ -102,4 +102,4 @@ export const USER_APIS = {
   hasReportUrl: '/api/error_report_list',
   // 报错提交
   reportUrl: '/api/error_report',
-}
+};

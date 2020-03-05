@@ -118,4 +118,4 @@ let watchFiles = () => {
 };
 
 // 默认任务
-exports.default = series(parallel(compileCss, series(compileJs, copyJs)), freshHtml, series(delStaticFile ,copyStatic), watchFiles);
+exports.default = series(parallel(compileCss, series(compileJs, copyJs)), series(delStaticFile ,copyStatic), freshHtml, watchFiles);

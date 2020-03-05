@@ -10,33 +10,37 @@ import './components/common';
 import {
   toggleActive
 } from './util';
+// 接口
+import {
+  USER_APIS
+} from './api';
 
-$(function () {
-  var $form = $('#form-report'),
+$(() => {
+  let $form = $('#form-report'),
     $contact_type = $('#contact_type'),
     $connectType = $('.connect').children('input'),
     $submit = $('#submit'),
     $sucTip = $('.suc-tip'),
     $errorTips = $form.children('fieldset').find('p.fr'),
     isReport = false;
-  var urlFrom = '',
+  let urlFrom = '',
     urlReg = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/,
-    phoneReg = /^[1][3,4,5,7,8][0-9]{9}$/,
+    phoneReg = /^[1][34578][0-9]{9}$/,
     emailReg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/,
     qqReg = /[1-9][0-9]{4,14}/;
   if (document.referrer !== '') {
     urlFrom = document.referrer;
     $('#url').val(urlFrom);
-  };
+  }
   $contact_type.change(function (event) {
-    var _index = $(this).val() === '2' ? 2 : $(this).val() === '3' ? 3 : 1;
+    let _index = $(this).val() === '2' ? 2 : $(this).val() === '3' ? 3 : 1;
     $connectType.val('');
     toggleActive($connectType.eq(_index - 1));
   });
 
-  $submit.click(function (event) {
+  $submit.click(event => {
     event.preventDefault();
-    var formArr = $form.serializeArray(),
+    let formArr = $form.serializeArray(),
       formData = {},
       data = {};
     $.each(formArr, function () {
@@ -44,17 +48,16 @@ $(function () {
     });
     $errorTips.empty();
     if (formData.url === '') {
-      $errorTips.eq(0).text('请填写举报的页面地址')
+      $errorTips.eq(0).text('请填写举报的页面地址');
       return;
     } else if (!urlReg.test(formData.url) || formData.url.indexOf('__host.com') < 0) {
-      $errorTips.eq(0).text('请输入本网站有效页面地址')
+      $errorTips.eq(0).text('请输入本网站有效页面地址');
       return;
-    };
+    }
     if (formData.content.length < 10) {
-      $errorTips.eq(1).text('描述文字不得少于10个字符')
+      $errorTips.eq(1).text('描述文字不得少于10个字符');
       return;
-    };
-    console.log(formData)
+    }
     if (formData.contact_way_e === '' && formData.contact_way_q === '' && formData.contact_way_p === '') {
       $errorTips.eq(2).text('请填写正确的联系方式')
       return;
@@ -78,15 +81,15 @@ $(function () {
 
   function sendReport(data) {
     $.ajax({
-      url: '/api/error_report',
+      url: USER_APIS.reportUrl,
       type: 'POST',
       data: data,
-      success: function (res) {
+      success: res => {
         if (res.code == 200) {
           $sucTip.text(res.msg);
         } else {
           $sucTip.addClass('active').text(res.msg)
-        };
+        }
         isReport = true;
       }
     })

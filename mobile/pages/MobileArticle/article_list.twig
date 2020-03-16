@@ -1,0 +1,28 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/list.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="list-nav">
+      <div class="nav-wrap">
+        <a href="/nlist/" {% if id == 0 %}class="active"{% endif %}>全部</a>
+        {% for item in root_info %}
+          <a href="{{ item.url }}" {% if item.id == id %}class="active"{% endif %}>{{ item.cate_name }}</a>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="list-wrap">
+      <div class="list-box">
+        {{ component.article(article_info) }}
+      </div>
+    </section>
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/list.min.js"></script>
+{% endblock %}

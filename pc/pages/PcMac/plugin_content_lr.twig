@@ -1,0 +1,178 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block meta %}
+  <meta property="og:type" content="soft" />
+  <meta property="og:description" content="{{ plugin_content.description }}" />
+  <meta property="og:soft:file_size" content="{{ plugin_content.file_size }}" />
+  <meta property="og:soft:operating_system" content="{{ plugin_content.systems }}" />
+  <meta property="og:image" content="{{ plugin_content.thumb }}" />
+  <meta property="og:release_date" content="{{ plugin_content.update_time | date('Y-m-d') }}" />
+  <meta property="og:title" content="{{ plugin_content.title }}" />
+  <meta property="og:soft:download_count " content="{{ plugin_content.hits_total }}" />
+  <meta property="og:soft:language" content="{{ plugin_content.language }}" />
+  <meta property="og:soft:license" content="{{ plugin_content.copy_type }}" />
+  <meta property="og:soft:url" content="{{ url }}" />
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/plugin-content-lr.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="content">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="/">首页</a>
+          &gt;
+          <a href="/cjlist/">插件</a>
+
+          {% if plugin_content.parent_id_cate_name %}
+            &gt;
+            <a href="{{ plugin_content.category_url_by_parent_id }}">{{ plugin_content.parent_id_cate_name }}</a>
+          {% endif %}
+          {% if plugin_content.cate_name %}
+            &gt;
+            <a href="{{ plugin_content.category_url }}">{{ plugin_content.cate_name }}</a>
+          {% endif %}
+          &gt;
+          <span>{{ plugin_content.title }}
+            {{ plugin_content.version }}</span>
+        </div>
+        <div class="content-info">
+          <div class="content-info_wrap">
+            <div class="content-info_con">
+              <h1>{{ plugin_content.title }}
+                {{ plugin_content.version }}</h1>
+              <p class="infos">
+              <span>
+                <i class="icon-size"></i>
+                {{ plugin_content.file_size }}
+              </span>
+                <span>
+                <i class="icon-time"></i>
+                {{ plugin_content.update_time | date('Y-m-d') }}</span>
+                <span>
+                <i class="icon-point3"></i>
+                {{ plugin_content.point }}
+                积分</span>
+                <span>
+                <a href="/vip.html">
+                  <i class="icon-recharge2"></i>
+                  点击在线充值
+                </a>
+              </span>
+              </p>
+              <div class="btns">
+                <button class="download" id="download">立即下载</button>
+                <button class="btns-fn" id="collect">
+                  <i class="icon-collect"></i><span>点击收藏</span></button>
+                <button class="btns-fn" id="support">
+                  <i class="icon-support"></i>
+                  <em>
+                    {{  plugin_content.click_good }}
+                  </em>
+                </button>
+                <button class="btns-fn" id="share">
+                  <i class="icon-share"></i>分享有礼</button>
+              </div>
+              {% if needInfo or resRelatedGroup_soft[1] %}
+                <div class="other-recommend">
+                  {% if needInfo %}
+                    <a href="{{ needInfo.link }}" title="{{ needInfo.description }}">
+                      <img src="{{ needInfo.thumb }}" alt="{{ needInfo.description }}">
+                      <span>推荐软件：{{ needInfo.description }}</span>
+                    </a>
+                  {% endif %}
+                  {% if resRelatedGroup_soft[1] %}
+                    <a href="{{ resRelatedGroup_soft[1][0].url }}" class="teach-link" target="_blank" rel="nofollow"
+                       title="{{ resRelatedGroup_soft[1][0].title }}">【<em>教程：{{ resRelatedGroup_soft[1][0].title }}</em>】</a>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+            {# <div class="content-info_img">
+              <img src="{{ plugin_content.thumb }}" alt="{{ plugin_content.title }}">
+            </div> #}
+          </div>
+        </div>
+      </div>
+    </section>
+    {% if images %}
+      {% if images | length > 2 %}
+        <section class="img-lr">
+          <img src="{{ images[0] }}">
+        </section>
+      {% else %}
+        <section class="imgs-lr">
+          <div class="container">
+            <div class="lr-imgs-box">
+              <div class="imgs">
+                <img src="{{ images[0] }}" class="imgs-before" style="clip: rect(0px, 500px, 563px, 0);">
+                <img src="{{ images[1] }}" class="imgs-after" style="clip: rect(0px, 1000px, 563px, 500px);">
+              </div>
+              <div class="overly">
+                <div class="overly-before">修改前</div>
+                <div class="overly-after">修改后</div>
+              </div>
+              <div class="handle" id="img-handle">
+                <div class="handle-before"></div>
+                <div class="handle-after"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      {% endif %}
+    {% endif %}
+    <section class="description">
+      <div class="container">
+        <h2>内容介绍</h2>
+        <div class="content fr-view markdown-body editormd-preview-container">
+          {{ plugin_content.content | markdown_to_html }}
+        </div>
+      </div>
+    </section>
+    {% if resRelatedGroup_soft[17] %}
+      <section class="soft-list">
+        <div class="container">
+          <h2>相关插件</h2>
+          <ul class="clearfix">
+            {{ component.plugin(resRelatedGroup_soft[17]) }}
+          </ul>
+        </div>
+      </section>
+    {% endif %}
+    {% if resRelatedGroup_soft[0] %}
+      <section class="soft-list">
+        <div class="container">
+          <h2>专题
+            <em>——</em>
+            {{ resRelatedGroup_soft[0][0].title }}
+            <br><a href="{{ resRelatedGroup_soft[0][0].url }}">进入专题 &gt;</a>
+          </h2>
+          <ul class="clearfix">
+            {{ component.plugin(resRelatedGroup_soft[0][0].special_content) }}
+          </ul>
+        </div>
+      </section>
+    {% endif %}
+    {% if resRelatedGroup_soft[1] %}
+      <section class="article-list">
+        <div class="container">
+          <h2>相关文章</h2>
+          <ul class="clearfix">
+            {{ component.article(resRelatedGroup_soft[1]) }}
+          </ul>
+        </div>
+      </section>
+    {% endif %}
+    <input type="hidden" id="content-info" data-src="{{ plugin_content.thumb }}" data-id="{{ plugin_content.id }}"
+           data-model="{{ plugin_content.model_id }}" data-point="{{ plugin_content.point }}" data-url="{{ url }}"
+           data-title="{{ plugin_content.title }}">
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/plugin-content-lr.min.js"></script>
+{% endblock %}

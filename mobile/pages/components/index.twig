@@ -1,0 +1,281 @@
+<!-- 软件列表 -->
+{% macro soft(data, is_rank = false, class = '') %}
+<ul class="component-soft_list {{ class }}">
+  {% for i,item in data %}
+    <li>
+      <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+        {% if is_rank %}<span class="rank-num"><i></i><em>{{ i + 1 }}</em></span>{% endif %}
+        <div class="img">
+          <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+        </div>
+        <div class="con">
+          <p class="title">{{ item.title | raw }}</p>
+          <p class="info">
+            <span>{{ item.version }}</span>
+            <span class="fr">更新：{{ item.update_time | date('Y-m-d') }}</span>
+          </p>
+        </div>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+<!-- 软件专题列表 -->
+{% macro topic_soft(data, class = '') %}
+  <ul class="component-topic-soft_list {{ class }}">
+    {% for item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          <div class="img">
+            <img src="{{ item.thumb_arr[0].thumb }}" alt="{{ item.title | striptags }}">
+          </div>
+          <div class="con">
+            <p class="title">{{ item.title | raw }}</p>
+            <p class="desc">{{ item.description }}</p>
+            <p class="info">
+              <span>共{{ item.num | default(0) }}个软件</span>
+              <span class="fr">更新：{{ item.create_time | date('Y-m-d') }}</span>
+            </p>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 视频列表 -->
+{% macro video(data, class = '') %}
+  <ul class="component-video_list clearfix {{ class }}">
+    {% for item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          <div class="img">
+            <span class="video-play"></span>
+            <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+          </div>
+          <p class="title">{{ item.title | raw }}</p>
+          <p class="info">
+            <span><i class="icon-video"></i>{{ item.time | default("00:00") }}</span>
+            <span class="fr">{{ item.update_time | date('Y-m-d') }}</span>
+          </p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 素材列表 -->
+{% macro material(data, class = '') %}
+  <ul class="component-material_list {{ class }}">
+    {% for item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          <div class="img">
+            <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+          </div>
+          <div class="con">
+            <p class="title">{{ item.title | raw }}</p>
+            <p class="info">
+              <span>共{{ item.num | default(0) }}次下载</span>
+              <span class="fr">更新：{{ item.update_time | date('Y-m-d') }}</span>
+            </p>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 插件列表 -->
+{% macro plugin(data, is_rank = false, class = '') %}
+  <ul class="component-plugin_list clearfix {{ class }}">
+    {% for i,item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          {% if is_rank %}<span class="rank-num"><i></i><em>{{ i + 1 }}</em></span>{% endif %}
+          <div class="img">
+            <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+          </div>
+          <p class="title">{{ item.title | raw }}</p>
+          <p class="info">
+            <span>{{ item.file_size | default("0 Kb") }}</span>
+            <span class="fr">{{ item.update_time }}</span>
+          </p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 插件专题列表 -->
+{% macro topic_plugin(data, class = '') %}
+  <ul class="component-topic-plugin_list clearfix {{ class }}">
+    {% for item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          <div class="img">
+            <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+          </div>
+          <p class="title">{{ item.title | raw }}</p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 模板列表 -->
+{% macro template(data, is_rank = false, class = '') %}
+  <ul class="component-template_list clearfix {{ class }}">
+    {% for i,item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          {% if is_rank %}<span class="rank-num"><i></i><em>{{ i + 1 }}</em></span>{% endif %}
+          <div class="img">
+            <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+          </div>
+          <p class="title">{{ item.title | raw }}</p>
+          <p class="info">
+            <span>{{ item.file_size | default("0 Kb") }}</span>
+            <span class="fr">{{ item.update_time | date('Y-m-d') }}</span>
+          </p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 模板专题列表 -->
+{% macro topic_template(data, class = '') %}
+  <ul class="component-topic-template_list clearfix {{ class }}">
+    {% for item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          <div class="img">
+            <img src="{{ item.thumb_arr[0].thumb }}">
+            <img src="{{ item.thumb_arr[1].thumb | default(item.thumb_arr[0].thumb) }}">
+          </div>
+          <p class="title">{{ item.title | raw }}</p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 壁纸列表 -->
+{% macro wallpaper(data, is_rank = false, class = '') %}
+  <ul class="component-wallpaper_list clearfix {{ class }}">
+    {% for i,item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          {% if is_rank %}<span class="rank-num"><i></i><em>{{ i + 1 }}</em></span>{% endif %}
+          <div class="img">
+            <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+          </div>
+          <p class="title">{{ item.title | raw }}</p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 壁纸专题列表 -->
+{% macro topic_wallpaper(data, class = '') %}
+  <ul class="component-topic-wallpaper_list clearfix {{ class }}">
+    {% for item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          <div class="img">
+            <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+          </div>
+          <p class="title">{{ item.title | raw }}</p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 文章列表 -->
+{% macro article(data, class = '') %}
+  <ul class="component-article_list clearfix {{ class }}">
+    {% for item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          <div class="con">
+            <p class="title">{{ item.title | raw }}</p>
+            <p class="desc">{{ item.description }}</p>
+            <p class="info">
+              <span>浏览：{{ item.hits_total | default(0) }}次</span>
+              <span class="fr">更新：{{ item.update_time | date('Y-m-d') }}</span>
+            </p>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 文章专题列表 -->
+{% macro topic_article(data, class = '') %}
+  <ul class="component-topic-article_list {{ class }}">
+    {% for item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+          <div class="img">
+            <img src="{{ item.thumb_arr[0] }}" alt="{{ item.title | striptags }}">
+          </div>
+          <div class="con">
+            <p class="title">{{ item.title | raw }}</p>
+            <p class="desc">{{ item.description }}</p>
+            <p class="info">
+              <span>共{{ item.num | default(0) }}篇文章</span>
+              <span class="fr">更新：{{ item.create_time | date('Y-m-d') }}</span>
+            </p>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 专题头部分类导航 -->
+{% macro topic_nav(soft_nav, plugin_nav, template_nav, wallpaper_nav, article_nav, cate_info, category_data, id, url_type) %}
+  <section class="list-nav">
+    <div class="nav-wrap">
+      <a href="/z/ls_{{ soft_nav }}.html" {% if id == soft_nav %}class="active"{% endif %}>软件</a>
+      <a href="/z/lc_{{ plugin_nav }}.html" {% if id == plugin_nav %}class="active"{% endif %}>插件</a>
+      <a href="/z/lmb_{{ template_nav }}.html" {% if id == template_nav %}class="active"{% endif %}>模板</a>
+      <a href="/z/lbz_{{ wallpaper_nav }}.html" {% if id == wallpaper_nav %}class="active"{% endif %}>壁纸</a>
+      <a href="/z/lwz_{{ article_nav }}.html" {% if id == article_nav %}class="active"{% endif %}>文章</a>
+    </div>
+    <div class="nav-second clearfix">
+      <div class="select fl">
+        {% if category_data.id == id %}
+          <span id="select-btn">全部 <i class="icon-arrow"></i></span>
+        {% else %}
+          <span id="select-btn">{% for v in cate_info if category_data.id == v.id %}{{ v.cate_name }} {% endfor %}<i class="icon-arrow"></i></span>
+        {% endif %}
+        <ul>
+          <li {% if category_data.id == id %}class="active" {% endif %}><a href="{{ category_data.parent_cate_url }}">全部</a></li>
+          {% for v in cate_info %}
+            <li {% if category_data.id == v.id %}class="active"{% endif %}><a href="{{ v.url }}">{{ v.cate_name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="free-type fr">
+        <a href="/z/{{ url_type }}_{{ id }}_1.html" {% if order == 1 %}class="active"{% endif %}>最新</a> <em>|</em>
+        <a href="/z/{{ url_type }}_{{ id }}_2.html" {% if order == 2 %}class="active"{% endif %}>最热</a>
+      </div>
+    </div>
+  </section>
+{% endmacro %}
+
+<!-- 排行头部导航 -->
+{% macro rank_nav(type) %}
+  <section class="rank-nav">
+    <a href="/rank/soft.html" {% if type == 'soft' %}class="active"{% endif %}>软件</a>
+    <a href="/rank/cj.html" {% if type == 'cj' %}class="active"{% endif %}>插件</a>
+    <a href="/rank/mb.html" {% if type == 'mb' %}class="active"{% endif %}>模板</a>
+    <a href="/rank/bz.html" {% if type == 'bz' %}class="active"{% endif %}>壁纸</a>
+  </section>
+{% endmacro %}

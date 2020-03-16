@@ -1,0 +1,50 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/article-content.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="content-info">
+      <h1>{{ article_content.title }}</h1>
+      <div class="soft-box">
+        <div class="con">
+          <span>时间：{{ article_content.update_time | date('Y.m.d') }}</span>
+          <span>分类：{{ cate_info.cate_name }}</span>
+        </div>
+      </div>
+    </section>
+    <section class="content-desc">
+      <div class="fr-view">
+        <div class="content-box">
+          {{ article_content.content | markdown_to_html }}
+        </div>
+      </div>
+    </section>
+    {% if resRelatedGroup_soft[15] %}
+      <section class="rel-soft">
+        <h2>相关软件</h2>
+        {{ component.soft(resRelatedGroup_soft[15]) }}
+      </section>
+    {% endif %}
+    {% if resRelatedGroup_soft[1] %}
+      <section class="rel-article">
+        <h2>相关文章</h2>
+        {{ component.article(resRelatedGroup_soft[1]) }}
+      </section>
+    {% endif %}
+    {% if resRelatedGroup_soft[0] %}
+      <section class="rel-topic">
+        <h2>相关专题</h2>
+        {{ component.topic_article(resRelatedGroup_soft[0]) }}
+      </section>
+    {% endif %}
+    <input type="hidden" id="content-info" data-model="{{ article_content.model_id }}" data-id="{{ article_content.id }}">
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/article-content.min.js"></script>
+{% endblock %}

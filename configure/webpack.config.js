@@ -1,7 +1,7 @@
-const webpack = require('webpack');
+const webpack = require("webpack");
 
 module.exports = {
-  mode: 'production',
+  mode: "production",
   // devtool: 'source-map',
   performance: {
     hints: false
@@ -12,18 +12,21 @@ module.exports = {
         test: /\.js$/,
         include: /(lord-icon-element|project)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
             presets: [
-              ["@babel/preset-env", {
-                "corejs": 2,
-                "modules": false,
-                "useBuiltIns": "usage"
-              }]
+              [
+                "@babel/preset-env",
+                {
+                  corejs: 2,
+                  modules: false,
+                  useBuiltIns: "usage"
+                }
+              ]
             ],
             plugins: [
               "@babel/plugin-transform-runtime",
-              "@babel/plugin-transform-modules-commonjs",
+              "@babel/plugin-transform-modules-commonjs"
             ]
           }
         }
@@ -33,7 +36,7 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       $: "jquery", // npm
-      jQuery: "jquery", // 本地Js文件
+      jQuery: "jquery" // 本地Js文件
     })
   ]
-}
+};

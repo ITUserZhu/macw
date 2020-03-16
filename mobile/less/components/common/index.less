@@ -1,0 +1,97 @@
+// 横向列表样式
+.component-list-horizontal(@h: 100%, @w: @h, @pad: 0.24rem, @mt: 0.2rem, @radius: 0.05rem, @line: 2) {
+  .shadow(@y: 1px);
+  padding: @pad;
+  margin-bottom: 0.24rem;
+  position: relative;
+
+  .img {
+    float: left;
+    margin-right: 0.25rem;
+    width: @w;
+    height: @h;
+    border-radius: @radius;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .con {
+    overflow: hidden;
+    height: @h;
+
+    .title {
+      font-size: 0.3rem;
+      line-height: 0.34rem;
+      height: @line * 0.34rem;
+      overflow: hidden;
+      max-width: 75%;
+    }
+
+    .desc {
+      line-height: 1.5;
+      height: 3em;
+      font-size: 0.26rem;
+      overflow: hidden;
+      color: #999;
+      margin: 0.1rem 0;
+    }
+
+    .info {
+      margin-top: @mt;
+      color: #999;
+      font-size: 0.24rem;
+    }
+  }
+}
+
+// 竖向列表样式方法
+.component-list-vertical(@w: 3.4rem, @img_h: 2.18rem, @line: 2) {
+  float: left;
+  width: @w;
+  margin-right: 0.22rem;
+  margin-bottom: 0.24rem;
+  box-sizing: border-box;
+  position: relative;
+  .shadow();
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
+
+  .img {
+    height: @img_h;
+    overflow: hidden;
+    border-radius: 0.1rem 0.1rem 0 0;
+    margin-bottom: 0.1rem;
+    background-color: #eee;
+
+    img {
+      height: 100%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .title {
+    font-size: 0.3rem;
+    line-height: 0.34rem;
+    height: @line * 0.34rem;
+    overflow: hidden;
+    padding: 0 0.2rem;
+  }
+
+  .info {
+    font-size: 0.24rem;
+    line-height: 2;
+    color: #999;
+    padding: 0.1rem 0.2rem 0.1rem;
+
+    i {
+      margin-right: 0.08rem;
+    }
+  }
+}

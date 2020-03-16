@@ -1,0 +1,38 @@
+@import "../common/index";
+
+.component-video_list {
+  li {
+    .component-list-vertical();
+
+    .img {
+      position: relative;
+
+      .video-play {
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 0.7rem;
+        height: 0.7rem;
+        border-radius: 50%;
+        background-color: rgba(230, 230, 230, 0.8);
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0.08rem;
+          margin: auto;
+          border-left: 0.3rem solid #fff;
+          border-top: 0.15rem solid transparent;
+          border-bottom: 0.15rem solid transparent;
+        }
+      }
+    }
+  }
+}

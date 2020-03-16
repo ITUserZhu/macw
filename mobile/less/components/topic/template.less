@@ -1,0 +1,29 @@
+@import "../common/index";
+
+.component-topic-template_list {
+  li {
+    .component-list-vertical(@img_h: 2rem, @line: 1);
+    padding: 0.2rem 0.2rem 0.15rem;
+
+    .img {
+      border-radius: 0;
+
+      img {
+        float: left;
+        width: 1.49rem;
+        min-height: 100%;
+        height: auto;
+        margin-left: 0;
+        transform: translateX(0);
+
+        &:nth-child(2) {
+          float: right;
+        }
+      }
+    }
+
+    .title {
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/wallpaper-content.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section>
+      <h1>{{ wallpaper_content.title }}</h1>
+    </section>
+    <section class="video-imgs">
+      <div class="swiper-wrap swiper-container">
+        <ul class="screencurt swiper-wrapper">
+          {% for v in wallpaperv_content.multi_map if v %}
+            <li class="swiper-slide"><img src="{{ v }}"></li>
+          {% endfor %}
+        </ul>
+        <div class="swiper-prev screen-btn"><i class="icon-arrow"></i></div>
+        <div class="swiper-next screen-btn"><i class="icon-arrow"></i></div>
+      </div>
+    </section>
+    <section class="content-info">
+      <div class="soft-box">
+        <div class="con">
+          <span>大小：{{ wallpaper_content.file_size }}</span>
+          <span>时间：{{ wallpaper_content.update_time | date('Y.m.d') }}</span>
+          <span>尺寸：{{ wallpaper_content.resolution }}</span>
+          <span>格式：{{ wallpaper_content.format_type }}</span>
+          <span>积分：{{ wallpaper_content.point }}</span>
+        </div>
+      </div>
+      <button class="download">请前往PC端网页下载</button>
+    </section>
+    <section class="content-desc">
+      <h2>内容介绍</h2>
+      <div class="fr-view">
+        <div class="content-box">
+          {{ wallpaper_content.content | markdown_to_html }}
+        </div>
+        {% if wallpaper_content.content %}
+          <div class="show-off"><em>展开</em> &gt;</div>
+        {% endif %}
+      </div>
+    </section>
+    {% if resRelatedGroup_soft[19] %}
+      <section class="rel-soft">
+        <h2>相关壁纸</h2>
+        {{ component.wallpaper(resRelatedGroup_soft[19]) }}
+      </section>
+    {% endif %}
+    {% if resRelatedGroup_soft[1] %}
+      <section class="rel-article">
+        <h2>相关文章</h2>
+        {{ component.article(resRelatedGroup_soft[1]) }}
+      </section>
+    {% endif %}
+    {% if resRelatedGroup_soft[0] %}
+      <section class="rel-topic">
+        <h2>相关专题</h2>
+        {{ component.topic_wallpaper(resRelatedGroup_soft[0]) }}
+      </section>
+    {% endif %}
+    <input type="hidden" id="content-info" data-model="{{ wallpaper_content.model_id }}" data-id="{{ wallpaper_content.id }}">
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/wallpaper-content.min.js"></script>
+{% endblock %}

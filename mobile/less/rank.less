@@ -1,0 +1,61 @@
+@import "common/index";
+@import "components/list/soft";
+@import "components/list/plugin";
+@import "components/list/template";
+@import "components/list/wallpaper";
+@import "components/rank-logo";
+
+section {
+  padding: 0 0.24rem;
+
+  &.rank-nav {
+    margin: 0.3rem 0;
+
+    a {
+      display: inline-block;
+      font-size: 0.24rem;
+      height: 0.6rem;
+      line-height: 0.6rem;
+      text-align: center;
+      border-radius: 0.1rem;
+      margin: 0 0.2rem;
+      padding: 0 0.15rem;
+      min-width: 1.2rem;
+      box-sizing: border-box;
+      .shadow(@y: 1px);
+
+      &.active {
+        background-color: @theme_color;
+        color: #fff;
+      }
+    }
+  }
+
+  &.list-wrap {
+    ul li {
+      &:first-child {
+        .rank-num {
+          .rank-logo(@rank_1);
+        }
+      }
+
+      &:nth-child(2) {
+        .rank-num {
+          .rank-logo(@rank_2);
+        }
+      }
+
+      &:nth-child(3) {
+        .rank-num {
+          .rank-logo(@rank_3);
+        }
+      }
+
+      &:nth-child(n + 4) {
+        .rank-num {
+          .rank-logo();
+        }
+      }
+    }
+  }
+}

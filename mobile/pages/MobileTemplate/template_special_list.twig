@@ -1,0 +1,21 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/topic-list.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    {{ component.topic_nav(soft_nav, plugin_nav, template_nav, wallpaper_nav, article_nav, cate_info, category_data, template_nav, 'lmb') }}
+    <section class="list-wrap">
+      <div class="list-box">
+        {{ component.topic_template(template_special_data) }}
+      </div>
+    </section>
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/topic-list.min.js"></script>
+{% endblock %}

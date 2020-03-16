@@ -1,0 +1,77 @@
+@import "../static/editormd";
+
+.fr-view {
+  line-height: 2;
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.3rem;
+  color: #666;
+  padding: 0 0.1rem;
+
+  h2,
+  h3 {
+    line-height: 1.4;
+    margin: 0.3rem 0;
+    font-size: 0.36rem;
+    border-left: 0.08rem solid @theme_color;
+    padding: 0.2rem 0.15rem;
+    background-color: lighten(@theme_color, 65%);
+  }
+
+  code {
+    color: #c7254e;
+    font-size: 0.32rem;
+    margin: 5px;
+    white-space: normal;
+  }
+
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 90%;
+    margin: 0.1rem;
+  }
+
+  video {
+    max-width: 90%;
+    margin: 0.1rem;
+  }
+
+  ol {
+    list-style-type: decimal;
+    margin-left: 0.3rem;
+
+    ul {
+      list-style-type: circle;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-left: 0.3rem;
+
+    ul {
+      list-style-type: circle;
+    }
+  }
+
+  .content-box {
+    max-height: 10rem;
+    overflow: hidden;
+
+    &.active {
+      max-height: unset;
+    }
+  }
+
+  .show-off {
+    margin: 0.2rem auto;
+    font-size: 0.28rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    width: 1.5rem;
+    border-radius: 0.1rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    display: none;
+  }
+}

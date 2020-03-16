@@ -1,0 +1,94 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+<link rel="stylesheet" href="css/index.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+{#  <section class="banner">#}
+{#    <ul>#}
+{#      <li></li>#}
+{#    </ul>#}
+{#  </section>#}
+  <section class="newest-soft">
+    <div class="sec-title">
+      <h2>最新软件</h2>
+    </div>
+    {{ component.soft(mac_newest_soft) }}
+  </section>
+  <section class="boutique-app">
+    <div class="sec-title">
+      <h2>精品应用</h2>
+    </div>
+    {{ component.soft(mac_newest_recommend) }}
+  </section>
+  <section class="newest-video">
+    <div class="sec-title">
+      <h2>最新视频</h2>
+      <a href="" class="fr"><i class="icon-arrow"></i></a>
+    </div>
+    {{ component.video(mac_newest_recommend) }}
+  </section>
+  <section class="newest-video">
+    <div class="sec-title">
+      <h2>最新素材</h2>
+      <a href="" class="fr"><i class="icon-arrow"></i></a>
+    </div>
+    {{ component.material(mac_newest_recommend) }}
+  </section>
+  <section class="boutique-plugin">
+    <div class="sec-title">
+      <h2>精品插件</h2>
+      <a href="" class="fr"><i class="icon-arrow"></i></a>
+    </div>
+    {{ component.plugin(mac_newest_recommend) }}
+  </section>
+  <section class="boutique-plugin">
+    <div class="sec-title">
+      <h2>精品模板</h2>
+      <a href="" class="fr"><i class="icon-arrow"></i></a>
+    </div>
+    {{ component.template(mac_newest_recommend) }}
+  </section>
+  <section class="boutique-wallpaper">
+    <div class="sec-title">
+      <h2>精品壁纸</h2>
+      <a href="" class="fr"><i class="icon-arrow"></i></a>
+    </div>
+    {{ component.wallpaper(mac_newest_recommend) }}
+  </section>
+  <section class="newest-article">
+    <div class="sec-title">
+      <h2>最新文章</h2>
+      <a href="" class="fr"><i class="icon-arrow"></i></a>
+    </div>
+    {{ component.article(mac_article_newest) }}
+  </section>
+  <section class="rank-soft">
+    <div class="sec-title">
+      <h2>软件排行榜</h2>
+      <a href="" class="fr"><i class="icon-arrow"></i></a>
+    </div>
+    <div class="rank-soft-wrap">
+      <ul>
+        {% for item in mac_newest_recommend %}
+        <li>
+          <a href="{{ item.url }}" title="{{ item.title }}">
+            <div class="img">
+              <img src="{{ item.thumb }}" alt="{{ item.title }}">
+            </div>
+            <p class="title">{{ item.title }}</p>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/index.min.js"></script>
+{% endblock %}	

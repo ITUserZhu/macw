@@ -1,0 +1,52 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/search.min.css">
+{% endblock %}
+
+{% block header %}
+  <div class="header-search">
+    <form>
+      <button><i class="icon-search"></i></button>
+      <input type="text" placeholder="请您输入想要搜索的词或关键字" value="{{ keyword }}">
+      <input type="hidden" name="type" value="{{ model }}">
+    </form>
+    <div class="cancel">取消</div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="search-type-nav">
+      <a href="/search/mac/{{ keyword }}" {% if model == 'mac' %}class="active"{% endif %}>软件</a>
+      <a href="/search/plugin/{{ keyword }}" {% if model == 'plugin' %}class="active"{% endif %}>插件</a>
+      <a href="/search/template/{{ keyword }}" {% if model == 'template' %}class="active"{% endif %}>模板</a>
+      <a href="/search/wallpaper/{{ keyword }}" {% if model == 'wallpaper' %}class="active"{% endif %}>壁纸</a>
+      <a href="/search/article/{{ keyword }}" {% if model == 'article' %}class="active"{% endif %}>资讯</a>
+      <a href="/search/special/{{ keyword }}" {% if model == 'special' %}class="active"{% endif %}>专题</a>
+    </section>
+    <section class="search-result">
+      <p class="result">共为您搜到“{{ sum }}”个相关结果：</p>
+      <div class="list-box">
+        {% if model == 'mac' %}
+          {{ component.soft(data) }}
+        {% elseif model == 'plugin' %}
+          {{ component.plugin(data) }}
+        {% elseif model == 'template' %}
+          {{ component.template(data) }}
+        {% elseif model == 'wallpaper' %}
+          {{ component.wallpaper(data) }}
+        {% elseif model == 'article' %}
+          {{ component.article(data) }}
+        {% elseif model == 'special' %}
+          {{ component.topic_article(data) }}
+        {% endif %}
+      </div>
+    </section>
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/search.min.js"></script>
+{% endblock %}

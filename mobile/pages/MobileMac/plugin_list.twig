@@ -1,0 +1,51 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/list.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="list-nav">
+      <div class="nav-wrap">
+        <a href="/cjlist/" {% if category_data.parent_id == 0 %}class="active"{% endif %}>全部</a>
+        {% for item in cate_info %}
+          <a href="{{ item.url }}" {% if category_data.parent_id == item.id or item.id == id %}class="active"{% endif %}>{{ item.cate_name }}</a>
+        {% endfor %}
+      </div>
+      <div class="nav-second clearfix">
+        {% if category_data.parent_id != 0 %}
+          {% for item in cate_info if item.id == category_data.parent_id %}
+            <div class="select fl">
+              {% if item.id == id %}
+                <span id="select-btn">全部 <i class="icon-arrow"></i></span>
+              {% else %}
+                <span id="select-btn">{% for v in item.info if id == v.id %}{{ v.cate_name }} {% endfor %}<i class="icon-arrow"></i></span>
+              {% endif %}
+              <ul>
+                <li {% if item.id == id %}class="active"{% endif %}><a href="{{ item.url }}">全部</a></li>
+                {% for v in item.info %}
+                  <li {% if id == v.id %}class="active"{% endif %}><a href="{{ v.url }}">{{ v.cate_name }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endfor %}
+        {% endif %}
+        <div class="free-type fr">
+          <a href="/cjlist/{{ id }}_1.html" {% if vip == 1 %}class="active"{% endif %}>收费</a> <em>|</em>
+          <a href="/cjlist/{{ id }}_2.html" {% if vip == 2 %}class="active"{% endif %}>免费</a>
+        </div>
+      </div>
+    </section>
+    <section class="list-wrap">
+      <div class="list-box">
+        {{ component.plugin(mac_plugin) }}
+      </div>
+    </section>
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/list.min.js"></script>
+{% endblock %}

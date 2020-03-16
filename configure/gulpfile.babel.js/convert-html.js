@@ -1,24 +1,21 @@
 /*
- * @Author: Liliang Zhu 
- * @Date: 2020-01-18 18:18:31 
- * @Last Modified by:   Liliang Zhu 
- * @Last Modified time: 2020-01-18 18:18:31 
+ * @Author: Liliang Zhu
+ * @Date: 2020-01-18 18:18:31
+ * @Last Modified by:   Liliang Zhu
+ * @Last Modified time: 2020-01-18 18:18:31
  * 编译html
  */
 
 // gulp模块
-import {
-  src,
-  dest,
-} from 'gulp';
+import { src, dest } from "gulp";
 
 // 替换html样式与脚本路径
-import revCollector from 'gulp-rev-collector';
+import revCollector from "gulp-rev-collector";
 // 压缩html
-import minHtml from 'gulp-htmlmin';
-import replace from 'gulp-replace';
+import minHtml from "gulp-htmlmin";
+import replace from "gulp-replace";
 // 本地服务同步刷新
-import browser from 'browser-sync';
+import browser from "browser-sync";
 const browserSync = browser.create();
 
 // twig模板编译报错处理
@@ -31,28 +28,34 @@ const rmspaceClose = /\}\}\s+\{\%/g;
 
 let convertHtml = (file, dist, basePath, host) => {
   return src([`${file}mapjson/*/*.json`, `${file}pages/**`])
-    .pipe(revCollector({
-      replaceReved: true,
-      dirReplacements: {
-        'js': `${basePath}js/`,
-        'css': `${basePath}css/`
-      }
-    }))
-    .pipe(minHtml({
-      collapseWhitespace: true,
-      removeComments: false,
-      removeEmptyAttributes: true,
-      customAttrSurround: [reg_box],
-      ignoreCustomFragments: [reg_open]
-    }))
-    .pipe(replace(rmspaceOpen, '%}{{'))
-    .pipe(replace(rmspaceClose, '}}{%'))
+    .pipe(
+      revCollector({
+        replaceReved: true,
+        dirReplacements: {
+          js: `${basePath}js/`,
+          css: `${basePath}css/`
+        }
+      })
+    )
+    .pipe(
+      minHtml({
+        collapseWhitespace: true,
+        removeComments: false,
+        removeEmptyAttributes: true,
+        customAttrSurround: [reg_box],
+        ignoreCustomFragments: [reg_open]
+      })
+    )
+    .pipe(replace(rmspaceOpen, "%}{{"))
+    .pipe(replace(rmspaceClose, "}}{%"))
     .pipe(replace(/__host/g, host.hostName))
     .pipe(replace(/__netname/g, host.hostTitle))
     .pipe(dest(dist))
-    .pipe(browserSync.reload({
-      stream: true
-    }));
+    .pipe(
+      browserSync.reload({
+        stream: true
+      })
+    );
 };
 
 export default convertHtml;

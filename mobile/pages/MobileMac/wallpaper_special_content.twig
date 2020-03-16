@@ -1,0 +1,30 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/topic-content.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="topic-info">
+      <h1>{{ info.title }}</h1>
+      <p class="desc">{{ info.description }}</p>
+      <p class="info">
+        <span>共{{ special_count }}个软件</span>
+        <span>时间：{{ info.create_time | date('Y.m.d') }}</span>
+      </p>
+    </section>
+    <section class="topic-content">
+      {{ component.wallpaper(content_info) }}
+    </section>
+    {% if article_info %}
+      <section class="rel-article">
+        <h2>相关文章</h2>
+        {{ component.article(article_info) }}
+      </section>
+    {% endif %}
+  </main>
+{% endblock %}
+
+

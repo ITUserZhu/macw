@@ -1,0 +1,80 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/mac-content.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="content-info">
+      <h1>{{ mac_content.title }}</h1>
+      <div class="soft-box">
+        <div class="img"><img src="{{ mac_content.thumb }}" alt="{{ mac_content.title }}"></div>
+        <div class="con">
+          <span>大小：{{ mac_content.file_size }}</span>
+          <span>时间：{{ mac_content.update_time | date('Y.m.d') }}</span>
+          <span>系统：{{ mac_content.systems }}</span>
+          <span>语言：{{ mac_content.language }}</span>
+          <span>积分：{{ mac_content.point }}</span>
+          <span>类型：{{ mac_content.cate_name | default('mac应用') }}</span>
+        </div>
+      </div>
+      <button class="download">请前往PC端网页下载</button>
+    </section>
+    <section class="video-imgs">
+      {% if video %}
+        <div class="content-video">
+          {% for item in video %}
+            <video src="{{ item }}" preload="meta" controls></video>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if images %}
+        <div class="swiper-wrap swiper-container">
+          <ul class="screencurt swiper-wrapper">
+            {% for item in images %}
+              <li class="swiper-slide"><img src="{{ item }}"></li>
+            {% endfor %}
+          </ul>
+          <div class="swiper-prev screen-btn"><i class="icon-arrow"></i></div>
+          <div class="swiper-next screen-btn"><i class="icon-arrow"></i></div>
+        </div>
+      {% endif %}
+    </section>
+    <section class="content-desc">
+      <h2>软件介绍</h2>
+      <div class="fr-view">
+        <div class="content-box">
+          {{ mac_content.content | markdown_to_html }}
+        </div>
+        {% if mac_content.content %}
+          <div class="show-off"><em>展开</em> &gt;</div>
+        {% endif %}
+      </div>
+    </section>
+    {% if resRelatedGroup_soft[15] %}
+    <section class="rel-soft">
+      <h2>相关软件</h2>
+      {{ component.soft(resRelatedGroup_soft[15]) }}
+    </section>
+    {% endif %}
+    {% if resRelatedGroup_soft[1] %}
+    <section class="rel-article">
+      <h2>相关文章</h2>
+      {{ component.article(resRelatedGroup_soft[1]) }}
+    </section>
+    {% endif %}
+    {% if resRelatedGroup_soft[0] %}
+    <section class="rel-topic">
+      <h2>相关专题</h2>
+      {{ component.topic_soft(resRelatedGroup_soft[0]) }}
+    </section>
+    {% endif %}
+    <input type="hidden" id="content-info" data-model="{{ mac_content.model_id }}" data-id="{{ mac_content.id }}">
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/mac-content.min.js"></script>
+{% endblock %}

@@ -1,0 +1,11 @@
+{# 用来替换[dl]模型id-id[/dl]模板 #}
+<div class="dl-soft">
+    <a href="{{ dl.url }}" title="{{ dl.title }}">
+        <div class="img fl"><img src="{{ dl.thumb }}" alt="{{ dl.title }}"></div>
+        <div class="con">
+            <p class="title">{{ dl.title }} {{ dl.version }}</p>
+            <p class="desc">{{ dl.description }}</p>
+            <p class="info"><span>大小：{{ dl.file_size }}</span> <span>时间：{{ dl.update_time | date('Y.m.d') }}</span></p>
+        </div>
+    </a>
+</div>

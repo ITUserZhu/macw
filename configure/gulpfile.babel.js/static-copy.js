@@ -1,18 +1,14 @@
 /*
- * @Author: Liliang Zhu 
- * @Date: 2020-01-18 18:18:18 
- * @Last Modified by:   Liliang Zhu 
- * @Last Modified time: 2020-01-18 18:18:18 
+ * @Author: Liliang Zhu
+ * @Date: 2020-01-18 18:18:18
+ * @Last Modified by:   Liliang Zhu
+ * @Last Modified time: 2020-01-18 18:18:18
  * 复制静态资源
  */
 // gulp模块
-import {
-  src,
-  dest,
-} from 'gulp';
+import { src, dest } from "gulp";
 
 let copyFile = (file, dist) =>
-  src([`${file}fonts*/**`, `${file}images*/**`])
-    .pipe(dest(dist));
+  src([`${file}fonts*/**`, `${file}images*/**`]).pipe(dest(dist));
 
 export default copyFile;

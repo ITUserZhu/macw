@@ -1,0 +1,21 @@
+@import "../common/index";
+
+.component-topic-soft_list {
+  li {
+    .component-list-horizontal(@h: 1.6rem, @mt:0, @radius: 50%, @line: 1);
+
+    .img {
+      box-sizing: border-box;
+      padding: 0.25rem;
+      .shadow(@color: rgba(241, 241, 241, 0.9));
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .con .desc {
+      margin-top: 0.05rem;
+    }
+  }
+}

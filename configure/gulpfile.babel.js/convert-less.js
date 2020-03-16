@@ -12,42 +12,39 @@ import { src, dest, lastRun } from "gulp";
 // less语法转译
 import less from "gulp-less";
 // css添加前缀
-import lessAutoperfix from "less-plugin-autoprefix";
+import LessAutoperfix from "less-plugin-autoprefix";
 // 压缩css
 import mixCss from "gulp-clean-css";
 // 仅编译改变的文件
-import changed from "gulp-changed";
+// import changed from "gulp-changed";
 // 重命名
 import rename from "gulp-rename";
 // 生成版本号
 import rev from "gulp-rev";
 // 条件判断
-import gulpif from "gulp-if";
+import gulpIf from "gulp-if";
 // 移动端自动px转换rem
 import postcss from "gulp-postcss";
-import pxtorem from "postcss-pxtorem";
-// 本地服务同步刷新
-import browser from "browser-sync";
-const browserSync = browser.create();
+import pxToRem from "postcss-pxtorem";
 
 // css编译前缀
-const autoprefix = new lessAutoperfix();
+const autoprefix = new LessAutoperfix();
 
-let convertLess = (file, dist, type) => {
-  return src(`${file}less/*.less`, {
+let convertLess = (file, dist, type, browserSync) =>
+  src(`${file}less/*.less`, {
     since: lastRun(convertLess, 100)
   })
     .pipe(
       less({
-        plugins: [autoprefix]
         // 生成前缀
+        plugins: [autoprefix]
       })
     )
     .pipe(
-      gulpif(
+      gulpIf(
         type === "m",
         postcss(
-          pxtorem({
+          pxToRem({
             rootValue: 100,
             propList: ["*"]
           })
@@ -70,6 +67,5 @@ let convertLess = (file, dist, type) => {
         stream: true
       })
     );
-};
 
 export default convertLess;

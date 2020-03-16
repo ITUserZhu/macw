@@ -21,14 +21,11 @@ import rename from "gulp-rename";
 import rev from "gulp-rev";
 // 替换host地址
 import replace from "gulp-replace";
-// 本地服务同步刷新
-import browser from "browser-sync";
-const browserSync = browser.create();
 
 import webpackConfig from "../webpack.config";
 
-let convertJs = (file, dist, host) => {
-  return src(`${file}es6/*.js`)
+let convertJs = (file, dist, host, browserSync) =>
+  src(`${file}es6/*.js`)
     .pipe(
       changed(`${dist}js`, {
         extension: ".js"
@@ -48,6 +45,5 @@ let convertJs = (file, dist, host) => {
         stream: true
       })
     );
-};
 
 export default convertJs;

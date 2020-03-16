@@ -14,20 +14,17 @@ import revCollector from "gulp-rev-collector";
 // 压缩html
 import minHtml from "gulp-htmlmin";
 import replace from "gulp-replace";
-// 本地服务同步刷新
-import browser from "browser-sync";
-const browserSync = browser.create();
 
 // twig模板编译报错处理
-const reg_open = /\{\% if[^}]+\%\}/;
-const reg_close = /\{\%[^}]+endif \%\}/;
-const reg_box = [reg_open, reg_close];
+const regOpen = /{% if[^}]+%}/;
+const regClose = /{%[^}]+endif %}/;
+const regBox = [regOpen, regClose];
 // 正则匹配编译多余空格问题
-const rmspaceOpen = /\%\}\s+\{\{/g;
-const rmspaceClose = /\}\}\s+\{\%/g;
+const removeSpaceOpen = /%}\s+{{/g;
+const removeSpaceClose = /}}\s+{%/g;
 
-let convertHtml = (file, dist, basePath, host) => {
-  return src([`${file}mapjson/*/*.json`, `${file}pages/**`])
+let convertHtml = (file, dist, basePath, host, browserSync) =>
+  src([`${file}mapjson/*/*.json`, `${file}pages/**`])
     .pipe(
       revCollector({
         replaceReved: true,
@@ -42,12 +39,12 @@ let convertHtml = (file, dist, basePath, host) => {
         collapseWhitespace: true,
         removeComments: false,
         removeEmptyAttributes: true,
-        customAttrSurround: [reg_box],
-        ignoreCustomFragments: [reg_open]
+        customAttrSurround: [regBox],
+        ignoreCustomFragments: [regOpen]
       })
     )
-    .pipe(replace(rmspaceOpen, "%}{{"))
-    .pipe(replace(rmspaceClose, "}}{%"))
+    .pipe(replace(removeSpaceOpen, "%}{{"))
+    .pipe(replace(removeSpaceClose, "}}{%"))
     .pipe(replace(/__host/g, host.hostName))
     .pipe(replace(/__netname/g, host.hostTitle))
     .pipe(dest(dist))
@@ -56,6 +53,5 @@ let convertHtml = (file, dist, basePath, host) => {
         stream: true
       })
     );
-};
 
 export default convertHtml;

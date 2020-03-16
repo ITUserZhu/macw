@@ -46,7 +46,7 @@
   "dependencies": {
     "amfe-flexible": "^2.2.1",
     "core-js": "^2.6.11",
-    "jquery": "^3.4.1",
+    "jquery": "^3.1.1",
     "jquery-confirm": "^3.3.4",
     "qrcode": "^1.4.4",
     "swiper": "^5.3.1"

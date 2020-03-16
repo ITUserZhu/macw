@@ -1,3 +1,11 @@
+/*
+ * @Author: Liliang Zhu
+ * @Date: 2020-02-28 18:18:52
+ * @Last Modified by: Liliang Zhu
+ * @Last Modified time: 2020-03-05 14:50:57
+ * 编译less
+ */
+
 import { src, dest, series, parallel, watch } from "gulp";
 
 // 本地服务同步刷新
@@ -13,11 +21,11 @@ import copyFile from "./static-copy";
 // 域名与站点名称
 const host = {
   hostName: "macw",
-  hostTitle: "Macw网"
+  hostTitle: "MacW网"
 };
 
-// 开发项目类型
-const devType = "pc";
+// 开发项目类型 pc sc video mobile
+const devType = "mobile";
 
 // 本地目录
 const filePath = `project/${devType}/`;
@@ -66,20 +74,20 @@ export const copyJs = () => {
 // 编译css
 export const compileCss = series(delCssFile, cb => {
   console.log(word_color, `${new Date()} 编译css`);
-  convertLess(filePath, distResourcesPath, devType);
+  convertLess(filePath, distResourcesPath, devType, browserSync);
   cb();
 });
 // 编译js
 export const compileJs = series(delJsFile, cb => {
   console.log(word_color, `${new Date()} 编译js`);
-  convertJs(filePath, distResourcesPath, host);
+  convertJs(filePath, distResourcesPath, host, browserSync);
   cb();
 });
 
 // 编译html
 export const freshHtml = cb => {
   console.log(word_color, `${new Date()} 编译html`);
-  convertHtml(filePath, distPagesPath, baseProjectPath, host);
+  convertHtml(filePath, distPagesPath, baseProjectPath, host, browserSync);
   cb();
 };
 

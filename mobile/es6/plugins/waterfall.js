@@ -35,6 +35,7 @@
       isAutoPrefill: true, // When the document is smaller than the window, load data until the document is larger
       checkImagesLoaded: true, // triggers layout when images loaded. Suggest false
       path: undefined, // Either parts of a URL as an array (e.g. ["/popular/page/", "/"] => "/popular/page/1/" or a function that takes in the page number and returns a URL(e.g. function(page) { return '/populr/page/' + page; } => "/popular/page/1/")
+      ajaxType: "GET",
       dataType: "json", // json, jsonp, html
       params: {}, // params,{type: "popular", tags: "travel", format: "json"} => "type=popular&tags=travel&format=json"
       headers: {}, // headers variable that gets passed to jQuery.ajax()
@@ -469,6 +470,7 @@
         maxPage = options.maxPage,
         curPage = options.state.curPage++, // cur page
         path = options.path,
+        ajaxType = options.ajaxType,
         dataType = options.dataType,
         params = options.params,
         headers = options.headers,
@@ -484,7 +486,13 @@
       }
 
       // get ajax url
-      pageurl = typeof path === "function" ? path(curPage) : path.join(curPage);
+      if (ajaxType === "GET") {
+        pageurl =
+          typeof path === "function" ? path(curPage) : path.join(curPage);
+      } else {
+        pageurl = path;
+        params.page = curPage;
+      }
 
       this._debug("heading into ajax", pageurl + $.param(params));
 
@@ -499,9 +507,13 @@
       $.ajax({
         url: pageurl,
         data: params,
+        type: ajaxType,
         headers: headers,
         dataType: dataType,
         success: function(data) {
+          if (data.total == 0 || JSON.stringify(data) == "{}") {
+            maxPage = curPage;
+          }
           self._handleResponse(data, callback);
           self.options.state.isDuringAjax = false;
         },

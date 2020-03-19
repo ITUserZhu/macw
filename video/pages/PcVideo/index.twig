@@ -124,6 +124,22 @@
 					{{ component.index_list(videoList, 4, 'v') }}
 				</ul>
 			</div>
+      <div class="newest-video_wraps clearfix">
+        <div class="sec-title">
+          <h3>Fcpx模板</h3>
+          <span class="check"><img src="/assets/images/random.png" height="16">换一批</span>
+        </div>
+        <div class="newest-info">
+          <a href="/flist/">
+            <p class="title">Fcpx模板</p>
+            <p class="num">共{{ cate_res_num['fcpx'] }}个视频</p>
+            <span>查看更多</span>
+          </a>
+        </div>
+        <ul class="newest-lis videos-wrap clearfix">
+          {{ component.index_list(fList, 4, 'fcpx') }}
+        </ul>
+      </div>
 		</section>
 		<section class="hot-topic">
 			<h2>热门专题</h2>

@@ -1,13 +1,14 @@
 {
-  "article-content.min.css": "article-content-5183bdfe57.min.css",
-  "index.min.css": "index-4543510802.min.css",
-  "list.min.css": "list-befe4e9c46.min.css",
-  "mac-content.min.css": "mac-content-04b5de3771.min.css",
-  "plugin-content.min.css": "plugin-content-137a735227.min.css",
-  "rank.min.css": "rank-c36555ff47.min.css",
-  "search.min.css": "search-01e8782f2d.min.css",
-  "template-content.min.css": "template-content-fa1e4ea9cc.min.css",
-  "topic-content.min.css": "topic-content-7a6482efb3.min.css",
-  "topic-list.min.css": "topic-list-cdc78887d6.min.css",
-  "wallpaper-content.min.css": "wallpaper-content-e7d35ee24e.min.css"
+  "article-content.min.css": "article-content-3f6e79ced5.min.css",
+  "index.min.css": "index-2d7ef5fb71.min.css",
+  "list.min.css": "list-16838ed09c.min.css",
+  "mac-content.min.css": "mac-content-2bc46c9e45.min.css",
+  "material-index.min.css": "material-index-c40d94820c.min.css",
+  "plugin-content.min.css": "plugin-content-9f33c056f0.min.css",
+  "rank.min.css": "rank-3b3da7a3f4.min.css",
+  "search.min.css": "search-0a56c5a961.min.css",
+  "template-content.min.css": "template-content-66b1ef43b8.min.css",
+  "topic-content.min.css": "topic-content-03353158d9.min.css",
+  "topic-list.min.css": "topic-list-d8b77a6cbc.min.css",
+  "wallpaper-content.min.css": "wallpaper-content-6dea4be6a8.min.css"
 }

@@ -1,0 +1,56 @@
+<!-- 图集列表 -->
+{% macro atlas(data, class) %}
+  <ul class="material-atlas_list {{ class }}">
+    {% for i,item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title }}">
+          <div class="img">
+            <img src="{{ item.thumb }}" alt="{{ item.title }}">
+          </div>
+          <p class="title">{{ item.title }}</p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 专题列表 -->
+{% macro topic(data, class) %}
+  <ul class="material-topic_list {{ class }}">
+    {% for i,item in data %}
+      <li>
+        <a href="{{ item.url }}" title="{{ item.title }}">
+          <div class="imgs">
+            {% for v in item.thumb_arr %}
+            <div class="img">
+              <img src="{{ v }}" alt="{{ item.title }}">
+            </div>
+            {% endfor %}
+          </div>
+          <div class="con">
+            <p class="title">{{ item.title }}</p>
+            <span>共{{ item.num }}张图片</span>
+            <button>立即查看</button>
+          </div>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<!-- 瀑布流图片列表 -->
+{% macro waterfall(data, class) %}
+  <section class="waterfall">
+    <ul class="material-waterfall_list {{ class }}">
+      {% for i,item in data %}
+        <li class="item">
+          <a href="{{ item.url }}" title="{{ item.title }}">
+            <div class="img">
+              <img src="{{ item.thumb }}" alt="{{ item.title }}">
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endmacro %}

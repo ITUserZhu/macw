@@ -5,10 +5,10 @@
  * @Last Modified time: 2019-12-03 17:23:00
  */
 
-@import 'components/common';
-@import 'modules/pagination';
-@import '/node_modules/swiper/css/swiper.min.css';
-@import 'modules/video-play';
+@import "components/common";
+@import "modules/pagination";
+@import "/node_modules/swiper/css/swiper.min.css";
+@import "modules/video-play";
 
 section {
   .rank-title {
@@ -40,7 +40,7 @@ section {
     width: 100%;
     height: 100%;
     position: relative;
-    transition: all .2s;
+    transition: all 0.2s;
     overflow: hidden;
 
     &.hover {
@@ -67,21 +67,21 @@ section {
       line-height: 110px;
       text-align: center;
       color: #fff;
-      background-color: rgba(0, 0, 0, .6);
+      background-color: rgba(0, 0, 0, 0.6);
       left: 50%;
       margin-left: -40px;
       top: -40px;
 
       &.first {
-        background-color: #E61516;
+        background-color: #e61516;
       }
 
       &.two {
-        background-color: #F0B967;
+        background-color: #f0b967;
       }
 
       &.three {
-        background-color: #EECF50;
+        background-color: #eecf50;
       }
     }
   }
@@ -126,9 +126,9 @@ section {
       height: 232px;
       background-color: #fff;
       padding: 8px;
-      transition: all .2s;
-      opacity: .8;
-      .shadow(@color: rgba(0, 0, 0, .1));
+      transition: all 0.2s;
+      opacity: 0.8;
+      .shadow(@color: rgba(0, 0, 0, 0.1));
 
       &.swiper-slide-next {
         transform: scale(1.3);

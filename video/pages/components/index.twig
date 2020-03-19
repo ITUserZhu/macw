@@ -38,7 +38,7 @@
 			<p class="title">{{ item.title }}</p>
 			<p>
 				{% if type %}
-				<em class="{{ type }}">{{ type == 'ae'? 'AE模板': type == 'pr'? 'PR模板': '视频素材' }}</em>
+				<em class="{{ type }}">{{ type == 'ae'? 'AE模板': type == 'pr'? 'PR模板': type == 'fcpx'? 'Fcpx模板': '视频素材' }}</em>
 				{% else %}
 				<em class="v">{{ item.cate_name }}</em>
 				{% endif %}

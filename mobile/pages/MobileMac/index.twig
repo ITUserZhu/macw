@@ -16,7 +16,7 @@
     <div class="sec-title">
       <h2>最新软件</h2>
     </div>
-    {{ component.soft(mac_newest_soft) }}
+    {{ component.soft(mac_newest) }}
   </section>
   <section class="boutique-app">
     <div class="sec-title">
@@ -29,42 +29,42 @@
       <h2>最新视频</h2>
       <a href="" class="fr"><i class="icon-arrow"></i></a>
     </div>
-    {{ component.video(mac_newest_recommend) }}
+    {{ component.video(video_newest) }}
   </section>
   <section class="newest-video">
     <div class="sec-title">
       <h2>最新素材</h2>
       <a href="" class="fr"><i class="icon-arrow"></i></a>
     </div>
-    {{ component.material(mac_newest_recommend) }}
+    {{ component.material(material_newest) }}
   </section>
   <section class="boutique-plugin">
     <div class="sec-title">
-      <h2>精品插件</h2>
+      <h2>最新插件</h2>
       <a href="" class="fr"><i class="icon-arrow"></i></a>
     </div>
-    {{ component.plugin(mac_newest_recommend) }}
+    {{ component.plugin(plugin_newest) }}
   </section>
   <section class="boutique-plugin">
     <div class="sec-title">
-      <h2>精品模板</h2>
+      <h2>最新模板</h2>
       <a href="" class="fr"><i class="icon-arrow"></i></a>
     </div>
-    {{ component.template(mac_newest_recommend) }}
+    {{ component.template(template_newest) }}
   </section>
   <section class="boutique-wallpaper">
     <div class="sec-title">
-      <h2>精品壁纸</h2>
+      <h2>最新壁纸</h2>
       <a href="" class="fr"><i class="icon-arrow"></i></a>
     </div>
-    {{ component.wallpaper(mac_newest_recommend) }}
+    {{ component.wallpaper(wallpaper_newest) }}
   </section>
   <section class="newest-article">
     <div class="sec-title">
       <h2>最新文章</h2>
       <a href="" class="fr"><i class="icon-arrow"></i></a>
     </div>
-    {{ component.article(mac_article_newest) }}
+    {{ component.article(article_newest) }}
   </section>
   <section class="rank-soft">
     <div class="sec-title">
@@ -73,7 +73,7 @@
     </div>
     <div class="rank-soft-wrap">
       <ul>
-        {% for item in mac_newest_recommend %}
+        {% for item in mac_rank %}
         <li>
           <a href="{{ item.url }}" title="{{ item.title }}">
             <div class="img">

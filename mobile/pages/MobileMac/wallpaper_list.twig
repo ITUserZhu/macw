@@ -14,16 +14,10 @@
           <a href="{{ item.url }}" {% if category_data.parent_id == item.id or item.id == id %}class="active"{% endif %}>{{ item.cate_name }}</a>
         {% endfor %}
       </div>
-      <div class="nav-second clearfix">
-        <div class="free-type fr">
-          <a href="/dlist/{{ id }}_1.html" {% if vip == 1 %}class="active"{% endif %}>收费</a> <em>|</em>
-          <a href="/dlist/{{ id }}_2.html" {% if vip == 2 %}class="active"{% endif %}>免费</a>
-        </div>
-      </div>
     </section>
     <section class="list-wrap">
       <div class="list-box">
-        {{ component.wallpaper(wallpaper_data) }}
+        {{ component.wallpaper(mac_wallpaper) }}
       </div>
     </section>
   </main>

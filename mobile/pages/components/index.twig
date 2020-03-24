@@ -100,7 +100,7 @@
           <p class="title">{{ item.title | raw }}</p>
           <p class="info">
             <span>{{ item.file_size | default("0 Kb") }}</span>
-            <span class="fr">{{ item.update_time }}</span>
+            <span class="fr">{{ item.update_time | date('Y-m-d') }}</span>
           </p>
         </a>
       </li>
@@ -128,7 +128,7 @@
 {% macro template(data, is_rank = false, class = '') %}
   <ul class="component-template_list clearfix {{ class }}">
     {% for i,item in data %}
-      <li>
+      <li class="tmp">
         <a href="{{ item.url }}" title="{{ item.title | striptags }}">
           {% if is_rank %}<span class="rank-num"><i></i><em>{{ i + 1 }}</em></span>{% endif %}
           <div class="img">

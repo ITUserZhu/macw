@@ -32,12 +32,18 @@ $(() => {
   }
 
   // 截图轮播功能
-  if ($(".swiper-container").length) {
+  const $swiperContainer = $(".swiper-container");
+  if ($swiperContainer.length) {
+    let effectType = "slide";
+    if ($swiperContainer.hasClass("wallpaper")) {
+      effectType = "fade";
+    }
     new Swiper(".swiper-container", {
       navigation: {
         nextEl: ".swiper-next",
         prevEl: ".swiper-prev"
-      }
+      },
+      effect: effectType
     });
   }
 

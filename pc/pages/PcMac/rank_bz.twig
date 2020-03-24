@@ -22,10 +22,10 @@
       </div>
       <section class="rank-wallpaper">
         <ul class="wallpaper toggle active clearfix">
-          {{ component.wallpaper(rank_info | slice(0, 20)) }}
+          {{ component.wallpaper(rank_info | slice(0, 18)) }}
         </ul>
         <ul class="wallpaper toggle clearfix">
-          {{ component.wallpaper(rank_info | slice(20, 20)) }}
+          {{ component.wallpaper(rank_info | slice(18, 18)) }}
         </ul>
         {% if rank_info | length > 20 %}
           <div class="rank-pagi">

@@ -11,9 +11,9 @@
       <h1>{{ wallpaper_content.title }}</h1>
     </section>
     <section class="video-imgs">
-      <div class="swiper-wrap swiper-container">
+      <div class="swiper-wrap swiper-container wallpaper">
         <ul class="screencurt swiper-wrapper">
-          {% for v in wallpaperv_content.multi_map if v %}
+          {% for v in wallpaper_content.multi_map if v %}
             <li class="swiper-slide"><img src="{{ v }}"></li>
           {% endfor %}
         </ul>
@@ -35,7 +35,7 @@
     </section>
     <section class="content-desc">
       <h2>内容介绍</h2>
-      <div class="fr-view">
+      <div class="fr-view markdown-body">
         <div class="content-box">
           {{ wallpaper_content.content | markdown_to_html }}
         </div>
@@ -44,10 +44,10 @@
         {% endif %}
       </div>
     </section>
-    {% if resRelatedGroup_soft[19] %}
+    {% if resRelatedGroup_soft[20] %}
       <section class="rel-soft">
         <h2>相关壁纸</h2>
-        {{ component.wallpaper(resRelatedGroup_soft[19]) }}
+        {{ component.wallpaper(resRelatedGroup_soft[20]) }}
       </section>
     {% endif %}
     {% if resRelatedGroup_soft[1] %}

@@ -1,72 +1,27 @@
-{% spaceless %}
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="applicable-device" content="mobile" />
-    <link rel="dns-prefetch" href="//m.__host.com" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>{% block page_title %}{{ page_title|default('Mac下载') }}{% endblock %}</title>
-    <meta name="keywords" content="{% block page_kw %}{{ page_kw|default('Mac下载') }}{% endblock %}">
-    <meta name="description" content="{% block page_desc %}{{ page_desc }}{% endblock %}">
-    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="canonical" href="{{ pc_url }}" >
-    <script>
-      (function(){var ua=navigator.userAgent.toLowerCase();var bIsIpad=ua.match(/ipad/i)=="ipad";var bIsIphoneOs=ua.match(/iphone os/i)=="iphone os";var bIsAndroid=ua.match(/android/i)=="android";var bIsWM=ua.match(/windows mobile/i)=="windows mobile";if(bIsIpad||bIsIphoneOs||bIsAndroid||bIsWM){return}else{window.location.href="{{ pc_url }}"}})();
-    </script>
-    {% block css %}{% endblock %}
-  </head>
-  <body>
-  {% block header %}
-    <header>
-      <div class="head">
-        <div class="logo fl"><a href="/">
-            <img src="/assets/images/logo.png">
-          </a></div>
-        <div class="head-other fr">
-          <a href="/search/"><i class="icon-search"></i></a>
-          <span id="menu"><i class="icon-menu"></i></span>
-        </div>
-        <div class="fix-nav">
-          <div class="nav-wrap">
-            <img src="/assets/images/icon.png">
-            <ul>
-              <li><a href="/sc/">首页</a></li>
-              <li><a href="">图库</a></li>
-              <li><a href="">图集</a></li>
-              <li><a href="">专题</a></li>
-              <li><a href="/">软件</a></li>
-              <li><a href="/v/">视频</a></li>
-            </ul>
-          </div>
+{% extends 'inc/base.twig' %}
+{% import "components/nav.twig" as nav %}
+
+{% block header %}
+  <header>
+    <div class="head">
+      <div class="logo fl"><a href="/">
+          <img src="/assets/images/logo.png">
+        </a></div>
+      <div class="head-other fr">
+        {% block search %}
+          <a href="/plist/"><i class="icon-search"></i></a>
+        {% endblock %}
+        <span id="menu"><i class="icon-menu"></i></span>
+      </div>
+      <div class="fix-nav">
+        <div class="nav-wrap">
+          <img src="/assets/images/icon.png">
+          {{ nav.material_nav(active) }}
         </div>
       </div>
-      <nav>
-        <ul class="clearfix">
-          <li><a href="/sc/">首页</a></li>
-          <li><a href="">图库</a></li>
-          <li><a href="">图集</a></li>
-          <li><a href="">专题</a></li>
-          <li><a href="/">软件</a></li>
-          <li><a href="/v/">视频</a></li>
-        </ul>
-      </nav>
-    </header>
-  {% endblock %}
-  {% block content %}{% endblock %}
-  <footer>
-    <div class="foot clearfix">
-      <a href="/">网站首页</a>
-      <p>Copyright©2019__host.com All Rights Reserved</p>
     </div>
-  </footer>
-  <script async src='http://mxsa.macw.com:3000/browser-sync/browser-sync-client.js?v=2.26.7'></script>
-  {% block script %}
-    <script src="js/common.min.js"></script>
-  {% endblock %}
-  </body>
-  </html>
-{% endspaceless %}
+    <nav>
+      {{ nav.material_nav(active) }}
+    </nav>
+  </header>
+{% endblock %}

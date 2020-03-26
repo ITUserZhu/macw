@@ -1,3 +1,5 @@
+{% import "components/nav.twig" as nav %}
+
 {% spaceless %}
 <!DOCTYPE html>
 <html>
@@ -33,34 +35,12 @@
 			<div class="fix-nav">
 				<div class="nav-wrap">
 					<img src="/assets/images/icon.png">
-					<ul>
-						<li {% if active == 'index' %}class="active"{% endif %}><a href="/">首页</a></li>
-						<li {% if active == 'mac' %}class="active"{% endif %}><a href="/list/">应用</a></li>
-            <li {% if active == 'plugin' %}class="active"{% endif %}><a href="/cjlist/">插件</a></li>
-            <li {% if active == 'template' %}class="active"{% endif %}><a href="/mblist/">模板</a></li>
-						<li {% if active == 'wallpaper' %}class="active"{% endif %}><a href="/dlist/">壁纸</a></li>
-            <li {% if active == 'article' %}class="active"{% endif %}><a href="/nlist/">教程</a></li>
-						<li {% if active == 'special' %}class="active"{% endif %}><a href="/z/ls_1.html">专题</a></li>
-						<li {% if active == 'rank' %}class="active"{% endif %}><a href="/rank/">榜单</a></li>
-						<li><a href="/sc/">素材</a></li>
-						<li><a href="/v/">视频</a></li>
-					</ul>
+					{{ nav.base_nav(active) }}
 				</div>
 			</div>
 		</div>
 		<nav>
-			<ul class="clearfix">
-				<li {% if active == 'index' %}class="active"{% endif %}><a href="/">首页</a></li>
-				<li {% if active == 'mac' %}class="active"{% endif %}><a href="/list/">应用</a></li>
-        <li {% if active == 'plugin' %}class="active"{% endif %}><a href="/cjlist/">插件</a></li>
-				<li {% if active == 'template' %}class="active"{% endif %}><a href="/mblist/">模板</a></li>
-				<li {% if active == 'wallpaper' %}class="active"{% endif %}><a href="/dlist/">壁纸</a></li>
-        <li {% if active == 'article' %}class="active"{% endif %}><a href="/nlist/">教程</a></li>
-				<li {% if active == 'special' %}class="active"{% endif %}><a href="/z/ls_1.html">专题</a></li>
-				<li {% if active == 'rank' %}class="active"{% endif %}><a href="/rank/">榜单</a></li>
-				<li><a href="/sc/">素材</a></li>
-				<li><a href="/v/">视频</a></li>
-			</ul>
+      {{ nav.base_nav(active) }}
 		</nav>
 	</header>
   {% endblock %}
@@ -71,7 +51,6 @@
 			<p>Copyright©2019__host.com All Rights Reserved</p>
 		</div>
 	</footer>
-  <script async src='http://mxsa.macw.com:3000/browser-sync/browser-sync-client.js?v=2.26.7'></script>
 	{% block script %}
     <script src="js/common.min.js"></script>
   {% endblock %}

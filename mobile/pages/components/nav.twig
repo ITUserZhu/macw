@@ -1,0 +1,38 @@
+{% macro base_nav(active) %}
+  <ul class="clearfix">
+    <li {% if active == 'index' %}class="active"{% endif %}><a href="/">首页</a></li>
+    <li {% if active == 'mac' %}class="active"{% endif %}><a href="/list/">应用</a></li>
+    <li {% if active == 'plugin' %}class="active"{% endif %}><a href="/cjlist/">插件</a></li>
+    <li {% if active == 'template' %}class="active"{% endif %}><a href="/mblist/">模板</a></li>
+    <li {% if active == 'wallpaper' %}class="active"{% endif %}><a href="/dlist/">壁纸</a></li>
+    <li {% if active == 'article' %}class="active"{% endif %}><a href="/nlist/">教程</a></li>
+    <li {% if active == 'special' %}class="active"{% endif %}><a href="/z/ls_1.html">专题</a></li>
+    <li {% if active == 'rank' %}class="active"{% endif %}><a href="/rank/">榜单</a></li>
+    <li><a href="/sc/">素材</a></li>
+    <li><a href="/v/">视频</a></li>
+  </ul>
+{% endmacro %}
+
+{% macro material_nav(active) %}
+  <ul class="clearfix">
+    <li {% if active == 'index' %}class="active"{% endif %}><a href="/sc/">首页</a></li>
+    <li {% if active == 'pic' %}class="active"{% endif %}><a href="/plist/">图库</a></li>
+    <li {% if active == 'atlas' %}class="active"{% endif %}><a href="/tlist/">图集</a></li>
+    <li {% if active == 'special' %}class="active"{% endif %}><a href="/z/lsc/">专题</a></li>
+    <li><a href="/">软件</a></li>
+    <li><a href="/v/">视频</a></li>
+  </ul>
+{% endmacro %}
+
+{% macro video_nav(active, navs) %}
+  <ul class="clearfix">
+    <li {% if active == 'index' %}class="active"{% endif %}><a href="/v/">首页</a></li>
+    {% for item in navs %}
+    <li {% if active == item.id %}class="active"{% endif %}><a href="{{ item.url }}">{{ item.cate_name }}</a></li>
+    {% endfor %}
+    <li {% if active == 'special' %}class="active"{% endif %}><a href="/z/lv/">专题</a></li>
+    <li {% if active == 'rank' %}class="active"{% endif %}><a href="/rank/v/">排行</a></li>
+    <li><a href="/">软件</a></li>
+    <li><a href="/sc/">素材</a></li>
+  </ul>
+{% endmacro %}

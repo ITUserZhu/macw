@@ -6,88 +6,14 @@
 {% endblock %}
 
 {% block content %}
-  {% set thumbs = [
-    {
-      thumb: 'https://photo.mac69.com/2020/03/12/JPG-200312_289/TGa97zhLjj_small.jpg',
-      title: '我是测试1',
-      num: 12,
-      url: '/',
-      thumb_arr: [
-      'https://photo.mac69.com/2020/03/12/JPG-200312_289/TGa97zhLjj_small.jpg',
-      'https://jpg.macdown.com/icon/202003/17112912_81cb0aa4ad.jpeg',
-      'https://photo.macdown.com/2020/03/12/JPG-200312_403/UrOYkU2dyb_small.jpg',
-      'https://jpg.macdown.com/icon/202003/17111720_80bf6652ba.jpeg',
-    ]
-    },
-    {
-      thumb: 'https://jpg.macdown.com/icon/202003/17112912_81cb0aa4ad.jpeg',
-      title: '啊我都看了家乐福',
-      num: 22,
-      url: '/',
-      thumb_arr: [
-      'https://jpg.macdown.com/icon/202003/17112912_81cb0aa4ad.jpeg',
-      'https://photo.macdown.com/2020/03/12/JPG-200312_403/UrOYkU2dyb_small.jpg',
-      'https://photo.mac69.com/2020/03/12/JPG-200312_289/TGa97zhLjj_small.jpg',
-      'https://jpg.macdown.com/icon/202003/17111720_80bf6652ba.jpeg',
-    ]
-    },
-    {
-      thumb: 'https://photo.macdown.com/2020/03/12/JPG-200312_403/UrOYkU2dyb_small.jpg',
-      title: '放格式瓦达瓦娃达',
-      num: 13,
-      url: '/',
-      thumb_arr: [
-      'https://photo.macdown.com/2020/03/12/JPG-200312_403/UrOYkU2dyb_small.jpg',
-      'https://jpg.macdown.com/icon/202003/17111720_80bf6652ba.jpeg',
-      'https://photo.mac69.com/2020/03/12/JPG-200312_289/TGa97zhLjj_small.jpg',
-      'https://jpg.macdown.com/icon/202003/17112912_81cb0aa4ad.jpeg',
-    ]
-    },
-    {
-      thumb: 'https://jpg.macdown.com/icon/202003/17111720_80bf6652ba.jpeg',
-      title: '哇大啊福娃福娃',
-      num: 24,
-      url: '/',
-      thumb_arr: [
-      'https://photo.macdown.com/2020/03/12/JPG-200312_403/UrOYkU2dyb_small.jpg',
-      'https://photo.mac69.com/2020/03/12/JPG-200312_289/TGa97zhLjj_small.jpg',
-      'https://jpg.macdown.com/icon/202003/17112912_81cb0aa4ad.jpeg',
-      'https://photo.macdown.com/2020/03/12/JPG-200312_340/lIGgQPRZKW_small.jpg',
-    ]
-    },
-    {
-      thumb: 'https://photo.macdown.com/2020/03/12/JPG-200312_340/lIGgQPRZKW_small.jpg',
-      title: '个帅哥帅哥帅哥',
-      num: 16,
-      url: '/',
-      thumb_arr: [
-      'https://jpg.macdown.com/icon/202003/17112912_81cb0aa4ad.jpeg',
-      'https://photo.macdown.com/2020/03/12/JPG-200312_403/UrOYkU2dyb_small.jpg',
-      'https://jpg.macdown.com/icon/202003/17111720_80bf6652ba.jpeg',
-      'https://photo.mac69.com/2020/03/12/JPG-200312_289/TGa97zhLjj_small.jpg',
-    ]
-    },
-    {
-      thumb: 'https://photo.macdown.com/2020/03/12/JPG-200312_9/ly7lKEwx8F_small.jpg',
-      title: '晚点发福娃福娃无法',
-      num: 52,
-      url: '/',
-      thumb_arr: [
-      'https://photo.mac69.com/2020/03/12/JPG-200312_289/TGa97zhLjj_small.jpg',
-      'https://photo.macdown.com/2020/03/12/JPG-200312_9/ly7lKEwx8F_small.jpg',
-      'https://jpg.macdown.com/icon/202003/17112912_81cb0aa4ad.jpeg',
-      'https://photo.macdown.com/2020/03/12/JPG-200312_403/UrOYkU2dyb_small.jpg',
-    ]
-    },
-    ] %}
   <main>
     <section class="banner">
       <div class="swiper-container">
         <ul class="swiper-wrapper">
-          {% for item in thumbs %}
+          {% for item in index_banner %}
             <li class="swiper-slide">
               <a href="{{ item.url }}">
-                <img src="{{ item.thumb }}" alt="{{ item.title }}">
+                <img src="{{ item.image }}">
               </a>
             </li>
           {% endfor %}
@@ -101,27 +27,25 @@
         <a href="/sc/list/" class="fr"><i class="icon-arrow"></i></a>
       </div>
       <ul class="clearfix">
-        {% for item in thumbs %}
+        {% for item in photo_data %}
           <li><a href="{{ item.url }}"><img src="{{ item.thumb }}" alt="{{ item.title }}"></a></li>
         {% endfor %}
       </ul>
     </section>
     <section class="boutique-atlas">
       <div class="sec-title">
-        <h2>精品图集</h2>
+        <h2>最新图集</h2>
         <a href="/sc/atlas/" class="fr"><i class="icon-arrow"></i></a>
       </div>
-      {{ component.atlas(thumbs) }}
+      {{ component.atlas(atlas_data) }}
     </section>
     <section class="boutique-topic">
       <div class="sec-title">
         <h2>精品专题</h2>
         <a href="/sc/z/" class="fr"><i class="icon-arrow"></i></a>
       </div>
-      {{ component.topic(thumbs) }}
+      {{ component.topic(specialBestInfo) }}
     </section>
-
-    {{ component.waterfall(thumbs) }}
   </main>
 {% endblock %}
 

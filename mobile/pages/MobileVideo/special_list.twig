@@ -1,0 +1,26 @@
+{% extends 'inc/base_video.twig' %}
+{% import "components/video.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/video-topic.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="list-nav">
+      <div class="nav-wrap">
+        <a href="/z/lv/" {% if cat_id == 0 %}class="active"{% endif %}>全部</a>
+        {% for item in special_cate_info %}
+          <a href="{{ item.url }}" {% if item.id == cat_id %}class="active"{% endif %}>{{ item.cate_name }}</a>
+        {% endfor %}
+      </div>
+    </section>
+    <section>
+      {{ component.topic(video_special_data) }}
+    </section>
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/video-topic.min.js"></script>
+{% endblock %}

@@ -23,7 +23,7 @@
           <div class="imgs">
             {% for v in item.thumb_arr %}
             <div class="img">
-              <img src="{{ v }}" alt="{{ item.title }}">
+              <img src="{{ v.thumb }}" alt="{{ item.title }}">
             </div>
             {% endfor %}
           </div>
@@ -39,8 +39,13 @@
 {% endmacro %}
 
 <!-- 瀑布流图片列表 -->
-{% macro waterfall(data, class) %}
+{% macro waterfall(data, title = false, class) %}
   <section class="waterfall">
+    {% if title %}
+    <div class="sec-title">
+      <h2>{{ title }}</h2>
+    </div>
+    {% endif %}
     <ul class="material-waterfall_list {{ class }}">
       {% for i,item in data %}
         <li class="item">

@@ -1,0 +1,26 @@
+{% extends 'inc/base_material.twig' %}
+{% import "components/material.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/material-topic.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="list-nav">
+      <div class="nav-wrap">
+        <a href="/z/lsc/" {% if cat_id  == 0 %}class="active"{% endif %}>全部</a>
+        {% for item in cate_info  %}
+          <a href="{{ item.url }}" {% if item.id == cat_id  %}class="active"{% endif %}>{{ item.cate_name }}</a>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="atlas-wrap">
+      {{ component.topic(special_list) }}
+    </section>
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/material-topic.min.js"></script>
+{% endblock %}

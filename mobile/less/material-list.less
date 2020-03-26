@@ -1,0 +1,38 @@
+@import "common/index";
+@import "components/list-nav";
+@import "components/material/list";
+
+section {
+  margin: 30px 24px 0;
+
+  &.list-nav {
+    .list-nav();
+    padding: 0 .2rem;
+
+    .nav-wrap {
+      a {
+        padding: 0 .1rem;
+        min-width: 1rem;
+      }
+    }
+
+    span.fl {
+      margin-top: .3rem;
+    }
+
+    .nav-box {
+      overflow: hidden;
+    }
+  }
+
+  .result {
+    color: #666;
+    line-height: 2;
+    font-size: 28px;
+    margin-top: 20px;
+
+    span {
+      color: @theme_color;
+    }
+  }
+}

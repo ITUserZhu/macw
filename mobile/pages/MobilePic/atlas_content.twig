@@ -1,0 +1,21 @@
+{% extends 'inc/base_material.twig' %}
+{% import "components/material.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/material-atlas-content.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="atlas-info">
+      <h1>{{ atlas.title }}</h1>
+      <span class="num">共{{ total }}张图片</span>
+      <p class="desc">{{ atlas.description }}</p>
+    </section>
+    {{ component.waterfall(atlas_list) }}
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/material-atlas-content.min.js"></script>
+{% endblock %}

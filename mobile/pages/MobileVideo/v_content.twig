@@ -1,0 +1,56 @@
+{% extends 'inc/base_video.twig' %}
+{% import "components/video.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/video-content.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="content-video">
+      <h1>{{ videoContent.title }}</h1>
+      <div class="video-box">
+        <video src="{{ videoContent.preview_url }}" controls preload="metadata" poster="{{ videoContent.thumb }}"></video>
+      </div>
+      <div class="video-info">
+        <span>大小：{{ videoContent.file_size }}</span>
+        <span>时长：{{ videoContent.time }}</span>
+        <span>尺寸：{{ videoContent.resolution }}</span>
+        <span>积分：{{ videoContent.point }}</span>
+        <span>时间：{{ videoContent.update_time | date('Y-m-d') }}</span>
+        <span>格式：{{ videoContent.video_type }}</span>
+      </div>
+      <button class="download">请前往PC端网页下载</button>
+    </section>
+    <section>
+      <div class="sec-title">
+        <h2>内容介绍</h2>
+      </div>
+      <div class="fr-view markdown-body">
+        {{ videoContent.content | markdown_to_html }}
+      </div>
+    </section>
+    {% if resRelatedGroup_soft[18] %}
+    <section>
+      <div class="sec-title">
+        <h2>相关视频</h2>
+        <a href="" class="fr"><i class="icon-arrow"></i></a>
+      </div>
+      {{ component.video(resRelatedGroup_soft[18]) }}
+    </section>
+    {% endif %}
+    {% if special_info %}
+    <section>
+      <div class="sec-title">
+        <h2>相关专题</h2>
+        <a href="" class="fr"><i class="icon-arrow"></i></a>
+      </div>
+      {{ component.topic(special_info) }}
+    </section>
+    {% endif %}
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/video-content.min.js"></script>
+{% endblock %}

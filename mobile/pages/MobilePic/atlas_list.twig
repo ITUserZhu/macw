@@ -1,0 +1,26 @@
+{% extends 'inc/base_material.twig' %}
+{% import "components/material.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/material-atlas.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="list-nav">
+      <div class="nav-wrap">
+        <a href="/tlist/" {% if tag_id == 0 %}class="active"{% endif %}>全部</a>
+        {% for item in category_info %}
+          <a href="{{ item.url }}" {% if item.id == tag_id %}class="active"{% endif %}>{{ item.keyword }}</a>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="atlas-wrap">
+      {{ component.atlas(atlas_list) }}
+    </section>
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/material-atlas.min.js"></script>
+{% endblock %}

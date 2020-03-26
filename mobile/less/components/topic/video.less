@@ -1,0 +1,67 @@
+.component-video_topic {
+  li {
+    padding: 24px;
+    width: 100%;
+    margin-bottom: 24px;
+    box-sizing: border-box;
+    height: 195px;
+
+    .shadow();
+
+    .con {
+      float: left;
+      width: 385px;
+      position: relative;
+      height: 100%;
+
+      .title {
+        .text-ovh();
+        font-size: 30px;
+        line-height: 1.5;
+      }
+
+      span {
+        color: #999;
+        font-size: 24px;
+      }
+
+      .time {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-size: 24px;
+        color: #999;
+      }
+    }
+
+    .imgs {
+      float: right;
+      position: relative;
+      width: 220px;
+      height: 100%;
+
+      img {
+        position: absolute;
+        width: 182px;
+        height: 100%;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px;
+        transform-origin: right bottom;
+
+        &:nth-child(1) {
+          transform: scale(.8);
+        }
+
+        &:nth-child(2) {
+          right: 20px;
+          transform: scale(.9);
+        }
+
+        &:nth-child(3) {
+          right: 40px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@import "common/index";
+@import "components/list/video";
+@import "components/topic/video";
+@import "components/fr-view";
+
+section {
+  margin: 30px 24px 0;
+
+  .sec-title {
+    line-height: 64px;
+    margin-bottom: 0.1rem;
+
+    h2,
+    h3 {
+      display: inline-block;
+      font-size: 32px;
+    }
+
+    a.fr {
+      color: #666;
+      i {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &.content-video {
+    h1 {
+      font-size: 32px;
+      line-height: 2;
+      margin-bottom: 10px;
+    }
+
+    .video-box {
+      width: 100%;
+
+      video {
+        width: 100%;
+      }
+    }
+
+    .video-info {
+      margin: 10px 0;
+      span {
+        color: #999;
+        margin-right: 40px;
+        line-height: 2;
+        font-size: .24rem;
+        display: inline-block;
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .download {
+      display: block;
+      margin: 0 auto;
+      width: 6.2rem;
+      height: 0.8rem;
+      border-radius: 0.1rem;
+      background-color: #a0a0a0;
+      font-size: 0.32rem;
+      outline: none;
+      border: none;
+      color: #fff;
+    }
+  }
+
+
+}

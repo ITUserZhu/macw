@@ -1,0 +1,62 @@
+{% extends 'inc/base_material.twig' %}
+{% import "components/material.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/material-content.min.css">
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="content-img">
+      <h1>{{ content.title }}</h1>
+      <div class="img-box">
+        <img src="{{ content.thumb }}" alt="{{ content.title }}">
+      </div>
+      <div class="content-info">
+        <span>格式：{% for i,item in photo_info %}{% if i != 0 %}、{% endif %}{{ item.format_type }}{% endfor %}</span>
+        <span>尺寸：{{ photo_info[0].width }}*{{ photo_info[0].height }} px</span>
+        {% for item in photo_info %}
+          <span>{{ item.format_type }}大小：{{ item.file_size }}</span>
+        {% endfor %}
+        <span>分辨率：{{ photo_info[0].dpi }} dpi</span>
+        <span>时间：{{ content.update_time }}</span>
+        <span>版权：{% if free_type == 1 %}商用素材{% else %}共享素材{% endif %}</span>
+      </div>
+      <button class="download">请前往PC端网页下载</button>
+    </section>
+    <section>
+      <div class="sec-title">
+        <h2>内容介绍</h2>
+      </div>
+      <div class="fr-view markdown-body">
+        {{ content.description | markdown_to_html }}
+      </div>
+    </section>
+    <section class="tags">
+      <div class="sec-title">
+        <h2>相关标签</h2>
+      </div>
+      <ul>
+        {% for item in tag_info %}
+        <li><a href="/search/sc_{{ item }}_0_0.html">{{ item }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% if atlas_info %}
+    <section>
+      <div class="sec-title">
+        <h2>所属图集</h2>
+      </div>
+      {{ component.atlas(atlas_info) }}
+    </section>
+    {% endif %}
+
+    {% if similar_photo %}
+    {{ component.waterfall(similar_photo, '相似图片') }}
+    {% endif %}
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/material-content.min.js"></script>
+{% endblock %}

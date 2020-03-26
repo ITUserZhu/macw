@@ -1,0 +1,47 @@
+{% extends 'inc/base_material.twig' %}
+{% import "components/material.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/material-list.min.css">
+{% endblock %}
+
+{% block search %}
+  <form class="header-search">
+    <input type="text" value="{{ keywords }}">
+    <button><i class="icon-search"></i></button>
+  </form>
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="list-nav">
+      <div class="nav-wrap">
+        <span class="fl">分类：</span>
+        <div class="nav-box">
+          <a href="{% if keywords %}/search/sc_{{ keywords }}_{% else %}/plist/{% endif %}0_{{ format_type }}.html" {% if cate_id == 0 %}class="active"{% endif %}>全部</a>
+          {% for item in category_info %}
+            <a href="{% if keywords %}/search/sc_{{ keywords }}_{% else %}/plist/{% endif %}{{ item.id }}_{{ format_type }}.html" {% if item.id == cate_id %}class="active"{% endif %}>{{ item.keyword }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="nav-wrap">
+        <span class="fl">格式：</span>
+        <div class="nav-box">
+          <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/plist/{% endif %}{{ cate_id }}_0.html" {% if format_type == 0 %}class="active"{% endif %}>全部</a>
+          {% for item in format_type_info %}
+            <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/plist/{% endif %}{{ cate_id }}_{{ item.id }}.html" {% if item.id == tag_id %}class="active"{% endif %}>{{ item.format_name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if keywords %}
+        <p class="result">共{{ photo_total }}个与<span>“{{ keywords }}”</span>相关搜索结果：</p>
+      {% endif %}
+    </section>
+    {{ component.waterfall(photo_data) }}
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/material-list.min.js"></script>
+{% endblock %}

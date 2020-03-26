@@ -1,0 +1,25 @@
+{% extends 'inc/base.twig' %}
+{% import "components/nav.twig" as nav %}
+
+{% block header %}
+  <header>
+    <div class="head">
+      <div class="logo fl"><a href="/">
+          <img src="/assets/images/logo.png">
+        </a></div>
+      <div class="head-other fr">
+        <a href="/search/"><i class="icon-search"></i></a>
+        <span id="menu"><i class="icon-menu"></i></span>
+      </div>
+      <div class="fix-nav">
+        <div class="nav-wrap">
+          <img src="/assets/images/icon.png">
+          {{ nav.video_nav(active, cate_info) }}
+        </div>
+      </div>
+    </div>
+    <nav>
+      {{ nav.video_nav(active, cate_info) }}
+    </nav>
+  </header>
+{% endblock %}

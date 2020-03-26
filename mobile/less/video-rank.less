@@ -1,0 +1,40 @@
+@import "common/index";
+@import "components/list-nav";
+@import "components/list/video";
+@import "components/rank-logo";
+
+section {
+  margin: 20px 24px 0;
+
+  &.list-nav {
+    .list-nav();
+  }
+
+  &.rank {
+    ul li {
+      &:first-child {
+        .rank-num {
+          .rank-logo(@rank_1);
+        }
+      }
+
+      &:nth-child(2) {
+        .rank-num {
+          .rank-logo(@rank_2);
+        }
+      }
+
+      &:nth-child(3) {
+        .rank-num {
+          .rank-logo(@rank_3);
+        }
+      }
+
+      &:nth-child(n + 4) {
+        .rank-num {
+          .rank-logo();
+        }
+      }
+    }
+  }
+}

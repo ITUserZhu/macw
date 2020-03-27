@@ -196,7 +196,7 @@
 {% endmacro %}
 
 <!-- 文章列表 -->
-{% macro article(data, class = '') %}
+{% macro article(data, is_soft = false, class = '') %}
   <ul class="component-article_list clearfix {{ class }}">
     {% for item in data %}
       <li>
@@ -205,7 +205,11 @@
             <p class="title">{{ item.title | raw }}</p>
             <p class="desc">{{ item.description }}</p>
             <p class="info">
-              <span>浏览：{{ item.hits_total | default(0) }}次</span>
+              {% if is_soft %}
+                共{{ item.res_num }}个内容
+              {% else %}
+                <span>浏览：{{ item.hits_total | default(0) }}次</span>
+              {% endif %}
               <span class="fr">更新：{{ item.update_time | date('Y-m-d') }}</span>
             </p>
           </div>

@@ -10,15 +10,13 @@ $(() => {
     const colW = (window.outerWidth - window.outerWidth * 0.1) * 0.485;
     const colM = (window.outerWidth - window.outerWidth * 0.1) * 0.03;
 
-    $(window).on("load", () => {
-      $templateList.waterfall({
-        itemCls: "tmp",
-        minCol: 2,
-        colWidth: colW,
-        gutterWidth: colM,
-        gutterHeight: colM + 5,
-        loadingMsg: ""
-      });
+    $templateList.waterfall({
+      itemCls: "tmp",
+      minCol: 2,
+      colWidth: colW,
+      gutterWidth: colM,
+      gutterHeight: colM + 5,
+      loadingMsg: ""
     });
   }
 });

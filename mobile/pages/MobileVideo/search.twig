@@ -1,0 +1,74 @@
+{% extends 'inc/base.twig' %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/search-video.min.css">
+{% endblock %}
+
+{% block header %}
+  <div class="header-search">
+    <form>
+      <button><i class="icon-search"></i></button>
+      <input type="text" placeholder="请您输入想要搜索的词或关键字" value="{{ keyword }}">
+      <input type="hidden" name="type" value="{{ model }}">
+    </form>
+    <div class="cancel">取消</div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="search-type-nav">
+      <a href="/search/vall_{{ keyword }}.html" {% if model == 'vall' %}class="active"{% endif %}>全部</a>
+      {% for item in cate_info %}
+      <a href="/search/{{ item.id }}_{{ keyword }}.html" {% if model == item.id %}class="active"{% endif %}>{{ item.cate_name }}</a>
+      {% endfor %}
+      <a href="/search/vspecial_{{ keyword }}.html" {% if model == 'vspecial' %}class="active"{% endif %}>视频专题</a>
+    </section>
+    <section class="search-result">
+      <p class="result">共为您搜到“{{ sum }}”个相关结果：</p>
+      <div class="list-box">
+        <ul class="component-video_topic">
+        {% for item in data if item.res_num %}
+            <li><a href="{{ item.url }}">
+                <div class="con">
+                  <p class="title">{{ item.title | raw }}</p>
+                  <span>共{{ item.res_num }}个视频</span>
+                  <p class="time">更新：{{ item.update_time | date('Y-m-d') }}</p>
+                </div>
+                <div class="imgs">
+                  {% for v in item.thumb_arr %}
+                    <img src="{{ v.thumb }}" alt="{{ item.title }}">
+                  {% endfor %}
+                </div>
+              </a></li>
+        {% endfor %}
+        </ul>
+        <ul class="component-video_list clearfix">
+          {% for item in data %}
+            {% if item.res_num %}
+            {% else %}
+              <li>
+                <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+                  {% if is_rank %}<span class="rank-num"><i></i><em>{{ i + 1 }}</em></span>{% endif %}
+                  <div class="img">
+                    <span class="video-play"></span>
+                    <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+                  </div>
+                  <p class="title">{{ item.title | raw }}</p>
+                  <p class="info">
+                    <span><i class="icon-video"></i>{{ item.time | default("00:00") }}</span>
+                    <span class="fr">{{ item.update_time | date('Y-m-d') }}</span>
+                  </p>
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/search-video.min.js"></script>
+{% endblock %}

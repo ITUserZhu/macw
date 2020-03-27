@@ -1,8 +1,8 @@
 {% extends 'inc/base.twig' %}
-{% import "components/index.twig" as component %}
+{% import "components/video.twig" as component %}
 
 {% block css %}
-  <link rel="stylesheet" href="css/search.min.css">
+  <link rel="stylesheet" href="css/search-video.min.css">
 {% endblock %}
 
 {% block header %}
@@ -10,7 +10,7 @@
     <form>
       <button><i class="icon-search"></i></button>
       <input type="text" placeholder="请您输入想要搜索的词或关键字">
-      <input type="hidden" name="type" value="all">
+      <input type="hidden" name="type" value="vall">
     </form>
     <div class="cancel">取消</div>
   </div>
@@ -18,6 +18,14 @@
 
 {% block content %}
   <main>
+    <section class="hot-search">
+      <h2>热门搜索</h2>
+      <div class="hot-box">
+        {% for item in hot_keyword %}
+          <a href="/search/vall_{{ item.keyword }}.html">{{ item.keyword }}</a>
+        {% endfor %}
+      </div>
+    </section>
     <section class="search-history">
       <div class="title-del">历史搜索
         <span class="del-history fr">删除历史</span>
@@ -27,16 +35,15 @@
       </div>
       <p class="no-history">暂无历史记录</p>
     </section>
-    {% if first_mac %}
-    <section class="boutique-soft">
-      <h2>精品软件</h2>
-      {{ component.soft(first_mac) }}
-      <a class="sec-more " href="/list/">更多</a>
-    </section>
+    {% if video_special_data %}
+      <section class="boutique-soft">
+        <h2>猜你喜欢</h2>
+        {{ component.topic(video_special_data) }}
+      </section>
     {% endif %}
   </main>
 {% endblock %}
 
 {% block script %}
-  <script src="js/search.min.js"></script>
+  <script src="js/search-video.min.js"></script>
 {% endblock %}

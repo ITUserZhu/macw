@@ -1,0 +1,97 @@
+{% extends 'inc/base.twig' %}
+{% import "components/index.twig" as component %}
+
+{% block css %}
+  <link rel="stylesheet" href="css/search.min.css">
+{% endblock %}
+
+{% block header %}
+  <div class="header-search">
+    <form>
+      <button><i class="icon-search"></i></button>
+      <input type="text" placeholder="请您输入想要搜索的词或关键字" value="{{ keyword }}">
+      <input type="hidden" name="type" value="{{ model }}">
+    </form>
+    <div class="cancel">取消</div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="search-type-nav">
+      <a href="/search/all_{{ keyword }}.html" {% if model == 'all' %}class="active"{% endif %}>全部</a>
+      <a href="/search/mac_{{ keyword }}.html" {% if model == 'mac' %}class="active"{% endif %}>软件</a>
+      <a href="/search/plugin_{{ keyword }}.html" {% if model == 'plugin' %}class="active"{% endif %}>插件</a>
+      <a href="/search/template_{{ keyword }}.html" {% if model == 'template' %}class="active"{% endif %}>模板</a>
+      <a href="/search/wallpaper_{{ keyword }}.html" {% if model == 'wallpaper' %}class="active"{% endif %}>壁纸</a>
+      <a href="/search/article_{{ keyword }}.html" {% if model == 'article' %}class="active"{% endif %}>资讯</a>
+      <a href="/search/special_{{ keyword }}.html" {% if model == 'special' %}class="active"{% endif %}>专题</a>
+    </section>
+    <section class="search-result">
+      <p class="result">共为您搜到“{{ sum }}”个相关结果：</p>
+      <div class="list-box">
+        {% if model == 'mac' %}
+          {{ component.soft(data) }}
+        {% elseif model == 'plugin' %}
+          {{ component.plugin(data) }}
+        {% elseif model == 'template' %}
+          {{ component.template(data) }}
+        {% elseif model == 'wallpaper' %}
+          {{ component.wallpaper(data) }}
+        {% elseif model == 'article' %}
+          {{ component.article(data) }}
+        {% elseif model == 'special' %}
+          {{ component.article(data, true) }}
+        {% elseif model == 'all' %}
+          <ul class="component-article_list">
+            {% for item in data if item.res_num or item.model_id == 1 %}
+              <li>
+                <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+                  <div class="con">
+                    <p class="title">{{ item.title | raw }}</p>
+                    <p class="desc">{{ item.description }}</p>
+                    <p class="info">
+                      <span>{% if item.res_num %}共{{ item.res_num }}个插件{% else %}浏览：{{ item.hits_total | default(0) }}次{% endif %}</span>
+                      <span class="fr">更新：{{ item.update_time | date('Y-m-d') }}</span>
+                    </p>
+                  </div>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+          <ul class="component-soft_list">
+            {% for item in data %}
+              {% if item.res_num or item.model_id == 1 %}
+              {% else %}
+                <li>
+                  <a href="{{ item.url }}" title="{{ item.title | striptags }}">
+                    {% if is_rank %}<span class="rank-num"><i></i><em>{{ i + 1 }}</em></span>{% endif %}
+                    <div class="img">
+                      <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+                    </div>
+                    <div class="con">
+                      <p class="title">{{ item.title | raw }}</p>
+                      <p class="info">
+                        <span>
+                          {% if item.model_id == 17 or item.model_id == 19 %}
+                            大小：{{ item.file_size }}
+                          {% else %}
+                            {{ item.version }}
+                          {% endif %}</span>
+                        <span class="fr">更新：{{ item.update_time | date('Y-m-d') }}</span>
+                      </p>
+                    </div>
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+{% endblock %}
+
+{% block script %}
+  <script src="js/search.min.js"></script>
+{% endblock %}

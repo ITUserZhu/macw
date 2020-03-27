@@ -10,9 +10,9 @@ $(() => {
   let historySearches = [];
 
   let getHistoryItems = () => {
-    window.localStorage.getItem("history_search") &&
+    window.localStorage.getItem("history_search_v") &&
       (historySearches = JSON.parse(
-        window.localStorage.getItem("history_search")
+        window.localStorage.getItem("history_search_v")
       ));
 
     if (historySearches.length > 0) {
@@ -20,7 +20,7 @@ $(() => {
       $.each(historySearches, (index, element) => {
         index < 10 &&
           $history.prepend(
-            `<a href="/search/all_${element}.html">${element}</a>`
+            `<a href="/search/vall_${element}.html">${element}</a>`
           );
         $noHistory.hide();
       });
@@ -46,7 +46,7 @@ $(() => {
     if (val.length) {
       historySearches.indexOf(val) === -1 && historySearches.push(val);
       window.localStorage.setItem(
-        "history_search",
+        "history_search_v",
         JSON.stringify(historySearches)
       );
 
@@ -56,13 +56,13 @@ $(() => {
 
   $delHistory.on("click", () => {
     historySearches = [];
-    window.localStorage.setItem("history_search", "");
+    window.localStorage.setItem("history_search_v", "");
     getHistoryItems();
   });
 
   // 返回
   let referUrl = document.referrer;
-  if (referUrl.indexOf("macw") > 0 && referUrl.indexOf("/search/") < 0) {
+  if (referUrl.indexOf("macw") > 0 && referUrl.indexOf("/search") < 0) {
     window.sessionStorage.refer = referUrl;
   } else {
     !window.sessionStorage.refer &&

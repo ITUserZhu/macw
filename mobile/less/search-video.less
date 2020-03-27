@@ -1,9 +1,6 @@
 @import "common/index";
-@import "components/list/soft";
-@import "components/list/plugin";
-@import "components/list/template";
-@import "components/list/wallpaper";
-@import "components/list/article";
+@import "components/topic/video";
+@import "components/list/video";
 
 .header-search {
   height: 0.88rem;
@@ -66,6 +63,26 @@ section {
   h2 {
     font-size: 0.32rem;
     line-height: 2;
+  }
+
+  &.hot-search {
+    h2 {
+      font-size: 0.3rem;
+    }
+
+    .hot-box {
+      a {
+        display: inline-block;
+        padding: 0 0.15rem;
+        height: 0.6rem;
+        line-height: 0.6rem;
+        margin: 0.15rem;
+        font-size: 0.24rem;
+        text-align: center;
+        color: #666;
+        .shadow(@y: 1px);
+      }
+    }
   }
 
   .sec-more {

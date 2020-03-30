@@ -43,6 +43,12 @@
         {{ component.plugin(mac_plugin) }}
       </div>
     </section>
+    <input type="hidden" id="list-infos"
+           data-id="{{ id }}"
+           data-total="{{ plugin_total }}"
+           data-vip="{{ vip }}"
+           data-type="plugin"
+    >
   </main>
 {% endblock %}
 

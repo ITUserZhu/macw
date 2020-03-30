@@ -43,6 +43,12 @@
         {{ component.template(template_data) }}
       </div>
     </section>
+    <input type="hidden" id="list-infos"
+           data-id="{{ id }}"
+           data-total="{{ total_num }}"
+           data-vip="{{ vip }}"
+           data-type="template"
+    >
   </main>
 {% endblock %}
 

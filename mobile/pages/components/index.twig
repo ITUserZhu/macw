@@ -128,7 +128,7 @@
 {% macro template(data, is_rank = false, class = '') %}
   <ul class="component-template_list clearfix {{ class }}">
     {% for i,item in data %}
-      <li class="tmp">
+      <li>
         <a href="{{ item.url }}" title="{{ item.title | striptags }}">
           {% if is_rank %}<span class="rank-num"><i></i><em>{{ i + 1 }}</em></span>{% endif %}
           <div class="img">
@@ -265,10 +265,6 @@
             <li {% if category_data.id == v.id %}class="active"{% endif %}><a href="{{ v.url }}">{{ v.cate_name }}</a></li>
           {% endfor %}
         </ul>
-      </div>
-      <div class="free-type fr">
-        <a href="/z/{{ url_type }}_{{ id }}_1.html" {% if order == 1 %}class="active"{% endif %}>最新</a> <em>|</em>
-        <a href="/z/{{ url_type }}_{{ id }}_2.html" {% if order == 2 %}class="active"{% endif %}>最热</a>
       </div>
     </div>
   </section>

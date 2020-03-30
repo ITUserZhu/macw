@@ -7,11 +7,6 @@
 
 {% block content %}
 <main>
-{#  <section class="banner">#}
-{#    <ul>#}
-{#      <li></li>#}
-{#    </ul>#}
-{#  </section>#}
   <section class="newest-soft">
     <div class="sec-title">
       <h2>最新软件</h2>
@@ -27,49 +22,49 @@
   <section class="newest-video">
     <div class="sec-title">
       <h2>最新视频</h2>
-      <a href="" class="fr"><i class="icon-arrow"></i></a>
+      <a href="/v/" class="fr"><i class="icon-arrow"></i></a>
     </div>
     {{ component.video(video_newest) }}
   </section>
-  <section class="newest-video">
+  <section class="newest-material">
     <div class="sec-title">
       <h2>最新素材</h2>
-      <a href="" class="fr"><i class="icon-arrow"></i></a>
+      <a href="/sc/" class="fr"><i class="icon-arrow"></i></a>
     </div>
-    {{ component.material(material_newest) }}
+    {{ component.wallpaper(material_newest) }}
   </section>
   <section class="boutique-plugin">
     <div class="sec-title">
       <h2>最新插件</h2>
-      <a href="" class="fr"><i class="icon-arrow"></i></a>
+      <a href="/cjlist/" class="fr"><i class="icon-arrow"></i></a>
     </div>
     {{ component.plugin(plugin_newest) }}
   </section>
   <section class="boutique-plugin">
     <div class="sec-title">
       <h2>最新模板</h2>
-      <a href="" class="fr"><i class="icon-arrow"></i></a>
+      <a href="/mblist/" class="fr"><i class="icon-arrow"></i></a>
     </div>
     {{ component.template(template_newest) }}
   </section>
   <section class="boutique-wallpaper">
     <div class="sec-title">
       <h2>最新壁纸</h2>
-      <a href="" class="fr"><i class="icon-arrow"></i></a>
+      <a href="/dlist/" class="fr"><i class="icon-arrow"></i></a>
     </div>
     {{ component.wallpaper(wallpaper_newest) }}
   </section>
   <section class="newest-article">
     <div class="sec-title">
-      <h2>最新文章</h2>
-      <a href="" class="fr"><i class="icon-arrow"></i></a>
+      <h2>最新教程</h2>
+      <a href="/nlist/" class="fr"><i class="icon-arrow"></i></a>
     </div>
     {{ component.article(article_newest) }}
   </section>
   <section class="rank-soft">
     <div class="sec-title">
       <h2>软件排行榜</h2>
-      <a href="" class="fr"><i class="icon-arrow"></i></a>
+      <a href="/rank/" class="fr"><i class="icon-arrow"></i></a>
     </div>
     <div class="rank-soft-wrap">
       <ul>

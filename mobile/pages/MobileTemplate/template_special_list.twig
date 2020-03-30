@@ -13,6 +13,11 @@
         {{ component.topic_template(template_special_data) }}
       </div>
     </section>
+    <input type="hidden" id="topic-infos"
+           data-id="{{ id }}"
+           data-total="{{ special_count }}"
+           data-type="template_special"
+    >
   </main>
 {% endblock %}
 

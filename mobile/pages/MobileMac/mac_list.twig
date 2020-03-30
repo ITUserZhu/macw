@@ -28,6 +28,12 @@
         {{ component.soft(mac_soft) }}
       </div>
     </section>
+    <input type="hidden" id="list-infos"
+           data-id="{{ id }}"
+           data-total="{{ mac_total }}"
+           data-vip="{{ vip }}"
+           data-type="mac"
+    >
   </main>
 {% endblock %}
 

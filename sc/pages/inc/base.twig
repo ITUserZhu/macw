@@ -13,7 +13,8 @@
 	<meta name="keywords" content="{% block page_kw %}{{ page_kw|default('__netname下载') }}{% endblock %}">
 	<meta name="description" content="{% block page_desc %}{{ page_desc }}{% endblock %}">
 	<link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon" />
-	{% block css %}{% endblock %}
+  {% block css %}{% endblock %}
+  <script>(function () { if (navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|BlackBerry)/i)) { window.location.href = "{{ m_url }}"; } })();</script>
 </head>
 <body>
 	<!-- 头部 -->

@@ -1,0 +1,41 @@
+.dropload-up, .dropload-down {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  font-size: 24px;
+  transform: translateZ(0);
+}
+
+.dropload-down {
+  height: 1rem;
+}
+
+.dropload-refresh, .dropload-update, .dropload-load, .dropload-noData {
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+}
+
+.dropload-load .loading {
+  display: inline-block;
+  height: 0.3rem;
+  width: 0.3rem;
+  border-radius: 100%;
+  margin: 0.2rem;
+  border: 2px solid #666;
+  border-bottom-color: transparent;
+  vertical-align: middle;
+  animation: rotate 0.75s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

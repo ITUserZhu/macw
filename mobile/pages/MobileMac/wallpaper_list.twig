@@ -20,6 +20,11 @@
         {{ component.wallpaper(mac_wallpaper) }}
       </div>
     </section>
+    <input type="hidden" id="list-infos"
+           data-id="{{ id }}"
+           data-total="{{ wallpaper_total }}"
+           data-type="wallpaper"
+    >
   </main>
 {% endblock %}
 

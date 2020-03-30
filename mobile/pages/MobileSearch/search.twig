@@ -65,7 +65,6 @@
               {% else %}
                 <li>
                   <a href="{{ item.url }}" title="{{ item.title | striptags }}">
-                    {% if is_rank %}<span class="rank-num"><i></i><em>{{ i + 1 }}</em></span>{% endif %}
                     <div class="img">
                       <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
                     </div>
@@ -89,6 +88,11 @@
         {% endif %}
       </div>
     </section>
+    <input type="hidden" id="search-infos"
+           data-keyword="{{ keyword }}"
+           data-total="{{ sum }}"
+           data-type="{{ model }}"
+    >
   </main>
 {% endblock %}
 

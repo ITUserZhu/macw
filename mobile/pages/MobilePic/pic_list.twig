@@ -29,7 +29,7 @@
         <div class="nav-box">
           <a href="{% if keywords %}/search/sc_{{ keywords }}_{% else %}/plist/{% endif %}{{ cate_id }}_0.html" {% if format_type == 0 %}class="active"{% endif %}>全部</a>
           {% for item in format_type_info %}
-            <a href="{% if keywords %}/search/sc_{{ keywords }}_{% else %}/plist/{% endif %}{{ cate_id }}_{{ item.id }}.html" {% if item.id == tag_id %}class="active"{% endif %}>{{ item.format_name }}</a>
+            <a href="{% if keywords %}/search/sc_{{ keywords }}_{% else %}/plist/{% endif %}{{ cate_id }}_{{ item.id }}.html" {% if item.id == format_type %}class="active"{% endif %}>{{ item.format_name }}</a>
           {% endfor %}
         </div>
       </div>

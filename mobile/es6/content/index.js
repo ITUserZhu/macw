@@ -31,6 +31,21 @@ $(() => {
     });
   }
 
+  // 下载按钮复制当前链接
+  const $download = $(".download");
+
+  let copyDownload = () => {
+    const curUrl = window.location.href;
+    let $ipt = $(`<input type="text" value="${curUrl}" style="opacity: 0;">`);
+    $("main").append($ipt);
+    $ipt.select();
+    document.execCommand("Copy");
+    $ipt.remove();
+    $ipt = null;
+  };
+
+  $download.on("click", copyDownload.bind(this));
+
   // 截图轮播功能
   const $swiperContainer = $(".swiper-container");
   if ($swiperContainer.length) {
@@ -39,6 +54,7 @@ $(() => {
       effectType = "fade";
     }
     new Swiper(".swiper-container", {
+      loop: true,
       navigation: {
         nextEl: ".swiper-next",
         prevEl: ".swiper-prev"

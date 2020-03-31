@@ -1,15 +1,22 @@
 .material-atlas_list {
   li {
-    max-height: 350px;
-    border-radius: 10px;
-    margin-bottom: 24px;
+    border-radius: .1rem;
+    margin-bottom: .24rem;
     overflow: hidden;
     position: relative;
+    padding-bottom: 3.5rem;
 
     .img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
       width: 100%;
 
       img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         width: 100%;
       }
     }

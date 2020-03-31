@@ -17,9 +17,16 @@
         {% endfor %}
       </div>
     </section>
-    <section>
+    <section class="video-wrap">
       {{ component.video(videoList) }}
     </section>
+
+    <input type="hidden" id="video-infos"
+           data-total="{{ total }}"
+           data-parent="{{ parent_id }}"
+           data-id="{{ cat_id }}"
+           data-type="video"
+    >
   </main>
 {% endblock %}
 

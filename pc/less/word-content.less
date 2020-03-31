@@ -12,6 +12,7 @@
 @import 'modules/fr-view';
 @import 'modules/share';
 @import 'modules/downloda-recharge';
+@import '/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css';
 
 .h-title {
   font-size: 24px;
@@ -29,17 +30,18 @@
   article {
     width: 780px;
     float: left;
-    padding: 50px 60px;
+    padding: 50px;
     background: linear-gradient(to bottom, #e0e7ea, #edeff3);
 
     .img-wrap {
       position: relative;
-      padding-top: 70px;
+      height: 910px;
+      padding-top: 40px;
 
       .mask {
-        background-image: url('/assets/images/bgs/word-list.png');
+        background-image: url(/assets/images/bgs/word-list.png);
         background-repeat: no-repeat;
-        background-size: 60% auto;
+        background-size: 100% auto;
         background-position: top;
         position: absolute;
         width: 100%;
@@ -49,10 +51,19 @@
       }
 
       .img {
-        width: 100%;
+        width: 590px;
+        height: 770px;
+        position: absolute;
+        overflow: hidden;
+        left: 50%;
+        margin-left: -300px;
+        background-color: #fff;
 
         img {
           width: 100%;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
         }
       }
     }
@@ -267,7 +278,7 @@ section {
       .word-list;
       width: 180px;
       height: 280px;
-      padding: 15px;
+      padding: 15px 5px;
       padding-bottom: 0;
       margin-right: 10px;
       margin-top: 10px;
@@ -277,15 +288,21 @@ section {
       }
 
       .img-wrap {
-        height: 238px;
-        padding-top: 16px;
+        height: 230px;
+        padding-top: 12px;
+
+        .img {
+          width: 140px;
+          margin-left: -70px;
+          height: 188px;
+        }
 
         .mask {
           button {
             width: 100px;
             height: 30px;
             margin-left: -50px;
-            bottom: 20px;
+            bottom: 35px;
             font-size: 14px;
           }
         }

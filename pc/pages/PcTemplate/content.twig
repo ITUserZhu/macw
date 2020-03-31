@@ -102,7 +102,10 @@
             {% endfor %}
             {% for i,item in images %}
             <li class="swiper-slide">
-              <div class="img-wrap {% if i == 0 and video | length == 0 %}active{% endif %}"><img src="{{ item }}">
+              <div class="img-wrap {% if i == 0 and video | length == 0 %}active{% endif %}">
+                <a href="{{ item }}" data-fancybox="images">
+                  <img src="{{ item }}">
+                </a>
               </div>
             </li>
             {% endfor %}

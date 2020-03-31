@@ -13,6 +13,12 @@
       <p class="desc">{{ atlas.description }}</p>
     </section>
     {{ component.waterfall(atlas_list) }}
+
+    <input type="hidden" id="material-infos"
+           data-total="{{ total }}"
+           data-id="{{ atlas.id }}"
+           data-type="atlas_content"
+    >
   </main>
 {% endblock %}
 

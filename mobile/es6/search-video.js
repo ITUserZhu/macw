@@ -1,4 +1,5 @@
 import "./common/index";
+import listLoad from "./list/index";
 
 $(() => {
   const $headerForm = $(".header-search");
@@ -72,4 +73,22 @@ $(() => {
   $cancel.on("click tap", () => {
     window.location.href = window.sessionStorage.refer;
   });
+
+  // 滚动加载
+  const $dataInfo = $("#video-infos");
+  const dataTotal = $dataInfo.data("total");
+  const dataType = $dataInfo.data("type");
+
+  let ajaxData = {
+    page: 1,
+    model: $dataInfo.data("model"),
+    keyword: $dataInfo.data("keyword"),
+    type: dataType
+  };
+
+  const $dom = $(".search-result"),
+    $wrap = $dom.find("ul").last();
+
+  // 滚动加载功能调用
+  listLoad($dom, $wrap, ajaxData, dataType);
 });

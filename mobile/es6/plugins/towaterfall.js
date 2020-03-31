@@ -9,8 +9,9 @@
     ajaxData: null,
     tipObj: {
       tipDom: "#no-data",
-      text0: "已经到底啦~",
-      text1: "↓ 下拉加载更多"
+      text0: '<div class="dropload-noData">没有数据啦~</div>',
+      text1:
+        '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
     }
   };
 
@@ -37,16 +38,12 @@
       if ($(this.opts.tipObj.tipDom).length == 0 && this.opts.ajaxData) {
         this.wrap.after(
           $(
-            `<div id="${this.opts.tipObj.tipDom.replace("#", "")}">${
-              this.opts.tipObj.text1
-            }</div>`
+            `<div id="${this.opts.tipObj.tipDom.replace(
+              "#",
+              ""
+            )}" class="dropload-down">${this.opts.tipObj.text1}</div>`
           )
         );
-        $(this.opts.tipObj.tipDom).css({
-          marginTop: "30px",
-          textAlign: "center",
-          color: "#999"
-        });
       }
       this.noDataDom = $(this.opts.tipObj.tipDom);
     }
@@ -168,9 +165,9 @@
         !this.isLoading
       ) {
         if (_this.isEnd) {
-          _this.noDataDom.text(_this.opts.tipObj.text1);
+          _this.noDataDom.html(_this.opts.tipObj.text1);
         } else {
-          _this.noDataDom.text(_this.opts.tipObj.text0);
+          _this.noDataDom.html(_this.opts.tipObj.text0);
           return;
         }
         this.isLoading = true;
@@ -180,7 +177,7 @@
             _this.isEnd = end == 1 ? true : false;
 
             if (end == 500) {
-              _this.noDataDom.text(_this.opts.tipObj.text0);
+              _this.noDataDom.html(_this.opts.tipObj.text0);
               return;
             }
 
@@ -194,7 +191,7 @@
       } else {
         maxH < 1000 &&
           !!this.opts.ajaxData &&
-          _this.noDataDom.text(_this.opts.tipObj.text0);
+          _this.noDataDom.html(_this.opts.tipObj.text0);
       }
     }
   }

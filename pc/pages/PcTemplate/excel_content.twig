@@ -34,7 +34,9 @@
         <section class="img-wrap">
           <p class="type"><img src="/assets/images/exc-logo.png">{{ template_content.pretitle }}</p>
           <div class="img">
-            <img src="{{ template_content.thumb }}">
+            <a href="{{ template_content.thumb }}" data-fancybox="images">
+              <img src="{{ template_content.thumb }}">
+            </a>
           </div>
           <div class="mask"></div>
         </section>

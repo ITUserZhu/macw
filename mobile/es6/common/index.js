@@ -66,3 +66,24 @@ $(() => {
     $headNav.scrollLeft($navActive.offset().left - $(window).width() / 2 + 20);
   }
 });
+
+// 百度统计
+// (function() {
+//   var hm = document.createElement("script");
+//   hm.src = "https://hm.baidu.com/hm.js?e921479a4d3e3a69bae8435ee593a209";
+//   var s = document.getElementsByTagName("script")[0];
+//   s.parentNode.insertBefore(hm, s);
+// })();
+
+// 百度推送
+(function() {
+  var bp = document.createElement("script");
+  var curProtocol = window.location.protocol.split(":")[0];
+  if (curProtocol === "https") {
+    bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
+  } else {
+    bp.src = "http://push.zhanzhang.baidu.com/push.js";
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();

@@ -15,12 +15,18 @@
         {% endfor %}
       </div>
     </section>
-    <section>
+    <section class="video-wrap">
       {{ component.topic(video_special_data) }}
     </section>
+
+    <input type="hidden" id="video-infos"
+           data-total="{{ total }}"
+           data-id="{{ cat_id }}"
+           data-type="video_special"
+    >
   </main>
 {% endblock %}
 
 {% block script %}
-  <script src="js/video-topic.min.js"></script>
+  <script src="js/video-list.min.js"></script>
 {% endblock %}

@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block search %}
-  <form class="header-search">
+  <form class="header-search" data-cate="{{ cate_id }}" data-type="{{ format_type }}">
     <input type="text" value="{{ keywords }}">
     <button><i class="icon-search"></i></button>
   </form>
@@ -27,9 +27,9 @@
       <div class="nav-wrap">
         <span class="fl">格式：</span>
         <div class="nav-box">
-          <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/plist/{% endif %}{{ cate_id }}_0.html" {% if format_type == 0 %}class="active"{% endif %}>全部</a>
+          <a href="{% if keywords %}/search/sc_{{ keywords }}_{% else %}/plist/{% endif %}{{ cate_id }}_0.html" {% if format_type == 0 %}class="active"{% endif %}>全部</a>
           {% for item in format_type_info %}
-            <a href="{% if keywords %}/search/{{ keywords }}_{% else %}/plist/{% endif %}{{ cate_id }}_{{ item.id }}.html" {% if item.id == tag_id %}class="active"{% endif %}>{{ item.format_name }}</a>
+            <a href="{% if keywords %}/search/sc_{{ keywords }}_{% else %}/plist/{% endif %}{{ cate_id }}_{{ item.id }}.html" {% if item.id == tag_id %}class="active"{% endif %}>{{ item.format_name }}</a>
           {% endfor %}
         </div>
       </div>
@@ -39,6 +39,14 @@
       {% endif %}
     </section>
     {{ component.waterfall(photo_data) }}
+
+    <input type="hidden" id="material-infos"
+           data-keyword="{{ keywords }}"
+           data-total="{{ photo_total }}"
+           data-id="{{ cate_id }}"
+           data-format="{{ format_type }}"
+           data-type="search_pic"
+    >
   </main>
 {% endblock %}
 

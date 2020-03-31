@@ -47,6 +47,7 @@
       {{ component.topic(special_info) }}
     </section>
     {% endif %}
+    <input type="hidden" id="content-info" data-model="{{ videoContent.model_id }}" data-id="{{ videoContent.id }}">
   </main>
 {% endblock %}
 

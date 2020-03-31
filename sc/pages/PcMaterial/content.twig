@@ -39,7 +39,7 @@
         </div>
         {% endif %}
       </article>
-      <aside>
+      <aside {% if atlas_info %}{% else %}style="height: 800px;" {% endif %}>
         <div class="content-info_operate">
           <button class="shopping" id="shopping" title="添加购物车"><i class="icon-shop"></i></button>
           <button class="collect" id="collect" title="添加收藏"><i class="icon-collect"></i></button>
@@ -75,7 +75,7 @@
           {% endif %}
         </div>
 
-        <div class="content-info_share">
+        <div class="content-info_share" {% if atlas_info %}{% else %}style="bottom: 0;" {% endif %}>
           <p>分享</p>
           <div id="share-wraps">
             <span title="微信分享" class="icon-wx"></span>
@@ -89,12 +89,13 @@
             <span title="花瓣采集" class="icon-huaban"></span>
           </div>
         </div>
-
+        {% if atlas_info %}
         <div class="content-info_atlas-info">
           <p class="title">系列 —— {{ atlas_info.title }}</p>
           <p class="num">( {{ atlas_info.pic_num }}张图片 )</p>
           <a href="{{ atlas_info.url }}">更多 &gt;</a>
         </div>
+        {% endif %}
       </aside>
     </section>
     {% if similar_photo %}

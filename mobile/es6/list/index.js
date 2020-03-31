@@ -138,9 +138,56 @@ const wallpaperTopicHtml = `<li>
         </a>
       </li>`;
 
+const atlasHtml = `<li>
+        <a href="{{ item.url }}">
+          <div class="img">
+            <img src="{{ item.thumb }}">
+          </div>
+          <p class="title">{{ item.title }}</p>
+        </a>
+      </li>`;
+
+const picTopicHtml = `<li>
+        <a href="{{ item.url }}">
+          <div class="imgs">
+            {{ item.imgs }}
+          </div>
+          <div class="con">
+            <p class="title">{{ item.title }}</p>
+            <span>共{{ item.num }}张图片</span>
+            <button>立即查看</button>
+          </div>
+        </a>
+      </li>`;
+
+const videoHtml = `<li>
+        <a href="{{ item.url }}">
+          <div class="img">
+            <span class="video-play"></span>
+            <img src="{{ item.thumb }}">
+          </div>
+          <p class="title">{{ item.title }}</p>
+          <p class="info">
+            <span><i class="icon-video"></i>{{ item.time }}</span>
+            <span class="fr">{{ item.update_time }}</span>
+          </p>
+        </a>
+      </li>`;
+
+const videoTopicHtml = `<li><a href="{{ item.url }}">
+        <div class="con">
+          <p class="title">{{ item.title }}</p>
+          <span>共{{ item.num }}个视频</span>
+          <p class="time">更新：{{ item.create_time }}</p>
+        </div>
+        <div class="imgs">
+          {{ item.videos }}
+        </div>
+      </a></li>`;
+
 export default ($dom, $wrap, ajaxData, dataType, ajaxUrl = "/api/list") => {
   let loadHtml =
-    dataType == "mac"
+    dataType == "mac" // 以下列表
       ? macHtml
       : dataType == "plugin"
       ? pluginHtml
@@ -152,7 +199,7 @@ export default ($dom, $wrap, ajaxData, dataType, ajaxUrl = "/api/list") => {
       ? wallpaperHtml
       : dataType == "special"
       ? specialHtml
-      : dataType == "mac_special"
+      : dataType == "mac_special" // 以下专题列表
       ? macTopicHtml
       : dataType == "plugin_special"
       ? pluginTopicHtml
@@ -162,6 +209,14 @@ export default ($dom, $wrap, ajaxData, dataType, ajaxUrl = "/api/list") => {
       ? articleTopicHtml
       : dataType == "wallpaper_special"
       ? wallpaperTopicHtml
+      : dataType == "atlas" // 图片图集
+      ? atlasHtml
+      : dataType == "pic_special" // 图片专题
+      ? picTopicHtml
+      : dataType == "video" || dataType == "search_v" // 视频列表
+      ? videoHtml
+      : dataType == "video_special" // 视频专题列表
+      ? videoTopicHtml
       : macHtml;
 
   $dom.dropload({
@@ -198,8 +253,27 @@ export default ($dom, $wrap, ajaxData, dataType, ajaxUrl = "/api/list") => {
                 )
                 .replace("{{ item.description }}", v.description)
                 .replace("{{ item.num }}", v.num)
+                .replace("{{ item.time }}", v.time)
                 .replace("{{ item.res_num }}", v.res_num)
-                .replace("{{ item.hits_total }}", v.hits_total);
+                .replace("{{ item.hits_total }}", v.hits_total)
+                .replace(
+                  "{{ item.imgs }}",
+                  (v.thumb_arr &&
+                    v.thumb_arr.map(vi => {
+                      return `<div class="img">
+                      <img src="${vi.thumb}">
+                    </div>`;
+                    })) ||
+                    ""
+                )
+                .replace(
+                  "{{ item.videos }}",
+                  (v.thumb_arr &&
+                    v.thumb_arr.map(vi => {
+                      return `<img src="${vi.thumb}">`;
+                    })) ||
+                    ""
+                );
             });
 
             $wrap.append(result);

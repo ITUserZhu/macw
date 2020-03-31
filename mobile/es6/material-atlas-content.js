@@ -1,17 +1,27 @@
 import "./common/index";
-import "./plugins/waterfall";
+import "./plugins/towaterfall";
+import waterfallAjax from "./material/waterfall-ajax";
 
 $(() => {
-  // 查询设备尺寸定义瀑布流宽度与间距
-  const colW = (window.outerWidth - window.outerWidth * 0.1) * 0.485;
-  const colM = (window.outerWidth - window.outerWidth * 0.1) * 0.03;
+  const $materialWrap = $(".material-waterfall_list");
+  const $dataInfo = $("#material-infos");
+  const dataTotal = $dataInfo.data("total");
+  const dataType = $dataInfo.data("type");
 
-  $(".material-waterfall_list").waterfall({
-    itemCls: "item",
-    minCol: 2,
-    colWidth: colW,
-    gutterWidth: colM,
-    gutterHeight: colM,
-    loadingMsg: ""
+  let ajaxData = {
+    id: $dataInfo.data("id"),
+    type: dataType
+  };
+
+  $materialWrap.toWaterfall({
+    ajaxData: success => {
+      waterfallAjax(ajaxData, (res, str) => {
+        if (res.code === 200 && res.data) {
+          success(str, res.next);
+        } else {
+          success("", 500);
+        }
+      });
+    }
   });
 });

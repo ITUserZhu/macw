@@ -18,6 +18,12 @@
     <section class="atlas-wrap">
       {{ component.atlas(atlas_list) }}
     </section>
+
+    <input type="hidden" id="material-infos"
+           data-total="{{ total }}"
+           data-id="{{ tag_id }}"
+           data-type="atlas"
+    >
   </main>
 {% endblock %}
 

@@ -1,5 +1,5 @@
 // 横向列表样式
-.component-list-horizontal(@h: 100%, @w: @h, @pad: 0.24rem, @mt: 0.2rem, @radius: 0.05rem, @line: 2) {
+.component-list-horizontal(@h: 100%, @w: @h, @pad: 0.24rem, @mt: 0.15rem, @radius: 0.05rem, @line: 2) {
   .shadow(@y: 1px);
   padding: @pad;
   margin-bottom: 0.24rem;
@@ -26,8 +26,8 @@
 
     .title {
       font-size: 0.3rem;
-      line-height: 0.34rem;
-      height: @line * 0.34rem;
+      line-height: 1.5;
+      height: @line * 1.5em;
       overflow: hidden;
       max-width: 75%;
     }
@@ -78,8 +78,8 @@
 
   .title {
     font-size: 0.3rem;
-    line-height: 0.34rem;
-    height: @line * 0.34rem;
+    line-height: 1.5;
+    height: @line * 1.5em;
     overflow: hidden;
     padding: 0 0.2rem;
   }

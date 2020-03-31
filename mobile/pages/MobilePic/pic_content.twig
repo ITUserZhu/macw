@@ -54,6 +54,8 @@
     {% if similar_photo %}
     {{ component.waterfall(similar_photo, '相似图片') }}
     {% endif %}
+
+    <input type="hidden" id="content-info" data-model="{{ content.model_id }}" data-id="{{ content.id }}">
   </main>
 {% endblock %}
 

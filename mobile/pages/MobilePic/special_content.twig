@@ -13,6 +13,12 @@
       <p class="desc">{{ special_info.description }}</p>
     </section>
     {{ component.waterfall(special_list) }}
+
+    <input type="hidden" id="material-infos"
+           data-total="{{ special_info.num }}"
+           data-id="{{ special_info.id }}"
+           data-type="pic_special_content"
+    >
   </main>
 {% endblock %}
 

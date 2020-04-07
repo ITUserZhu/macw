@@ -10,6 +10,8 @@
 import "./modules/content-operate";
 // 轮播图
 import Swiper from "swiper";
+// fancybox插件调用
+import "@fancyapps/fancybox";
 // 工具
 import { toggleActive } from "./util";
 
@@ -20,19 +22,10 @@ $(() => {
   // $checkLis = $('.screenshot-wrap_small').find('ul').children('li');
 
   new Swiper(".screenshot-swiper", {
-    loop: true,
-    slidesPerView: 2,
-    centeredSlides: true,
-    initialSlide: 0,
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev"
     },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true
-    },
-    simulateTouch: false,
     on: {
       slideChange: () => {
         videos.length && videos.get(0).pause();
@@ -41,10 +34,10 @@ $(() => {
     }
   });
 
-  // 缩略图点击
-  // $checkLis.on('click', function () {
-  //   let _index = $(this).index();
-  //   screenshotSwiper.slideTo(_index, 300, false)
-  // });
-  // console.log(1);
+  // 调用点击放大功能脚本
+  $('[data-fancybox="frview"]').fancybox({
+    thumbs: {
+      autoStart: true
+    }
+  });
 });

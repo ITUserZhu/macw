@@ -85,7 +85,7 @@
           <p class="title">AE模板</p>
           <p class="num">共{{ cate_res_num['ae'] }}个视频</p>
           <a href="/aelist/">全部</a>
-          {% for item in cate_info[1].info %}
+          {% for item in cate_info[0].info %}
           <a href="{{ item.url }}">{{ item.cate_name }}</a>
           {% endfor %}
 				</div>
@@ -102,7 +102,7 @@
           <p class="title">PR模板</p>
           <p class="num">共{{ cate_res_num['pr'] }}个视频</p>
           <a href="/prlist/">全部</a>
-          {% for item in cate_info[2].info %}
+          {% for item in cate_info[1].info %}
             <a href="{{ item.url }}">{{ item.cate_name }}</a>
           {% endfor %}
 				</div>
@@ -119,7 +119,7 @@
 						<p class="title">视频素材</p>
 						<p class="num">共{{ cate_res_num['v'] }}个视频</p>
             <a href="/vlist/">全部</a>
-            {% for item in cate_info[22].info %}
+            {% for item in cate_info[2].info %}
               <a href="{{ item.url }}">{{ item.cate_name }}</a>
             {% endfor %}
 				</div>
@@ -136,7 +136,7 @@
           <p class="title">Fcpx模板</p>
           <p class="num">共{{ cate_res_num['fcpx'] }}个视频</p>
           <a href="/flist/">全部</a>
-          {% for item in cate_info[36].info %}
+          {% for item in cate_info[3].info %}
             <a href="{{ item.url }}">{{ item.cate_name }}</a>
           {% endfor %}
         </div>

@@ -29,20 +29,24 @@ class SideBar {
   }
 
   _init(opts, dom) {
-    this.opts = {};
+    this.opts = {
+      watchScroll: false
+    };
     $.extend(this.opts, opts, true);
     this.sildeDom = dom;
-    // this.elementTopArray = [];
+    this.elementTopArray = [];
 
-
-    if (this.sildeDom === '<div id="siderbar"></div>') {
+    if (this.sildeDom === dom) {
       this.sildeDom = $(this.sildeDom);
-      $('main').append(this.sildeDom);
+      $("main").append(this.sildeDom);
     }
 
     this.createBarItems();
     this.opts.goTopIcon && this.createGoTopIcon();
 
+    if (this.opts.watchScroll) {
+      this.watchScroll();
+    }
   }
 
   createBarItems() {
@@ -51,32 +55,55 @@ class SideBar {
       if (/item\d*/.test(key)) {
         var item = this.opts[key];
         var $iconSpan,
-          $textSpan = '',
+          $textSpan = "",
           $aLink,
-          $cellWrapper = $('<div class="cell-wrapper">'),
-          $sidebar_cell = $('<div class="sidebar_cell">');
+          $cellWrapper = $('<div class="cell-wrapper"></div>'),
+          $sidebar_cell = $('<div class="sidebar_cell"></div>');
 
         $iconSpan = this.createIcons(item, $iconSpan);
         $textSpan = this.createTexts(item, $textSpan);
         $aLink = this.createALink(item, $aLink);
 
-        $cellWrapper.append($aLink.append($iconSpan), $textSpan).appendTo($sidebar_cell);
+        $cellWrapper
+          .append($aLink.append($iconSpan), $textSpan)
+          .appendTo($sidebar_cell);
 
-        $sidebar_cell.mouseover(function (e) {
-          if ($(this).find('img').length) {
-            $(this).find('.cell-img').show();
-          }
-        }).mouseout(function () {
-          if ($(this).find('img').length) {
-            $(this).find('.cell-img').hide();
-          }
-        }).click(function (e) {
-          if (!$(this).find('a').attr('href')) {
-            e.preventDefault();
-            return;
-          }
+        $sidebar_cell
+          .mouseover(function(e) {
+            if ($(this).find("img").length) {
+              $(this)
+                .find(".cell-img")
+                .show();
+            }
+          })
+          .mouseout(function() {
+            if ($(this).find("img").length) {
+              $(this)
+                .find(".cell-img")
+                .hide();
+            }
+          })
+          .click(function(e) {
+            var _href = $(this)
+              .find("a")
+              .attr("href");
 
-        });
+            switch (_href[0]) {
+              case "#":
+              case ".":
+                self.moveToElement($(_href));
+                break;
+              default:
+                break;
+            }
+            return false;
+          });
+
+        if (this.opts.watchScroll) {
+          var selector = item.selector;
+          var elementTop = $(selector).position().top;
+          elementTop && this.elementTopArray.push(elementTop);
+        }
 
         this.sildeDom.append($sidebar_cell);
 
@@ -87,7 +114,10 @@ class SideBar {
 
   createIcons(obj, iconSpan) {
     var opts = this.opts;
-    obj.iconClass && (iconSpan = $('<span class="cell-item cell-icon">').addClass(obj.iconClass));
+    obj.iconClass &&
+      (iconSpan = $('<span class="cell-item cell-icon"></span>').addClass(
+        obj.iconClass
+      ));
 
     var _iconStyle = {};
     opts.commonIconStyle && $.extend(_iconStyle, opts.commonIconStyle);
@@ -101,15 +131,24 @@ class SideBar {
     var opts = this.opts;
 
     if (obj.img) {
-      if (typeof obj.img === 'object') {
-        var html = '';
+      if (typeof obj.img === "object") {
+        var html = "";
         $.each(obj.img, (i, v) => {
-          html += `<div class="cell-img-wrap"><img src="${ v.src }"><p>${ v.title }</p></div>`
-        })
-        textSpan = $('<div class="cell-item cell-img">').html(html)
+          html += `<div class="cell-img-wrap"><img src="${v.src}"><p>${v.title}</p></div>`;
+        });
+        textSpan = $('<div class="cell-item cell-img"></div>').html(html);
       } else {
-        textSpan = $('<div class="cell-item cell-img">').html(`<img src="${obj.img}">`)
+        textSpan = $('<div class="cell-item cell-img"></div>').html(
+          `<img src="${obj.img}">`
+        );
       }
+    }
+
+    if (opts.watchScroll) {
+      obj.cellText &&
+        (textSpan = $('<span class="cell-item cell-text"></span>').html(
+          obj.cellText
+        ));
     }
 
     var _imgStyle = {};
@@ -123,7 +162,7 @@ class SideBar {
   }
 
   createALink(obj, aLink) {
-    var _href = obj.selector || obj.href || '';
+    var _href = obj.selector || obj.href || "";
     aLink = $(`<a href="${_href}" target="_blank" title="${obj.cellText}">`);
 
     return aLink;
@@ -135,9 +174,9 @@ class SideBar {
       _speed = opts.scrollSpeed || 300;
     var _goTopIconShow = opts.goTopIconShow || 400;
 
-    var $sideBarCell = $('<div class="sidebar_cell">'),
-      $cellWrapper = $('<div class="cell-wrapper">'),
-      $icon = $('<span class="cell-item">'),
+    var $sideBarCell = $('<div class="sidebar_cell"></div>'),
+      $cellWrapper = $('<div class="cell-wrapper"></div>'),
+      $icon = $('<span class="cell-item"></span>'),
       $aLink = $(`<a  title="${goTopObj.cellText}">`);
 
     var _iconStyle = {};
@@ -149,15 +188,18 @@ class SideBar {
 
     $cellWrapper.append($aLink.append($icon)).appendTo($sideBarCell);
 
-    $sideBarCell.on('click', function (e) {
+    $sideBarCell.on("click", function(e) {
       e.preventDefault();
-      $('html, body').animate({
-        scrollTop: 0
-      }, _speed);
+      $("html, body").animate(
+        {
+          scrollTop: 0
+        },
+        _speed
+      );
       return false;
     });
 
-    $(window).on('load scroll', function () {
+    $(window).on("load scroll", function() {
       var winTop = $(window).scrollTop();
       winTop < _goTopIconShow ? $sideBarCell.fadeOut() : $sideBarCell.fadeIn();
     });
@@ -168,18 +210,17 @@ class SideBar {
   }
 
   aksSoft() {
-    $('#siderbar').on('click', '.asksoft', () => {
-      if ($('.logined').children().length) {
-        this.initAsk()
+    $("#siderbar").on("click", ".asksoft", () => {
+      if ($(".logined").children().length) {
+        this.initAsk();
       } else {
-        $('#to-login').trigger('click');
+        $("#to-login").trigger("click");
       }
-
-    })
+    });
   }
 
   initAsk() {
-    if (!$('.ask-soft').length) {
+    if (!$(".ask-soft").length) {
       const askBookHtml = `<div class="ask-soft">
                 <div class="ask-box">
                     <div class="ask-close">X</div>
@@ -191,84 +232,94 @@ class SideBar {
                     </form>
                 </div>
             </div>`;
-      $('main').append(askBookHtml);
+      $("main").append(askBookHtml);
       this.initEvent();
     } else {
-      $('.ask-soft').show().find('textarea').val('').end().find('input').val('');
+      $(".ask-soft")
+        .show()
+        .find("textarea")
+        .val("")
+        .end()
+        .find("input")
+        .val("");
     }
   }
 
   initEvent() {
-    $('.ask-soft')
-      .on('click', function () {
+    $(".ask-soft")
+      .on("click", function() {
         $(this).hide();
       })
-      .on('click', '.ask-box', function (e) {
-        if (!$(e.target).is('.ask-close')) {
+      .on("click", ".ask-box", function(e) {
+        if (!$(e.target).is(".ask-close")) {
           e.stopPropagation();
         }
       })
-      .on('submit', 'form', function (e) {
+      .on("submit", "form", function(e) {
         e.preventDefault();
         let data = $(this).serializeObject();
         for (let k in data) {
           if (!data[k]) {
-            alert('输入不能为空！')
+            alert("输入不能为空！");
             return;
           }
         }
         $.ajax({
-            url: '/api/apply_soft',
-            type: 'POST',
-            data,
-          })
-          .done(function (res) {
+          url: "/api/apply_soft",
+          type: "POST",
+          data
+        })
+          .done(function(res) {
             if (res.code == 200) {
-              alert('提交成功，请等候更新');
+              alert("提交成功，请等候更新");
               setTimeout(() => {
-                $('.ask-soft').hide();
-              }, 1000)
+                $(".ask-soft").hide();
+              }, 1000);
             } else if (res.code == 400 || res.code == 501) {
-              $('#to-login').trigger('click');
+              $("#to-login").trigger("click");
             } else {
-              alert(res.msg)
+              alert(res.msg);
             }
           })
-          .fail(function (error) {
+          .fail(function(error) {
             console.log(error);
-          })
-
-      })
+          });
+      });
   }
 
-  // watchScroll () {
-  //     var currentIndex = 0,
-  //         topArray = this.elementTopArray;
-  //     $(window).on('load scroll', function () {
-  //         var winTop = $(window).scrollTop();
-  //         for (var i = 0; i < topArray.length; i++) {
-  //             var height_1 = topArray[i],
-  //                 height_2 = topArray[i + 1];
-  //             if (height_1 > winTop) {
-  //                 break;
-  //             }
-  //             if (!height_2 || height_1 <= winTop && height_2 > winTop) {
-  //                 currentIndex = i;
-  //                 break;
-  //             }
-  //         }
-  //         var $sidebarCell = $('#go-top').find('.sidebar_cell');
-  //         $sidebarCell.eq(currentIndex).addClass('active').siblings().removeClass('active');
-  //     });
-  // }
+  watchScroll() {
+    var currentIndex = 0,
+      self = this,
+      topArray = this.elementTopArray;
+    $(window).on("load scroll", function() {
+      var winTop = $(window).scrollTop();
+      for (var i = 0; i < topArray.length; i++) {
+        var height_1 = topArray[i],
+          height_2 = topArray[i + 1];
+        if (height_1 > winTop) {
+          break;
+        }
+        if (!height_2 || (height_1 <= winTop && height_2 > winTop)) {
+          currentIndex = i;
+          break;
+        }
+      }
+      var $sidebarCell = self.sildeDom.find(".sidebar_cell");
+      $sidebarCell
+        .eq(currentIndex)
+        .addClass("active")
+        .siblings()
+        .removeClass("active");
+    });
+  }
 
-  // moveToElement (ele) {
-  //     var elapse = this.opts.scrollSpeed || 200;
+  moveToElement(ele) {
+    var elapse = this.opts.scrollSpeed || 200;
 
-  //     var _top = $(ele).offset().top;
+    var _top = $(ele).offset().top;
 
-  //     $('html, body').animate({ scrollTop: _top }, elapse);
-  // }
-};
+    $("html, body").animate({ scrollTop: _top }, elapse);
+  }
+}
 
 export default SideBar;

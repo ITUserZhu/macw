@@ -6,12 +6,14 @@
  */
 @import 'components/common';
 @import '/node_modules/swiper/css/swiper.min.css';
+@import '/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css';
 @import 'modules/plugin-list';
 @import 'modules/article-list';
 @import 'modules/fr-view';
 @import 'modules/video-play';
 @import 'modules/share';
 @import 'modules/downloda-recharge';
+@import "modules/download-btn";
 
 section {
   padding: 35px 0 40px;
@@ -38,6 +40,7 @@ section {
   &:first-child {
     .shadow(@y: 5px, @size: 5px);
     padding: 0;
+    padding-bottom: 10px;
   }
 
   &:last-child {
@@ -168,15 +171,50 @@ section {
   }
 
   &.screenshot {
+    .title-infos {
+      border-bottom: 1px solid #eee;
+      line-height: 76px;
+      margin-bottom: 30px;
+
+      h1 {
+        font-size: 24px;
+        display: inline-block;
+      }
+
+      .btns {
+        float: right;
+
+        button {
+          width: 40px;
+          height: 40px;
+          outline: none;
+          border: 1px solid #ddd;
+          text-align: center;
+          line-height: 40px;
+          margin-left: 20px;
+          color: #666;
+          font-size: 20px;
+          border-radius: 50%;
+        }
+      }
+    }
+
     .screenshot-wrap {
+      height: 480px;
+      background-image: url('/assets/images/bgs/cj.png');
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+      background-position: center;
       position: relative;
-      --swiper-theme-color: @theme-color;
+      overflow: hidden;
+      --swiper-theme-color: #333;
+      --swiper-navigation-size: 36px;
 
       .screenshot-swiper {
-        width: 980px;
-        height: 470px;
-        padding: 65px 0px;
-        margin: 0 auto;
+        width: 645px;
+        height: 436px;
+        border-radius: 10px;
+        margin: 5px auto 0;
 
         .swiper-pagination-bullet {
           width: 10px;
@@ -192,9 +230,6 @@ section {
           transition: all .2s;
 
           &.swiper-slide-active {
-            transform: scale(1.4);
-            z-index: 10;
-
             .img-wrap {
               overflow: visible;
             }
@@ -212,6 +247,7 @@ section {
 
           video {
             height: 100%;
+            max-width: 100%;
             transform: translateX(-50%);
             margin-left: 50%;
             background-color: #000;
@@ -224,10 +260,10 @@ section {
           }
 
           img {
-            margin-left: 50%;
-            height: 100%;
-            transform: translateX(-50%);
-            user-select: none;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
           }
         }
 
@@ -263,15 +299,21 @@ section {
 
       .swiper-btns {
         div {
+          width: 80px;
+          height: 80px;
+          line-height: 80px;
+          border-radius: 50%;
+          text-align: center;
           outline: none;
           top: 44%;
+          .shadow();
 
           &.swiper-button-prev {
-            left: 0;
+            left: 80px;
           }
 
           &.swiper-button-next {
-            right: 0;
+            right: 80px;
           }
         }
       }
@@ -315,6 +357,46 @@ section {
             margin-left: 50%;
             transform: translateX(-50%);
           }
+        }
+      }
+    }
+
+    .download-box {
+      width: 300px;
+      margin: 5px auto 30px;
+
+      .download {
+        .download();
+      }
+    }
+
+    .infos {
+      display: flex;
+      height: 60px;
+      margin-bottom: 10px;
+
+      span {
+        flex: 1;
+        text-align: center;
+        border-right: 1px solid #eee;
+        padding: 0 10px;
+        line-height: 1.2;
+
+        i {
+          display: block;
+          margin: 5px auto 8px;
+          font-size: 20px;
+        }
+
+        img {
+          display: block;
+          width: 20px;
+          height: 20px;
+          margin: 5px auto 2px;
+        }
+
+        &:last-child {
+          border-right: none;
         }
       }
     }

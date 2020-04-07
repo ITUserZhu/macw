@@ -21,7 +21,8 @@
 
 {% block content %}
 <main>
-  <section class="content">
+  {% if video or images %}
+  <section class="screenshot">
     <div class="container">
       <div class="breadcrumbs">
         <a href="/">首页</a>
@@ -29,79 +30,33 @@
         <a href="/cjlist/">插件</a>
 
         {% if plugin_content.parent_id_cate_name %}
-        &gt;
-        <a href="{{ plugin_content.category_url_by_parent_id }}">{{ plugin_content.parent_id_cate_name }}</a>
+          &gt;
+          <a href="{{ plugin_content.category_url_by_parent_id }}">{{ plugin_content.parent_id_cate_name }}</a>
         {% endif %}
         {% if plugin_content.cate_name %}
-        &gt;
-        <a href="{{ plugin_content.category_url }}">{{ plugin_content.cate_name }}</a>
+          &gt;
+          <a href="{{ plugin_content.category_url }}">{{ plugin_content.cate_name }}</a>
         {% endif %}
         &gt;
         <span>{{ plugin_content.title }}
           {{ plugin_content.version }}</span>
       </div>
-      <div class="content-info">
-        <div class="content-info_wrap">
-          <div class="content-info_con">
-            <h1>{{ plugin_content.title }}
-              {{ plugin_content.version }}</h1>
-            <p class="infos">
-              <span>
-                <i class="icon-size"></i>
-                {{ plugin_content.file_size }}
-              </span>
-              <span>
-                <i class="icon-time"></i>
-                {{ plugin_content.update_time | date('Y-m-d') }}</span>
-              <span>
-                <i class="icon-point3"></i>
-                {{ plugin_content.point }}
-                积分</span>
-              <span>
-                <a href="/vip.html">
-                  <i class="icon-recharge2"></i>
-                  点击在线充值
-                </a>
-              </span>
-            </p>
-            <div class="btns">
-              <button class="download" id="download">立即下载</button>
-              <button class="btns-fn" id="collect">
-                <i class="icon-collect"></i><span>点击收藏</span></button>
-              <button class="btns-fn" id="support">
-                <i class="icon-support"></i>
-                <em>
-                  {{  plugin_content.click_good }}
-                </em>
-              </button>
-              <button class="btns-fn" id="share">
-                <i class="icon-share"></i>分享有礼</button>
-            </div>
-            {% if needInfo or resRelatedGroup_soft[1] %}
-            <div class="other-recommend">
-              {% if needInfo %}
-              <a href="{{ needInfo.link }}" title="{{ needInfo.description }}">
-                <img src="{{ needInfo.thumb }}" alt="{{ needInfo.description }}">
-                <span>推荐软件：{{ needInfo.description }}</span>
-              </a>
-              {% endif %}
-              {% if resRelatedGroup_soft[1] %}
-              <a href="{{ resRelatedGroup_soft[1][0].url }}" class="teach-link" target="_blank" rel="nofollow"
-                title="{{ resRelatedGroup_soft[1][0].title }}">【<em>教程：{{ resRelatedGroup_soft[1][0].title }}</em>】</a>
-              {% endif %}
-            </div>
-            {% endif %}
-          </div>
-          {# <div class="content-info_img">
-            <img src="{{ plugin_content.thumb }}" alt="{{ plugin_content.title }}">
-          </div> #}
+
+      <div class="title-infos">
+        <h1>{{ plugin_content.title }}
+          {{ plugin_content.version }}</h1>
+
+        <div class="btns">
+          <button class="btns-fn" id="collect">
+            <i class="icon-collect"></i></button>
+          <button class="btns-fn" id="support">
+            <i class="icon-support"></i>
+          </button>
+          <button class="btns-fn" id="share">
+            <i class="icon-share"></i>
+          </button>
         </div>
       </div>
-    </div>
-  </section>
-  {% if video or images %}
-  <section class="screenshot">
-    <div class="container">
       <div class="screenshot-wrap">
         <div class="swiper-container screenshot-swiper">
           <ul class="swiper-wrapper">
@@ -115,12 +70,14 @@
             {% endfor %}
             {% for i,item in images %}
             <li class="swiper-slide">
-              <div class="img-wrap {% if i == 0 and video | length == 0 %}active{% endif %}"><img src="{{ item }}">
+              <div class="img-wrap {% if i == 0 and video | length == 0 %}active{% endif %}">
+                <a href="{{ item }}" data-fancybox="images">
+                  <img src="{{ item }}">
+                </a>
               </div>
             </li>
             {% endfor %}
           </ul>
-          <div class="swiper-pagination"></div>
         </div>
         <div class="swiper-btns">
 					<div class="swiper-button-prev"></div>
@@ -136,6 +93,46 @@
             {% endfor %}
           </ul>
         </div> #}
+      </div>
+      <div class="download-box">
+        <button class="download" id="download"><i class="icon-download"></i><span>立即下载</span></button>
+      </div>
+      <div class="infos">
+        <span>
+          <i class="icon-size"></i>
+          {{ plugin_content.file_size }}
+        </span>
+        <span>
+          <i class="icon-time"></i>
+          {{ plugin_content.update_time | date('Y-m-d') }}
+        </span>
+        <span>
+          <i class="icon-point3"></i>
+          {{ plugin_content.point }}
+          积分
+        </span>
+        <span>
+          <a href="/vip.html">
+            <i class="icon-recharge2"></i>
+            点击在线充值
+          </a>
+        </span>
+        {% if resRelatedGroup_soft[1] %}
+          <span>
+          <a href="{{ resRelatedGroup_soft[1][0].url }}">
+            <img src="{{ resRelatedGroup_soft[1][0].thumb }}" alt="{{ resRelatedGroup_soft[1][0].title }}">
+            {{ resRelatedGroup_soft[1][0].title }}
+          </a>
+        </span>
+        {% endif %}
+        {% if needInfo %}
+          <span>
+            <a href="{{ needInfo.link }}">
+              <img src="{{ needInfo.thumb }}" alt="{{ needInfo.description }}">
+              {{ needInfo.description }}
+            </a>
+          </span>
+        {% endif %}
       </div>
     </div>
   </section>

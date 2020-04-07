@@ -30,50 +30,50 @@
 		</div>
 	</section>
 	<div class="container">
-		<section class="index-show">
-			<div class="index-show_swiper">
-				<p class="index-title">精选视频库 应有尽有</p>
-				<p class="index-desc">这里不止及你所想，还有更多惊喜尽在其中…</p>
-				<div class="swiper-container" id="index-swiper">
-					<ul class="swiper-wrapper">
-						{% for item in indexShowVideos | slice(0, 4) %}
-						<li class="swiper-slide">
-							<div class="video">
-								<video muted loop poster="{{ item.thumb }}" data-src="{{ item.preview_url }}"></video>
-								<div class="video-play"></div>
-							</div>
-						</li>
-						{% endfor %}
-					</ul>
-					<div class="swiper-pagination"></div>
-				</div>
-				<div class="swiper-btns">
-					<div class="swiper-button-prev"></div>
-					<div class="swiper-button-next"></div>
-				</div>
-				<div class="index-infos-wrap">
-					{% for i,item in indexShowVideos | slice(0, 4) %}
-					<div class="video-info {% if i == 0 %}active{% endif %}">
-						<a href="{{ item.url }}">
-							<p class="title">{{ item.title }}</p>
-							<p class="desc">{{ item.description }}</p>
-							<button>立即下载</button>
-						</a>
-					</div>
-					{% endfor %}
-				</div>
-			</div>
-			<ul class="video-list videos-wrap clearfix">
-				{% for item in indexShowVideos | slice(4, 4) %}
-				<li data-src="{{ item.preview_url }}">
-					<a href="{{ item.url }}" title="{{ item.title }}">
-						<div class="img">
-							<img src="{{ item.thumb }}" alt="{{ item.title }}">
-						</div>
-					</a></li>
-				{% endfor %}
-			</ul>
-		</section>
+{#		<section class="index-show">#}
+{#			<div class="index-show_swiper">#}
+{#				<p class="index-title">精选视频库 应有尽有</p>#}
+{#				<p class="index-desc">这里不止及你所想，还有更多惊喜尽在其中…</p>#}
+{#				<div class="swiper-container" id="index-swiper">#}
+{#					<ul class="swiper-wrapper">#}
+{#						{% for item in indexShowVideos | slice(0, 4) %}#}
+{#						<li class="swiper-slide">#}
+{#							<div class="video">#}
+{#								<video muted loop poster="{{ item.thumb }}" data-src="{{ item.preview_url }}"></video>#}
+{#								<div class="video-play"></div>#}
+{#							</div>#}
+{#						</li>#}
+{#						{% endfor %}#}
+{#					</ul>#}
+{#					<div class="swiper-pagination"></div>#}
+{#				</div>#}
+{#				<div class="swiper-btns">#}
+{#					<div class="swiper-button-prev"></div>#}
+{#					<div class="swiper-button-next"></div>#}
+{#				</div>#}
+{#				<div class="index-infos-wrap">#}
+{#					{% for i,item in indexShowVideos | slice(0, 4) %}#}
+{#					<div class="video-info {% if i == 0 %}active{% endif %}">#}
+{#						<a href="{{ item.url }}">#}
+{#							<p class="title">{{ item.title }}</p>#}
+{#							<p class="desc">{{ item.description }}</p>#}
+{#							<button>立即下载</button>#}
+{#						</a>#}
+{#					</div>#}
+{#					{% endfor %}#}
+{#				</div>#}
+{#			</div>#}
+{#			<ul class="video-list videos-wrap clearfix">#}
+{#				{% for item in indexShowVideos | slice(4, 4) %}#}
+{#				<li data-src="{{ item.preview_url }}">#}
+{#					<a href="{{ item.url }}" title="{{ item.title }}">#}
+{#						<div class="img">#}
+{#							<img src="{{ item.thumb }}" alt="{{ item.title }}">#}
+{#						</div>#}
+{#					</a></li>#}
+{#				{% endfor %}#}
+{#			</ul>#}
+{#		</section>#}
 		<section class="newest-video">
 			<h2>最新视频</h2>
 			<div class="newest-video_wraps clearfix">
@@ -82,14 +82,15 @@
 					<span class="check"><img src="/assets/images/random.png" height="16">换一批</span>
 				</div>
 				<div class="newest-info">
-					<a href="/aelist/">
-						<p class="title">AE模板</p>
-						<p class="num">共{{ cate_res_num['ae'] }}个视频</p>
-						<span>查看更多</span>
-					</a>
+          <p class="title">AE模板</p>
+          <p class="num">共{{ cate_res_num['ae'] }}个视频</p>
+          <a href="/aelist/">全部</a>
+          {% for item in cate_info[1].info %}
+          <a href="{{ item.url }}">{{ item.cate_name }}</a>
+          {% endfor %}
 				</div>
 				<ul class="newest-lis videos-wrap clearfix">
-					{{ component.index_list(aeList, 4, 'ae') }}
+					{{ component.index_list(aeList, 8, 'ae') }}
 				</ul>
 			</div>
 			<div class="newest-video_wraps clearfix">
@@ -98,14 +99,15 @@
 					<span class="check"><img src="/assets/images/random.png" height="16">换一批</span>
 				</div>
 				<div class="newest-info">
-					<a href="/prlist/">
-						<p class="title">PR模板</p>
-						<p class="num">共{{ cate_res_num['pr'] }}个视频</p>
-						<span>查看更多</span>
-					</a>
+          <p class="title">PR模板</p>
+          <p class="num">共{{ cate_res_num['pr'] }}个视频</p>
+          <a href="/prlist/">全部</a>
+          {% for item in cate_info[2].info %}
+            <a href="{{ item.url }}">{{ item.cate_name }}</a>
+          {% endfor %}
 				</div>
 				<ul class="newest-lis videos-wrap clearfix">
-					{{ component.index_list(prList, 4, 'pr') }}
+					{{ component.index_list(prList, 8, 'pr') }}
 				</ul>
 			</div>
 			<div class="newest-video_wraps clearfix">
@@ -114,14 +116,15 @@
 					<span class="check"><img src="/assets/images/random.png" height="16">换一批</span>
 				</div>
 				<div class="newest-info">
-					<a href="/vlist/">
 						<p class="title">视频素材</p>
 						<p class="num">共{{ cate_res_num['v'] }}个视频</p>
-						<span>查看更多</span>
-					</a>
+            <a href="/vlist/">全部</a>
+            {% for item in cate_info[22].info %}
+              <a href="{{ item.url }}">{{ item.cate_name }}</a>
+            {% endfor %}
 				</div>
 				<ul class="newest-lis videos-wrap clearfix">
-					{{ component.index_list(videoList, 4, 'v') }}
+					{{ component.index_list(videoList, 8, 'v') }}
 				</ul>
 			</div>
       <div class="newest-video_wraps clearfix">
@@ -130,14 +133,15 @@
           <span class="check"><img src="/assets/images/random.png" height="16">换一批</span>
         </div>
         <div class="newest-info">
-          <a href="/flist/">
-            <p class="title">Fcpx模板</p>
-            <p class="num">共{{ cate_res_num['fcpx'] }}个视频</p>
-            <span>查看更多</span>
-          </a>
+          <p class="title">Fcpx模板</p>
+          <p class="num">共{{ cate_res_num['fcpx'] }}个视频</p>
+          <a href="/flist/">全部</a>
+          {% for item in cate_info[36].info %}
+            <a href="{{ item.url }}">{{ item.cate_name }}</a>
+          {% endfor %}
         </div>
         <ul class="newest-lis videos-wrap clearfix">
-          {{ component.index_list(fList, 4, 'fcpx') }}
+          {{ component.index_list(fList, 8, 'fcpx') }}
         </ul>
       </div>
 		</section>

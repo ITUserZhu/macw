@@ -9,30 +9,33 @@
 {% block content %}
 <main>
 	<section class="banner">
-		<div class="swiper-container">
-			<ul class="swiper-wrapper">
-				{% for item in first_mac %}
-				<li class="swiper-slide">
-					<a href="{{ item.url }}" title="{{ item.title }}">
-					{#<div class="img-bg"><img src="{{ item.thumb }}"></div>#}
-						<div class="item-info">
-							<div class="img">
-								<img src="{{ item.thumb }}" alt="{{ item.title }}">
-							</div>
-							<div class="info">
-								<p class="title">{{ item.title }}</p>
-								<span>{{ item.version }}</span>
-							</div>
-						</div>
-					</a>
-				</li>
-				{% endfor %}
-			</ul>
-		</div>
-		<!--左箭头-->
-		<div class="swiper-button-prev banner-arrow"></div>
-		<!--右箭头-->
-		<div class="swiper-button-next banner-arrow"></div>
+    <ul class="banner-box">
+      {% for i,item in first_mac %}
+        <li>
+          <a href="{{ item.url }}" title="{{ item.title }}">
+            <div class="img-bg"><img src="{{ item.thumb }}"></div>
+            <div class="item-box">
+              <div class="item-img">
+                <img src="{{ item.thumb }}" alt="{{ item.title }}">
+              </div>
+              <div class="item-info">
+                <p class="title">{{ item.title }}</p>
+                <p class="infos">
+                  <span>大小： {{ item.file_size }}</span>
+                  <span>时间： {{ item.update_time }}</span>
+                  <span>语言： {{ item.language }}</span>
+                  <span>积分： {{ item.point }}积分</span>
+                  <span>系统： {{ item.systems }}</span>
+                </p>
+                <div class="btn">
+                  <button>立即下载</button>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
 	</section>
 	<section class="recommend">
 		<div class="container">

@@ -9,7 +9,7 @@
 // 引入公用模块
 import "./components/common";
 // 引入轮播图
-import Swiper from "swiper";
+// import Swiper from "swiper";
 // 壁纸鼠标效果
 import "./plugins/wallpaper";
 // 引入工具
@@ -20,6 +20,31 @@ import VideoPlay from "./components/video-play";
 import SideBar from "./components/sidebar";
 
 $(function() {
+  // 头部手风琴
+  const $bannerUl = $(".banner-box");
+  const $bannerLis = $bannerUl.children("li");
+  const lisLen = $bannerLis.length;
+  const midIndex = Math.floor(lisLen / 2);
+
+  const liActiveWidth = "50%";
+  const liOtherWidth = 50 / (lisLen - 1) + "%";
+
+  $bannerLis.css("width", liOtherWidth);
+  $bannerLis
+    .eq(midIndex)
+    .addClass("active")
+    .css("width", liActiveWidth);
+
+  $bannerLis.on("mouseenter", function() {
+    let curIndex = $(this).index();
+
+    toggleActive($(this));
+    $(this).css("width", liActiveWidth);
+    $(this)
+      .siblings()
+      .css("width", liOtherWidth);
+  });
+
   // 侧边锚点导航
   new SideBar(
     {
@@ -69,32 +94,32 @@ $(function() {
   );
 
   // 轮播图
-  new Swiper(".swiper-container", {
-    autoplay: true,
-    loop: true,
-    loopAdditionalSlides: 3,
-    slidesPerView: 3,
-    roundLengths: true,
-    spaceBetween: 60,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 50
-      },
-      1281: {
-        slidesPerView: 3,
-        spaceBetween: 60
-      },
-      1921: {
-        slidesPerView: 4,
-        spaceBetween: 50
-      }
-    }
-  });
+  // new Swiper(".swiper-container", {
+  //   autoplay: true,
+  //   loop: true,
+  //   loopAdditionalSlides: 3,
+  //   slidesPerView: 3,
+  //   roundLengths: true,
+  //   spaceBetween: 60,
+  //   navigation: {
+  //     nextEl: ".swiper-button-next",
+  //     prevEl: ".swiper-button-prev"
+  //   },
+  //   breakpoints: {
+  //     768: {
+  //       slidesPerView: 2,
+  //       spaceBetween: 50
+  //     },
+  //     1281: {
+  //       slidesPerView: 3,
+  //       spaceBetween: 60
+  //     },
+  //     1921: {
+  //       slidesPerView: 4,
+  //       spaceBetween: 50
+  //     }
+  //   }
+  // });
   // 推荐切换
   const $recommendNav = $(".recommend-nav");
   const $recommendUl = $(".recommend-wrap").children("ul");

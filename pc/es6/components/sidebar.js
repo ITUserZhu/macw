@@ -14,6 +14,8 @@
             * img: 悬浮图片
             * iconStyle: 独立自定义字体图标样式
             * imgStyle: 独立自定义图片样式
+            * watchScroll: 监听滚动
+            * topShow
 
         * commonIconStyle: 图标自定义样式 false 
         * commonImgStyle: 悬浮展示图片自定义样式 false
@@ -30,7 +32,8 @@ class SideBar {
 
   _init(opts, dom) {
     this.opts = {
-      watchScroll: false
+      watchScroll: false,
+      topShow: 400
     };
     $.extend(this.opts, opts, true);
     this.sildeDom = dom;
@@ -293,6 +296,13 @@ class SideBar {
       topArray = this.elementTopArray;
     $(window).on("load scroll", function() {
       var winTop = $(window).scrollTop();
+
+      if (winTop >= self.opts.topShow) {
+        self.sildeDom.show();
+      } else {
+        self.sildeDom.hide();
+      }
+
       for (var i = 0; i < topArray.length; i++) {
         var height_1 = topArray[i],
           height_2 = topArray[i + 1];

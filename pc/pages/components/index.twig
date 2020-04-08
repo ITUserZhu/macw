@@ -1,12 +1,12 @@
 <!-- 软件 -->
-{% macro soft(data) %}
+{% macro soft(data, is_show = false) %}
 {% for item in data %}
 <li>
 	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
 		<div class="img-wrap">
 			<div class="bg"><img src="{{ item.thumb }}" alt="{{ item.title | striptags }}"></div>
 			<div class="img">
-				<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+				<img {% if is_show %}data-{% endif %}src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
 			</div>
 		</div>
 		<div class="con">
@@ -98,11 +98,11 @@
 {% endmacro %}
 
 <!-- 多种模板 -->
-{% macro templates(data) %}
+{% macro templates(data, is_show = false) %}
   {% for item in data %}
     {% if item.type == 'ppt' %}
     <li class="ppt"><a href="{{ item.url }}" title="{{ item.title }}">
-        <div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+        <div class="img"><img {% if is_show %}data-{% endif %}src="{{ item.thumb }}" alt="{{ item.title }}"></div>
         <div class="mask">
           <button>立即下载</button>
           <p class="title">{{ item.title }}</p>
@@ -115,14 +115,14 @@
           <div class="mask">
             <button>立即下载</button>
           </div>
-          <div class="img"><img src="{{ item.thumb }}" alt="{{ item.title | striptags }}"></div>
+          <div class="img"><img {% if is_show %}data-{% endif %}src="{{ item.thumb }}" alt="{{ item.title | striptags }}"></div>
         </div>
         <p class="title">{{ item.title | raw }}</p>
       </a>
     </li>
     {% elseif item.type == 'excel' %}
     <li class="excel"><a href="{{ item.url }}" title="{{ item.title }}">
-        <div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+        <div class="img"><img {% if is_show %}data-{% endif %}src="{{ item.thumb }}" alt="{{ item.title }}"></div>
         <div class="mask">
           <p class="type"><img src="/assets/images/exc-logo.png">{{ item.pretitle }}</p>
           <button>立即下载</button>
@@ -134,7 +134,7 @@
       <a href="{{ item.url }}" title="{{ item.title | striptags }}">
         <div class="img-wrap">
           <div class="img {% if item.type == 'uncut' %}uncut{% endif %}">
-            <img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+            <img {% if is_show %}data-{% endif %}src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
           </div>
         </div>
         <div class="con">
@@ -148,13 +148,13 @@
 {% endmacro %}
 
 <!-- 插件 -->
-{% macro plugin(data) %}
+{% macro plugin(data, is_show = false) %}
 {% for i,item in data %}
 <li>
 	<a href="{{ item.url }}" title="{{ item.title | striptags }}">
 		<div class="img-wrap">
 			<div class="img">
-				<img src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
+				<img {% if is_show %}data-{% endif %}src="{{ item.thumb }}" alt="{{ item.title | striptags }}">
 			</div>
 		</div>
 		<div class="con">
@@ -283,17 +283,17 @@
 {% endmacro %}
 
 <!-- 壁纸 -->
-{% macro wallpaper(data) %}
+{% macro wallpaper(data, is_show = false) %}
 {% for item in data %}
 <li>
 	<a href="{{ item.url }}" title="{{ item.title | raw }}">
 		<div class="imgs">
-			<div class="img-cover">
-				<img src="{{ item.multi_map[0] }}" alt="{{ item.title | striptags }}">
+			<div class="img img-cover">
+				<img {% if is_show %}data-{% endif %}src="{{ item.multi_map[0] }}" alt="{{ item.title | striptags }}">
 			</div>
 			<div class="img-array">
 				{% for v in item.multi_map %}
-				<img data-src="{{ v }}">
+				<img class="bz-imgs" data-src="{{ v }}">
 				{% endfor %}
 			</div>
 		</div>

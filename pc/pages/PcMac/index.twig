@@ -11,7 +11,7 @@
 	<section class="banner">
     <ul class="banner-box">
       {% for i,item in first_mac %}
-        <li>
+        <li {% if i == 4 %}class="active"{% endif %}>
           <a href="{{ item.url }}" title="{{ item.title }}">
             <div class="img-bg"><img src="{{ item.thumb }}"></div>
             <div class="item-box">
@@ -60,22 +60,75 @@
 				</span>
 			</div>
 			<div class="recommend-wrap">
-				<ul class="soft clearfix active">
-					{{ component.soft(mac_newest_recommend) }}
-				</ul>
-				<ul class="soft clearfix">
-					{{ component.soft(newest_mac) }}
-				</ul>
-				<ul class="plugin clearfix">
-					{{ component.plugin(newest_mac_plug) }}
-				</ul>
-				<ul class="templates clearfix">
-					{{ component.templates(newest_template) }}
-				</ul>
-				<ul class="wallpaper clearfix">
-					{{ component.wallpaper(newest_dest) }}
-				</ul>
+        <div class="recommend-box active">
+          <div class="ul-box">
+            <ul class="soft clearfix">
+              {{ component.soft(mac_newest_recommend | slice(0, 10)) }}
+            </ul>
+
+            <ul class="soft clearfix">
+              {{ component.soft(mac_newest_recommend | slice(10, 10), true) }}
+            </ul>
+          </div>
+        </div>
+
+        <div class="recommend-box">
+          <div class="ul-box">
+            <ul class="soft clearfix">
+              {{ component.soft(newest_mac | slice(0, 10)) }}
+            </ul>
+
+            <ul class="soft clearfix">
+              {{ component.soft(newest_mac | slice(10, 10), true) }}
+            </ul>
+          </div>
+        </div>
+
+        <div class="recommend-box">
+          <div class="ul-box">
+            <ul class="plugin clearfix">
+              {{ component.plugin(newest_mac_plug | slice(0, 8)) }}
+            </ul>
+
+            <ul class="plugin clearfix">
+              {{ component.plugin(newest_mac_plug | slice(8, 8), true) }}
+            </ul>
+          </div>
+        </div>
+
+        <div class="recommend-box">
+          <div class="ul-box">
+            <ul class="templates clearfix">
+              {{ component.templates(newest_template | slice(0, 8)) }}
+            </ul>
+
+            <ul class="templates clearfix">
+              {{ component.templates(newest_template | slice(8, 10), true) }}
+            </ul>
+          </div>
+        </div>
+
+        <div class="recommend-box">
+          <div class="ul-box">
+            <ul class="wallpaper clearfix">
+              {{ component.wallpaper(newest_dest | slice(0, 6)) }}
+            </ul>
+
+            <ul class="wallpaper clearfix">
+              {{ component.wallpaper(newest_dest | slice(6, 6), true) }}
+            </ul>
+          </div>
+        </div>
 			</div>
+
+      <div class="recommend-pagi">
+        <div class="pagi-btn active">
+          <span></span>
+        </div>
+        <div class="pagi-btn">
+          <span></span>
+        </div>
+      </div>
 		</div>
 	</section>
 	<section class="newest-video">

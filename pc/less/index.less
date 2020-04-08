@@ -56,15 +56,16 @@ section {
 
       li {
         height: 100%;
-        width: 11%;
+        width: 6.25%;
         float: left;
         position: relative;
         text-align: center;
         padding: 0 2px;
-        transform: translate3d(0,0,0);
         transition: width .2s;
 
         &.active {
+          width: 50%;
+
           .item-box {
             .item-img {
               width: 100px;
@@ -87,8 +88,7 @@ section {
           overflow: hidden;
 
           img {
-            filter: blur(100px);
-            width: 960px;
+            width: 300px;
             left: 50%;
             position: absolute;
             top: 50%;
@@ -206,15 +206,59 @@ section {
       }
     }
 
-    .recommend-wrap {
-      padding: 30px 0;
+    .recommend-pagi {
+      text-align: center;
+      height: 30px;
+      line-height: 30px;
 
-      ul {
+      .pagi-btn {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+
+        &.active {
+          span {
+            width: 20px;
+            background-color: @theme-color;
+          }
+        }
+
+        span {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          background-color: #bbb;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .recommend-wrap {
+      padding: 30px 0 15px;
+
+      .recommend-box {
         display: none;
+        overflow: hidden;
 
         &.active {
           display: block;
         }
+
+        .ul-box {
+          width: 2400px;
+          transform: translate3d(0, 0, 0);
+          transition: transform .2s;
+
+          &.move {
+            transform: translate3d(-1200px, 0, 0);
+          }
+        }
+      }
+
+      ul {
+        display: inline-block;
+        width: 1200px;
 
         &.soft {
           li {
@@ -691,6 +735,7 @@ section {
 
 // 侧边锚点
 #index-aside {
+  display: none;
   position: fixed;
   right: 50%;
   margin-right: -670px;

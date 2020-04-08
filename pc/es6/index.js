@@ -26,23 +26,18 @@ $(function() {
   const lisLen = $bannerLis.length;
   const midIndex = Math.floor(lisLen / 2);
 
-  const liActiveWidth = "50%";
-  const liOtherWidth = 50 / (lisLen - 1) + "%";
-
-  $bannerLis.css("width", liOtherWidth);
-  $bannerLis
-    .eq(midIndex)
-    .addClass("active")
-    .css("width", liActiveWidth);
+  let timer = null;
 
   $bannerLis.on("mouseenter", function() {
     let curIndex = $(this).index();
+    !!timer && clearTimeout(timer);
+    timer = setTimeout(() => {
+      toggleActive($(this));
+    }, 150);
+  });
 
-    toggleActive($(this));
-    $(this).css("width", liActiveWidth);
-    $(this)
-      .siblings()
-      .css("width", liOtherWidth);
+  $bannerLis.on("mouseleave", function() {
+    !!timer && clearTimeout(timer);
   });
 
   // 侧边锚点导航
@@ -93,40 +88,65 @@ $(function() {
     '<div id="index-aside"></div>'
   );
 
-  // 轮播图
-  // new Swiper(".swiper-container", {
-  //   autoplay: true,
-  //   loop: true,
-  //   loopAdditionalSlides: 3,
-  //   slidesPerView: 3,
-  //   roundLengths: true,
-  //   spaceBetween: 60,
-  //   navigation: {
-  //     nextEl: ".swiper-button-next",
-  //     prevEl: ".swiper-button-prev"
-  //   },
-  //   breakpoints: {
-  //     768: {
-  //       slidesPerView: 2,
-  //       spaceBetween: 50
-  //     },
-  //     1281: {
-  //       slidesPerView: 3,
-  //       spaceBetween: 60
-  //     },
-  //     1921: {
-  //       slidesPerView: 4,
-  //       spaceBetween: 50
-  //     }
-  //   }
-  // });
-  // 推荐切换
-  const $recommendNav = $(".recommend-nav");
-  const $recommendUl = $(".recommend-wrap").children("ul");
-  $recommendNav.on("click", "span", function() {
-    let _index = $(this).index();
-    toggleActive([$(this), $recommendUl.eq(_index)]);
+  // 推荐板块切换功能
+  const $recommendNav = $(".recommend-nav").children("span"),
+    $recommendPagi = $(".recommend-pagi"),
+    $recommendWrap = $(".recommend-wrap").children(".recommend-box");
+
+  initNewestItemCheck();
+
+  $recommendNav.on("click", function() {
+    var _index = $(this).index();
+    toggleActive([$(this), $recommendWrap.eq(_index)]);
+
+    initNewestItemCheck(_index);
   });
+
+  $recommendPagi.on("click", ".pagi-btn", function() {
+    const $wrap = $(".recommend-wrap")
+      .children(".recommend-box.active")
+      .find(".ul-box");
+    let index = $(this).index();
+    toggleActive($(this));
+    if (!index) {
+      $wrap.removeClass("move");
+    } else {
+      $wrap.addClass("move");
+      let $uls = $wrap.children("ul").eq(1);
+      $uls.children("li").each(function(index, el) {
+        if (
+          !$(el)
+            .find(".img img")
+            .attr("src")
+        ) {
+          $(el)
+            .find("img:not('.bz-imgs')")
+            .attr(
+              "src",
+              $(el)
+                .find(".img img")
+                .data("src")
+            );
+        }
+      });
+    }
+  });
+
+  function initNewestItemCheck(index = 0) {
+    const $wrap = $recommendWrap.eq(index).find(".ul-box"),
+      hasChild = !!$wrap
+        .find("ul")
+        .eq(1)
+        .children().length;
+    $wrap.removeClass("move");
+    if (hasChild) {
+      $recommendPagi.show();
+      toggleActive($recommendPagi.children().eq(0));
+    } else {
+      $recommendPagi.hide();
+    }
+  }
+
   // 壁纸鼠标效果
   $("ul.wallpaper")
     .on("mouseenter", "li", function() {

@@ -88,7 +88,8 @@ section {
           overflow: hidden;
 
           img {
-            width: 300px;
+            min-height: 100%;
+            max-width: 100%;
             left: 50%;
             position: absolute;
             top: 50%;
@@ -124,7 +125,8 @@ section {
             }
 
             .infos {
-              line-height: 45px;
+              line-height: 55px;
+              white-space: nowrap;
 
               span {
                 margin: 0 8px;
@@ -146,6 +148,7 @@ section {
                 cursor: pointer;
                 border: none;
                 font-size: 16px;
+                .shadow();
               }
             }
           }

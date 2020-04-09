@@ -47,129 +47,6 @@ section {
     margin-bottom: 0;
   }
 
-  &.content {
-    .content-info {
-      margin-top: 20px;
-      height: 280px;
-
-      h1 {
-        font-size: 24px;
-        margin-bottom: 20px;
-        word-break: break-all;
-      }
-
-      .content-info_con {
-        text-align: center;
-
-        .infos {
-          span {
-            margin-right: 40px;
-            color: #666;
-
-            i {
-              margin-right: 5px;
-            }
-
-            &:last-child a {
-              color: @soft-color;
-            }
-          }
-        }
-
-        .btns {
-          margin: 30px 0;
-
-          .download {
-            height: 40px;
-            background-color: @theme-color;
-            border-radius: 20px;
-            color: #fff;
-            width: 150px;
-            vertical-align: middle;
-            font-size: 16px;
-            font-weight: bold;
-          }
-
-          .btns-fn {
-            vertical-align: middle;
-            height: 30px;
-            border-radius: 15px;
-            margin-left: 20px;
-            border: 1px solid #ddd;
-            color: #666;
-            padding: 0 15px;
-
-            i {
-              margin-right: 5px;
-            }
-          }
-        }
-
-        .other-recommend {
-          display: inline-block;
-          min-width: 45%;
-          padding: 0 40px;
-          font-size: 0;
-          line-height: 60px;
-          height: 60px;
-          border-top: 1px solid #eee;
-          border-bottom: 1px solid #eee;
-
-          a {
-            display: inline-block;
-            max-width: 38%;
-            font-size: 14px;
-            white-space: nowrap;
-
-            &:first-child {
-              max-width: 60%;
-              margin-right: 2%;
-
-              img {
-                width: 30px;
-                height: 30px;
-                display: inline-block;
-                vertical-align: middle;
-                margin-right: 5px;
-              }
-
-              span {
-                .text-ovh;
-                width: calc(100% - 35px);
-                display: inline-block;
-                vertical-align: middle;
-              }
-            }
-
-            &:last-child {
-              color: @theme-color;
-
-              em {
-                .text-ovh;
-                display: inline-block;
-                font-weight: bold;
-                vertical-align: middle;
-              }
-            }
-          }
-        }
-      }
-
-      .content-info_img {
-        float: right;
-        width: 480px;
-        height: 270px;
-        overflow: hidden;
-        text-align: right;
-
-        img {
-          height: 100%;
-          display: inline-block;
-        }
-      }
-    }
-  }
-
   &.screenshot {
     .title-infos {
       border-bottom: 1px solid #eee;
@@ -195,6 +72,41 @@ section {
           color: #666;
           font-size: 20px;
           border-radius: 50%;
+          position: relative;
+          overflow: hidden;
+
+          &:hover, &:focus {
+
+            i {
+              color: #fff;
+              transform: scale(1);
+            }
+
+            &:before {
+              top: -10%;
+              left: -10%;
+            }
+          }
+
+          &:before {
+            content: "";
+            width: 120%;
+            height: 120%;
+            position: absolute;
+            transform: rotate(45deg);
+            background-color: @theme-color;
+            top: 90%;
+            left: -110%;
+            transition: all 0.35s;
+            transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
+          }
+
+          i {
+            display: inline-block;
+            transform: scale(.8);
+            transition: all 0.35s;
+            transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
+          }
         }
       }
     }

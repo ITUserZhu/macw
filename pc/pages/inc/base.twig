@@ -68,33 +68,34 @@
           <div class="header-login_logined"></div>
         </div>
       </div>
-
-      <nav class="header-nav">
-        <a href="/" {% if active == 'index' %} class="active" {% endif %} target="_self"><i
-              class="icon-shouye"></i><span>首页</span></a>
-        <a href="/list/" {% if active == 'mac' %} class="active" {% endif %} target="_blank"><i
-              class="icon-yingyong"></i><span>应用</span></a>
-        <a href="/cjlist/" {% if active == 'plugin' %} class="active" {% endif %} target="_blank"><i
-              class="icon-chajian"></i><span>插件</span></a>
-        <a href="/mblist/" {% if active == 'template' %} class="active" {% endif %} target="_blank"><i
-              class="icon-moban"></i><span>模板</span></a>
-        <a href="/dlist/" {% if active == 'wallpaper' %} class="active" {% endif %} target="_blank"><i
-              class="icon-bizhi"></i><span>壁纸</span></a>
-        <a href="https://v.macw.com/"><i class="icon-shipin"></i><span>视频</span></a>
-        <a href="/z/" {% if active == 'special' %} class="active" {% endif %} target="_blank"><i
-              class="icon-zhuanti"></i><span>专题</span></a>
-        <a href="/nlist/" {% if active == 'article' %} class="active" {% endif %} target="_blank"><i
-              class="icon-jiaocheng"></i><span>教程</span></a>
-        <a href="https://sc.macw.com/" target="_blank"><i class="icon-sucai"></i><span>素材</span></a>
-        <a href="/rank/soft.html" {% if active == 'rank' %} class="active" {% endif %} target="_blank"><i
-              class="icon-bangdan"></i><span>榜单</span></a>
-        <a href="/necessary/" {% if active == 'necessary_install' %} class="active" {% endif %} target="_blank"><i
-              class="icon-bibei"></i><span>装机必备</span></a>
-        <a href="/vip.html" {% if active == 'vip' %} class="active" {% endif %} target="_blank"><i
-              class="icon-huiyuan"></i><span>VIP</span></a>
-      </nav>
     </div>
   </div>
+  <nav class="header-nav">
+    <div class="container">
+      <a href="/" {% if active == 'index' %} class="active" {% endif %} target="_self"><i
+            class="icon-shouye"></i><span>首页</span></a>
+      <a href="/list/" {% if active == 'mac' %} class="active" {% endif %} target="_blank"><i
+            class="icon-yingyong"></i><span>应用</span></a>
+      <a href="/cjlist/" {% if active == 'plugin' %} class="active" {% endif %} target="_blank"><i
+            class="icon-chajian"></i><span>插件</span></a>
+      <a href="/mblist/" {% if active == 'template' %} class="active" {% endif %} target="_blank"><i
+            class="icon-moban"></i><span>模板</span></a>
+      <a href="/dlist/" {% if active == 'wallpaper' %} class="active" {% endif %} target="_blank"><i
+            class="icon-bizhi"></i><span>壁纸</span></a>
+      <a href="https://v.macw.com/"><i class="icon-shipin"></i><span>视频</span></a>
+      <a href="/z/" {% if active == 'special' %} class="active" {% endif %} target="_blank"><i
+            class="icon-zhuanti"></i><span>专题</span></a>
+      <a href="/nlist/" {% if active == 'article' %} class="active" {% endif %} target="_blank"><i
+            class="icon-jiaocheng"></i><span>教程</span></a>
+      <a href="https://sc.macw.com/" target="_blank"><i class="icon-sucai"></i><span>素材</span></a>
+      <a href="/rank/soft.html" {% if active == 'rank' %} class="active" {% endif %} target="_blank"><i
+            class="icon-bangdan"></i><span>榜单</span></a>
+      <a href="/necessary/" {% if active == 'necessary_install' %} class="active" {% endif %} target="_blank"><i
+            class="icon-bibei"></i><span>装机必备</span></a>
+      <a href="/vip.html" {% if active == 'vip' %} class="active" {% endif %} target="_blank"><i
+            class="icon-huiyuan"></i><span>VIP</span></a>
+    </div>
+  </nav>
 </header>
 <!-- 内容 -->
 {% block content %}{% endblock %}

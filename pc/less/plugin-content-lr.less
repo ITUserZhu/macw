@@ -1,19 +1,17 @@
 @import "plugin-content";
 
 section {
-  &.img-lr {
-    width: 1000px;
-    margin: 0 auto;
-    img {
-      width: 100%;
+  &.screenshot {
+    .img-lr {
+      width: 1000px;
+      margin: 0 auto 30px;
+
+      img {
+        width: 100%;
+      }
     }
-  }
-  &.imgs-lr {
-    width: 100%;
 
     .lr-imgs-box {
-      width: 1000px;
-      margin: 0 auto;
       height: 562.5px;
       overflow: hidden;
       position: relative;
@@ -27,7 +25,6 @@ section {
       .imgs {
         img {
           position: absolute;
-          width: 100%;
           top: 0;
           &.imgs-before {
             z-index: 20;

@@ -21,7 +21,7 @@
 
 {% block content %}
   <main>
-    <section class="content">
+    <section class="screenshot">
       <div class="container">
         <div class="breadcrumbs">
           <a href="/">首页</a>
@@ -40,91 +40,87 @@
           <span>{{ plugin_content.title }}
             {{ plugin_content.version }}</span>
         </div>
-        <div class="content-info">
-          <div class="content-info_wrap">
-            <div class="content-info_con">
-              <h1>{{ plugin_content.title }}
-                {{ plugin_content.version }}</h1>
-              <p class="infos">
-              <span>
-                <i class="icon-size"></i>
-                {{ plugin_content.file_size }}
-              </span>
-                <span>
-                <i class="icon-time"></i>
-                {{ plugin_content.update_time | date('Y-m-d') }}</span>
-                <span>
-                <i class="icon-point3"></i>
-                {{ plugin_content.point }}
-                积分</span>
-                <span>
-                <a href="/vip.html">
-                  <i class="icon-recharge2"></i>
-                  点击在线充值
-                </a>
-              </span>
-              </p>
-              <div class="btns">
-                <button class="download" id="download">立即下载</button>
-                <button class="btns-fn" id="collect">
-                  <i class="icon-collect"></i><span>点击收藏</span></button>
-                <button class="btns-fn" id="support">
-                  <i class="icon-support"></i>
-                  <em>
-                    {{  plugin_content.click_good }}
-                  </em>
-                </button>
-                <button class="btns-fn" id="share">
-                  <i class="icon-share"></i>分享有礼</button>
-              </div>
-              {% if needInfo or resRelatedGroup_soft[1] %}
-                <div class="other-recommend">
-                  {% if needInfo %}
-                    <a href="{{ needInfo.link }}" title="{{ needInfo.description }}">
-                      <img src="{{ needInfo.thumb }}" alt="{{ needInfo.description }}">
-                      <span>推荐软件：{{ needInfo.description }}</span>
-                    </a>
-                  {% endif %}
-                  {% if resRelatedGroup_soft[1] %}
-                    <a href="{{ resRelatedGroup_soft[1][0].url }}" class="teach-link" target="_blank" rel="nofollow"
-                       title="{{ resRelatedGroup_soft[1][0].title }}">【<em>教程：{{ resRelatedGroup_soft[1][0].title }}</em>】</a>
-                  {% endif %}
-                </div>
-              {% endif %}
-            </div>
-            {# <div class="content-info_img">
-              <img src="{{ plugin_content.thumb }}" alt="{{ plugin_content.title }}">
-            </div> #}
+
+        <div class="title-infos">
+          <h1>{{ plugin_content.title }}
+            {{ plugin_content.version }}</h1>
+
+          <div class="btns">
+            <button class="btns-fn" id="collect">
+              <i class="icon-collect"></i></button>
+            <button class="btns-fn" id="support">
+              <i class="icon-support"></i>
+            </button>
+            <button class="btns-fn" id="share">
+              <i class="icon-share"></i>
+            </button>
           </div>
+        </div>
+        {% if images %}
+          {% if images | length > 2 %}
+            <div class="img-lr">
+              <img src="{{ images[0] }}">
+            </div>
+          {% else %}
+              <div class="img-lr lr-imgs-box">
+                  <div class="imgs">
+                    <img src="{{ images[0] }}" class="imgs-before" style="clip: rect(0px, 500px, 563px, 0);">
+                    <img src="{{ images[1] }}" class="imgs-after" style="clip: rect(0px, 1000px, 563px, 500px);">
+                  </div>
+                  <div class="overly">
+                    <div class="overly-before">修改前</div>
+                    <div class="overly-after">修改后</div>
+                  </div>
+                  <div class="handle" id="img-handle">
+                    <div class="handle-before"></div>
+                    <div class="handle-after"></div>
+                  </div>
+                </div>
+          {% endif %}
+        {% endif %}
+        <div class="download-box">
+          <button class="download" id="download"><i class="icon-download"></i><span>立即下载</span></button>
+        </div>
+
+        <div class="infos">
+          <span>
+            <i class="icon-size"></i>
+            {{ plugin_content.file_size }}
+          </span>
+          <span>
+            <i class="icon-time"></i>
+            {{ plugin_content.update_time | date('Y-m-d') }}
+          </span>
+          <span>
+            <i class="icon-point3"></i>
+            {{ plugin_content.point }}
+            积分
+          </span>
+          <span>
+            <a href="/vip.html">
+              <i class="icon-recharge2"></i>
+              点击在线充值
+            </a>
+          </span>
+          {% if resRelatedGroup_soft[1] %}
+            <span>
+            <a href="{{ resRelatedGroup_soft[1][0].url }}">
+              <img src="{{ resRelatedGroup_soft[1][0].thumb }}" alt="{{ resRelatedGroup_soft[1][0].title }}">
+              {{ resRelatedGroup_soft[1][0].title }}
+            </a>
+          </span>
+          {% endif %}
+          {% if needInfo %}
+            <span>
+              <a href="{{ needInfo.link }}">
+                <img src="{{ needInfo.thumb }}" alt="{{ needInfo.description }}">
+                {{ needInfo.description }}
+              </a>
+            </span>
+          {% endif %}
         </div>
       </div>
     </section>
-    {% if images %}
-      {% if images | length > 2 %}
-        <section class="img-lr">
-          <img src="{{ images[0] }}">
-        </section>
-      {% else %}
-        <section class="imgs-lr">
-          <div class="container">
-            <div class="lr-imgs-box">
-              <div class="imgs">
-                <img src="{{ images[0] }}" class="imgs-before" style="clip: rect(0px, 500px, 563px, 0);">
-                <img src="{{ images[1] }}" class="imgs-after" style="clip: rect(0px, 1000px, 563px, 500px);">
-              </div>
-              <div class="overly">
-                <div class="overly-before">修改前</div>
-                <div class="overly-after">修改后</div>
-              </div>
-              <div class="handle" id="img-handle">
-                <div class="handle-before"></div>
-                <div class="handle-after"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-      {% endif %}
-    {% endif %}
     <section class="description">
       <div class="container">
         <h2>内容介绍</h2>

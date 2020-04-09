@@ -6,18 +6,18 @@
  */
 
 header {
-  .shadow();
-  height: 170px;
+  height: 140px;
   position: relative;
   z-index: 19;
 
   .header {
-    display: block;
-    width: 1200px;
-    height: 100%;
-    margin: 0 auto;
+    position: relative;
+    height: 80px;
+    .shadow();
 
     .header-other {
+      width: 1200px;
+      margin: 0 auto;
       .header-search-login {
         text-align: right;
         padding-top: 6px;
@@ -409,44 +409,40 @@ header {
           }
         }
       }
+    }
+  }
 
-      .header-nav {
-        margin-top: 20px;
-        display: flex;
+  .header-nav {
+    height: 60px;
+    line-height: 60px;
+    background-color: #FCFCFC;
 
-        a {
-          flex: 1;
-          text-align: center;
+    .container {
+      display: flex;
+    }
 
-          &.active {
-            span {
-              color: #fff;
-              background-color: @theme-color;
-            }
+    a {
+      flex: 1;
+      text-align: center;
+      font-size: 16px;
 
-          }
-
-          &:last-child {
-            span {
-              font-size: 18px;
-            }
-          }
-
-          i {
-            display: block;
-            font-size: 32px;
-            margin-bottom: 6px;
-          }
-
-          span {
-            display: inline-block;
-            line-height: 36px;
-            padding: 0 5px;
-            border-radius: 20px;
-            font-size: 16px;
-            min-width: 80px;
-          }
+      &.active {
+        span, i {
+          color: @theme-color;
         }
+
+      }
+
+      &:last-child {
+        span {
+          font-size: 18px;
+        }
+      }
+
+      i {
+        margin-right: 5px;
+        font-size: 18px;
+        vertical-align: text-top;
       }
     }
   }

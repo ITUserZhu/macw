@@ -1,0 +1,80 @@
+@import 'components/common'
+
+body,
+html {
+    background-color: #fff;
+}
+
+.breakcrumbs {
+    margin: 20px 0;
+}
+
+main {
+    width: 1200px;
+    margin: 0 auto;
+    min-height: 800px;
+}
+
+main aside {
+    float: left;
+    width: 140px;
+    box-sizing: border-box;
+    padding-right: 20px;
+    border-right: 1px solid #ddd;
+    background-color: #fff;
+}
+
+main aside .lis {
+    line-height: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    position: relative;
+    padding-left: 10px;
+}
+
+main aside .lis em {
+    opacity: 0;
+}
+
+main aside .lis.active {
+    background-color: theme_color;
+}
+
+main aside .lis.active em {
+    opacity: 1;
+}
+
+main aside .lis.active a {
+    color: #fff;
+}
+
+main aside .lis a {
+    display: block;
+}
+
+main article {
+    float: right;
+    width: 1000px;
+    padding: 0 30px 20px 50px;
+    box-sizing: border-box;
+    line-height: 2;
+    font-size: 16px;
+    min-height: 600px;
+}
+
+main article li.li-content {
+    display: none;
+}
+
+main article li.li-content.active {
+    display: block;
+}
+
+main article h4 {
+    font-size: 18px;
+    border-bottom: 2px solid theme_color;
+    line-height: 40px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,160 @@
+.lottery-wrap
+	position fixed
+	left 0
+	top 0px
+	right 0
+	bottom 0
+	background-color rgba(0,0,0,.5)
+	z-index 100
+	.lottery-box 
+		width 570px
+		height 730px
+		background-color theme_color
+		position absolute
+		left 0
+		top 0px
+		right 0
+		bottom 0
+		margin auto 
+		padding 10px 40px
+		border-radius 10px
+		background-image url('/assets/images/lottery-bg.png')
+		background-position center
+		background-repeat no-repeat
+		background-size auto
+	.lottery-head
+		line-height 80px
+		text-align center	
+		color #fff
+		h1 
+			font-size 22px
+	.prize-close
+		position absolute
+		width 30px
+		height 30px 
+		line-height 30px
+		text-align center
+		border-radius 50%
+		background-color rgba(0,0,0,.4)
+		color #fff
+		font-size 20px
+		cursor pointer
+		right -10px
+		top -10px
+	.lottery-content
+		position relative
+		width 100%
+		height 500px
+		background-color rgba(0,0,0,.2)
+		padding 20px
+		ul li 
+			width 150px
+			height 153px
+			float left
+			background-color #F9F9F9
+			border 2px solid #6B70C7
+			position relative
+			text-align center
+			font-size 16px
+			&.active::after 
+				opacity 1
+			&::after 
+				content ""
+				position absolute
+				width 142px
+				height 145px
+				top 2px
+				left 2px
+				background-color rgba(113, 115, 247, .4)
+				opacity 0
+			&:nth-child(5)
+				cursor pointer
+				.lotter-btn
+					position absolute
+					left 0
+					top 0
+					right 0
+					bottom 0
+					margin auto
+					width 120px
+					height 120px
+					font-size 20px
+					background-color theme_color
+					box-shadow 3px 3px 0 0 #4345b3
+					color #fff
+					.title 
+						margin-top 35px
+					span 
+						font-size 14px
+			&:nth-child(2n+1)
+				border-color #fff
+				background-color #fff
+				box-shadow 0 0 10px 0 rgba(0,0,0,.2)
+				z-index 2
+			img 
+				height 60px
+				margin 30px 0 5px
+			.thank 
+				line-height 150px 
+		.prize-reason
+			position absolute
+			width 300px
+			height 350px
+			left 0
+			top 0
+			right 0
+			bottom 0
+			margin auto
+			border-radius 10px
+			text-align center
+			background-color #fff
+			z-index 3
+			background-image url('/assets/images/lottery-bg.png')
+			background-position 47% 32%
+			background-repeat no-repeat
+			background-size auto
+			box-shadow 0 0 20px 0 rgba(0,0,0,.2)
+			display none
+			.close-res
+				position absolute
+				right -10px 
+				top -10px
+				width 30px
+				height 30px 
+				line-height 30px
+				text-align center
+				border-radius 50%
+				background-color rgba(0,0,0,.4)
+				color #fff
+				font-size 20px
+				cursor pointer
+			.res-title 
+				font-size 22px
+				line-height 90px
+				color theme_color
+			img 
+				margin-top 20px
+			.res-con 
+				line-height 50px
+				color theme_color
+			.res-btn 
+				display block 
+				width 150px
+				height 40px
+				line-height 40px 
+				text-align center
+				color #fff
+				font-size 16px
+				background-color theme_color
+				border-radius 5px
+				position absolute
+				bottom 70px
+				left 50%
+				margin-left -75px
+				cursor pointer
+	.prize-bottom
+		margin-top 20px
+		color #fff
+		line-height 2
+		h4 
+			font-size 17px

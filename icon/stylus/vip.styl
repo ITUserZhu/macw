@@ -1,0 +1,246 @@
+@import 'components/common'
+@import 'components/loading'
+
+.bg-placeholder 
+    height 250px
+
+.breakcrumbs
+    margin-top -250px
+
+.vip-content
+    hgroup
+        text-align center
+        .hwrap
+            display none
+            color #fff
+            &.active
+                display block
+            h2 
+                font-size 24px
+                line-height 2
+    nav.vip-type
+        text-align center
+        font-size 0
+        margin-top 20px
+        span 
+            font-size 18px
+            display inline-block
+            width 200px
+            height 40px
+            line-height 40px
+            text-align center
+            background linear-gradient(to right, #999af9, #4a68fa)
+            color #fff
+            cursor pointer
+            &.active
+                background #fff
+                color theme_color
+    .vip-wrap
+        padding 30px 50px
+        background-color #fff
+        border-radius 10px
+        width 1200px
+        margin 0 auto
+        box-shadow 0 5px 10px 0 rgba(0,0,0,.1)
+        .recharge-chooice
+            ul 
+                display none 
+                width 100%
+                min-height 330px
+                &.active 
+                    display flex 
+                li 
+                    border-right 1px solid #F4F4F4
+                    text-align center
+                    padding 30px 10px
+                    flex 1
+                    cursor pointer
+                    &:last-child
+                        border none
+                    &.active 
+                        background-color rgba(113, 115, 247, .1)
+                        border-color transparent
+                        button 
+                            background-color theme_color
+                            color #fff
+                    .name
+                        font-size 16px
+                        line-height 2
+                        display block
+                        margin 0 auto
+                        position relative
+                        em 
+                            position absolute
+                            width 80px 
+                            height 20px 
+                            line-height 20px
+                            color #fff
+                            font-size 12px
+                            text-align center
+                            background-color #ffca13
+                            left 50%
+                            top 5px
+                            margin-left 40px
+                    .price
+                        color #ffca13
+                        line-height 64px
+                        em  
+                            vertical-align top
+                        span  
+                            font-size 30px
+                    button 
+                        width 120px
+                        height 40px
+                        box-shadow 0 2px 5px 0 rgba(0,0,0,.1)
+                        color theme_color
+                        border-radius 5px
+                        margin 10px 0 20px
+                        cursor pointer
+                    dl
+                        dd  
+                            line-height 32px
+                            color #999 
+    .coupons-wrap
+        margin 20px 0
+        display flex
+        .coupon-h
+            font-size 16px
+            width 70px
+        .coupon-box
+            width 100%
+            position relative
+            .cur-coupon   
+                display block
+                width 100%
+                height 30px     
+                line-height 30px
+                background-color rgba(113, 115, 247, .1)
+                padding 0 15px
+                color #999
+                position relative
+                cursor pointer
+                &::after 
+                    content ""
+                    position absolute
+                    right 20px
+                    border-top 10px solid #999
+                    border-left 6px solid transparent
+                    border-right 6px solid transparent
+                    top 50%
+                    margin-top -5px
+            .coupons-swipe
+                position absolute
+                width 100%
+                height 150px
+                top 30px
+                background-color #fff
+                box-shadow 0 4px 10px 0 rgba(0,0,0,.1)
+                padding 15px 67px
+                display none
+                z-index 2
+                user-select none
+                &.active 
+                    display block
+                .swipe-wrap
+                    width 100%
+                    height 100%
+                    overflow hidden
+                    ul 
+                        width 2000px
+                        transition all .2s
+                        li  
+                            float left
+                            width 260px
+                            height 120px
+                            background linear-gradient(135deg, #7173F7, #4a68fa)
+                            border-radius 5px
+                            overflow hidden
+                            color #fff
+                            padding 20px
+                            cursor pointer
+                            margin-right 60px
+                            border 2px solid #fff
+                            &.active 
+                                border-color theme_color
+                            .coupon-info
+                                .min-price
+                                    margin-top 15px
+                                    font-size 16px
+                            .coupon-price
+                                em  
+                                    vertical-align top
+                                    display inline-block
+                                span 
+                                    font-size 60px
+                .coupon-arr
+                    position absolute
+                    width 100%
+                    left 0
+                    top 50%
+                    margin-top -60px
+                    height 0
+                    span 
+                        display block
+                        height 120px
+                        width 50px
+                        text-align center
+                        line-height 120px
+                        font-size 40px 
+                        cursor pointer
+                        color #666
+                        &.disabeld
+                            cursor no-drop
+    .pay-wrap
+        border 1px dashed #eee
+        text-align center
+        padding 15px
+        position relative
+        .should-pay
+            font-size 16px
+            span  
+                color #ffca13
+                font-size 30px
+        .paypal
+            position absolute
+            right 20px
+            top 20px
+            width 150px
+            height 45px
+            cursor pointer
+            img 
+                width 100%
+                height 100%
+        .pay-ewm
+            display flex
+            justify-content center
+            margin-top 20px
+            font-size 16px
+            .ewm-box
+                width 160px
+                height 160px
+                position relative
+                margin 0 80px
+                border 1px solid theme_color
+                margin-bottom 10px
+                .tologin
+                    position absolute
+                    width 100%
+                    height 100%
+                    left 0
+                    top 0
+                    background-color rgba(0,0,0,.8)
+                    line-height 160px
+                    color #fff
+                    cursor pointer
+                img 
+                    width 100%
+                    height 100%
+            .ali-box 
+                i
+                    color #1dbcf4
+            .wx-box
+                .ewm-box
+                    border-color #64D364
+                i  
+                    color #64D364
+

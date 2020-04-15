@@ -38,33 +38,31 @@
         </div>
         <div class="down-power">
           <p>您的下载特权</p>
-          {% if user_info.vip == 0 %}
           <p>
+            {% if user_info.vip == 0 %}
             <span>软件 <em>{{ user_info.f_down_limit }}</em> 次/每日</span>
             <span>视频 <em>{{ user_info.f_down_v_limit }}</em> 次/每日</span>
             <span>素材 <em>{{ user_info.f_down_pic_limit }}</em> 次/每日</span>
-          </p>
-          {% else %}
-          <p>
+            {% else %}
             <span>软件 <em>{{ user_info.download_limit }}</em> 次/每日</span>
             <span>视频 <em>{{ user_info.download_v_limit }}</em> 次/每日</span>
             <span>素材 <em>{{ user_info.download_pic_limit }}</em> 次/每日</span>
+            {% endif %}
+            <span>图标 <em>{{ user_info.download_icon_limit }}</em> 次/每日</span>
           </p>
-          {% endif %}
           <p>今日剩余次数</p>
-          {% if user_info.vip == 0 %}
           <p>
+            {% if user_info.vip == 0 %}
             <span>软件剩余 <em>{{ user_info.free_surplus }}</em> 次</span>
             <span>视频剩余 <em>{{ user_info.free_surplus_video }}</em> 次</span>
             <span>素材剩余 <em>{{ user_info.free_surplus_pic }}</em> 次</span>
-          </p>
-          {% else %}
-          <p>
+            {% else %}
             <span>软件剩余 <em>{{ user_info.surplus }}</em> 次</span>
             <span>视频剩余 <em>{{ user_info.surplus_video }}</em> 次</span>
             <span>素材剩余 <em>{{ user_info.surplus_pic }}</em> 次</span>
+            {% endif %}
+            <span>图标 <em>{{ user_info.surplus_icon }}</em> 次/每日</span>
           </p>
-          {% endif %}
         </div>
       </div>
       <ul>

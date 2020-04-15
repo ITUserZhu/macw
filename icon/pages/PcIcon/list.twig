@@ -1,0 +1,80 @@
+{% extends 'inc/base.twig' %}
+{% import "components/component.twig" as component %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/list.min.css">
+{% endblock %}
+
+{% block content %}
+<main class="clearfix">
+	<aside class="list-map">
+		<p class="map-h">标签地图</p>
+		<ul>
+
+		</ul>
+	</aside>
+	<section class="list-content fl">
+		<div class="breakcrumbs">
+			<lord-icon animation="auto" src="/assets/json/pos3.json"></lord-icon>
+			<a href="/">首页</a>
+			&gt; <span>{{ keyword }}</span>
+		</div>
+		<div class="list-filter">
+			<div class="filter-wrap">
+				<span class="fl">样式：</span>
+				<a href="/list/{{ tag_id }}_{{ type }}_{{ colored }}_0_{{ order }}_1.html"
+					class="{% if family == 0 %}active{% endif %}"><img src="/assets/images/style-all.png">全部</a>
+				{% for item in family_cate %}
+				<a href="/list/{{ tag_id }}_{{ type }}_{{ colored }}_{{ item.id }}_{{ order }}_1.html"
+					class="{% if family == item.id %}active{% endif %}"><img
+						src="{{ item.thumb_iconeps }}">{{ item.family_name }}</a>
+				{% endfor %}
+			</div>
+			<div class="filter-wrap">
+				<div class="filter-item">
+					<em class="fl">颜色：</em>
+					<a href="/list/{{ tag_id }}_{{ type }}_0_{{ family }}_{{ order }}_1.html"
+						class="{% if colored == 0 %}active{% endif %}">全部</a>
+					<a href="/list/{{ tag_id }}_{{ type }}_1_{{ family }}_{{ order }}_1.html"
+						class="{% if colored == 1 %}active{% endif %}">单色</a>
+					<a href="/list/{{ tag_id }}_{{ type }}_2_{{ family }}_{{ order }}_1.html"
+						class="{% if colored == 2 %}active{% endif %}">多色</a>
+				</div>
+				<div class="filter-item">
+					<a href="/list/{{ tag_id }}_{{ type }}_{{ colored }}_{{ family }}_1_1.html"
+						class="{% if order == 1 %}active{% endif %}">最新</a>
+					<a href="/list/{{ tag_id }}_{{ type }}_{{ colored }}_{{ family }}_2_1.html"
+						class="{% if order == 2 %}active{% endif %}">最热</a>
+				</div>
+				<div class="filter-item show-type">
+					<span class="icon-small active"></span>
+					<span class="icon-big"></span>
+				</div>
+			</div>
+		</div>
+		{% if page == 1 and pack_data_i_1 %}
+		<ul class="pack-list">
+			{{ component.pack(pack_data_i_1) }}
+		</ul>
+		{% endif %}
+		{% if icon_data %}
+		<!-- 包数据 -->
+		{{ component.icons(icon_data) }}
+		{% else %}
+		<div class="no-result">
+			<p class="no-rel">抱歉，暂时没有与<span>{{ keyword }}</span>相关图标</p>
+			<p class="s-tip">请选择其他标签或搜索相关标签查看图标<br>
+				例：“羽毛球网”>“羽毛球” 空格“网”、“小老鼠” >“老鼠” 等。</p>
+			<img src="/assets/images/no-result.png">
+		</div>
+		{% endif %}
+		<!-- 翻页 -->
+		{{ component.pagi(icon_total, page, limit, '/list/' ~ tag_id ~'_' ~ type ~'_' ~ colored ~'_' ~ family ~'_' ~ order )}}
+	</section>
+	<input type="hidden" id="list-info" data-id="{{ tag_id }}">
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/list.min.js"></script>
+{% endblock %}

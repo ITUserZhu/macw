@@ -1,0 +1,59 @@
+{% extends 'inc/base.twig' %}
+{% import "components/component.twig" as component %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/style.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="bg-placeholder"></div>
+	<div class="breakcrumbs bgf">
+		<lord-icon animation="auto" src="/assets/json/pos1.json"></lord-icon>
+		<a href="/">首页</a>
+		&gt; <a href="/families/">样式</a>
+		{% for item in family_cate if item.id == family_id %}
+		&gt; <span>{{ item.family_name }}</span>
+		{% endfor %}
+	</div>
+	<section class="gather-list">
+		<div class="gather-info">
+			<h1>样式</h1>
+			<p>可用于个人和商业用途超过{{ icon_total }}个图标，可用于SVG或EPS矢量，PNG，PSD文件和图标字体</p>
+		</div>
+		<ol class="styles">
+			<li class="{% if family_id == 0 %}active{% endif %}">
+				<a href="/families/0_{{ order }}_1.html">
+					<img src="/assets/images/style-all.png">
+					<p>全部</p>
+				</a>
+			</li>
+			{% for item in family_cate %}
+			<li class="{% if family_id == item.id %}active{% endif %}">
+				<a href="/families/{{ item.id }}_{{ order }}_1.html">
+					<img src="{{ item.thumb_iconeps }}">
+					<p>{{ item.family_name }}</p>
+				</a>
+			</li>
+			{% endfor %}
+		</ol>
+		<ul class="icons-list">
+			{% for item in style_data %}
+			<li><a href="{{ item.url }}">
+					<div class="img"><img src="{{ item.thumb }}" class="img-cover"></div>
+					<div class="con">
+						<p class="title">共{{ item.icon_total }}个图标</p>
+					</div>
+				</a></li>
+			{% endfor %}
+		</ul>
+
+		<!-- 翻页 -->
+		{{ component.pagi(total, page, 24, '/families/'~ family_id ~'_'~ order )}}
+	</section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/common.min.js"></script>
+{% endblock %}

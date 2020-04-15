@@ -147,8 +147,10 @@ $(function() {
         if (res.code == 200) {
           if (res.status == 1) {
             $colText.text("已收藏");
+            $colBtn.addClass("active");
           } else {
             $colText.text("点击收藏");
+            $colBtn.removeClass("active");
           }
         } else if ((res.code == 400 || res.code == 501) && data.is_click) {
           $("#login-in").trigger("click");

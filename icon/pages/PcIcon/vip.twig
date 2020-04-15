@@ -1,0 +1,136 @@
+{% extends 'inc/base.twig' %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/vip.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="bg-placeholder"></div>
+    <div class="breakcrumbs bgf">
+        <lord-icon animation="auto" src="/assets/json/pos1.json"></lord-icon>
+        <a href="/">首页</a>
+        &gt; <span>vip</span>
+    </div>
+    <section class="vip-content">
+        <hgroup>
+            <div class="hwrap active">
+                <h2>开通VIP</h2>
+                <p>解锁全部图标 &nbsp; 全站通用</p>
+            </div>
+            <div class="hwrap">
+                <h2>开通SVIP</h2>
+                <p>解锁全部图标 &nbsp; 无限下载</p>
+            </div>
+            <div class="hwrap">
+                <h2>充值积分</h2>
+                <p>解锁全部图标 &nbsp; 无时间限制</p>
+            </div>
+        </hgroup>
+        <nav class="vip-type">
+            <span class="active">VIP</span>
+            <span>SVIP</span>
+            <span>积分</span>
+        </nav>
+        <div class="vip-wrap">
+            <div class="recharge-chooice">
+                <ul class="active">
+                    {% for i,item in package_info if item.svip == 0 %}
+                    <li class="{% if i == 0 %}active{% endif %}" data-id="{{ item.id }}" data-price="{{ item.discount_price | round }}">
+                        <p class="name">{{ item.package_name }}</p>
+                        <p class="price">
+                            <em>￥</em>
+                            <span>{{ item.discount_price | round }}</span>
+                        </p>
+                        <button>立即订购</button>
+                        <dl>
+                            <dd>VIP图标 —— {{ item.vip_icon_time }}个/天</dd>
+                            <dd>图标编辑特权</dd>
+                            <dd>免费图标海量下载</dd>
+                        </dl>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <ul>
+                    {% for item in package_info if item.svip == 1 %}
+                    <li data-id="{{ item.id }}" data-price="{{ item.discount_price | round }}">
+                        <p class="name">{{ item.package_name }}</p>
+                        <p class="price">
+                            <em>￥</em>
+                            <span>{{ item.discount_price | round }}</span>
+                        </p>
+                        <button>立即订购</button>
+                        <dl>
+                            <dd>VIP图标 无限下载</dd>
+                            <dd>图标编辑特权</dd>
+                            <dd>免费图标海量下载</dd>
+                        </dl>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <ul>
+                    {% for i,item in point_info %}
+                    <li data-id="{{ item.id }}" data-price="{{ item.discount_money | round }}">
+                        <p class="name">{{ item.point_name }} <em>{{ item.discount_name }}</em> </p>
+                        <p class="price">
+                            <em>￥</em>
+                            <span>{{ item.discount_money | round }}</span>
+                        </p>
+                        <button>立即订购</button>
+                        <dl>
+                            <dd>下载VIP图标1积分/个</dd>
+                            <dd>图标编辑特权</dd>
+                            <dd>免费图标海量下载</dd>
+                            <dd>积分使用无时间限制</dd>
+                        </dl>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="coupons-wrap">
+                <span class="coupon-h">优惠券：</span>
+                <div class="coupon-box">
+                    <p class="cur-coupon">暂无优惠券</p>
+                    <div class="coupons-swipe">
+                        <div class="swipe-wrap">
+                            <ul>
+                            </ul>
+                        </div>
+                        <div class="coupon-arr">
+                            <span class="left-arr coupon-btn fl disabeld">&lt;</span>
+                            <span class="right-arr coupon-btn fr">&gt;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pay-wrap">
+                <p class="should-pay">应付金额：<span>￥<em>30</em></span></p>
+                <div class="pay-ewm">
+                    <div class="ali-box">
+                        <div class="ewm-box">
+                            <img src="https://icon.52112.com/assets/images/foot-ewm.png" alt="">
+                            {% if login == 0 %}<div class="tologin"><p>请先登录</p></div>{% endif %}
+                        </div>
+                        <p><i class="icon-alipay"></i> 支付宝支付</p>
+                    </div>
+                    <div class="wx-box">
+                        <div class="ewm-box">
+                            <img src="https://icon.52112.com/assets/images/foot-ewm.png" alt="">
+                            {% if login == 0 %}<div class="tologin"><p>请先登录</p></div>{% endif %}
+                        </div>
+                        <p><i class="icon-wxpay"></i> 微信支付</p>
+                    </div>
+                </div>
+                <div class="paypal">
+                    <img src="/assets/images/paypal.png">
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="vip-info" data-login="{{ login }}">
+    </section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/vip.min.js"></script>
+{% endblock %}

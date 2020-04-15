@@ -1,0 +1,97 @@
+@media screen and (max-width: 1253px) {
+	header {
+		.other-search {
+			display: none;
+		}
+	}
+}
+
+@media screen and (max-width: 1100px) {
+	header {
+		&.fixed {
+			.head .head-other .other-search {
+				display: none !important;
+			}
+		}
+		.head {
+			.head-top, .head-bot {
+				padding: 0 20px !important;
+			}
+			.head-other .other-search form {
+				right: 150px !important;
+			}
+			.other-shoping {
+				display: none !important;
+			}
+			nav.head-menu {
+				width: 100%;
+			}
+		}
+	}
+	footer {
+		height: auto !important;
+		.foot {
+			div.foot-nav {
+				display: none;
+			}
+			div.foot-copyright {
+				width: 100%;
+				p {
+					margin: 0 auto;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 980px) {
+	header .head {
+		.head-mobile-menu {
+			display: block;
+		}
+		.head-logo {
+			display: none;
+		}
+	}
+	footer .footer {
+		.footer-nav {
+			display: none;
+		}
+		.footer-copyright {
+			width: 100%;
+			float: unset;
+			text-align: center;
+			padding: 0 20px;
+		}
+	}
+}
+
+@media screen and (max-width: 640px) {
+	header {
+		height: auto !important;
+		.head .head-bot {
+			display: none !important;
+		}
+	}
+}
+
+@media screen and (max-width: 480px) {
+	header {
+		.head {
+			div.head-logo {
+				display: none;
+			}
+			.head-mobile-menu {
+				display: block;
+			}
+		}
+	}
+	main .pagination {
+		margin: 30px 10px;
+		a {
+			border-right: 1px solid #e5e5e3;
+			margin: 5px;
+		}
+	}
+}

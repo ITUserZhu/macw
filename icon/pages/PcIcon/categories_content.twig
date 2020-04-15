@@ -1,0 +1,61 @@
+{% extends 'inc/base.twig' %}
+{% import "components/component.twig" as component %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/category-content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="bg-placeholder"></div>
+	<div class="breakcrumbs">
+		<lord-icon animation="auto" src="/assets/json/pos3.json"></lord-icon>
+		<a href="/">首页</a>
+		&gt; <a href="/categories/">分类</a>
+		&gt; <span>{{ category_data.cat_name }}</span>
+	</div>
+	<section class="pack-content">
+		<div class="pack-info">
+			<h1>{{ category_data.cat_name }}</h1>
+			<p>下载格式：SVG、EPS、PNG、ICO、PSD</p>
+		</div>
+		<div class="pack-filter">
+			<div class="filter-wrap">
+				<div class="filter-left">
+					<div class="filter-item">
+						<span class="fl">颜色：</span>
+						<a href="/categories/{{ category_data.id }}_0_{{ order }}_1.html"
+							class="{% if colored == 0 %}active{% endif %}">全部</a>
+						<a href="/categories/{{ category_data.id }}_1_{{ order }}_1.html"
+							class="{% if colored == 1 %}active{% endif %}">单色</a>
+						<a href="/categories/{{ category_data.id }}_2_{{ order }}_1.html"
+							class="{% if colored == 2 %}active{% endif %}">多色</a>
+					</div>
+					<div class="filter-item">
+						<a href="/categories/{{ category_data.id }}_{{ colored }}_1_1.html"
+							class="{% if order == 1 %}active{% endif %}">最新</a>
+						<a href="/categories/{{ category_data.id }}_{{ colored }}_2_1.html"
+							class="{% if order == 2 %}active{% endif %}">最热</a>
+					</div>
+				</div>
+
+				<div class="filter-item">
+					<div class="show-type">
+						<span class="icon-small active"></span>
+						<span class="icon-big"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 包数据 -->
+		{{ component.icons(icon_data) }}
+
+		<!-- 翻页 -->
+		{{ component.pagi(icon_total, page, 100, '/categories/' ~ category_data.id ~ '_' ~ colored ~ '_' ~ order)}}
+	</section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/pack-content.min.js"></script>
+{% endblock %}

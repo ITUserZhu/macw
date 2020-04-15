@@ -1,0 +1,33 @@
+{% extends 'inc/base.twig' %}
+{% import "components/component.twig" as component %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/classify.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="bg-placeholder"></div>
+    <div class="breakcrumbs bgf">
+        <lord-icon animation="auto" src="/assets/json/pos1.json"></lord-icon>
+        <a href="/">首页</a>
+        &gt; <a href="">分类</a>
+    </div>
+    <section class="gather-list">
+        <div class="gather-info">
+            <h1>{{ category_total }}个图标分类</h1>
+            <p>{{ icon_total }}个图标，可用于个人和商业用途</p>
+        </div>
+        <ul class="icons-list">
+            {{ component.pack(category_list) }}   
+        </ul>
+
+        <!-- 翻页 -->
+        {{ component.pagi(category_total, page, 24, '/categories/l' )}}
+    </section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/common.min.js"></script>
+{% endblock %}

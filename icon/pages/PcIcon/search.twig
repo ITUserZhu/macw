@@ -1,0 +1,117 @@
+{% extends 'inc/base.twig' %}
+{% import "components/component.twig" as component %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/search.min.css">
+{% endblock %}
+
+{% block content %}
+<main class="clearfix">
+	<aside class="list-map">
+		<p class="map-h">标签地图</p>
+		<ul>
+
+		</ul>
+	</aside>
+	<section class="list-content fl">
+		<div class="breakcrumbs">
+			<lord-icon animation="auto" src="/assets/json/pos3.json"></lord-icon>
+			<a href="/">首页</a>
+			&gt; <span>{% if crumbs %}{{ crumbs }}{% else %}{{ keyword }}{% endif %}</span>
+		</div>
+		<div class="list-filter">
+			<div class="filter-wrap">
+				<span class="fl">样式：</span>
+				<a href="/search/{{ keyword }}_{{ type }}_{{ colored }}_0_{{ order }}_1.html"
+					class="{% if family == 0 %}active{% endif %}"><img src="/assets/images/style-all.png">全部</a>
+				{% for item in family_cate %}
+				<a href="/search/{{ keyword }}_{{ type }}_{{ colored }}_{{ item.id }}_{{ order }}_1.html"
+					class="{% if family == item.id %}active{% endif %}"><img
+						src="{{ item.thumb_iconeps }}">{{ item.family_name }}</a>
+				{% endfor %}
+			</div>
+			<div class="filter-wrap">
+				<div class="filter-item">
+					<em class="fl">颜色：</em>
+					<a href="/search/{{ keyword }}_{{ type }}_0_{{ family }}_{{ order }}_1.html"
+						class="{% if colored == 0 %}active{% endif %}">全部</a>
+					<a href="/search/{{ keyword }}_{{ type }}_1_{{ family }}_{{ order }}_1.html"
+						class="{% if colored == 1 %}active{% endif %}">单色</a>
+					<a href="/search/{{ keyword }}_{{ type }}_2_{{ family }}_{{ order }}_1.html"
+						class="{% if colored == 2 %}active{% endif %}">多色</a>
+				</div>
+				<div class="filter-item">
+					<a href="/search/{{ keyword }}_{{ type }}_{{ colored }}_{{ family }}_1_1.html"
+						class="{% if order == 1 %}active{% endif %}">最新</a>
+					<a href="/search/{{ keyword }}_{{ type }}_{{ colored }}_{{ family }}_2_1.html"
+						class="{% if order == 2 %}active{% endif %}">最热</a>
+				</div>
+				<div class="filter-item">
+					<a href="/search/{{ keyword }}_i_{{ colored }}_{{ family }}_{{ order }}_1.html"
+						class="{% if type == 'i' %}active{% endif %}">图标</a>
+					<a href="/search/{{ keyword }}_p_{{ colored }}_{{ family }}_{{ order }}_1.html"
+						class="{% if type == 'p' %}active{% endif %}">图标包</a>
+				</div>
+				{% if type == 'i' %}
+				<div class="filter-item show-type">
+					<span class="icon-small active"></span>
+					<span class="icon-big"></span>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class="search-tips">
+			<span><em>"{% if crumbs %}{{ crumbs }}{% else %}{{ keyword }}{% endif %}"</em> {{ icon_total }}个相关图标</span>
+			<div class="fr">
+				{# <a href="">如何快速 <em>打包下载？</em></a> #}
+				{% if relate_word %}
+				<span>
+					相关：
+					{% for item in relate_word %}
+					<a href="/search/{{ item }}.html">{{ item }}</a>
+					{% endfor %}
+				</span>
+				{% endif %}
+			</div>
+		</div>
+		{% if page == 1 and type == 'i' and pack_data_i_1 %}
+		<ul class="pack-list">
+			{{ component.pack(pack_data_i_1) }}
+		</ul>
+		{% endif %}
+		{% if icon_data %}
+		<!-- 包数据 -->
+		{% if type == 'i' %}
+		{{ component.icons(icon_data) }}
+		{% else %}
+		<ul class="search-pack">
+			{{ component.pack(icon_data) }}
+		</ul>
+		{% endif %}
+
+		{% if c_word %}
+		<p class="more-word">
+			你是否想搜索：
+			{% for item in c_word %}
+			<a href="/search/{{ item }}.html">{{ item }}</a>
+			{% endfor %}
+		</p>
+		{% endif %}
+		{% else %}
+		<div class="no-result">
+			<p class="no-rel">抱歉，没有找到与<span>{{ keyword }}</span>相关图标</p>
+			<p class="s-tip">请尝试简化搜索词，去掉不必要的形容词，或拆分搜索关键词，搜索结果更精准！<br>
+				例：“羽毛球网”>“羽毛球” 空格“网”、“小老鼠” >“老鼠” 等。
+			</p>
+			<img src="/assets/images/no-result.png">
+		</div>
+		{% endif %}
+		<!-- 翻页 -->
+		{{ component.pagi(icon_total, page, limit, '/search/' ~ keyword ~ '_' ~ type ~ '_' ~ colored ~ '_' ~ family ~ '_' ~ order )}}
+	</section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/list.min.js"></script>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'inc/base.twig' %}
+{% import "components/component.twig" as component %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/content.min.css">
+{% endblock %}
+
+{% block content %}
+<main class="main-content">
+	<div class="breakcrumbs">
+		<lord-icon animation="auto" src="/assets/json/pos3.json"></lord-icon>
+		<a href="/">首页</a>
+		&gt; <a href="">图标包</a>
+	</div>
+	<div id="content-overly">
+		<div class="new-operate">
+			<a href="{{ url }}" target="_blank"><em>新窗口打开</em></a>
+			<span class="operate-close"><em>X</em></span>
+		</div>
+		<section class="icons-content">
+			<div class="icons-preview fl">
+				{% if pack_more %}
+				<ul class="other-shows fl">
+					{% for item in pack_more %}
+					<li><a href="{{ item.url }}" class="pjax-item"><img src="{{ item.thumb }}" alt="{{ item.title }}"></a></li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+				<div class="preview-content">
+					<ul class="icons-styles">
+						{% for item in icon_data.relate %}
+						<li class="{% if item.id == icon_data.id %}active{% endif %}"><a href="{{ item.url }}"
+								class="pjax-item"><img src="{{ item.thumb }}"></a></li>
+						{% endfor %}
+					</ul>
+					<div class="icons-img">
+						<img src="{{ icon_data.thumb }}" alt="{{ icon_data.title }}">
+					</div>
+					<div class="col-edit">
+						<span id="con-shop" data-id="{{ icon_data.id }}" data-type="{{ icon_data.premium }}"><i
+								class="icon-shop"></i></span>
+						<span id="icon_edit"><i class="icon-edit"></i></span>
+					</div>
+					<div class="prv-next">
+						{% if pre_url %}
+						<a href="{{ pre_url }}" class="pjax-item prev-btn"><i></i></a>
+						{% endif %}
+						{% if next_url %}
+						<a href="{{ next_url }}" class="pjax-item next-btn"><i></i></a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="info-operate">
+				<div class="info-title">
+					<h1>{{ icon_data.title }}</h1>
+					<span>
+						<i class="icon-vip2 {% if icon_data.premium == 1 %}vip{% endif %}"></i>
+						<i class="icon-forsell"></i>
+					</span>
+				</div>
+				<p class="info-more">
+					{% if icon_data.pack %}
+					<span>图标包：
+						<a href="{{ icon_data.pack.url }}">{{ icon_data.pack.pack_name }}</a>
+					</span>
+					{% endif %}
+					{% if icon_data.category %}
+					<span>分类：
+						<a href="{{ icon_data.category.url }}">{{ icon_data.category.cat_name }}</a>
+					</span>
+					{% endif %}
+					<span>时间：<em>{{ icon_data.update_time | date('Y-m-d') }}</em></span>
+				</p>
+				<ul class="content-download">
+					<li data-type="svg"><em class="icon-download"></em> SVG下载</li>
+					<li class="more-size png" data-type="png"><em class="icon-download"></em> PNG下载
+						<div class="size">
+							<input type="number" value="512" min="1" max="512"></input>
+							<div class="size-wrap">
+								<p data-size="16">16</p>
+								<p data-size="24">24</p>
+								<p data-size="32">32</p>
+								<p data-size="64">64</p>
+								<p data-size="128">128</p>
+								<p data-size="256">256</p>
+								<p data-size="512" class="active">512</p>
+							</div>
+						</div>
+					</li>
+					<li data-type="eps">EPS</li>
+					<li data-type="psd">PSD</li>
+					<li class="more-size ico" data-type="ico">ICO
+						<div class="size">
+							<input type="number" value="128" min="1" max="256"></input>
+							<div class="size-wrap">
+								<p data-size="16">16</p>
+								<p data-size="24">24</p>
+								<p data-size="32">32</p>
+								<p data-size="64">64</p>
+								<p data-size="128" class="active">128</p>
+								<p data-size="256">256</p>
+							</div>
+						</div>
+					</li>
+					<li data-type="base64">生成&lt;/&gt;代码</li>
+				</ul>
+				<p class="other-operate">
+					{# <a href="">如何快速 <em>打包下载</em>？</a> #}
+					{# <span class="report">点击报错</span> #}
+				</p>
+				<p class="keybord-tips">
+					键盘功能：
+					<span><i>←</i>上一个</span>
+					<span><i>→</i>下一个</span>
+					<span><i>+</i>添加收藏</span>
+					<span><i>-</i>删除收藏</span>
+				</p>
+				<p class="content-keywords">
+					{% for item in icon_data.tag %}
+					<a href="{{ item.url }}">{{ item.keyword }}</a>
+					{% endfor %}
+				</p>
+			</div>
+		</section>
+		{% if tag_more %}
+		<section class="sec-rel">
+			<h2>相关{{ temp_kw }}图标</h2>
+			<!-- 包数据 -->
+			{{ component.icons(tag_more) }}
+		</section>
+		{% endif %}
+		{% if tag_more_style %}
+		<section class="sec-rel">
+			<h2>相同风格{{ temp_kw }}图标</h2>
+			<!-- 包数据 -->
+			{{ component.icons(tag_more_style) }}
+		</section>
+		{% endif %}
+		{% if pack_more %}
+		<section class="sec-rel">
+			<h2>更多图标包图标</h2>
+			<!-- 包数据 -->
+			{{ component.icons(pack_more) }}
+		</section>
+		{% endif %}
+	</div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/content.min.js"></script>
+{% endblock %}

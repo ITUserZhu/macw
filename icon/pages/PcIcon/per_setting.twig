@@ -1,0 +1,304 @@
+{% extends 'inc/base.twig' %}
+{% import "components/component.twig" as component %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/personal.min.css">
+{% endblock %}
+
+{% block content %}
+<main class="clearfix">
+    <aside class="user-aside">
+        <section class="user-info">
+            <div class="heading"><img src="{{ user_info.headimg }}"></div>
+            <p class="nickname">{{ user_info.nickname }}</p>
+            <p class="userid">ID：{{ user_info.id }}</p>
+            <button class="sign" id="sign-btn">签到</button>
+            <div class="vip-type">
+                <p>{{ user_info.package_name }}</p>
+                {% if user_info.overduedate %}<span>到期时间：{{ user_info.overduedate | date('Y-m-d') }}</span>{% endif %}
+            </div>
+            <p class="point-left">积分：<span>{{ user_info.point }}</span></p>
+        </section>
+        <section class="user-menu">
+            <ul>
+                <li class="nav-admin active">
+                    <p><a href="#/admin"><i class="icon-admin"></i>个人资料</a></p>
+                    <div class="child-nav">
+                        <a href="#/admin" class="active"><i class="icon-admin"></i>个人中心</a>
+                        <a href="#/admin-1"><i class="icon-admin2"></i>基本信息</a>
+                    </div>
+                </li>
+                <li class="nav-collect">
+                    <p><a href="#/collect"><i class="icon-shop"></i>我的收藏</a></p>
+                    <div class="child-nav" id="col-nav-wrap">
+                        <span class="collect-add"><i class="icon-add"></i>添加收藏夹</span>
+                    </div>
+                </li>
+                <li class="nav-download menu-download"><p><a href="#/download"><i class="icon-down"></i>下载历史</a></p></li>
+                <li class="nav-center">
+                    <p><a href="#/center"><i class="icon-vip"></i>会员中心</a></p>
+                    <div class="child-nav">
+                        <a href="#/center"><i class="icon-vip"></i>充值记录</a>
+                        <a href="#/center-1"><i class="icon-coupon"></i>优惠券</a>
+                    </div>
+                </li>
+                <li class="nav-info">
+                    <p><a href="#/info"><i class="icon-tip"></i>消息管理</a></p>
+                    <div class="child-nav">
+                        <a href="#/info"><i class="icon-tip"></i>系统消息</a>
+                        <a href="#/info-1"><i class="icon-edit"></i>问题反馈</a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    <article class="user-article">
+        <section class="sec-admin personal-info active">
+            <div class="perindex active">
+                <div class="vip-info">
+                    <dl>
+                        <p class="d-title">{{ user_info.package_name | default('普通会员') }}</p>
+                        {% if user_info.package_name != '普通会员' %}
+                        <button id="renew">续费</button>
+                        {% else %}
+                        <a href="/vip.html">升级vip</a>
+                        {% endif %}
+                        {% if user_info.overduedate %}<span>{{ user_info.overduedate | date('Y-m-d') }}到期</span>{% endif %}
+                    </dl>
+                    <dl>
+                        <span>积分</span>
+                        <p class="point-num">{{ user_info.point }}</p>
+                        <button>充值</button>
+                    </dl>
+                    <dl>
+                        <p class="d-title">今日次数剩余</p>
+                        <p><span>免费图标：</span>{{ user_info.surplus_icon_time }}</p>
+                        <p><span>VIP图标：</span>{{ user_info.surplus_vip_icon_time }}</p>
+                    </dl>
+                </div>
+                <div class="per-h">
+                    <h2>我的收藏</h2>
+                    <a href="#/collect">更多 &gt;</a>
+                </div>
+                {% if favorite_icon %}
+                {{ component.icons(favorite_icon, true) }}
+                {% else %}
+                <p class="nocollect">暂无收藏</p>
+                {% endif %}
+            </div>
+            <div class="userinfo">
+                <form id="per-info">
+                    <label for="nickname">
+                        <span>昵称：</span> 
+                        <input type="text" id="nickname" name="nickname" value="{{ user_info.nickname }}" maxlength="16">
+                    </label>
+                    <label for="userid">
+                        <span>ID：</span> 
+                        <input type="number" id="userid" name="userid" value="{{ user_info.id }}" readonly>
+                    </label>
+                    <label for="gender" class="gender">
+                        <span>性别：</span>
+                        <select name="sex" id="gender" value="">
+                            {% if user_info.sex == 1 %}
+                            <option value="1" selected>男</option>
+                            {% else %}
+                            <option value="1">男</option>
+                            {% endif %}
+                            {% if user_info.sex == 2 %}
+                            <option value="2" selected>女</option>
+                            {% else %}
+                            <option value="2">女</option>
+                            {% endif %}
+                        </select>
+                    </label>
+                    <label for="phone" class="phone">
+                        <span>手机号码：</span>
+                        <input type="text" id="phone" value="{{ user_info.phone }}" readonly placeholder="未绑定手机">
+                        <!-- <em id="bind-change">{#% if user_info.phone %}更改绑定{% else %}立即绑定{% endif %#}</em> -->
+                    </label>
+                    <label for="email">
+                        <span>邮箱：</span>
+                        <input type="email" name="email" id="email" value="{{ user_info.email }}" readonly>
+                    </label>
+                    <label for="usersign">
+                        <span>个性签名：</span>
+                        <textarea id="usersign" name="autograph">{{ user_info.autograph }}</textarea>
+                    </label>
+                    <button class="disabeld">保存</button>
+                </form>
+            </div>
+        </section>
+        <section class="sec-collect">
+            <div class="collect-wrap active">
+                <div class="collect-info">
+                    <span class="col-num" id="collect-nums"><em>0</em>个图标</span>
+                    <div class="fr collect-operate">
+                        <span class="collect-edit"><i class="icon-edit"></i>编辑文件夹</span>
+                        <span class="collect-del"><i class="icon-del"></i>删除文件夹</span>
+                    </div>
+                </div>
+                <ul class="hasicons collect-icons" id="collect-wrap">
+                    
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                </ul>
+                <div class="ajax-pagination" id="collect-pagi"></div>
+            </div>
+        </section>
+        <section class="sec-download">
+            <div class="download-wrap active">
+                <div class="download-filter">
+                    <span>温馨提示：下载记录只保存一年内</span>
+                    <select id="donload-select">
+                        <option value="all">所有时间</option>
+                        <option value="day">一天内</option>
+                        <option value="week">七天内</option>
+                        <option value="month">一月内</option>
+                    </select>
+                </div>
+                <ul class="hasicons" id="download-history">
+                    
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                    <li class="none"></li>
+                </ul>
+                <div class="ajax-pagination" id="download-pagi"></div>
+            </div>
+        </section>
+        <section class="sec-center vip-center">
+            <div class="recharge-list">
+                <div class="recharge-filter">
+                    <select id="recharge-select">
+                        <option value="all">所有时间</option>
+                        <option value="day">一天内</option>
+                        <option value="week">七天内</option>
+                        <option value="month">一月内</option>
+                    </select>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="30%">充值时间</th>
+                            <th>充值内容</th>
+                            <th>支付方式</th>
+                            <th>支付金额</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recharge-table">
+                        
+                    </tbody>
+                </table>
+                <div class="ajax-pagination" id="recharge-pagi"></div>
+            </div>
+            <div class="coupon-list active">
+                <div class="coupon-filter">
+                    <select id="coupon-select">
+                        <option value="-1">全部</option>
+                        <option value="0">未过期</option>
+                        <option value="1">已过期</option>
+                    </select>
+                </div>
+                <ul class="clearfix" id="coupon-wrap">
+                    
+                </ul>
+                <div class="ajax-pagination" id="coupon-pagi"></div>
+            </div>
+        </section>
+        <section class="sec-info news-center">
+            <div class="sys-info">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>状态</td>
+                            <td>时间</td>
+                            <td>发件人</td>
+                            <td width="45%">内容</td>
+                        </tr>
+                    </thead>
+                    <tbody id="sys-info">
+                        
+                    </tbody>
+                </table>
+                <div class="ajax-pagination" id="sysinfo-pagi"></div>
+            </div>
+            <div class="user-request active">
+                <form id="news-support">
+                    <fieldset>
+                        <span>问题类型：</span>
+                        <label for="disdow"><input type="radio" name="error_type" value="无法下载" id="disdow">无法下载</label>
+                        <label for="disver"><input type="radio" name="error_type" value="图标错误" id="disver">图标错误</label>
+                        <label for="complaint"><input type="radio" name="error_type" value="版权投诉" id="complaint">版权投诉</label>
+                        <label for="other"><input type="radio" name="error_type" value="其他" id="other">其他</label>
+                    </fieldset>
+                    <fieldset>
+                        <span>问题网址：</span>
+                        <input type="url" name="url" placeholder="请输入问题页面URL">
+                    </fieldset>
+                    <fieldset>
+                        <span>问题描述：</span>
+                        <textarea name="content" placeholder="请输入问题描述"></textarea>
+                    </fieldset>
+                    <button>提交</button>
+                    <p class="news-tips"></p>
+                </form>
+            </div>
+        </section>
+        <section class="renew-box" id="renew-box">
+            <div class="renew-box">
+                <span class="close-renew">X</span>
+                <p class="renew-title">{{ point_info.package_name }}续费：</p>
+                <div class="renew-price" data-id="{{ point_info.id }}"><span>{{ point_info.discount_price | round(0, 'floor') }}元</span> <s>{{ point_info.original_price | round(0, 'floor') }}元</s> /{{ point_info.package_name }}</div>
+                <p class="renew-title">充值方式：</p>
+                <div class="renew-recharge">
+                    <p class="should-pay">支付金额： <span><em>{{ point_info.discount_price | round(0, 'floor') }}</em>元</span></p>
+                    <div class="ewm-box">
+                        <div class="ewm alipay">
+                            <img src="/assets/images/loading.gif">
+                        </div>
+                        <p><i class="icon-alipay"></i>支付宝支付</p>
+                    </div>
+                    <div class="ewm-box">
+                        <div class="ewm wxpay">
+                            <img src="/assets/images/loading.gif">
+                        </div>
+                        <p><i class="icon-wxpay"></i>微信支付</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/personal.min.js"></script>
+{% endblock %}

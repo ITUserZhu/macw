@@ -1,0 +1,96 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <meta name="applicable-device" content="pc,mobile">
+  <title>{% block page_title %}{{ page_title|default('图标云') }}{% endblock %}</title>
+  <meta name="keywords" content="{% block page_kw %}{{ page_kw|default('图标云') }}{% endblock %}">
+  <meta name="description" content="{% block page_desc %}{{ page_desc|default('图标云') }}{% endblock %}">
+  <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+  {% block add_css %}{% endblock %}
+</head>
+<body>
+  <header>
+    <div class="head">
+      <div class="head-top">
+        {# 站点logo #}
+        <div class="head-mobile-menu fl">
+          <a href="/"><img src="/assets/images/logo-s.png" alt="macw下载图标"></a>
+        </div>
+        <div class="head-logo fl">
+          <a href="/" title="macw下载图标"><img src="/assets/images/logo.png" alt="图标云"></a>
+        </div>
+        {# 登录注册按钮 #}
+        <div class="head-login fr">
+          <div class="login-unlogin active">
+            <span class="login-reg login-btn">注册</span>/
+            <span class="login-login login-btn">登录</span>
+          </div>
+          <div class="login-logined"></div>
+        </div>
+      </div>
+
+      <div class="head-bot">
+        {# 导航菜单 #}
+        <nav class="head-menu fl">
+          <a href="/" {% if active == 'index' %}class="active" {% endif %}><i class="icon-home"></i>首页</a>
+          <a href="/pack/" {% if active == 'pack' %}class="active" {% endif %}><i class="icon-muster"></i>图集</a>
+          <a href="/families/" {% if active == 'families' %}class="active" {% endif %}><i class="icon-style"></i>样式</a>
+          <a href="/categories/" {% if active == 'categories' %}class="active" {% endif %}><i
+              class="icon-class"></i>分类</a>
+          <a href="/newest.html" {% if active == 'new' %}class="active" {% endif %}><i class="icon-new"></i>最新</a>
+          <a href="https://www.macw.com/"><i class="icon-software"></i>软件</a>
+          <a href="https://v.macw.com/"><i class="icon-video"></i>视频</a>
+          <a href="https://sc.macw.com/"><i class="icon-image"></i>素材</a>
+        </nav>
+
+        <div class="head-other fr">
+          {# 搜索 #}
+          <div class="other-search">
+            <form id="head-search">
+              <input type="text" placeholder="搜点什么"
+                value="{% if tag_id or keyword == 'all' %}{% else %}{{ keyword }}{% endif %}">
+              <button><i class="icon-search"></i></button>
+            </form>
+          </div>
+          {# 购物车 #}
+          <div class="other-shoping" id="header-shopping">
+            <i class="shop-num">0</i>
+            <lord-icon animation="loop" src="/assets/json/shop1.json"></lord-icon>
+            收藏夹
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% block content %}{% endblock %}
+  <footer>
+    <div class="footer clearfix">
+      <div class="footer-nav">
+        <a href="https://www.macw.com/about.html#about" rel="nofollow">关于网站</a>
+        <a href="https://www.macw.com/about.html#open" rel="nofollow">会员说明</a>
+        <a href="https://www.macw.com/about.html#copyright" rel="nofollow">版权声明</a>
+        <span>客服QQ: {{ customer_qq }}</span>
+        <a href="https://www.macw.com/about.html#help" rel="nofollow">下载帮助</a>
+        <a href="https://www.macw.com/about.html#call" rel="nofollow">联系我们</a>
+        <a href="https://www.macw.com/about.html#share" rel="nofollow">分享规则</a>
+        <a href="https://www.macw.com/about.html#self" rel="nofollow">隐私协议</a>
+      </div>
+      <div class="footer-copyright">
+        <p>本站为非盈利性个人网站，本站所有软件来自互联网，版权属原著所有，如有需要请购买正版。如有侵权，敬请来信联系我们，我们立即删除。<br>
+          Copyright © 2019 www.__host.com online services. All rights reserved.
+          <a href="https://beian.miit.gov.cn/" rel="nofollow" target="_blank">冀ICP备19004143号-1</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+  {% block script %}{% endblock %}
+</body>
+</html>
+{% endspaceless %}

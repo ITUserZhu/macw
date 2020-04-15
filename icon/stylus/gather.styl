@@ -1,0 +1,73 @@
+@import 'media/gather';
+@import 'components/common';
+@import 'components/icons-item';
+
+.breakcrumbs {
+	margin-top: -190px;
+}
+
+.gather-list {
+	max-width: 1230px;
+	margin: 0 auto;
+	.gather-info {
+		color: #fff;
+		&.tj {
+			text-align: center;
+			p {
+				line-height: 3;
+			}
+		}
+		h1 {
+			display: inline-block;
+			font-size: 24px;
+			line-height: 1.8;
+			margin-right: 25px;
+		}
+	}
+	.gather-filter {
+		border-radius: 5px;
+		background-color: #fff;
+		padding: 10px 20px;
+		margin-top: 30px;
+		.filter-wrap {
+			border-bottom: 1px solid #eee;
+			line-height: 58px;
+			&:last-child {
+				border: none;
+			}
+			a {
+				color: #999;
+				margin: 0 20px;
+				padding: 3px 0;
+				border-bottom: 1px solid transparent;
+				img {
+					width: 16px;
+					height: 16px;
+					margin-right: 5px;
+					vertical-align: middle;
+				}
+				&.active {
+					color: theme_color;
+					border-bottom-color: theme_color;
+				}
+			}
+			.filter-item {
+				display: inline-block;
+				vertical-align: middle;
+				padding: 0 15px;
+				height: 20px;
+				line-height: 20px;
+				border-right: 1px solid #D1D1D1;
+				&:first-child {
+					padding-left: 0;
+				}
+				&:last-child {
+					border: none;
+				}
+			}
+		}
+	}
+	.icons-list {
+		icons-item();
+	}
+}

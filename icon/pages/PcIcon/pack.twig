@@ -1,0 +1,57 @@
+{% extends 'inc/base.twig' %}
+{% import "components/component.twig" as component %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/gather.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+	<div class="bg-placeholder"></div>
+	<div class="breakcrumbs bgf">
+		<lord-icon animation="auto" src="/assets/json/pos1.json"></lord-icon>
+		<a href="/">首页</a>
+		&gt; <span>图标包</span>
+	</div>
+	<section class="gather-list">
+		<div class="gather-info">
+			<h1>{{ pack_total }}套图标包</h1>
+			<span>{{ icon_total }}个图标，可用于个人和商业用途</span>
+		</div>
+		<div class="gather-filter">
+			<div class="filter-wrap">
+				<span class="fl">样式：</span>
+				<a href="/pack/l_{{ colored }}_0_{{ order }}_1.html" class="{% if family == 0 %}active{% endif %}"><img
+						src="/assets/images/style-all.png">全部</a>
+				{% for item in family_cate %}
+				<a href="/pack/l_{{ colored }}_{{ item.id }}_{{ order }}_1.html"
+					class="{% if family == item.id %}active{% endif %}"><img
+						src="{{ item.thumb_iconeps }}">{{ item.family_name }}</a>
+				{% endfor %}
+			</div>
+			<div class="filter-wrap">
+				<div class="filter-item">
+					<span class="fl">颜色：</span>
+					<a href="/pack/l_0_{{ family }}_{{ order }}_1.html" class="{% if colored == 0 %}active{% endif %}">全部</a>
+					<a href="/pack/l_1_{{ family }}_{{ order }}_1.html" class="{% if colored == 1 %}active{% endif %}">单色</a>
+					<a href="/pack/l_2_{{ family }}_{{ order }}_1.html" class="{% if colored == 2 %}active{% endif %}">多色</a>
+				</div>
+				<div class="filter-item">
+					<a href="/pack/l_{{ colored }}_{{ family }}_1_1.html" class="{% if order == 1 %}active{% endif %}">最新</a>
+					<a href="/pack/l_{{ colored }}_{{ family }}_2_1.html" class="{% if order == 2 %}active{% endif %}">最热</a>
+				</div>
+			</div>
+		</div>
+		<ul class="icons-list">
+			{{ component.pack(pack_data) }}
+		</ul>
+
+		<!-- 翻页 -->
+		{{ component.pagi(pack_total, page, 24, '/pack/l_' ~ colored ~'_' ~ family ~'_' ~ order)}}
+	</section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/gather.min.js"></script>
+{% endblock %}

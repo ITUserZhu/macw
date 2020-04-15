@@ -1,0 +1,110 @@
+<!-- 图标包 -->
+{% macro pack(data, is_show = false) %}
+{% for item in data %}
+<li><a href="{{ item.url }}">
+		<div class="img">
+			<img class="img-cover" {% if is_show %}data-{% endif %}src="{{ item.thumb }}" alt="{{ item.pack_name }}">
+			{% if item.thumb_relate %}
+			<div class="img-array">
+				<img data-src="{{ item.thumb }}">
+				{% for v in item.thumb_relate %}
+				<img data-src="{{ v }}">
+				{% endfor %}
+			</div>
+			{% endif %}
+		</div>
+		<div class="con">
+			<p class="title">
+				{% if item.pack_name %}{{ item.pack_name }}{% else %}{{ item.cat_name }}{% endif %}{% if item.style_name %}（{{ item.style_name }}）{% endif %}
+			</p>
+			<span class="fr">
+				<em><i class="icon-big"></i>{{ item.icon_total }}</em>
+			</span>
+		</div>
+	</a></li>
+{% endfor %}
+{% endmacro %}
+
+<!-- 图标列表 -->
+{% macro icons(data, flag = false) %}
+<ul class="hasicons">
+	{% for item in data %}
+	<li data-id="{{ item.id }}">
+		<a href="{{ item.url }}" title="{{ item.title }}" class="{% if flag %}{% else %}pjax-item{% endif %}">
+			<div class="img"><img src="{{ item.thumb }}" alt="{{ item.title }}"></div>
+			<div class="mask">
+				<i class="icon-vip2 {% if item.premium == 1 %}vip{% endif %}"></i>
+				<div class="operate">
+					<span class="collect operate-btn">
+						<em class="addshop icon-addshop"></em>
+						<em class="delshop icon-moveshop"></em>
+					</span>
+					<span class="download operate-btn">
+						<em class="icon-download"></em>
+					</span>
+				</div>
+			</div>
+		</a>
+	</li>
+	{% endfor %}
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+	<li class="none"></li>
+</ul>
+{% endmacro %}
+
+<!-- 翻页 -->
+{% macro pagi(total, page, limit, url) %}
+
+{% set pageTotal = (total / limit) | round(0, 'ceil') %}
+{% if total != 0 and pageTotal > 1 %}
+<div class="pagination">
+	<a href="{% if page <= 1 %}javascript:;{% else %}{{ url }}_{{ page - 1 }}.html{% endif %}" class="prev btn"
+		target="_self">&lt;</a>
+	<!-- "{% if total <= (limit * 10) %}" -->
+	{% for i in 1..(pageTotal) %}
+	<a href="{{ url }}_{{ i }}.html" class="num {% if i == page %}active{% endif %}" target="_self">{{ i }}</a>
+	{% endfor %}
+	<!-- "{% else %}" -->
+	<!-- "{% if page < 6 %}"  -->
+	{% for i in 1..9 %}
+	<a href="{{ url }}_{{ i }}.html" class="num {% if i == page %}active{% endif %}" target="_self">{{ i }}</a>
+	{% endfor %}
+	<a class="null">...</a>
+	<a href="{{ url }}_{{ pageTotal }}.html" class="num" target="_self">{{ pageTotal }}</a>
+	<!-- "{% elseif page > 5 and page < (pageTotal - 4) %}" -->
+	<a href="{{ url }}_1.html" class="num" target="_self">1</a>
+	<a class="null">...</a>
+	{% for i in (page - 3)..(page + 3) %}
+	<a href="{{ url }}_{{ i }}.html" class="num {% if i == page %}active{% endif %}" target="_self">{{ i }}</a>
+	{% endfor %}
+	<a class="null">...</a>
+	<a href="{{ url }}_{{ pageTotal }}.html" class="num" target="_self">{{ pageTotal }}</a>
+	<!-- "{% else %}" -->
+	<a href="{{ url }}_1.html" class="num" target="_self">1</a>
+	<a class="null">...</a>
+	{% for i in (pageTotal - 8)..(pageTotal) %}
+	<a href="{{ url }}_{{ i }}.html" class="num {% if i == page %}active{% endif %}" target="_self">{{ i }}</a>
+	{% endfor %}
+	<!-- "{% endif %}" -->
+	<!-- "{% endif %}" -->
+	<a href="{% if page >= pageTotal %}javascript:;{% else %}{{ url }}_{{ page + 1 }}.html{% endif %}" class="next btn"
+		target="_self">&gt;</a>
+</div>
+{% endif %}
+
+{% endmacro %}

@@ -1,0 +1,153 @@
+@import 'components/common'
+
+body,
+html {
+    background-color: #fff;
+}
+
+.breakcrumbs {
+    margin: 20px 0;
+}
+
+main {
+    width: 1200px;
+    margin: 0 auto 50px;
+    min-height: 800px;
+}
+
+main aside {
+    width: 200px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: rgba(113, 115, 247, .1);
+    -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, .1);
+    -moz-box-shadow: 0 0 25px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, .1);
+}
+
+main aside li p {
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+}
+
+main aside li.active p {
+    background-color: theme_color;
+    color: #fff;
+    position: relative;
+}
+
+main aside li p:after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: none;
+    border-left: 10px solid #fff;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    top: 50%;
+    margin-top: -5px;
+}
+
+main aside li.active p:after {
+    opacity: 1;
+}
+
+main aside li .nav a {
+    display: block;
+    line-height: 40px;
+    color: #666;
+    padding-left: 25px;
+}
+
+main aside li .nav a.active {
+    color: theme_color;
+}
+
+article {
+    width: 970px;
+    border: 1px solid #eee;
+    padding: 0 30px 50px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+article ul li,
+article .content {
+    display: none;
+}
+
+article ul li.active,
+article .content.active {
+    display: block;
+}
+
+article h3 {
+    line-height: 65px;
+    border-bottom: 1px solid #999;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+article .content .title {
+    line-height: 40px;
+    height: 40px;
+    background-color: rgba(113, 115, 247, .1);
+    padding-left: 30px;
+    position: relative;
+    font-size: 16px;
+    margin: 20px 0;
+}
+
+article .content .title:before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    width: 4px;
+    height: 16px;
+    background-color: theme_color;
+    top: 12px;
+}
+
+article .content p {
+    line-height: 40px;
+    font-size: 16px;
+}
+
+article .content .desc {
+    margin-bottom: 30px;
+}
+
+article .content img {
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+article .content p span.btn {
+    display: inline-block;
+    vertical-align: middle;
+    height: 35px;
+    line-height: 35px;
+    width: 120px;
+    cursor: default;
+    color: #98a8aa;
+    background-color: transparent;
+    border: 1px solid #98a8aa;
+    font-size: 16px;
+    outline: none;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.price span {
+    display: inline-block;
+    margin-right: 20px;
+    width: 140px
+}

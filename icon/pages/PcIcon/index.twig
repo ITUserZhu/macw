@@ -1,0 +1,67 @@
+{# 扩展基础模板 #}
+{% extends 'inc/base.twig' %}
+{# 引入组件 #}
+{% import "components/component.twig" as component %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/index.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+  <section class="sec-banner">
+    <div class="banner-wrap clearfix">
+      <div class="banner-tips fl">
+        <p class="icon-number">共收录{{ icon_total }}个图标</p>
+        <p class="icon-format">多种下载格式：SVG、EPS、PNG、ICO、PSD，更多图标，更多风格，更多选择，你想要的都在这里！</p>
+      </div>
+      <div class="banner-form fr">
+        <form>
+          <input type="text" placeholder="搜点什么。。。">
+          <button><i class="icon-search"></i></button>
+        </form>
+        <p class="hot-search">
+          <span>热门关键字：
+            {% for item in hot_words %}
+            <a href="/search/{{ item.keyword }}.html">{{ item.keyword }}</a>
+            {% endfor %}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <ul class="icons-style">
+      {% for item in family_cate %}
+      <li><a href="/pack/l_0_{{ item.id }}_1_1.html">
+          <div><img src="{{ item.thumb_iconeps }}" alt=""></div>
+          <p>{{ item.family_name }}</p>
+        </a></li>
+      {% endfor %}
+    </ul>
+
+  </section>
+  <section class="sec-icons">
+    <hgroup class="check-nav">
+      <h3 class="active">推荐图标</h3>
+      <h3>最新图标</h3>
+    </hgroup>
+    <div class="icon-items">
+      <ul class="active">
+        <!-- 调用组件 -->
+        {{ component.pack(pack_best) }}
+      </ul>
+      <ul>
+        {{ component.pack(pack_premium, true) }}
+      </ul>
+    </div>
+    <div class="pack-more">
+      <a href="/t_1.html" class="active">更多</a>
+      <a href="/pack/">更多</a>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/index.min.js"></script>
+{% endblock %}

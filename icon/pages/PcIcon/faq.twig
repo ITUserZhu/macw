@@ -1,0 +1,230 @@
+{% extends 'inc/base.twig' %}
+{% block add_css %}
+<link rel="stylesheet" href="css/faq.min.css">
+{% endblock %}
+{% block content %}
+<main class="content clearfix">
+    <div class="breakcrumbs">
+        <lord-icon animation="auto" src="/assets/json/pos3.json"></lord-icon>
+        <a href="/">首页</a>
+        &gt; <span>常见问题</span>
+    </div>
+    <aside class="fl">
+        <ul>
+            <li class="active">
+                <p>登录和注册</p>
+                <div class="nav">
+                    <a href="javascript:;">注册</a>
+                    <a href="javascript:;">登录</a>
+                    <a href="javascript:;">账号</a>
+                </div>
+            </li>
+            <li>
+                <p>功能和下载</p>
+                <div class="nav">
+                    <a href="javascript:;">搜索图标</a>
+                    <a href="javascript:;">编辑图标颜色</a>
+                    <a href="javascript:;">下载</a>
+                </div>
+            </li>
+            <li>
+                <p>充值和退款</p>
+                <div class="nav">
+                    <a href="javascript:;">充值</a>
+                    <a href="javascript:;">退款</a>
+                </div>
+            </li>
+            <li>
+                <p>发票</p>
+                <div class="nav">
+                    <a href="javascript:;">发票</a>
+                </div>
+            </li>
+        </ul>
+    </aside>
+    <article class="fr">
+        <ul>
+            <li class="active">
+                <div class="content active">
+                    <h3>登录和注册 &gt; 注册</h3>
+                    <p class="title">如何注册图标云账号？</p>
+                    <div class="desc">
+                        <p>QQ和微信为第三方平台直接授权登录的注册方式，手机号和邮箱可以直接注册或登陆，目前QQ或微信账号无法用密码登录方式。</p>
+                        <p>已经注册QQ或微信账号可以绑定手机号和邮箱方式登陆。</p>
+                        <p>手机号或邮箱登陆或注册注意事项：您如果已经QQ注册后绑定手机号或邮箱，可以使用该手机号或邮箱登陆并关联此QQ注册的图标云会员；</p>
+                        <p>您如果已经微信注册后绑定手机号或邮箱，可以使用该手机号或邮箱进行登陆并且关联此微信注册的图标云会员；</p>
+                        <p>手机号或邮箱注册规则：未注册或未绑定过其他图标云账号的手机号，可以选择绑定微信或QQ授权登录的图标云账号。</p>
+                        <p>如果，该手机号或邮箱已经绑定过其他图标云账号，是无法解绑的，可以换手机号或邮箱绑定。</p>
+                        <p>手机号或邮箱解绑功能正在开发，暂时无法解绑！</p>
+                    </div>
+                    <p class="title">企业会员如何开通？</p>
+                    <div class="desc">
+                        <p>功能开发中，敬请期待！</p>
+                    </div>
+                    <p class="title">如何注销图标云账号？</p>
+                    <div class="desc">
+                        <p>由于图标云登录以QQ或微信为第三方平台授权直接登录，请您到腾讯官方QQ互联取消图标云授权。手机号或邮箱暂时无法注销，如果更换手机号码或邮箱，可以点击个人中心进行修改手机号或邮箱！</p>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>登录和注册 &gt; 登录</h3>
+                    <p class="title">QQ无法登录授权到图标云怎么办？</p>
+                    <div class="desc">
+                        <p>1. 打开其他网站，是否可以用QQ进行登录</p>
+                        <p>注意：请确认您是退出其他网站之前的登录状态，重新登录尝试QQ是否可以登录。</p>
+                        <p>1：可以登录其他网站，图标云无法登录，请您提供QQ号码、IP地址，提交客服进行核实。</p>
+                        <p>2：都不可以登录，这样情况有可能是您的局域网限制了腾讯QQ登录渠道的问题，建议您换设备登录尝试。</p>
+                        <p>2. 换了设备如果可以QQ登录，建议在账号的个人中心信息中绑定手机号，后续可以通过手机号登录图标云。</p>
+                        <p>3. 如果都是无法解决，建议您使用其他方式注册图标云，充值使用。如果您之前充过VIP会员，由于无法登录导致无法下载使用，可以联系客服进行处理。</p>
+                        <p>图标云未注册或者未绑定过其他图标云账号的手机号，可以选择绑定微信或QQ登录授权到图标云账号上。如果，该手机号已绑定过其他图标云账号，则无法解绑，可以换绑其他手机号码。</p>
+                        <p>所以，如果您需要手机号绑定QQ或微信，请不要手机号单独注册。</p>
+                    </div>
+                    <p class="title">账号登录不上图标云怎么办？</p>
+                    <div class="desc">
+                        <p>您好，如果帐号出现异常，有可能是以下情况：</p>
+                        <p>1. 因浏览器或网络异常导致的登录异常无法登录到图标云。您可以清理下浏览器的缓存，或是换谷歌浏览器尝试；</p>
+                        <p>2. 因第三方平台帐号异常导致。如在第三方平台帐号登录页面出现异常提示如：帐号冻结，密码错误 等其他异常，您可以到第三方平台进行相关处理再登录账号即可。</p>
+                    </div>
+                    <p class="title">微信登陆扫了二维码授权怎么不跳转？</p>
+                    <div class="desc">
+                        <p>可能存在的三种情况：</p>
+                        <p>1：网络不稳定，等待网络稳定，刷新二维码</p>
+                        <p>2：局域网对微信使用有限制 ，调整局域网限制</p>
+                        <p>3：浏览器原因导致 ，切换其他浏览器或者重新安装浏览器（建议使用谷歌浏览器），是否可以使用</p>
+                        <p>仍然无法登录，请联系客服解决！</p>
+                    </div>
+                    <p class="title">当前账号退出登录</p>
+                    <div class="desc">
+                        <p>点击头像最后会显示退出，点击退出。退出后可以选择其他账号登录。</p>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>登录和注册 &gt; 账号</h3>
+                    <p class="title">账号独立规则</p>
+                    <div class="desc">
+                        <p>1.同一用户拥有的QQ号以及微信号进行图标云登录时，是为两个独立的帐号不互通；</p>
+                        <p>2.同一用户拥有多个QQ号并进行图标云会员登录，每一个QQ号将被识别为一个独立帐号不互通；</p>
+                        <p>3.同一用户拥有多个微信帐号并进行图标云会员登录，每一个微信号将被识别为一个独立帐号不互通；</p>
+                        <p>4.每个图标云帐号的所有记录及权限无法转移、迁徙、转让、赠送、售卖、租借、分享，无论该帐号是否由同一使用人拥有，请在登录/充值/参加活动时注意区分，避免造成损失。由此造成的损失由会员自行承担。</p>
+                    </div>
+                    <p class="title">图标云账号是否可以修改密码</p>
+                    <div class="desc">
+                        <p>QQ和微信为第三方授权直接登录的，如需要修改密码及头像，请到腾讯官方去修改QQ或者微信密码或头像。手机号或邮箱可以在个人中心进行修改！</p>
+                    </div>
+                    <p class="title">第三方账号被盗，无法登录图标云怎么办？</p>
+                    <div class="desc">
+                        <p>使用QQ或微信登录图标云的用户拥有的QQ账号或微信帐号遗失，将无法登录图标云，请联系三方平台进行申诉，找回帐号</p>
+                        <p>QQ官方：QQ安全中心</p>
+                        <p>微信官方：微信帐号被盗处理办法</p>
+                        <p>如果仍旧无法找回帐号，您可提供在图标云购买的【充值凭证】证明该帐号为您所有，客服会帮您处理。</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="content">
+                    <h3>功能和下载 &gt; 搜索图标</h3>
+                    <p>支持关键词模糊搜索，可以搜索图标或图标包，支持中文 和 英文  </p>
+                    <img src="/assets/images/faq/search.png" alt="">
+                </div>
+                <div class="content">
+                    <h3>功能和下载 &gt; 编辑图标颜色</h3>
+                    <div class="desc">
+                        <p>1、图标详情页——点击 <i class="icon-edit"></i> ，点击编辑</p>
+                        <img src="/assets/images/faq/edit.png" alt="">
+                    </div>
+                    {# <div class="desc">
+                        <p>2、图标详情页——点击 <span class="btn"><i class="icon-edit"></i>编辑图标</span></p>
+                        <img src="/assets/images/faq/edit2.png" alt="">
+                    </div> #}
+                        <p>2、打开编辑窗口后选择需要编辑的图层</p>
+                        <img src="/assets/images/faq/teach.gif" width="" alt="">
+                        {# <video muted src="/assets/video/teach.mp4" autoplay loop></video> #}
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>功能和下载 &gt; 下载</h3>
+                    <p class="title">批量下载</p>
+                    <div class="desc">
+                        <p>购物车批量打包下载</p>
+                        <img src="/assets/images/faq/tips.gif" alt="">
+                        <img src="/assets/images/faq/tips6.gif" alt="">
+                    </div>
+                    <p class="title">整包下载</p>
+                    <div class="desc">
+                        <img src="/assets/images/faq/download.png" alt="">
+                    </div>
+                    <p class="title">点击下载图标无反应，怎么回事？</p>
+                    <div class="desc">
+                        <p>有些老版本浏览器下载有点问题，让用户把浏览器升级到最新版。有的用户曾经装过迅雷，卸载迅雷之后，插件没有清理，导致插件拦截，无法下载。重新下载迅雷，就可以迅雷下载了，也可以到设置中心。取消响应的浏览器，变为浏览器下载。估计老版本迅雷停止维护了，容易出问题。设置中心取消响应，或者，卸载原来的迅雷跟换为最新版迅雷X。</p>
+                    </div>
+                    <p class="title">图标下载后解压不了，提示解压错误或者解压后没有源文件，为什么？</p>
+                    <div class="desc">
+                        <p>您好，解压出错有两种可能性原因：</p>
+
+                        <p>1、浏览器出现的不稳定，造成图标下载过程中被损坏，不能正常解压；推荐使用谷歌浏览器。</p>
+
+                        <p>2、解压软件兼容问题，会导致素材解压失败。推荐使用winrar，下载地址：https://www.wlrjy.com/Soft/159807.html</p>
+                    </div>
+                    <p class="title">下载次数限制</p>
+                    <div class="desc price">
+                        <p><span>普通会员：</span> <span>免费图标  1/每日</span>     VIP图标   0/每日</p>
+                        <p><span>VIP月会员：</span> <span>免费图标   100/每日</span>    VIP图标   30/每日</p>
+                        <p><span>VIP年会员：</span> <span>免费图标   400/每日</span>    VIP图标   100/每日</p>
+                        <p><span>超级VIP年会员：</span> <span>免费图标   500/每日</span>    VIP图标   200/每日</p>
+                        <p><span>终身VIP会员：</span> <span>免费图标  999/每日</span>    VIP图标   500/每日</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="content">
+                    <h3>充值和退款 &gt; 充值</h3>
+                    <p class="title">充值图标云的VIP会员是立刻生效吗？</p>
+                    <div class="desc"><p>在线扫码支付成功后实时到帐，刷新页面即可。</p></div>
+                    <p class="title">充值了会员，还是不能下载？</p>
+                    <div class="desc">
+                        <p>您好，充值了VIP会员还不能下载可能是：</p>
+                        <p>A. 充值存在缓存的现象，请充值之后，重新登录一下帐号尝试下载；</p>
+                        <p>B. 帐号登录错误导致。您可点击右上角头像进入帐号后台查询会员情况，如无会员，可提供在图标云购买VIP的【充值凭证】联系客服为您查询。</p>
+                        <p>C. 网站充值错误导致。可根据您在充值的支付记录里（微信支付或是支付宝），查看充值信息里的支付对象是否是「寻图网」。</p>
+                        <p>D: 可能是浏览器兼容不稳定的情况，建议更换谷歌浏览器。</p>
+                    </div>
+                    
+                    <p class="title">VIP会员充值错误，可以补偿价升级会员吗？</p>
+                    <div class="desc">
+                        <p>您好，图标云VIP会员充值暂不支持在线补差价或更改，您可以联系「客服」，提供充值历史凭证（微信或支付宝的支付凭证截图）为您核实具体情况，再处理。</p>
+                    </div>
+                    <p class="title">怎么现在没有终身VIP了？</p>
+                    <div class="desc">
+                        <p>您好，现可通过充值中心充值终身VIP，限时供应，过期下线，如果有需要的建议尽快购买哦。</p>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>充值和退款 &gt; 退款</h3>
+                    <p class="title">充值错误是否可以退款</p>
+                    <div class="desc">
+                        <p>若您已使用下载过图标，因提供下载服务的特殊性，一经下载文件将会存储于您的电脑，代表您已经使用该服务，除无法下载导致您购买的会员不可使用的情况外，一律不接受退款申请。</p>
+                    </div>
+                    <p class="title">如何查找支付凭证</p>
+                    <div class="desc">
+                        <p>微信支付：打开微信-我的-钱包-右上角支付中心-账单-查找您的支付凭证</p>
+                        <p>支付宝支付：支付宝-我的-账单-查找您的支付凭证</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="content">
+                    <h3>发票</h3>
+                    <div class="desc">
+                        <p>您好，充值成功后可以为您开增值税发票，开票金额就是充值金额，请联系在线客服提交申请，提交以后会尽快给您发出，您只需付快递费即可（默认顺丰到付）。</p>
+                        <p class="title">增值税普通发票范本：</p>
+                        <img src="/assets/images/faq/fap.png" alt="">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </article>
+</main>
+{% endblock %}
+{% block script %}
+<script src="js/faq.min.js"></script>
+{% endblock %}

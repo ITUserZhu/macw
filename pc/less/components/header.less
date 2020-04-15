@@ -2,13 +2,14 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-12 10:34:17 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-02-26 15:34:07
+ * @Last Modified time: 2020-04-14 10:13:28
  */
 
 header {
   height: 140px;
   position: relative;
   z-index: 19;
+  box-shadow: 0 1.7px 0.3px rgba(0, 0, 0, 0.10), 0 9.3px 15.9px rgba(0, 0, 0, 0.08), 0 20px 20px rgba(0, 0, 0, 0.01);
 
   .header {
     position: relative;
@@ -18,6 +19,7 @@ header {
     .header-other {
       width: 1200px;
       margin: 0 auto;
+
       .header-search-login {
         text-align: right;
         padding-top: 6px;
@@ -427,7 +429,9 @@ header {
       font-size: 16px;
 
       &.active {
-        span, i {
+
+        span,
+        i {
           color: @theme-color;
         }
 

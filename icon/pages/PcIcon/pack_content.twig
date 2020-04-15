@@ -1,0 +1,68 @@
+{% extends 'inc/base.twig' %}
+{% import "components/component.twig" as component %}
+
+{% block add_css %}
+<link rel="stylesheet" href="css/pack-content.min.css">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="bg-placeholder"><img src="{{ pack_data.banner }}"></div>
+    <div class="breakcrumbs">
+        <lord-icon animation="auto" src="/assets/json/pos3.json"></lord-icon>
+        <a href="/">首页</a>
+        &gt; <a href="/pack/">图标包</a>
+        &gt; <span>{{ pack_data.pack_name }}</span>
+    </div>
+    <section class="pack-content">
+        <div class="pack-info clearfix">
+            <h1>{{ pack_data.pack_name }}图标</h1><span>{{ icon_total }}个图标</span>
+            <p class="fr">下载格式：SVG、EPS、PNG、ICO、PSD <em>兼容：<i></i><i></i><i></i><i></i><i></i></em></p>
+        </div>
+        <div class="pack-filter">
+            <div class="filter-wrap">
+                <div class="filter-item">
+                    <span class="fl">选择风格：</span>
+                    {% for item in related_info %}
+                    <a href="{{ item.url }}" class="{% if item.style_id == pack_data.style_id %}active{% endif %}">{{ item.style_name }}</a>
+                    {% endfor %}
+                    <form id="pack-search">
+                        <button><i class="icon-search"></i></button>
+                        <input type="text" placeholder="搜索这个图标包" value="{{ keyword }}">
+                        <a href="/pack/{{ pack_data.id }}.html">X</a>
+                    </form>
+                </div>
+
+                <div class="filter-item">
+                    <div class="show-type">
+                        <span class="icon-small active"></span>
+                        <span class="icon-big"></span>
+                    </div>
+                    <div class="down-package" id="down-package"> 
+                        <lord-icon animation="auto" src="/assets/json/download1.json"></lord-icon>整包下载
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 包数据 -->
+        {{ component.icons(icon_data) }}
+
+        <!-- 翻页 -->
+        {{ component.pagi(icon_total, page, 50, '/pack/' ~ pack_data.id)}}
+    </section>
+    <section class="rel-shadow"></section>
+    {% if other != 0 %}
+    <section class="rel-gather">
+        <h2>{% if other == 1 %}符合这种风格的图标包{% elseif other == 2 %}该作者其他作品{% else %}{% endif %}</h2>
+        <ul class="icons-list">
+            {{ component.pack(other_data) }}  
+        </ul>
+    </section>
+    {% endif %}
+    <input type="hidden" id="pack-info" data-id="{{ pack_data.id }}">
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="js/pack-content.min.js"></script>
+{% endblock %}

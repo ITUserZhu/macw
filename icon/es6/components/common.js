@@ -1,5 +1,5 @@
 // 引入垫片
-import "babel-polyfill";
+// import "babel-polyfill";
 // 引入动态svg脚本
 import {
   loadAnimation
@@ -19,10 +19,16 @@ import {
 import "./login-status";
 // 引入侧边购物车模块
 import shoppingCar from "./shopping-car";
+// 引入搜索联想
+import "../jq-plugins/jquery.autocomplete";
 // 引入工具
 import {
   commonSearch
 } from "../util";
+
+import {
+  AUTOCOMPLETE_API
+} from '../api';
 
 // 调用动态svg方法
 try {
@@ -50,12 +56,48 @@ $(function () {
   });
   // 头部搜索
   const $headSearch = $("#head-search");
+  const $headerFormIpt = $headSearch.find('input');
+  const $headerMenuBox = $('.menu-box');
+
+  $headerMenuBox.on('click', function () {
+    $(this).toggleClass('active');
+  })
+
   $headSearch.on("submit", function (e) {
     e.preventDefault();
     let val = $(this)
       .find("input")
       .val();
     commonSearch(val);
+  });
+
+  $headerFormIpt.autocomplete({
+    paramName: "keyword",
+    transformResult: response => {
+      if (response) {
+        return {
+          suggestions: $.map(JSON.parse(response).data, v => {
+            var html_imgs = '';
+            v.icon_thumb && v.icon_thumb.forEach(function (vi) {
+              html_imgs += '<img src=' + vi + '>';
+            });
+            return {
+              value: v.keyword + '<em>（' + v.icon_total + '）</em>' + html_imgs,
+              data: v.keyword
+            }
+          })
+        };
+      } else {
+        return {
+          suggestions: {}
+        };
+      }
+    },
+    deferRequestBy: 500,
+    type: "POST",
+    preserveInput: true,
+    serviceUrl: AUTOCOMPLETE_API.data,
+    onSelect: val => val.data && commonSearch(val.data)
   });
 
   // 滚动头部悬浮

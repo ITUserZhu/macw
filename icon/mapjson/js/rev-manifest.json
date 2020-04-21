@@ -1,12 +1,12 @@
 {
-  "about.min.js": "about-3e27504563.min.js",
-  "common.min.js": "common-309c46c7e5.min.js",
-  "content.min.js": "content-a25fdcb893.min.js",
-  "faq.min.js": "faq-e086967200.min.js",
-  "gather.min.js": "gather-a4cd8ed39e.min.js",
-  "index.min.js": "index-0803b46a83.min.js",
-  "list.min.js": "list-4ef7a786c0.min.js",
-  "pack-content.min.js": "pack-content-410b803b27.min.js",
-  "personal.min.js": "personal-4b3b59418d.min.js",
-  "vip.min.js": "vip-b455368743.min.js"
+  "about.min.js": "about-ca6aaa158c.min.js",
+  "common.min.js": "common-4a4fceea4e.min.js",
+  "content.min.js": "content-cabfef41d4.min.js",
+  "faq.min.js": "faq-1852916c50.min.js",
+  "gather.min.js": "gather-affa70418d.min.js",
+  "index.min.js": "index-4daeae3920.min.js",
+  "list.min.js": "list-e3945b120f.min.js",
+  "pack-content.min.js": "pack-content-0ef8b915aa.min.js",
+  "personal.min.js": "personal-b069384b83.min.js",
+  "vip.min.js": "vip-b763e384f8.min.js"
 }

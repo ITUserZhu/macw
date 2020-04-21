@@ -9,33 +9,33 @@
 {% block content %}
 <main>
 	<section class="banner">
-    <ul class="banner-box">
-      {% for i,item in first_mac %}
-        <li {% if i == 4 %}class="active"{% endif %}>
-          <a href="{{ item.url }}" title="{{ item.title }}">
-            <div class="img-bg"><img src="/assets/images/bgs/banner-bg.jpg"></div>
-            <div class="item-box">
-              <div class="item-img">
-                <img src="{{ item.thumb }}" alt="{{ item.title }}">
-              </div>
-              <div class="item-info">
-                <p class="title">{{ item.title }}</p>
-                <p class="infos">
-                  <span>大小： {{ item.file_size }}</span>
-                  <span>时间： {{ item.update_time }}</span>
-                  <span>语言： {{ item.language }}</span>
-                  <span>积分： {{ item.point }}积分</span>
-                  <span>系统： {{ item.systems }}</span>
-                </p>
-                <div class="btn">
-                  <button>立即下载</button>
-                </div>
-              </div>
-            </div>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
+		<ul class="banner-box">
+			{% for i,item in first_mac %}
+			<li {% if i == 4 %}class="active" {% endif %}>
+				<a href="{{ item.url }}" title="{{ item.title }}">
+					<div class="img-bg"><img src="/assets/images/bgs/banner-bg.jpg"></div>
+					<div class="item-box">
+						<div class="item-img">
+							<img src="{{ item.thumb }}" alt="{{ item.title }}">
+						</div>
+						<div class="item-info">
+							<p class="title">{{ item.title }}</p>
+							<p class="infos">
+								<span>大小： {{ item.file_size }}</span>
+								<span>时间： {{ item.update_time }}</span>
+								<span>语言： {{ item.language }}</span>
+								<span>积分： {{ item.point }}积分</span>
+								<span>系统： {{ item.systems }}</span>
+							</p>
+							<div class="btn">
+								<button>立即下载</button>
+							</div>
+						</div>
+					</div>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
 	</section>
 	<section class="recommend">
 		<div class="container">
@@ -58,77 +58,92 @@
 				<span>
 					<em>壁纸</em>
 				</span>
+				<span>
+					<em>图标</em>
+				</span>
 			</div>
 			<div class="recommend-wrap">
-        <div class="recommend-box active">
-          <div class="ul-box">
-            <ul class="soft clearfix">
-              {{ component.soft(mac_newest_recommend | slice(0, 10)) }}
-            </ul>
+				<div class="recommend-box active">
+					<div class="ul-box">
+						<ul class="soft clearfix">
+							{{ component.soft(mac_newest_recommend | slice(0, 10)) }}
+						</ul>
 
-            <ul class="soft clearfix">
-              {{ component.soft(mac_newest_recommend | slice(10, 10), true) }}
-            </ul>
-          </div>
-        </div>
+						<ul class="soft clearfix">
+							{{ component.soft(mac_newest_recommend | slice(10, 10), true) }}
+						</ul>
+					</div>
+				</div>
 
-        <div class="recommend-box">
-          <div class="ul-box">
-            <ul class="soft clearfix">
-              {{ component.soft(newest_mac | slice(0, 10)) }}
-            </ul>
+				<div class="recommend-box">
+					<div class="ul-box">
+						<ul class="soft clearfix">
+							{{ component.soft(newest_mac | slice(0, 10)) }}
+						</ul>
 
-            <ul class="soft clearfix">
-              {{ component.soft(newest_mac | slice(10, 10), true) }}
-            </ul>
-          </div>
-        </div>
+						<ul class="soft clearfix">
+							{{ component.soft(newest_mac | slice(10, 10), true) }}
+						</ul>
+					</div>
+				</div>
 
-        <div class="recommend-box">
-          <div class="ul-box">
-            <ul class="plugin clearfix">
-              {{ component.plugin(newest_mac_plug | slice(0, 8)) }}
-            </ul>
+				<div class="recommend-box">
+					<div class="ul-box">
+						<ul class="plugin clearfix">
+							{{ component.plugin(newest_mac_plug | slice(0, 8)) }}
+						</ul>
 
-            <ul class="plugin clearfix">
-              {{ component.plugin(newest_mac_plug | slice(8, 8), true) }}
-            </ul>
-          </div>
-        </div>
+						<ul class="plugin clearfix">
+							{{ component.plugin(newest_mac_plug | slice(8, 8), true) }}
+						</ul>
+					</div>
+				</div>
 
-        <div class="recommend-box">
-          <div class="ul-box">
-            <ul class="templates clearfix">
-              {{ component.templates(newest_template | slice(0, 8)) }}
-            </ul>
+				<div class="recommend-box">
+					<div class="ul-box">
+						<ul class="templates clearfix">
+							{{ component.templates(newest_template | slice(0, 8)) }}
+						</ul>
 
-            <ul class="templates clearfix">
-              {{ component.templates(newest_template | slice(8, 10), true) }}
-            </ul>
-          </div>
-        </div>
+						<ul class="templates clearfix">
+							{{ component.templates(newest_template | slice(8, 10), true) }}
+						</ul>
+					</div>
+				</div>
 
-        <div class="recommend-box">
-          <div class="ul-box">
-            <ul class="wallpaper clearfix">
-              {{ component.wallpaper(newest_dest | slice(0, 6)) }}
-            </ul>
+				<div class="recommend-box">
+					<div class="ul-box">
+						<ul class="wallpaper clearfix">
+							{{ component.wallpaper(newest_dest | slice(0, 6)) }}
+						</ul>
 
-            <ul class="wallpaper clearfix">
-              {{ component.wallpaper(newest_dest | slice(6, 6), true) }}
-            </ul>
-          </div>
-        </div>
+						<ul class="wallpaper clearfix">
+							{{ component.wallpaper(newest_dest | slice(6, 6), true) }}
+						</ul>
+					</div>
+				</div>
+
+				<div class="recommend-box">
+					<div class="ul-box">
+						<ul class="icon clearfix">
+							{{ component.icon(newest_pack | slice(0, 8)) }}
+						</ul>
+
+						<ul class="icon clearfix">
+							{{ component.icon(newest_pack | slice(8, 8), true) }}
+						</ul>
+					</div>
+				</div>
 			</div>
 
-      <div class="recommend-pagi">
-        <div class="pagi-btn active">
-          <span></span>
-        </div>
-        <div class="pagi-btn">
-          <span></span>
-        </div>
-      </div>
+			<div class="recommend-pagi">
+				<div class="pagi-btn active">
+					<span></span>
+				</div>
+				<div class="pagi-btn">
+					<span></span>
+				</div>
+			</div>
 		</div>
 	</section>
 	<section class="newest-video">
@@ -139,7 +154,7 @@
 			</div>
 			<div class="newest-video_wrap">
 				<ul class="clearfix">
-          {{ component.video_list(video_newest) }}
+					{{ component.video_list(video_newest) }}
 				</ul>
 			</div>
 		</div>
@@ -152,7 +167,7 @@
 			</div>
 			<div class="newest-material_wrap clearfix">
 				<ul class="clearfix">
-          {{ component.material_list(newest_material) }}
+					{{ component.material_list(newest_material) }}
 				</ul>
 			</div>
 		</div>
@@ -161,7 +176,7 @@
 		<div class="container">
 			<div class="section-title">
 				<h2>精品应用</h2>
-        <a href="/list/">更多应用 →</a>
+				<a href="/list/">更多应用 →</a>
 			</div>
 			<div class="boutique-app_wrap">
 				<ul class="clearfix">
@@ -195,17 +210,17 @@
 				<a href="/nlist/">更多文章 →</a>
 			</div>
 			<div class="article-wraps">
-        <ul class="active clearfix">
-          {{ component.article(mac_article_newest | slice(0, 6)) }}
-        </ul>
-        <ul class="clearfix">
-          {{ component.article(mac_article_newest | slice(6, 6)) }}
-        </ul>
-      </div>
-      <div class="article-check">
-        <span class="active"></span>
-        <span></span>
-      </div>
+				<ul class="active clearfix">
+					{{ component.article(mac_article_newest | slice(0, 6)) }}
+				</ul>
+				<ul class="clearfix">
+					{{ component.article(mac_article_newest | slice(6, 6)) }}
+				</ul>
+			</div>
+			<div class="article-check">
+				<span class="active"></span>
+				<span></span>
+			</div>
 		</div>
 	</section>
 	<section class="rank">
@@ -265,7 +280,7 @@
 			</div>
 		</div>
 	</section>
-  <input type="hidden" id="index-page">
+	<input type="hidden" id="index-page">
 </main>
 {% endblock %}
 

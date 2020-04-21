@@ -9,8 +9,8 @@
 @media screen and (max-width: 1100px) {
 	header {
 		&.fixed {
-			.head .head-other .other-search {
-				display: none !important;
+			.head .head-other div.other-search {
+				display: none;
 			}
 		}
 		.head {
@@ -67,11 +67,48 @@
 	}
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 700px) {
+	main {
+		padding-top: 80px;
+	}
 	header {
 		height: auto !important;
-		.head .head-bot {
-			display: none !important;
+		position: fixed;
+		z-index: 99;
+		&.fixed {
+			background-color: #333;
+			.head .head-top .head-login .login-logined .head-user.active .user-function {
+				display: none !important;
+			}
+			.head .head-other .other-search form {
+				bottom: -56px !important;
+			}
+			.head .head-other div.other-search {
+				display: block;
+			}
+			.head-mobile-menu .menu-box span {
+				border-color: #fff !important;
+				&:after, &:before {
+					background-color: #fff !important;
+				}
+			}
+			.head .head-top .head-login .login-unlogin {
+				color: #fff;
+				span.login-btn {
+					color: #fff;
+				}
+			}
+		}
+		.head {
+			.head-bot {
+				height: 0 !important;
+			}
+			.head-menu {
+				display: none !important;
+			}
+			.head-other .other-search form {
+				width: 200px !important;
+			}
 		}
 	}
 }
@@ -79,11 +116,17 @@
 @media screen and (max-width: 480px) {
 	header {
 		.head {
-			div.head-logo {
-				display: none;
+			.head-top .head-login .login-unlogin span.login-btn {
+				padding: 0;
 			}
 			.head-mobile-menu {
-				display: block;
+				a {
+					display: none;
+				}
+				.menu-box {
+					display: inline-block;
+					margin-left: 0;
+				}
 			}
 		}
 	}
@@ -93,5 +136,21 @@
 			border-right: 1px solid #e5e5e3;
 			margin: 5px;
 		}
+	}
+	header {
+		.head {
+			.head-other .other-search form {
+				right: 85px !important;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 370px) {
+	header .head-login {
+		display: none;
+	}
+	header .head .head-other .other-search form {
+		right: 0 !important;
 	}
 }

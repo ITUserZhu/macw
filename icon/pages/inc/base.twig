@@ -21,6 +21,22 @@
         {# 站点logo #}
         <div class="head-mobile-menu fl">
           <a href="/"><img src="/assets/images/logo-s.png" alt="macw下载图标"></a>
+          <div class="menu-box">
+            <span class="menu-open"></span>
+            <span class="menu-close"></span>
+            <div class="menu-wrap">
+              <a href="/" {% if active == 'index' %}class="active" {% endif %}><i class="icon-home"></i>首页</a>
+              <a href="/pack/" {% if active == 'pack' %}class="active" {% endif %}><i class="icon-muster"></i>图集</a>
+              <a href="/families/" {% if active == 'families' %}class="active" {% endif %}><i
+                  class="icon-style"></i>样式</a>
+              <a href="/categories/" {% if active == 'categories' %}class="active" {% endif %}><i
+                  class="icon-class"></i>分类</a>
+              <a href="/newest.html" {% if active == 'new' %}class="active" {% endif %}><i class="icon-new"></i>最新</a>
+              <a href="https://www.macw.com/"><i class="icon-software"></i>软件</a>
+              <a href="https://v.macw.com/"><i class="icon-video"></i>视频</a>
+              <a href="https://sc.macw.com/"><i class="icon-image"></i>素材</a>
+            </div>
+          </div>
         </div>
         <div class="head-logo fl">
           <a href="/" title="macw下载图标"><img src="/assets/images/logo.png" alt="图标云"></a>

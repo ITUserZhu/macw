@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu
  * @Date: 2019-11-21 13:35:15
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-02 16:32:16
+ * @Last Modified time: 2020-04-15 16:41:20
  * 个人中心
  */
 
@@ -11,7 +11,10 @@ import "./components/common";
 // 引入生成二维码脚本
 import QRcode from "qrcode";
 // api接口
-import { USER_APIS, VIP_APIS } from "./api";
+import {
+  USER_APIS,
+  VIP_APIS
+} from "./api";
 // 引入工具
 import * as UTIL from "./util";
 // 引入序列号表单
@@ -44,7 +47,8 @@ $(() => {
         plugin: false,
         material: false,
         video: false,
-        template: false
+        template: false,
+        icon: false
       };
 
       // 下载记录
@@ -53,7 +57,8 @@ $(() => {
         plugin: false,
         material: false,
         video: false,
-        template: false
+        template: false,
+        icon: false
       };
       // 足迹
       this.hasGetHistory = {
@@ -61,7 +66,7 @@ $(() => {
         plugin: false,
         material: false,
         video: false,
-        template: false
+        template: false,
       };
 
       // 绑定信息
@@ -124,12 +129,14 @@ $(() => {
         materialUl: $(".collection-wrap.collect").find(".material ul"),
         videoUl: $(".collection-wrap.collect").find(".video ul"),
         templateUl: $(".collection-wrap.collect").find(".template ul"),
+        iconUl: $(".collection-wrap.collect").find(".icon ul"),
 
         spagi: $("#col-soft-pagi"),
         ppagi: $("#col-plugin-pagi"),
         mpagi: $("#col-material-pagi"),
         vpagi: $("#col-video-pagi"),
-        tpagi: $("#col-template-pagi")
+        tpagi: $("#col-template-pagi"),
+        ipagi: $("#col-icon-pagi"),
       };
 
       // 下载记录
@@ -143,12 +150,14 @@ $(() => {
         materialUl: $(".collection-wrap.download").find(".material ul"),
         videoUl: $(".collection-wrap.download").find(".video ul"),
         templateUl: $(".collection-wrap.download").find(".template ul"),
+        iconUl: $(".collection-wrap.download").find(".icon ul"),
 
         spagi: $("#down-soft-pagi"),
         ppagi: $("#down-plugin-pagi"),
         mpagi: $("#down-material-pagi"),
         vpagi: $("#down-video-pagi"),
-        tpagi: $("#down-template-pagi")
+        tpagi: $("#down-template-pagi"),
+        ipagi: $("#down-icon-pagi"),
       };
 
       // 足迹dom
@@ -226,7 +235,8 @@ $(() => {
         plugin: this.modelsBox.data("plugin"),
         template: this.modelsBox.data("template"),
         video: this.modelsBox.data("video"),
-        material: this.modelsBox.data("material")
+        material: this.modelsBox.data("material"),
+        icon: this.modelsBox.data("icon"),
       };
 
       // 公共翻页元素
@@ -347,6 +357,19 @@ $(() => {
           </a>
         </li>
 			`;
+
+      // 图标
+      this.iconHtml = `
+      <li>
+        <a href="{{ url }}" title="{{ title }}">
+          <div class="img-wrap">
+            <div class="img">
+              <img src="{{ thumb }}">
+            </div>
+          </div>
+        </a>
+      </li>
+      `;
 
       // 优惠券
       this.couponHtml = `
@@ -500,9 +523,9 @@ $(() => {
 
     payAjax(data) {
       for (let index = 0; index < 2; index++) {
-        let dom = index
-          ? this.adminHook.renewBox.find(".wxpay img")
-          : this.adminHook.renewBox.find(".alipay img");
+        let dom = index ?
+          this.adminHook.renewBox.find(".wxpay img") :
+          this.adminHook.renewBox.find(".alipay img");
         dom.attr("src", this.loadingImg);
 
         $.ajax({
@@ -529,20 +552,19 @@ $(() => {
         $.ajax({
           url: VIP_APIS.pay_ok,
           type: "GET",
-          success: function(msg) {
+          success: function (msg) {
             if (msg.code == 200) {
               UTIL.confirmBox(
                 "充值成功",
                 () => {
                   window.location.reload();
-                },
-                {
+                }, {
                   title: "提示",
                   autoClose: "sure|5000",
                   buttons: {
                     cancel: {
                       text: "返回首页",
-                      action: function() {
+                      action: function () {
                         window.location.href = "/";
                       }
                     },
@@ -575,7 +597,7 @@ $(() => {
     // 检测个人信息更改 变化按钮样式
     watchInfoChange() {
       this.infoHook.form
-        .change(function() {
+        .change(function () {
           $(this)
             .find("button")
             .removeClass("disabeld");
@@ -588,8 +610,8 @@ $(() => {
       e.preventDefault();
       if (
         $(e.target)
-          .find("button")
-          .hasClass("disabeld")
+        .find("button")
+        .hasClass("disabeld")
       )
         return;
 
@@ -601,7 +623,7 @@ $(() => {
         type: "POST",
         data,
         dataType: "json",
-        success: function(msg) {
+        success: function (msg) {
           if (msg["code"] == 200) {
             UTIL.alertBox("保存修改成功");
             $(".nickname em")
@@ -621,11 +643,11 @@ $(() => {
     // 手机绑定与更换点击展示
     bindPhoneEvent() {
       let _this = this;
-      this.phoneBindHook.btn.on("click", function() {
+      this.phoneBindHook.btn.on("click", function () {
         if (
           !$(this)
-            .prev()
-            .val()
+          .prev()
+          .val()
         ) {
           UTIL.toggleActive(_this.phoneBindHook.bind);
         } else {
@@ -636,7 +658,7 @@ $(() => {
       });
 
       _this.phoneBindHook.box
-        .on("click", ".close-bind", function() {
+        .on("click", ".close-bind", function () {
           _this.phoneBindHook.box
             .hide()
             .find("input")
@@ -646,21 +668,21 @@ $(() => {
             .find(".bind-tips")
             .text("");
         })
-        .on("click", ".bind-btn", function() {
+        .on("click", ".bind-btn", function () {
           if ($(this).hasClass("disabeld")) return;
 
           let tip = $(this)
-              .closest("form")
-              .find(".bind-tips"),
+            .closest("form")
+            .find(".bind-tips"),
             data = $(this)
-              .closest("form")
-              .serializeObject(),
+            .closest("form")
+            .serializeObject(),
             type =
-              $(this)
-                .closest("form")
-                .attr("id") == "bind-phone"
-                ? "bind"
-                : "change";
+            $(this)
+            .closest("form")
+            .attr("id") == "bind-phone" ?
+            "bind" :
+            "change";
 
           _this.sendCode(type, data, $(this), tip);
         });
@@ -674,7 +696,7 @@ $(() => {
       if (type == "bind") {
         let captchaObj = new TencentCaptcha(
           this.captchaNum,
-          function(res) {
+          function (res) {
             if (res.ret === 0) {
               url = USER_APIS.sendPhoneUrl;
 
@@ -686,7 +708,7 @@ $(() => {
                 url,
                 type: "POST",
                 data,
-                success: function(res) {
+                success: function (res) {
                   if (res.code == 200) {
                     _this.sendingCode = true;
                     _this.timerInter(el);
@@ -695,13 +717,12 @@ $(() => {
                     tip.text(res.msg);
                   }
                 },
-                error: function(error) {
+                error: function (error) {
                   return error;
                 }
               });
             }
-          },
-          {}
+          }, {}
         );
         captchaObj.show();
       } else {
@@ -711,7 +732,7 @@ $(() => {
           url,
           type: "POST",
           data,
-          success: function(res) {
+          success: function (res) {
             if (res.code == 200) {
               _this.sendingCode = true;
               _this.timerInter(el);
@@ -720,7 +741,7 @@ $(() => {
               tip.text(res.msg);
             }
           },
-          error: function(error) {
+          error: function (error) {
             return error;
           }
         });
@@ -731,7 +752,7 @@ $(() => {
     initBindChangeEvent() {
       let _this = this;
       // 监测改变 动态修改验证码获取状态
-      this.phoneBindHook.bind.change(function(e) {
+      this.phoneBindHook.bind.change(function (e) {
         if ($(e.target).attr("name") == "phone") {
           if (UTIL.phoneReg($(e.target).val()) && !_this.sendingCode) {
             _this.phoneBindHook.bind.find(".bind-btn").removeClass("disabeld");
@@ -743,7 +764,7 @@ $(() => {
 
       this.phoneBindHook.bind
         .add(this.phoneBindHook.change)
-        .on("submit", function(e) {
+        .on("submit", function (e) {
           e.preventDefault();
           let data = $(this).serializeObject(),
             tip = $(this).find(".bind-tips"),
@@ -775,7 +796,7 @@ $(() => {
         url,
         type: "POST",
         data,
-        success: function(res) {
+        success: function (res) {
           if (res.code == 200) {
             UTIL.alertBox(res.msg);
             $("#phone")
@@ -799,7 +820,7 @@ $(() => {
 
       el.text(`重新发送(${num--})`).addClass("disabeld");
 
-      timer = setInterval(function() {
+      timer = setInterval(function () {
         el.text(`重新发送(${num--})`);
         if (!_this.sendingCode) {
           clearInterval(timer);
@@ -878,6 +899,12 @@ $(() => {
               this.hasGetCol.template = true;
             }
             break;
+          case "icon":
+            if (!this.hasGetCol.icon) {
+              this.getColData(this.modelIds.icon, 28);
+              this.hasGetCol.icon = true;
+            }
+            break;
           default:
             break;
         }
@@ -932,6 +959,10 @@ $(() => {
           model_id = _this.modelIds.template;
           page_size = 8;
           break;
+        case type + "-icon-pagi":
+          model_id = _this.modelIds.icon;
+          page_size = 28;
+          break;
       }
 
       switch (type) {
@@ -974,11 +1005,11 @@ $(() => {
         type: "POST",
         data: datas,
         dataType: "json",
-        success: function(msg) {
+        success: function (msg) {
           if (msg.code == 200) {
-            $pagi.children().length > 0
-              ? getData(model_id, page_size, pagiNum)
-              : el.remove();
+            $pagi.children().length > 0 ?
+              getData(model_id, page_size, pagiNum) :
+              el.remove();
             if (box.children().length == 0) {
               box.append(_this.noContentLiHtml);
             }
@@ -1025,20 +1056,25 @@ $(() => {
           wrap = _this.collectHook.videoUl;
           tempHtml = _this.videoHtml;
           break;
+        case this.modelIds.icon:
+          pagi = _this.collectHook.ipagi;
+          wrap = _this.collectHook.iconUl;
+          tempHtml = _this.iconHtml;
+          break;
         default:
           break;
       }
 
       $.ajax({
-        url: USER_APIS.collectionsUrl,
-        type: "POST",
-        data: {
-          page,
-          page_size,
-          model_id
-        }
-      })
-        .done(function(res) {
+          url: USER_APIS.collectionsUrl,
+          type: "POST",
+          data: {
+            page,
+            page_size,
+            model_id
+          }
+        })
+        .done(function (res) {
           if (res.code == 200) {
             if (res.data && res.data.data.length > 0) {
               _this.dealHtml(
@@ -1057,7 +1093,7 @@ $(() => {
             wrap.empty().append(_this.noContentLiHtml);
           }
         })
-        .fail(function(error) {
+        .fail(function (error) {
           wrap.empty().append(_this.noContentLiHtml);
           console.log(error);
         });
@@ -1077,7 +1113,7 @@ $(() => {
         _this.createPagi(pagiTotal, curPage, pagiHook) &&
         pagiHook.attr("data-total", pagiTotal);
 
-      $.each(datas, function(index, el) {
+      $.each(datas, function (index, el) {
         html += templateH
           .replace("{{ url }}", el.url)
           .replace("{{ title }}", el.title)
@@ -1136,6 +1172,12 @@ $(() => {
             if (!this.hasGetDown.template) {
               this.getDownData(this.modelIds.template, 8);
               this.hasGetDown.template = true;
+            }
+            break;
+          case "icon":
+            if (!this.hasGetDown.icon) {
+              this.getDownData(this.modelIds.icon, 28);
+              this.hasGetDown.icon = true;
             }
             break;
           default:
@@ -1202,20 +1244,25 @@ $(() => {
           wrap = _this.downloadHook.videoUl;
           tempHtml = _this.videoHtml.replace('<div class="del">删除</div>', "");
           break;
+        case this.modelIds.icon:
+          pagi = _this.downloadHook.ipagi;
+          wrap = _this.downloadHook.iconUl;
+          tempHtml = _this.iconHtml.replace('<div class="del">删除</div>', "");
+          break;
         default:
           break;
       }
 
       $.ajax({
-        url: USER_APIS.downloadUrl,
-        type: "POST",
-        data: {
-          page,
-          page_size,
-          model_id
-        }
-      })
-        .done(function(res) {
+          url: USER_APIS.downloadUrl,
+          type: "POST",
+          data: {
+            page,
+            page_size,
+            model_id
+          }
+        })
+        .done(function (res) {
           if (res.code == 200) {
             if (res.data && res.data.data.length > 0) {
               _this.dealHtml(
@@ -1234,7 +1281,7 @@ $(() => {
             wrap.empty().append(_this.noContentLiHtml);
           }
         })
-        .fail(function(error) {
+        .fail(function (error) {
           wrap.empty().append(_this.noContentLiHtml);
           console.log(error);
         });
@@ -1336,15 +1383,15 @@ $(() => {
       }
 
       $.ajax({
-        url: USER_APIS.historyUrl,
-        type: "POST",
-        data: {
-          page,
-          page_size,
-          model_id
-        }
-      })
-        .done(function(res) {
+          url: USER_APIS.historyUrl,
+          type: "POST",
+          data: {
+            page,
+            page_size,
+            model_id
+          }
+        })
+        .done(function (res) {
           if (res.code == 200) {
             if (res.data && res.data.data.length > 0) {
               _this.dealHtml(
@@ -1363,7 +1410,7 @@ $(() => {
             wrap.empty().append(_this.noContentLiHtml);
           }
         })
-        .fail(function(error) {
+        .fail(function (error) {
           wrap.empty().append(_this.noContentLiHtml);
           console.log(error);
         });
@@ -1381,7 +1428,7 @@ $(() => {
           page
         },
         dataType: "json",
-        success: function(msg) {
+        success: function (msg) {
           if (msg.code == 200) {
             let data = msg.data;
             if (data && typeof data == "object") {
@@ -1413,7 +1460,7 @@ $(() => {
           page
         },
         dataType: "json",
-        success: function(msg) {
+        success: function (msg) {
           if (msg.code == 200) {
             let data = msg.data;
             if (data && typeof data == "object" && data.data) {
@@ -1436,7 +1483,7 @@ $(() => {
       let _this = this,
         html = "";
 
-      $.each(data, function(i, ele) {
+      $.each(data, function (i, ele) {
         html += _this.reportHtml
           .replace(/{{ url }}/g, ele.url)
           .replace("{{ type }}", ele["error_type"] || "其他")
@@ -1452,7 +1499,7 @@ $(() => {
       let _this = this,
         html = "";
 
-      $.each(data, function(i, ele) {
+      $.each(data, function (i, ele) {
         html += _this.sysInfoHtml
           .replace("{{ content }}", ele.content)
           .replace("{{ time }}", ele.send_time);
@@ -1463,7 +1510,7 @@ $(() => {
     // 消息中心切换
     initNewsNavEvent() {
       let _this = this;
-      this.newsHook.nav.on("click", "span", function() {
+      this.newsHook.nav.on("click", "span", function () {
         let index = $(this).index();
         UTIL.toggleActive([$(this), _this.newsHook.con.children().eq(index)]);
 
@@ -1481,7 +1528,7 @@ $(() => {
     supportNews() {
       let _this = this;
 
-      this.newsHook._form.on("submit", function(e) {
+      this.newsHook._form.on("submit", function (e) {
         e.preventDefault();
 
         if (_this.reportedFlag) {
@@ -1521,7 +1568,7 @@ $(() => {
         type: "POST",
         data,
         dataType: "json",
-        success: function(msg) {
+        success: function (msg) {
           if (msg["code"] == 200) {
             UTIL.alertBox("问题提交成功");
             _this.reportedFlag = true;
@@ -1550,7 +1597,7 @@ $(() => {
         type: "POST",
         data: datas,
         dataType: "json",
-        success: function(msg) {
+        success: function (msg) {
           if (msg.code == 200) {
             let data = msg.data;
             if (data.data.length && typeof data == "object") {
@@ -1576,7 +1623,7 @@ $(() => {
       let _this = this,
         html = "";
 
-      $.each(data, function(i, ele) {
+      $.each(data, function (i, ele) {
         html += _this.rechargeHtml
           .replace("{ type }", ele.type == 1 ? "购买积分" : "升级vip")
           .replace(
@@ -1614,7 +1661,7 @@ $(() => {
         type: "POST",
         data: datas,
         dataType: "json",
-        success: function(msg) {
+        success: function (msg) {
           if (msg.code == 200) {
             let data = msg.data;
             if (data && typeof data == "object") {
@@ -1641,15 +1688,15 @@ $(() => {
       let _this = this,
         html = "";
 
-      $.each(data, function(i, ele) {
+      $.each(data, function (i, ele) {
         html += _this.consumeHtml
           .replace(
             "{{ type }}",
-            ele.spend_type == 2
-              ? "积分下载"
-              : ele.spend_type == 3
-              ? "免费下载"
-              : "积分抽奖"
+            ele.spend_type == 2 ?
+            "积分下载" :
+            ele.spend_type == 3 ?
+            "免费下载" :
+            "积分抽奖"
           )
           .replace(
             "{{ content }}",
@@ -1683,7 +1730,7 @@ $(() => {
           coupon_status
         },
         dataType: "json",
-        success: function(msg) {
+        success: function (msg) {
           if (msg.code == 200) {
             let data = msg;
             if (
@@ -1713,17 +1760,17 @@ $(() => {
       let _this = this,
         html = "";
 
-      $.each(data, function(index, el) {
+      $.each(data, function (index, el) {
         html += _this.couponHtml
           .replace(
             "{ type }",
-            el.coupon_point / 1 == 5
-              ? "five"
-              : el.coupon_point / 1 == 10
-              ? "ten"
-              : el.coupon_point / 1 == 20
-              ? "twenty"
-              : "hundred"
+            el.coupon_point / 1 == 5 ?
+            "five" :
+            el.coupon_point / 1 == 10 ?
+            "ten" :
+            el.coupon_point / 1 == 20 ?
+            "twenty" :
+            "hundred"
           )
           .replace("{ title }", el.coupon_name)
           .replace("{ isover }", el.status != 0 ? "over" : "")
@@ -1754,7 +1801,7 @@ $(() => {
           page
         },
         dataType: "json",
-        success: function(msg) {
+        success: function (msg) {
           if (msg.code == 200) {
             let data = msg;
             if (data.data.length && typeof data.data == "object") {
@@ -1780,7 +1827,7 @@ $(() => {
       let _this = this,
         html = "";
 
-      $.each(data, function(i, ele) {
+      $.each(data, function (i, ele) {
         html += _this.shareHtml
           .replace("{ point }", ele.point)
           .replace("{ from }", ele.type == 0 ? "用户注册" : "用户充值")
@@ -1862,7 +1909,10 @@ $(() => {
         case "#col-video-pagi":
           this.getColData(this.modelIds.video, 6, num);
           break;
-        // 足迹翻页
+        case "#col-icon-pagi":
+          this.getColData(this.modelIds.icon, 28, num);
+          break;
+          // 足迹翻页
         case "#hist-soft-pagi":
           this.getHistoryData(this.modelIds.mac, 10, num);
           break;
@@ -1878,7 +1928,7 @@ $(() => {
         case "#hist-video-pagi":
           this.getHistoryData(this.modelIds.video, 6, num);
           break;
-        // 下载翻页
+          // 下载翻页
         case "#down-soft-pagi":
           this.getDownData(this.modelIds.mac, 10, num);
           break;
@@ -1894,27 +1944,30 @@ $(() => {
         case "#down-video-pagi":
           this.getDownData(this.modelIds.video, 6, num);
           break;
-        //充值
+        case "#down-icon-pagi":
+          this.getDownData(this.modelIds.icon, 28, num);
+          break;
+          //充值
         case "#recharge-pagi":
           this.getRechargeData(num);
           break;
-        //消费
+          //消费
         case "#consume-pagi":
           this.getConsumeData(num);
           break;
-        //优惠券
+          //优惠券
         case "#coupon-pagi":
           this.getCouponData(num);
           break;
-        //反馈
+          //反馈
         case "#report-pagi":
           this.getNewsData(num);
           break;
-        // 系统消息
+          // 系统消息
         case "#sysinfo-pagi":
           this.getSysInfo(num);
           break;
-        // 分享
+          // 分享
         case "#share-pagi":
           this.getShareData(num);
           break;
@@ -1926,7 +1979,7 @@ $(() => {
 
     initPagiEvent() {
       let _this = this;
-      _this.pagiDom.on("click", function(e) {
+      _this.pagiDom.on("click", function (e) {
         let $target = $(e.target);
 
         if ($target.hasClass("active")) return;

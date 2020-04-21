@@ -10,7 +10,9 @@
 	<div class="breakcrumbs">
 		<lord-icon animation="auto" src="/assets/json/pos3.json"></lord-icon>
 		<a href="/">首页</a>
-		&gt; <a href="">图标包</a>
+		&gt; <a href="/pack/">图集</a>
+		&gt; <a href="{{ icon_data.pack.url }}">{{ icon_data.pack.pack_name }}</a>
+		&gt; <span>{{ icon_data.title }}</span>
 	</div>
 	<div id="content-overly">
 		<div class="new-operate">
@@ -61,7 +63,7 @@
 				</div>
 				<p class="info-more">
 					{% if icon_data.pack %}
-					<span>图标包：
+					<span>图集：
 						<a href="{{ icon_data.pack.url }}">{{ icon_data.pack.pack_name }}</a>
 					</span>
 					{% endif %}

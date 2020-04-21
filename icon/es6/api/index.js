@@ -76,3 +76,7 @@ export const SIGN_API = {
   data: "/sign",
   sign: "/sign_prize"
 };
+
+export const AUTOCOMPLETE_API = {
+  data: '/ajax_search'
+}

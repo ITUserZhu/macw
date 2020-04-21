@@ -16,7 +16,9 @@ $(function () {
   // 按键监听
   $(document).on("keyup", function (e) {
     const isOverlay = !!$("#detail-overlay").length && $("#detail-overlay").is(":visible");
+    const isContent = !!$("#content-overly").length;
     let _keyCode = e.keyCode;
+    if (!isOverlay && !isContent) return;
     switch (_keyCode) {
       case 37: //键盘左按键
         e.preventDefault();

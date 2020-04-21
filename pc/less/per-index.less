@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu
  * @Date: 2019-11-21 14:31:35
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-02 15:14:45
+ * @Last Modified time: 2020-04-15 16:45:43
  */
 @import 'components/common';
 @import 'modules/soft-list';
@@ -319,6 +319,7 @@ article {
             }
           }
         }
+
         div.plugin {
           li {
             .plugin-list;
@@ -328,11 +329,13 @@ article {
         div.template {
           li {
             .template-list;
+
             &:nth-child(-n+4) {
               margin-top: 0;
             }
           }
         }
+
         div.plugin,
         div.template {
           li {
@@ -511,6 +514,25 @@ article {
               opacity: 0;
               cursor: pointer;
               transition: all 0.2s;
+            }
+          }
+        }
+
+        div.icon {
+          li {
+            float: left;
+            width: 14%;
+            padding: 20px 40px;
+
+            &:hover {
+              img {
+                transform: scale(1.1);
+              }
+            }
+
+            img {
+              width: 100%;
+              height: 100%;
             }
           }
         }

@@ -4,6 +4,7 @@
 @import 'shopping-car';
 @import 'recharge-box';
 @import 'confirm';
+@import 'autocomplete';
 @import '../media/common';
 
 html, body {
@@ -12,6 +13,7 @@ html, body {
 	font-family: '微软雅黑', 'Arial', '黑体', '宋体', 'sans-serif';
 	-webkit-font-smoothing: antialiased;
 	color: #333;
+	min-width: 320px;
 }
 
 body {
@@ -41,6 +43,7 @@ main {
 
 header {
 	height: 130px;
+	width: 100%;
 	background-color: head_color;
 	&.fixed {
 		.head {
@@ -80,11 +83,90 @@ header {
 	}
 	.head-mobile-menu {
 		display: none;
-		width: 62px;
 		height: 100%;
 		img {
-			width: 100%;
+			height: 40px;
 			vertical-align: middle;
+		}
+		.menu-box {
+			display: inline-block;
+			width: 40px;
+			height: 100%;
+			margin-left: 20px;
+			&.active {
+				span {
+					&.menu-open {
+						display: none;
+					}
+					&.menu-close {
+						display: inline-block;
+					}
+				}
+				.menu-wrap {
+					display: block;
+				}
+			}
+			span {
+				display: inline-block;
+				vertical-align: text-bottom;
+				width: 30px;
+				height: 22px;
+				position: relative;
+				&.menu-open {
+					border-top: 4px solid #333;
+					border-bottom: 4px solid #333;
+					&:after {
+						content: '';
+						position: absolute;
+						top: 50%;
+						margin-top: -2px;
+						width: 100%;
+						height: 4px;
+						background-color: #333;
+					}
+				}
+				&.menu-close {
+					display: none;
+					&:before, &:after {
+						content: '';
+						height: 4px;
+						width: 35px;
+						position: absolute;
+						background-color: #333;
+						top: 10px;
+					}
+					&:before {
+						transform: rotate(45deg);
+					}
+					&:after {
+						transform: rotate(-45deg);
+					}
+				}
+			}
+			.menu-wrap {
+				position: fixed;
+				top: 80px;
+				display: none;
+				left: 0;
+				width: 100%;
+				height: calc(100% - 60px);
+				padding: 0 10px;
+				background-color: rgba(0, 0, 0, 0.8);
+				z-index: 100;
+				margin: 0;
+				animation: menu 0.2s ease-in-out;
+				& > a {
+					display: block;
+					line-height: 50px;
+					text-align: center;
+					font-size: 16px;
+					border-bottom: 1px solid #ddd;
+					color: #fff;
+					i {
+						margin-right: 8px;
+					}
+				}
+			}
 		}
 	}
 	.head {
@@ -93,7 +175,7 @@ header {
 		.head-logo {
 			height: 100%;
 			img {
-				height: 45px;
+				height: 35px;
 				vertical-align: middle;
 			}
 		}
@@ -331,9 +413,9 @@ header {
 					line-height: 18px;
 					font-size: 12px;
 					position: absolute;
-					bottom: 26px;
+					bottom: 30px;
 					left: 50%;
-					margin-left: -32px;
+					margin-left: -22px;
 					border-radius: 20px;
 					vertical-align: middle;
 					transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), font-size 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -496,5 +578,16 @@ footer {
 	}
 	100% {
 		transform: rotate(360deg);
+	}
+}
+
+@keyframes menu {
+	0% {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }

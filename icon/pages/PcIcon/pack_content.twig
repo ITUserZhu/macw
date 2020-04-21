@@ -11,7 +11,7 @@
     <div class="breakcrumbs">
         <lord-icon animation="auto" src="/assets/json/pos3.json"></lord-icon>
         <a href="/">首页</a>
-        &gt; <a href="/pack/">图标包</a>
+        &gt; <a href="/pack/">图集</a>
         &gt; <span>{{ pack_data.pack_name }}</span>
     </div>
     <section class="pack-content">
@@ -24,7 +24,8 @@
                 <div class="filter-item">
                     <span class="fl">选择风格：</span>
                     {% for item in related_info %}
-                    <a href="{{ item.url }}" class="{% if item.style_id == pack_data.style_id %}active{% endif %}">{{ item.style_name }}</a>
+                    <a href="{{ item.url }}"
+                        class="{% if item.style_id == pack_data.style_id %}active{% endif %}">{{ item.style_name }}</a>
                     {% endfor %}
                     <form id="pack-search">
                         <button><i class="icon-search"></i></button>
@@ -38,7 +39,7 @@
                         <span class="icon-small active"></span>
                         <span class="icon-big"></span>
                     </div>
-                    <div class="down-package" id="down-package"> 
+                    <div class="down-package" id="down-package">
                         <lord-icon animation="auto" src="/assets/json/download1.json"></lord-icon>整包下载
                     </div>
                 </div>
@@ -55,7 +56,7 @@
     <section class="rel-gather">
         <h2>{% if other == 1 %}符合这种风格的图标包{% elseif other == 2 %}该作者其他作品{% else %}{% endif %}</h2>
         <ul class="icons-list">
-            {{ component.pack(other_data) }}  
+            {{ component.pack(other_data) }}
         </ul>
     </section>
     {% endif %}

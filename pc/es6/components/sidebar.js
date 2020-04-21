@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-15 10:19:34 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-11-21 15:19:26
+ * @Last Modified time: 2020-04-16 09:53:20
  * 侧边导航构造函数
  * params:
  * @SideBar 侧边导航构造函数
@@ -72,21 +72,21 @@ class SideBar {
           .appendTo($sidebar_cell);
 
         $sidebar_cell
-          .mouseover(function(e) {
+          .mouseover(function (e) {
             if ($(this).find("img").length) {
               $(this)
                 .find(".cell-img")
                 .show();
             }
           })
-          .mouseout(function() {
+          .mouseout(function () {
             if ($(this).find("img").length) {
               $(this)
                 .find(".cell-img")
                 .hide();
             }
           })
-          .click(function(e) {
+          .click(function (e) {
             var _href = $(this)
               .find("a")
               .attr("href");
@@ -95,6 +95,9 @@ class SideBar {
               case "#":
               case ".":
                 self.moveToElement($(_href));
+                break;
+              case "/":
+                window.open(_href);
                 break;
               default:
                 break;
@@ -191,10 +194,9 @@ class SideBar {
 
     $cellWrapper.append($aLink.append($icon)).appendTo($sideBarCell);
 
-    $sideBarCell.on("click", function(e) {
+    $sideBarCell.on("click", function (e) {
       e.preventDefault();
-      $("html, body").animate(
-        {
+      $("html, body").animate({
           scrollTop: 0
         },
         _speed
@@ -202,7 +204,7 @@ class SideBar {
       return false;
     });
 
-    $(window).on("load scroll", function() {
+    $(window).on("load scroll", function () {
       var winTop = $(window).scrollTop();
       winTop < _goTopIconShow ? $sideBarCell.fadeOut() : $sideBarCell.fadeIn();
     });
@@ -250,15 +252,15 @@ class SideBar {
 
   initEvent() {
     $(".ask-soft")
-      .on("click", function() {
+      .on("click", function () {
         $(this).hide();
       })
-      .on("click", ".ask-box", function(e) {
+      .on("click", ".ask-box", function (e) {
         if (!$(e.target).is(".ask-close")) {
           e.stopPropagation();
         }
       })
-      .on("submit", "form", function(e) {
+      .on("submit", "form", function (e) {
         e.preventDefault();
         let data = $(this).serializeObject();
         for (let k in data) {
@@ -268,11 +270,11 @@ class SideBar {
           }
         }
         $.ajax({
-          url: "/api/apply_soft",
-          type: "POST",
-          data
-        })
-          .done(function(res) {
+            url: "/api/apply_soft",
+            type: "POST",
+            data
+          })
+          .done(function (res) {
             if (res.code == 200) {
               alert("提交成功，请等候更新");
               setTimeout(() => {
@@ -284,7 +286,7 @@ class SideBar {
               alert(res.msg);
             }
           })
-          .fail(function(error) {
+          .fail(function (error) {
             console.log(error);
           });
       });
@@ -294,7 +296,7 @@ class SideBar {
     var currentIndex = 0,
       self = this,
       topArray = this.elementTopArray;
-    $(window).on("load scroll", function() {
+    $(window).on("load scroll", function () {
       var winTop = $(window).scrollTop();
 
       if (winTop >= self.opts.topShow) {
@@ -328,7 +330,9 @@ class SideBar {
 
     var _top = $(ele).offset().top;
 
-    $("html, body").animate({ scrollTop: _top }, elapse);
+    $("html, body").animate({
+      scrollTop: _top
+    }, elapse);
   }
 }
 

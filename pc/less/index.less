@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-12 10:07:57 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-08 15:04:08
+ * @Last Modified time: 2020-04-15 16:58:13
  */
 
 @import 'components/common';
@@ -12,6 +12,7 @@
 @import 'modules/templates-list';
 @import 'modules/wallpaper-list';
 @import 'modules/article-list';
+@import 'modules/icon-list';
 @import 'modules/video-play';
 @import "modules/video-list";
 @import "modules/material-list";
@@ -94,7 +95,7 @@ section {
             position: absolute;
             top: 50%;
             opacity: .5;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
           }
         }
 
@@ -280,6 +281,7 @@ section {
         &.templates {
           li {
             .templates-list;
+
             &:nth-child(-n+4) {
               margin-top: 0;
             }
@@ -293,6 +295,12 @@ section {
             &:nth-child(-n+3) {
               margin-top: 0;
             }
+          }
+        }
+
+        &.icon {
+          li {
+            .icon-list;
           }
         }
       }
@@ -370,6 +378,7 @@ section {
 
       li {
         .templates-list;
+
         &:nth-child(-n+4) {
           margin-top: 0;
         }
@@ -412,6 +421,7 @@ section {
         background-color: #E0E0E0;
         cursor: pointer;
         margin: 0 5px;
+
         &.active {
           width: 20px;
           background-color: @theme-color;
@@ -747,6 +757,7 @@ section {
   bottom: 50px;
   width: 60px;
   z-index: 99;
+
   @media screen and (max-width: 1400px) {
     right: 25px;
     margin-right: 0;
@@ -765,8 +776,10 @@ section {
     border-radius: 50%;
     cursor: pointer;
 
-    &.active, &:hover:not(:last-child) {
+    &.active,
+    &:hover:not(:last-child) {
       background-color: #333;
+
       a {
         display: none;
       }

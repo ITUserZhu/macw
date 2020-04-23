@@ -73,7 +73,7 @@ $(function () {
       } else if (res.code == 400 || res.code == 500) {
         $(".login-login").trigger("click");
       } else {
-        alert(res.msg);
+        alertBox(res.msg);
       }
     });
   });
@@ -99,7 +99,7 @@ $(function () {
       } else if (res.code == 400 || res.code == 500) {
         $(".login-login").trigger("click");
       } else {
-        alert(res.msg);
+        alertBox(res.msg);
       }
     });
   });

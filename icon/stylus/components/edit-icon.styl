@@ -1,217 +1,257 @@
-@import 'colpick'
+@import 'colpick';
 
-.icon-edit-overlay
-    position fixed
-    left 0px
-    top 0px
-    width 100%
-    height 100%
-    background-color rgba(14, 42, 71, 0.9)
-    z-index 100
-    .edit-wraaper
-        position absolute
-        width 700px
-        top 50%
-        left 50%
-        transform translate(-50%, -50%)
-        .icon-mask
-            position absolute
-            left 0px
-            top 0px
-            width 100%
-            height 100%
-            background-color rgba(0,0,0,.7)
-            z-index 2  
-            display none
-            p 
-                position absolute
-                width 90%
-                height 40px
-                line-height 40px
-                background-color #FFB229
-                padding 0 20px
-                overflow hidden
-                left 0
-                top 0
-                right 0
-                bottom 0
-                margin auto
-                border-radius 5px
-                a 
-                    color red
-                span 
-                    cursor pointer
-                    position absolute
-                    right 0
-                    top 0px
-                    width 40px
-                    height 40px
-                    text-align center
-                    background-color #dc9518
-        .edit-head
-            background-color #1F1F1F
-            height 60px 
-            line-height 60px
-            color #fff
-            padding 0 20px
-            font-size 18px
-            border-radius 10px 10px 0 0
-            .edit-close
-                position absolute
-                right 0
-                top 0
-                width 60px
-                height 60px
-                text-align center
-                color #fff
-                cursor pointer
-                font-size 22px
-        .edit-content
-            padding 30px 70px
-            background-color #fff
-            border-radius 0 0 10px 10px
-            .icon-back
-                display inline-block
-                text-align center
-                cursor pointer
-                border 1px solid #eee
-                border-radius 3px
-                line-height 28px
-                width 50px
-            .svg-wra
-                width 280px
-                height 280px
-                line-height 280px
-                margin 10px 0
-                background-color #f9f9f9
-                text-align center
-                box-shadow 0 0 10px 0 rgba(255,177,177,0.1)
-                svg
-                img 
-                    width 80%
-                    height 80%
-                    vertical-align middle
-                svg.hovered 
-                    *:not(g) 
-                        opacity .1
-                        &.hovered-path 
-                            opacity 1 
-            .size-check
-                line-height 26px
-                height 26px
-                text-align right
-                .select-wrap
-                    position relative
-                    display inline-block
-                    height 100%
-                    width 85px
-                    input 
-                        width 100%
-                        height 100%
-                        background-color head_color
-                        color #fff
-                        text-align center
-                    .size-wrap
-                        position absolute
-                        left 0
-                        top 26px
-                        width 100%
-                        background-color head_color
-                        text-align center
-                        display none
-                        &.active 
-                            display block
-                        p
-                            color #fff
-                            cursor default
-                            &:hover 
-                                background-color theme_color
-                            &.active 
-                                display none 
-            .icon-edit-path
-                width 270px
-                .color-choose
-                    margin 5px 10px
-                ul 
-                    margin-top 8px 
-                    min-height 10px
-                    .color-path
-                        li 
-                            &.active::after 
-                                content ""
-                                position absolute
-                                width 10px
-                                height 10px 
-                                border-radius 50%
-                                background-color #fff
-                                left 50%
-                                top 50%
-                                margin-left -5px
-                                margin-top -5px
-                            &.light.active::after 
-                                background-color #666 
-                    &.icon-last-color
-                        p 
-                            font-size 12px
-                            color #999
-                    li 
-                        display inline-block
-                        width 18px 
-                        height 18px
-                        border-radius 50%
-                        background-color #000000
-                        margin-right 5px 
-                        border 1px solid #eee
-                        cursor pointer
-        .down-wra
-            margin-top 10px
-            text-align center
-            display flex
-            justify-content space-between
-            button 
-                width 100px 
-                height 40px 
-                background-color theme_color
-                color #fff
-                cursor pointer
-// 覆盖组件样式                
-.colpick
-    background-color #fff
-    border none
-    &.colpick_hex
-        width auto 
-        height 240px
-        .colpick_hex_field
-            top 211px
-            left 110px
-        .colpick_new_color
-            top 210px
-            left auto 
-            right 8px
-    .colpick_hue
-        left 230px
-        height 199px
-        width 30px
-    .colpick_hue_arrs
-        width 46px
-    .colpick_color
-    .colpick_color_overlay1
-    .colpick_color_overlay2
-        width 200px
-        height 200px
+.icon-edit-overlay {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(14, 42, 71, 0.9);
+	z-index: 100;
+	.edit-wraaper {
+		position: absolute;
+		width: 700px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		.icon-mask {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.7);
+			z-index: 2;
+			display: none;
+			p {
+				position: absolute;
+				width: 90%;
+				height: 40px;
+				line-height: 40px;
+				background-color: #FFB229;
+				padding: 0 20px;
+				overflow: hidden;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				border-radius: 5px;
+				a {
+					color: red;
+				}
+				span {
+					cursor: pointer;
+					position: absolute;
+					right: 0;
+					top: 0px;
+					width: 40px;
+					height: 40px;
+					text-align: center;
+					background-color: #dc9518;
+				}
+			}
+		}
+		.edit-head {
+			background-color: #1F1F1F;
+			height: 60px;
+			line-height: 60px;
+			color: #fff;
+			padding: 0 20px;
+			font-size: 18px;
+			border-radius: 10px 10px 0 0;
+			.edit-close {
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 60px;
+				height: 60px;
+				text-align: center;
+				color: #fff;
+				cursor: pointer;
+				font-size: 22px;
+			}
+		}
+		.edit-content {
+			padding: 30px 70px;
+			background-color: #fff;
+			border-radius: 0 0 10px 10px;
+			.icon-back {
+				display: inline-block;
+				text-align: center;
+				cursor: pointer;
+				border: 1px solid #eee;
+				border-radius: 3px;
+				line-height: 28px;
+				width: 50px;
+			}
+			.svg-wra {
+				width: 280px;
+				height: 280px;
+				line-height: 280px;
+				margin: 10px 0;
+				background-color: #f9f9f9;
+				text-align: center;
+				box-shadow: 0 0 10px 0 rgba(255, 177, 177, 0.1);
+				svg, img {
+					width: 80%;
+					height: 80%;
+					vertical-align: middle;
+				}
+				svg.hovered {
+					*:not(g) {
+						opacity: 0.1;
+						&.hovered-path {
+							opacity: 1;
+						}
+					}
+				}
+			}
+			.size-check {
+				line-height: 26px;
+				height: 26px;
+				text-align: right;
+				.select-wrap {
+					position: relative;
+					display: inline-block;
+					height: 100%;
+					width: 85px;
+					input {
+						width: 100%;
+						height: 100%;
+						background-color: #333;
+						color: #fff;
+						text-align: center;
+					}
+					.size-wrap {
+						position: absolute;
+						left: 0;
+						top: 26px;
+						width: 100%;
+						background-color: #333;
+						text-align: center;
+						display: none;
+						&.active {
+							display: block;
+						}
+						p {
+							color: #fff;
+							cursor: default;
+							&:hover {
+								background-color: #666;
+							}
+							&.active {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+			.icon-edit-path {
+				width: 270px;
+				.color-choose {
+					margin: 5px 10px;
+				}
+				ul {
+					margin-top: 8px;
+					min-height: 10px;
+					.color-path {
+						li {
+							&.active::after {
+								content: '';
+								position: absolute;
+								width: 10px;
+								height: 10px;
+								border-radius: 50%;
+								background-color: #fff;
+								left: 50%;
+								top: 50%;
+								margin-left: -5px;
+								margin-top: -5px;
+							}
+							&.light.active::after {
+								background-color: #666;
+							}
+						}
+					}
+					&.icon-last-color {
+						p {
+							font-size: 12px;
+							color: #999;
+						}
+					}
+					li {
+						display: inline-block;
+						width: 18px;
+						height: 18px;
+						border-radius: 50%;
+						background-color: #000000;
+						margin-right: 5px;
+						border: 1px solid #eee;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+		.down-wra {
+			margin-top: 10px;
+			text-align: center;
+			display: flex;
+			justify-content: space-between;
+			button {
+				width: 100px;
+				height: 40px;
+				background-color: theme_color;
+				color: #fff;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+// 覆盖组件样式
+.colpick {
+	background-color: #fff;
+	border: none;
+	&.colpick_hex {
+		width: auto;
+		height: 240px;
+		.colpick_hex_field {
+			top: 211px;
+			left: 110px;
+		}
+		.colpick_new_color {
+			top: 210px;
+			left: auto;
+			right: 8px;
+		}
+	}
+	.colpick_hue {
+		left: 230px;
+		height: 199px;
+		width: 30px;
+	}
+	.colpick_hue_arrs {
+		width: 46px;
+	}
+	.colpick_color, .colpick_color_overlay1, .colpick_color_overlay2 {
+		width: 200px;
+		height: 200px;
+	}
+}
 
 // base64下载
-.base64-box
-    p 
-        text-align center
-    textarea
-        width 100%
-        height 100px
-        overflow-y auto
-        margin-top 5px
-        padding 10px
-        resize none
-        background-color #ddd
-        
-
-        
+.base64-box {
+	p {
+		text-align: center;
+	}
+	textarea {
+		width: 100%;
+		height: 100px;
+		overflow-y: auto;
+		margin-top: 5px;
+		padding: 10px;
+		resize: none;
+		background-color: #ddd;
+	}
+}

@@ -140,14 +140,18 @@
         }
 
         var pattern = '(' + utils.escapeRegExChars(currentValue) + ')';
+        // 新增
+        var n_index = suggestion.value.indexOf('<'),
+            n_value = suggestion.value.substring(0, n_index),
+            n_other = suggestion.value.substring(n_index);
 
-        return suggestion.value
+        return n_value
             .replace(new RegExp(pattern, 'gi'), '<strong>$1<\/strong>')
             .replace(/&/g, '&amp;')
-            // .replace(/</g, '&lt;')
-            // .replace(/>/g, '&gt;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
-            .replace(/&lt;(\/?strong)&gt;/g, '<$1>');
+            .replace(/&lt;(\/?strong)&gt;/g, '<$1>') + n_other;
     };
 
     function _formatGroup(suggestion, category) {

@@ -307,13 +307,23 @@ class IconEdit {
       e.target.matches(".color-path li")
     ) {
       if (e.type == "mouseover") {
-        $target
-          .closest(".icon-edit-overlay")
-          .find("svg")
-          .addSvgClass("hovered");
-        self
-          .__getByFillColor($target.attr("data-original"))
-          .addSvgClass("hovered-path");
+        if (e.target.matches(".color-path li")) {
+          $target
+            .closest(".icon-edit-overlay")
+            .find("svg")
+            .addSvgClass("hovered");
+          self
+            .__getByFillColor($target.attr("data-original"))
+            .addSvgClass("hovered-path");
+        } else {
+          $target
+            .closest(".icon-edit-overlay")
+            .find("svg")
+            .addSvgClass("hovered");
+
+          $target.addSvgClass("hovered-path");
+        }
+
       } else {
         $target
           .closest(".icon-edit-overlay")
@@ -339,14 +349,26 @@ class IconEdit {
       $(".icon-edit-overlay")
         .find(".active-path")
         .removeSvgClass("active-path");
-      self
-        .__getByFillColor($target.attr("data-original"))
-        .addSvgClass("active-path");
-      self
-        .__getByFillColorLi($target.attr("data-original"))
-        .addClass("active")
-        .siblings()
-        .removeClass("active");
+
+
+
+      if (e.target.matches(".color-path li")) {
+        self
+          .__getByFillColor($target.attr("data-original"))
+          .addSvgClass("active-path");
+        self
+          .__getByFillColorLi($target.attr("data-original"))
+          .addClass("active")
+          .siblings()
+          .removeClass("active");
+      } else {
+        self
+          .__getByFillColorLi($target.attr("data-original"))
+          .removeClass("active");
+
+        $target.addSvgClass("active-path");
+      }
+
 
       var color;
 
@@ -410,7 +432,7 @@ class IconEdit {
       var curColor = $(".icon-edit-overlay")
         .find(".color-path li.active")
         .data("original");
-      $("#col-pick").colpickSetColor(curColor);
+      !!curColor && $("#col-pick").colpickSetColor(curColor);
     }
   }
 

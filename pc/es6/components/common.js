@@ -2,27 +2,35 @@
  * @Author: Liliang Zhu
  * @Date: 2019-11-15 10:28:32
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-10 09:16:36
+ * @Last Modified time: 2020-04-27 14:47:52
  * 全站通用板块
  */
 // 引入登录注册模块
-import { toLoginType } from "./login";
+import {
+  toLoginType
+} from "./login";
 import SideBar from "./sidebar";
 // 判断登录状态模块
 import "./login-status";
 // 搜索
-import { commonSearch } from "../util";
+import {
+  commonSearch
+} from "../util";
 // 引入搜索联想
 import "../plugins/jquery.autocomplete";
 // 搜索接口
-import { SEARCH } from "../api";
+import {
+  SEARCH
+} from "../api";
 
-import { toggleActive } from "../util";
+import {
+  toggleActive
+} from "../util";
 
 $(() => {
   // 头部登录注册
   const $loginBtn = $(".header-login_btns").children("button");
-  $loginBtn.on("click", function() {
+  $loginBtn.on("click", function () {
     let _index = $(this).index();
     toLoginType.init().showLogin(0, _index);
   });
@@ -33,19 +41,19 @@ $(() => {
     $headerFormIpt = $headerForm.find("input");
 
   $headerSearchType.hover(
-    function() {
+    function () {
       $(this)
         .find("ul")
         .show();
     },
-    function() {
+    function () {
       $(this)
         .find("ul")
         .hide();
     }
   );
 
-  $headerForm.on("click", "li", function() {
+  $headerForm.on("click", "li", function () {
     let val = $(this).text();
     $headerForm.find(".search-type span").text(val);
     $headerForm.find("ul").hide();
@@ -53,14 +61,14 @@ $(() => {
   });
 
   // 搜索
-  $headerForm.on("submit", function(e) {
+  $headerForm.on("submit", function (e) {
     e.preventDefault();
     let _val = $(this)
-        .find("input")
-        .val(),
+      .find("input")
+      .val(),
       _model = $(this)
-        .find("li.active")
-        .data("model");
+      .find("li.active")
+      .data("model");
     commonSearch(_val, _model);
   });
 
@@ -72,8 +80,7 @@ $(() => {
       if (response) {
         return {
           suggestions: $.map(JSON.parse(response), v => ({
-            value:
-              (v.thumb && "<img src=" + v.thumb + ">" + v.value) || v.value,
+            value: (v.thumb && "<img src=" + v.thumb + ">" + v.value) || v.value,
             data: v.data
           }))
         };
@@ -144,7 +151,7 @@ $(() => {
 })();
 
 // 百度统计
-(function() {
+(function () {
   const bdtjcode = "a8dc54ec51e87376541aaf2c1ad569cd";
   let hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?" + bdtjcode;

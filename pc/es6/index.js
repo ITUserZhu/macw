@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu
  * @Date: 2019-11-12 17:45:48
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-08 15:05:51
+ * @Last Modified time: 2020-04-27 14:47:35
  * 首页
  */
 
@@ -13,13 +13,15 @@ import "./components/common";
 // 壁纸鼠标效果
 import "./plugins/wallpaper";
 // 引入工具
-import { toggleActive } from "./util";
+import {
+  toggleActive
+} from "./util";
 // 引入视频播放功能
 import VideoPlay from "./components/video-play";
 // 侧边
 import SideBar from "./components/sidebar";
 
-$(function() {
+$(function () {
   // 头部手风琴
   const $bannerUl = $(".banner-box");
   const $bannerLis = $bannerUl.children("li");
@@ -28,7 +30,7 @@ $(function() {
 
   let timer = null;
 
-  $bannerLis.on("mouseenter", function() {
+  $bannerLis.on("mouseenter", function () {
     let curIndex = $(this).index();
     !!timer && clearTimeout(timer);
     timer = setTimeout(() => {
@@ -36,13 +38,12 @@ $(function() {
     }, 150);
   });
 
-  $bannerLis.on("mouseleave", function() {
+  $bannerLis.on("mouseleave", function () {
     !!timer && clearTimeout(timer);
   });
 
   // 侧边锚点导航
-  new SideBar(
-    {
+  new SideBar({
       item1: {
         selector: ".newest-video",
         iconClass: "icon-shipin",
@@ -95,14 +96,14 @@ $(function() {
 
   initNewestItemCheck();
 
-  $recommendNav.on("click", function() {
+  $recommendNav.on("click", function () {
     var _index = $(this).index();
     toggleActive([$(this), $recommendWrap.eq(_index)]);
 
     initNewestItemCheck(_index);
   });
 
-  $recommendPagi.on("click", ".pagi-btn", function() {
+  $recommendPagi.on("click", ".pagi-btn", function () {
     const $wrap = $(".recommend-wrap")
       .children(".recommend-box.active")
       .find(".ul-box");
@@ -113,19 +114,19 @@ $(function() {
     } else {
       $wrap.addClass("move");
       let $uls = $wrap.children("ul").eq(1);
-      $uls.children("li").each(function(index, el) {
+      $uls.children("li").each(function (index, el) {
         if (
           !$(el)
-            .find(".img img")
-            .attr("src")
+          .find(".img img")
+          .attr("src")
         ) {
           $(el)
             .find("img:not('.bz-imgs')")
             .attr(
               "src",
               $(el)
-                .find(".img img")
-                .data("src")
+              .find(".img img")
+              .data("src")
             );
         }
       });
@@ -135,9 +136,9 @@ $(function() {
   function initNewestItemCheck(index = 0) {
     const $wrap = $recommendWrap.eq(index).find(".ul-box"),
       hasChild = !!$wrap
-        .find("ul")
-        .eq(1)
-        .children().length;
+      .find("ul")
+      .eq(1)
+      .children().length;
     $wrap.removeClass("move");
     if (hasChild) {
       $recommendPagi.show();
@@ -149,10 +150,10 @@ $(function() {
 
   // 壁纸鼠标效果
   $("ul.wallpaper")
-    .on("mouseenter", "li", function() {
+    .on("mouseenter", "li", function () {
       $(this).hoverCheck();
     })
-    .on("mouseleave", "li", function() {
+    .on("mouseleave", "li", function () {
       $(this).leaveCheck();
     });
 
@@ -161,7 +162,7 @@ $(function() {
     $articleUl = $articleSection.find(".article-wraps").children("ul"),
     $articleBtns = $articleSection.find(".article-check").children("span");
 
-  $articleBtns.on("click", function() {
+  $articleBtns.on("click", function () {
     let _index = $(this).index();
     toggleActive([$(this), $articleUl.eq(_index)]);
   });

@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-15 09:58:52 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2019-12-27 11:54:25
+ * @Last Modified time: 2020-04-27 16:28:39
  */
 
 // 软件内容页接口：
@@ -56,3 +56,6 @@ export const SHOPPING_APIS = {
   del: '/del_shopping_cart', // 删除
   type: '/shopping_specifications', // 获取图片格式
 }
+
+// 图片编辑
+export const EDIT_API = '/api/img_edit';

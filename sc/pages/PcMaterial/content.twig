@@ -50,6 +50,10 @@
           <button class="download" data-id="{{ item.id }}" data-type="{{ item.format_type }}">下载 {{ item.format_type }}
             <em>({{ item.point }}积分)</em></button>
           {% endfor %}
+          <div class="edit-box">
+            <button class="edit" id="edit" data-id="{{ photo_info[0].id }}">在线编辑（vip功能）</button>
+            <p>* 图片编辑功能会默认将图片等比缩放至2400*2400px以下</p>
+          </div>
           <ol>
             <li><em>图片ID：</em> <span>{{ content.id }}</span></li>
             <li><em>格式：</em> {% for i,item in photo_info %}{% if i != 0 %}、{% endif %}{{ item.format_type }}

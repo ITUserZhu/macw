@@ -2,7 +2,7 @@
  * @Author: Liliang Zhu 
  * @Date: 2019-11-27 14:02:20 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-01-09 15:24:29
+ * @Last Modified time: 2020-04-28 11:39:02
  * 素材内容页面
  */
 
@@ -62,6 +62,19 @@ $(function () {
       'container': 'li'
     });
   }
+
+  // 用户编辑
+  const $editBtn = $('#edit');
+  $editBtn.on('click', function () {
+    // 判断登录
+    const ISLOGIN = $('#logined-box').hasClass('active');
+    const EDITID = $(this).data('id');
+    if (ISLOGIN) {
+      window.location.href = `/img_edit.html?img_id=${EDITID}`;
+    } else {
+      $('#login-in').trigger('click');
+    }
+  });
 
   // 用户下载
   const $downloadBtn = $('.download');

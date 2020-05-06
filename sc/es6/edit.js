@@ -2,13 +2,16 @@
  * @Author: Liliang Zhu 
  * @Date: 2020-04-27 15:53:33 
  * @Last Modified by: Liliang Zhu
- * @Last Modified time: 2020-04-28 11:38:33
+ * @Last Modified time: 2020-04-28 15:40:44
  * 图片编辑
  */
 
 // 引入公用模块
 import './components/common';
-import translations from './components/translations';
+import TRANSLATIONS from './components/translations';
+import FAMILY from './components/font-family';
+import STICKERS from './components/stickers';
+
 // 弹框提示
 import {
   confirmBox,
@@ -65,11 +68,38 @@ $(() => {
           languages: {
             active: 'chinese',
             custom: {
-              chinese: translations,
+              chinese: TRANSLATIONS,
+            }
+          },
+
+          objectDefaults: {
+            text: {
+              fontFamily: '雅黑',
+            }
+          },
+
+          tools: {
+            export: {
+              defaultFormat: 'png', //png, jpeg or json
+              defaultName: 'macw', //default name for downloaded photo file
+              defaultQuality: 1, //works with jpeg only, 0 to 1
+            },
+            // 贴图
+            stickers: {
+              replaceDefault: false,
+              items: STICKERS
+            },
+            // 字体
+            text: {
+              replaceDefault: true,
+              defaultCategory: 'display',
+              defaultText: '双击编辑文本',
+              items: FAMILY
             }
           },
 
           image: res.url,
+
           onLoad: function () {
             if (!!newW) {
               pixie.getTool('resize').apply(newW, newH);
@@ -80,21 +110,9 @@ $(() => {
                 top: 0
               });
             }
+            window.postMessage('pixieLoaded', '*');
           },
         });
-      } else {
-        confirmBox('您还是不会员，是否前往充值？', () => {
-          window.location.href = 'https://www.macw.com/vip.html';
-        }, {
-          buttons: {
-            cancel: {
-              text: '返回',
-              action: () => {
-                window.history.back();
-              }
-            },
-          }
-        })
       }
     } else if (res.code == 501) {
       confirmBox('请您登录后再试！', () => {
@@ -106,6 +124,32 @@ $(() => {
             action: () => {
               window.history.back();
             },
+          },
+        }
+      })
+    } else if (res.code == 500) {
+      confirmBox('您还是不会员，是否前往充值？', () => {
+        window.location.href = 'https://www.macw.com/vip.html';
+      }, {
+        buttons: {
+          cancel: {
+            text: '返回',
+            action: () => {
+              window.history.back();
+            }
+          },
+        }
+      })
+    } else {
+      confirmBox('资源不存在，请返回重试！', () => {
+        window.history.back();
+      }, {
+        buttons: {
+          cancel: {
+            text: '返回',
+            action: () => {
+              window.history.back();
+            }
           },
         }
       })

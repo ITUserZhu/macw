@@ -1,7 +1,7 @@
 <!-- 图标包 -->
 {% macro pack(data, is_show = false) %}
 {% for item in data %}
-<li><a href="{{ item.url }}">
+<li><a href="{{ item.url }}" target="_blank">
 		<div class="img">
 			<img class="img-cover" {% if is_show %}data-{% endif %}src="{{ item.thumb }}" alt="{{ item.pack_name }}">
 			{% if item.thumb_relate %}

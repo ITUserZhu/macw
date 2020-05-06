@@ -54,15 +54,19 @@
       <div class="head-bot">
         {# 导航菜单 #}
         <nav class="head-menu fl">
-          <a href="/" {% if active == 'index' %}class="active" {% endif %}><i class="icon-home"></i>首页</a>
-          <a href="/pack/" {% if active == 'pack' %}class="active" {% endif %}><i class="icon-muster"></i>图集</a>
-          <a href="/families/" {% if active == 'families' %}class="active" {% endif %}><i class="icon-style"></i>样式</a>
-          <a href="/categories/" {% if active == 'categories' %}class="active" {% endif %}><i
+          <a href="/" {% if active == 'index' %}class="active" {% endif %} target="_blank"><i
+              class="icon-home"></i>首页</a>
+          <a href="/pack/" {% if active == 'pack' %}class="active" {% endif %} target="_blank"><i
+              class="icon-muster"></i>图集</a>
+          <a href="/families/" {% if active == 'families' %}class="active" {% endif %} target="_blank"><i
+              class="icon-style"></i>样式</a>
+          <a href="/categories/" {% if active == 'categories' %}class="active" {% endif %} target="_blank"><i
               class="icon-class"></i>分类</a>
-          <a href="/newest.html" {% if active == 'new' %}class="active" {% endif %}><i class="icon-new"></i>最新</a>
-          <a href="https://www.macw.com/"><i class="icon-software"></i>软件</a>
-          <a href="https://v.macw.com/"><i class="icon-video"></i>视频</a>
-          <a href="https://sc.macw.com/"><i class="icon-image"></i>素材</a>
+          <a href="/newest.html" {% if active == 'new' %}class="active" {% endif %} target="_blank"><i
+              class="icon-new"></i>最新</a>
+          <a href="https://www.macw.com/" target="_blank"><i class="icon-software"></i>软件</a>
+          <a href="https://v.macw.com/" target="_blank"><i class="icon-video"></i>视频</a>
+          <a href="https://sc.macw.com/" target="_blank"><i class="icon-image"></i>素材</a>
         </nav>
 
         <div class="head-other fr">
